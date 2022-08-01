@@ -16,7 +16,7 @@ import org.dreambot.utilities.Timing;
 import javax.swing.*;
 import java.awt.*;
 
-@ScriptManifest(author = "Bonfire", name = "LostDelayedTBL", version = 1.00, category = Category.WOODCUTTING)
+@ScriptManifest(author = "Bonfire", name = "DreamBot TBL", version = 1.00, category = Category.MAGIC)
 public class Main extends AbstractScript implements PaintInfo {
 
     // Instantiate the tree to hold our branches and leaves
