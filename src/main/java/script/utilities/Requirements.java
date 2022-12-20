@@ -5,39 +5,52 @@ import org.dreambot.api.methods.quest.Quests;
 import org.dreambot.api.methods.quest.book.Quest;
 import org.dreambot.api.methods.skills.Skill;
 import org.dreambot.api.methods.skills.Skills;
+import org.dreambot.api.utilities.Logger;
+import script.framework.Leaf;
 
+import java.util.List;
 import java.util.Map;
 
 public class Requirements {
     private int questPoints;
-    private Map<String, Integer> skills;
-    private Map<String, Integer> items;
-    private Map<Quest, Integer> quests;
+    private Map<Skill, Integer> skills;
+    private List<Quest> quests;
 
-    public Requirements(int questPoints, Map<String, Integer> skills, Map<String, Integer> items) {
+    public Requirements(int questPoints, Map<Skill, Integer> skills, List<Quest> quests) {
         this.questPoints = questPoints;
+        this.quests = quests;
         this.skills = skills;
-        this.items = items;
     }
 
     public int getQuestPoints() {
         return questPoints;
     }
 
-    public Map<String, Integer> getSkills() {
+    public Map<Skill, Integer> getSkills() {
         return skills;
     }
 
-    public Map<String, Integer> getItems() {
-        return items;
-    }
 
+    public boolean hasRequiredQuests()
+    {
+        if(this.quests == null || this.quests.isEmpty()) return true;
+        for(Quest q : this.quests)
+        {
+            if(!q.isFinished())
+            {
+                Logger.log("You do not have the required quest completed: " +q+ " to start this quest.");
+                return false;
+            }
+        }
+        return true;
+    }
     public boolean hasRequiredSkills() {
-        for (Map.Entry<String, Integer> entry : this.skills.entrySet()) {
-            String skill = entry.getKey();
+        if(this.skills == null || this.skills.isEmpty()) return true;
+        for (Map.Entry<Skill, Integer> entry : this.skills.entrySet()) {
+            Skill skill = entry.getKey();
             int level = entry.getValue();
-            if (Skills.getRealLevel(Skill.valueOf(skill)) < level) {
-                System.out.println("You do not have the required level in " + skill + " to complete this quest.");
+            if (Skills.getRealLevel(skill) < level) {
+                Logger.log("You do not have the required level in " + skill + " to complete this quest.");
                 return false;
             }
         }
@@ -46,27 +59,15 @@ public class Requirements {
 
     public boolean hasRequiredQuestPoints() {
         if (Quests.getQuestPoints() < this.questPoints) {
+            Logger.log("You do not have the required QP:" + Quests.getQuestPoints() + " necessary for this quest:"+this.questPoints);
             return false;
         }
         return true;
     }
 
-    public boolean hasRequiredItems() {
-        for (Map.Entry<String, Integer> entry : this.items.entrySet()) {
-            String item = entry.getKey();
-            int quantity = entry.getValue();
-            if (Inventory.count(item) < quantity) {
-                System.out.println("You do not have the required quantity of " + item + " to complete this quest.");
-                return false;
-            }
-        }
-        return true;
-    }
-
     public boolean checkRequirements() {
-        if (hasRequiredItems() == true && hasRequiredSkills() == true && hasRequiredQuestPoints() == true) {
-            return true;
-        }
-        return false;
+        return hasRequiredSkills() &&
+                hasRequiredQuestPoints() &&
+                hasRequiredQuests();
     }
 }
