@@ -2,6 +2,7 @@ package script.utilities;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.quest.Quests;
+import org.dreambot.api.methods.quest.book.Quest;
 import org.dreambot.api.methods.skills.Skill;
 import org.dreambot.api.methods.skills.Skills;
 
@@ -11,6 +12,7 @@ public class Requirements {
     private int questPoints;
     private Map<String, Integer> skills;
     private Map<String, Integer> items;
+    private Map<Quest, Integer> quests;
 
     public Requirements(int questPoints, Map<String, Integer> skills, Map<String, Integer> items) {
         this.questPoints = questPoints;
