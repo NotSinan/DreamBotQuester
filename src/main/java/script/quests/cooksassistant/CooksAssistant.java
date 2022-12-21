@@ -73,9 +73,21 @@ public class CooksAssistant extends Questz {
     {
         return PlayerSettings.getBitValue(GRAIN_HOPPER_FULL_VARBIT) > 0;
     }
+    public static boolean handleDialogues() {
+        if (Dialogues.canContinue()) {
+            if (Dialogues.continueDialogue()) Sleep.sleepTick();
+            return true;
+        }
 
+        if (Dialogues.areOptionsAvailable()) {
+            if (API.chooseOption("I'll get right on it.", "What's wrong?", "Yes.")) Sleep.sleepTick();
+            return true;
+        }
+        return false;
+    }
     @Override
     public int onLoop() {
+        if(handleDialogues()) return Calculations.random(444,1111);
         switch(getProgressValue())
         {
             case(0):case(1):
@@ -104,13 +116,18 @@ public class CooksAssistant extends Questz {
         }
         if(!Inventory.contains(POT_OF_FLOUR))
         {
+            //get flour
             if(!API.withdrawItem(POT_OF_FLOUR,1,false))
             {
-                //get flour
                 if(!Inventory.contains(POT))
                 {
                     //get pot
                     API.takeGroundSpawn(POT,POT_LUMBY);
+                    return false;
+                }
+                if(!Inventory.contains(BUCKET_OF_MILK) && !Inventory.contains(BUCKET))
+                {
+                    API.takeGroundSpawn(BUCKET,BUCKET_SPAWN);
                     return false;
                 }
                 if(haveGrainWaiting())
@@ -174,12 +191,14 @@ public class CooksAssistant extends Questz {
                     return false;
                 }
                 //fill bucket
-                if(API.interactObject("Dairy cow","Milk"))
+                if(API.walkArea(MILK_COW))
                 {
-                    Sleep.sleepUntil(() -> Inventory.contains(BUCKET_OF_MILK),() -> Players.getLocal().isMoving(),6000,69);
-                    return false;
+                    if(API.interactObject("Dairy cow","Milk"))
+                    {
+                        Sleep.sleepUntil(() -> Inventory.contains(BUCKET_OF_MILK),() -> Players.getLocal().isMoving(),6000,69);
+                        return false;
+                    }
                 }
-                API.walkArea(MILK_COW);
             }
             return false;
         }

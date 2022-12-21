@@ -1,14 +1,30 @@
-import jdk.jfr.internal.Logger;
+package script.quests.therestlessghost;
+
 import org.dreambot.api.methods.dialogues.Dialogues;
+import org.dreambot.api.methods.quest.book.Quest;
 import org.dreambot.api.methods.settings.PlayerSettings;
+import org.dreambot.api.methods.skills.Skill;
+import org.dreambot.api.utilities.Logger;
 import script.utilities.Questz;
 
-public class TheRestlessGhost() extends Questz
+import java.util.List;
+import java.util.Map;
+
+public class TheRestlessGhost extends Questz
 {
+
+    public TheRestlessGhost(int questPoints, Map<Skill, Integer> skills, List<Quest> quests) {
+        super(questPoints, skills, quests);
+    }
 
     @Override
     public boolean isValid() {
         return !completed() && reqs.checkRequirements();
+    }
+
+    @Override
+    public int onLoop() {
+        return 0;
     }
 
     @Override
@@ -21,7 +37,6 @@ public class TheRestlessGhost() extends Questz
         return PlayerSettings.getConfig(107);
     }
 
-    @Override
     public boolean handleDialogues() {
         if(Dialogues.areOptionsAvailable())
         {
@@ -32,13 +47,10 @@ public class TheRestlessGhost() extends Questz
                     Dialogues.chooseOption("He's got a ghost haunting his graveyard.") ||
                     Dialogues.chooseOption("I've lost the Amulet of Ghostspeak."))
             {
-                Logger.log("");
+
             }
         }
+        return false;
     }
 
-    @Override
-    public int doLoop() {
-        return 0;
-    }
 }

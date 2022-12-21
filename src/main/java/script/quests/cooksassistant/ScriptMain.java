@@ -46,7 +46,7 @@ public class ScriptMain extends AbstractScript implements PaintInfo, ChatListene
     @Override
     public int onLoop() {
         if(Client.getGameState() != GameState.LOGGED_IN) return Calculations.random(666,1222);
-
+        API.observeDialog();
         return tree.onLoop();
     }
     @Override

@@ -13,18 +13,111 @@ import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.walking.impl.Walking;
+import org.dreambot.api.methods.widget.Widget;
+import org.dreambot.api.methods.widget.Widgets;
+import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
+import org.dreambot.api.wrappers.widgets.WidgetChild;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class API
 {
     public static String currentBranch = "";
     public static String currentLeaf = "";
     public static String lastGameMsg = "";
+    public static String lastDialog = "";
+    public static String[] lastDialogOptions;
+    public static void observeDialog()
+    {
+        if(Dialogues.areOptionsAvailable())
+        {
+            if(lastDialogOptions == null)
+            {
+                lastDialogOptions = Dialogues.getOptions();
+                StringBuilder op = new StringBuilder();
+                Arrays.stream(lastDialogOptions).forEach(t -> {
+                    op.append("["+t+"]");
+                });
+                Logger.log("Found new set of dialog options:"+op.toString());
+                return;
+            }
+            String[] options = Dialogues.getOptions();
+            for(int i = 0; i < options.length; i++)
+            {
+                if(!options[i].equals(lastDialogOptions[i]))
+                {
+                    lastDialogOptions = options;
+                    StringBuilder op = new StringBuilder();
+                    Arrays.stream(lastDialogOptions).forEach(t -> {
+                        op.append("["+t+"]");
+                    });
+                    Logger.log("Found new set of dialog options:"+op.toString());
+                    return;
+                }
+            }
+            return;
+        }
+        String txt = "";
+        WidgetChild dialogWidget = Widgets.getWidgetChild(193, 2);
+        if(dialogWidget == null || !dialogWidget.isVisible()) dialogWidget = Widgets.getWidgetChild(231,6);
+        if(dialogWidget != null &&
+                dialogWidget.isVisible())
+        {
+            txt = dialogWidget.getText();
+            if(txt != null && !txt.isEmpty() && !txt.equalsIgnoreCase("null") && !txt.equals(lastDialog))
+            {
+                Logger.log("NPC Dialogue: " + txt);
+                lastDialog = txt;
+                return;
+            }
+        }
+        txt = Dialogues.getNPCDialogue();
+        if(txt != null && !txt.isEmpty() && !txt.equalsIgnoreCase("null") && !txt.equals(lastDialog))
+        {
+            Logger.log("NPC Dialogue: " + txt);
+            lastDialog = txt;
+        }
+    }
+
+    /**
+     * Mainly created this method for debugging and testing.
+     * Prints out the option that was chosen and if the passed options are not
+     * present when options are available, prints out the passed options versus the visible options in case of scripter error.
+     */
+    public static boolean chooseOption(String... options)
+    {
+        if(options == null || options.length == 0 || !Dialogues.areOptionsAvailable()) return false;
+        String chosen = "";
+        final boolean[] tried = {false};
+        List<String> optz = Arrays.asList(options);
+        Arrays.stream(Dialogues.getOptions()).filter(o -> optz.contains(o)).findFirst().ifPresent(i -> {
+            if(Dialogues.chooseOption(i))
+            {
+                Logger.log("Choosing option:["+i+"]");
+            }
+            tried[0] = true;
+        });
+        if(tried[0]) return true;
+        //debugging section - no options passed are found when options are visible
+        StringBuilder op = new StringBuilder();
+        Arrays.stream(options).forEach(t -> {
+            op.append("["+t+"]");
+        });
+        Logger.log("Not found matching option! Provided options: "+op.toString());
+        StringBuilder op2 = new StringBuilder();
+        Arrays.stream(Dialogues.getOptions()).forEach(t -> {
+            op2.append("["+t+"]");
+        });
+        Logger.log("Visible options: "+op2.toString());
+        return false;
+    }
+
     /**
      * Call this method before checking owned items to ensure our local DreamBot bank cache has been initialized after each script start.
      * Opens bank and calls an API method from the Bank class to initialize it.

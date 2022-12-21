@@ -20,8 +20,5 @@ public abstract class Questz extends Leaf
     public Requirements reqs;
     public Questz(int questPoints, Map<Skill, Integer> skills, List<Quest> quests) {
         this.reqs = new Requirements(questPoints,skills,quests);
-        lastDialog = "";
     }
-    public String lastDialog;
-    public String[] lastDialogOptions;
 }
