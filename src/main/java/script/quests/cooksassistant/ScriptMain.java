@@ -1,4 +1,4 @@
-package script;
+package script.quests.cooksassistant;
 
 import org.dreambot.api.Client;
 import org.dreambot.api.data.GameState;
@@ -8,25 +8,21 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.script.listener.ChatListener;
-import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.api.wrappers.widgets.message.MessageType;
 import script.framework.Tree;
 import script.paint.CustomPaint;
 import script.paint.PaintInfo;
-import script.quests.cooksassistant.CooksAssistant;
 import script.utilities.API;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @ScriptManifest(
         category = Category.QUEST,
-        name = "DreamBotQuester",
-        description = "Does quests for DreamBot",
+        name = "Cook's Assistant",
+        description = "It gives the cook a cake mix",
         author = "Sinan + Dreambotter420",
         version = 0.01
 )

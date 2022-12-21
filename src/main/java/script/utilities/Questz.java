@@ -17,28 +17,11 @@ public abstract class Questz extends Leaf
 {
     public abstract boolean completed();
     public abstract int getProgressValue();
-    public abstract boolean handleDialogues();
-    public abstract int doLoop();
     public Requirements reqs;
     public Questz(int questPoints, Map<Skill, Integer> skills, List<Quest> quests) {
         this.reqs = new Requirements(questPoints,skills,quests);
+        lastDialog = "";
     }
-
-    @Override
-    public int onLoop()
-    {
-        if(closeQuestCompletion()) return Calculations.random(420,1111);
-        if(Dialogues.inDialogue() && handleDialogues()) return Calculations.random(420,1111);
-        return doLoop();
-    }
-    private boolean closeQuestCompletion()
-    {
-        WidgetChild close = Widgets.getWidgetChild(153,17);
-        if(close != null && close.isVisible())
-        {
-            if(close.interact("Close")) Sleep.sleepTick();
-            return true;
-        }
-        return false;
-    }
+    public String lastDialog;
+    public String[] lastDialogOptions;
 }

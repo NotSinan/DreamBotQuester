@@ -36,20 +36,6 @@ public class CooksAssistant extends Questz {
         return PlayerSettings.getConfig(29);
     }
 
-    @Override
-    public boolean handleDialogues() {
-        if(Dialogues.canContinue())
-        {
-            if(Dialogues.continueDialogue()) Sleep.sleepTick();
-            return true;
-        }
-        if(Dialogues.areOptionsAvailable())
-        {
-            if(Dialogues.chooseFirstOption("I'll get right on it.","What's wrong?","Yes.")) Sleep.sleepTick();
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public boolean isValid() {
@@ -89,7 +75,7 @@ public class CooksAssistant extends Questz {
     }
 
     @Override
-    public int doLoop() {
+    public int onLoop() {
         switch(getProgressValue())
         {
             case(0):case(1):
