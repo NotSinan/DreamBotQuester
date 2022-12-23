@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>DreamBotQuester</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- java properties -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <!-- dreambot properties -->
+        <dreambot.path>${user.home}/DreamBot/</dreambot.path>
+    </properties>
+
+    <!-- dreambot cdn -->
+    <repositories>
+        <repository>
+            <id>dreambot</id>
+            <name>dreambot</name>
+            <url>https://downloads.dreambot.org/maven/</url>
+        </repository>
+    </repositories>
+
+    <!-- dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>org.dreambot</groupId>
+            <artifactId>client</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- build jar file with dependencies -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedClassifierName>dep-included</shadedClassifierName>
+                    <outputDirectory>${dreambot.path}/Scripts</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
