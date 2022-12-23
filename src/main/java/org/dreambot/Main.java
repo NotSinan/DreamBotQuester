@@ -10,6 +10,10 @@ import org.dreambot.behaviour.timeout.TimeoutLeaf;
 import org.dreambot.framework.Tree;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
+import org.dreambot.quests.sheepshearer.CollectWoolLeaf;
+import org.dreambot.quests.sheepshearer.SheepShearer;
+import org.dreambot.quests.sheepshearer.SpinWoolLeaf;
+import org.dreambot.quests.sheepshearer.TalkToFredLeaf;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
@@ -52,13 +56,7 @@ public class Main extends AbstractScript implements PaintInfo {
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
         tree.addBranches(
-                new TimeoutLeaf(),
-                // Place your own branches and leaves below this
-
-                new CombatBranch().addLeafs(new CombatLeaf()),
-
-                // Place your own branches and leaves above this
-                new FallbackLeaf()
+                new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf())
         );
     }
 
