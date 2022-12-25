@@ -12,6 +12,7 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Timing;
 
 public class CollectWoolLeaf extends Leaf {
     private final Area SHEEP_AREA = new Area(3193, 3276, 3211, 3257);
@@ -26,22 +27,24 @@ public class CollectWoolLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (!Inventory.contains("Shears")) {
-            GroundItem shears = GroundItems.closest(item -> item != null && item.getName().equals("Shears"));
-            if (shears.interact("Take")) {
+            GroundItem shears = GroundItems.closest(item -> item.getName().equals("Shears"));
+            if (shears != null && shears.interact("Take")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Shears"), 3000);
             }
-        } else {
-            if (!SHEEP_AREA.contains(Players.getLocal())) {
-                if (Walking.shouldWalk(4)) {
-                    Walking.walk(SHEEP_AREA.getRandomTile());
-                }
-            } else {
-                NPC sheep = NPCs.closest(npc -> npc != null && npc.getName().equals("Sheep"));
-                if (sheep.interact("Shear")) {
-                    Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-                }
-            }
+            return Timing.loopReturn();
         }
-        return Calculations.random(200, 500);
+
+        if (!SHEEP_AREA.contains(Players.getLocal())) {
+            if (Walking.shouldWalk(4)) {
+                Walking.walk(SHEEP_AREA.getRandomTile());
+            }
+            return Timing.loopReturn();
+        }
+
+        NPC sheep = NPCs.closest(npc -> npc.getName().equals("Sheep"));
+        if (sheep != null && sheep.interact("Shear")) {
+            Sleep.sleepUntil(() -> Inventory.contains("Wool"), 3000);
+        }
+        return Timing.loopReturn();
     }
 }
