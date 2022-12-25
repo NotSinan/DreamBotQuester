@@ -3,21 +3,24 @@ package org.dreambot;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
-import org.dreambot.behaviour.combat.CombatBranch;
-import org.dreambot.behaviour.combat.leaves.CombatLeaf;
-import org.dreambot.behaviour.fallback.FallbackLeaf;
-import org.dreambot.behaviour.timeout.TimeoutLeaf;
 import org.dreambot.framework.Tree;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.quests.sheepshearer.CollectWoolLeaf;
-import org.dreambot.quests.sheepshearer.SheepShearer;
-import org.dreambot.quests.sheepshearer.SpinWoolLeaf;
-import org.dreambot.quests.sheepshearer.TalkToFredLeaf;
+import org.dreambot.quests.doricsquest.DoricsQuest;
+import org.dreambot.quests.doricsquest.TalkToDoricLeaf;
+import org.dreambot.quests.impcatcher.GiveBeadsLeaf;
+import org.dreambot.quests.impcatcher.ImpCatcher;
+import org.dreambot.quests.impcatcher.RetrieveBeadsLeaf;
+import org.dreambot.quests.piratestreasure.*;
+import org.dreambot.quests.piratestreasure.RetrieveCoinsLeaf;
+import org.dreambot.quests.romeoandjuliet.*;
+import org.dreambot.quests.runemysteries.*;
+import org.dreambot.quests.therestlessghost.*;
+import org.dreambot.quests.vampyreslayer.*;
+import org.dreambot.quests.xmarksthespot.*;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
-import javax.swing.*;
 import java.awt.*;
 
 @ScriptManifest(author = "Bonfire", name = "DreamBot TBL", version = 1.00, category = Category.MAGIC)
@@ -56,7 +59,8 @@ public class Main extends AbstractScript implements PaintInfo {
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
         tree.addBranches(
-                new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf())
+                new PiratesTreasure().addLeafs(new RetrieveCoinsLeaf(), new TalkToRedbeardFrankLeaf(), new RetrieveRumLeaf(),
+                        new RetrieveBananaLeaf(), new TalkToLuthasLeaf())
         );
     }
 
