@@ -6,7 +6,11 @@ import org.dreambot.api.wrappers.interactive.Entity;
 
 public class Interaction {
     public static boolean delayEntityInteract(Entity entity, String action, long sleepDelay) {
-        Sleep.sleep((int)sleepDelay);
-        return true;
+        Sleep.sleep(sleepDelay);
+        return entity.interact(action);
+    }
+    public static boolean delayEntityInteract(Entity entity, String action) {
+        Sleep.sleep(Timing.getSleepDelay());
+        return entity.interact(action);
     }
 }

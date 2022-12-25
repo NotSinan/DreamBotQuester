@@ -16,14 +16,13 @@ public class GiveBeadsLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 0 &&
-                Inventory.contains("Black bead", "Red bead", "White bead", "Yellow bead") ||
+                Inventory.containsAll("Black bead", "Red bead", "White bead", "Yellow bead") ||
                 PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 1 &&
-                        Inventory.contains("Black bead", "Red bead", "White bead", "Yellow bead");
+                        Inventory.containsAll("Black bead", "Red bead", "White bead", "Yellow bead");
     }
 
     @Override
     public int onLoop() {
-        QuestHelper.goAndTalkToNpc(MIZGOG_AREA, "Wizard Mizgog", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
+        return QuestHelper.goAndTalkToNpc(MIZGOG_AREA, "Wizard Mizgog", DIALOGUE_OPTIONS);
     }
 }

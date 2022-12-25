@@ -34,18 +34,19 @@ public class RetrieveBeadsLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
+        GroundItem beads = GroundItems.closest(item -> item.getName().endsWith("beads"));
+        if (beads != null) {
+            if(beads.interact("Take")) {
+                Sleep.sleepUntil(() -> !beads.exists(), () -> Players.getLocal().isMoving(), 3000, 100);
+            }
+            return Timing.loopReturn();
+        }
+
         NPC imp = NPCs.closest("Imp");
         if (imp != null && !Players.getLocal().isInCombat()) {
             if (imp.interact("Attack")) {
                 Sleep.sleepUntil(() -> Players.getLocal().isInCombat(), 3000);
             }
-
-            GroundItem beads = GroundItems.closest(item -> item.getName().endsWith("beads"));
-            if (beads != null) {
-                beads.interact("Take");
-                // Need a sleep check for here.
-            }
-
             return Timing.loopReturn();
         }
 
