@@ -1,23 +1,24 @@
 package org.dreambot.utilities;
 
 import org.dreambot.api.methods.Calculations;
+import org.dreambot.api.utilities.Sleep;
 
 public class Timing {
     // Variables to hold our various timings
     public static int tickTimeout = 3;
     public static long sleepLength = 100;
     // Sleep Settings
-    public static int sleepMin = 60;
-    public static int sleepMax = 350;
-    public static int sleepDeviation = 10;
-    public static int sleepTarget = 100;
-    public static boolean sleepWeightedDistribution = false;
+    public static int sleepMin = 75;
+    public static int sleepMax = 450;
+    public static int sleepDeviation = 20;
+    public static int sleepTarget = 140;
+    public static boolean sleepWeightedDistribution = true;
     // Tick Settings
     public static int tickDelayMin = 1;
     public static int tickDelayMax = 5;
     public static int tickDelayDeviation = 1;
-    public static int tickDelayTarget = 3;
-    public static boolean tickDelayWeightedDistribution = false;
+    public static int tickDelayTarget = 2;
+    public static boolean tickDelayWeightedDistribution = true;
 
     public static boolean isValidTick() {
         return tickTimeout == 0;
@@ -25,13 +26,13 @@ public class Timing {
 
     public static int loopReturn() {
         tickTimeout += getTickDelay();
-        return 600;
+        Sleep.sleepTick();
+        return 60;
     }
 
     // Get a randomized sleep delay
     public static long getSleepDelay() {
-        sleepLength = getRandomDelay(sleepWeightedDistribution, sleepMin, sleepMax, sleepDeviation, sleepTarget);
-        return sleepLength;
+        return getRandomDelay(sleepWeightedDistribution, sleepMin, sleepMax, sleepDeviation, sleepTarget);
     }
 
     // Get a randomized timeout delay
