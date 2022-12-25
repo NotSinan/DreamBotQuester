@@ -4,8 +4,18 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.framework.Tree;
+import org.dreambot.framework.fallback.FallbackLeaf;
+import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
+import org.dreambot.quests.cooksassistant.CooksAssistant;
+import org.dreambot.quests.cooksassistant.FinishedCooksAssistant;
+import org.dreambot.quests.cooksassistant.GatherItemsLeaf;
+import org.dreambot.quests.cooksassistant.TalkToCookLeaf;
+import org.dreambot.quests.sheepshearer.CollectWoolLeaf;
+import org.dreambot.quests.sheepshearer.SheepShearer;
+import org.dreambot.quests.sheepshearer.SpinWoolLeaf;
+import org.dreambot.quests.sheepshearer.TalkToFredLeaf;
 import org.dreambot.quests.doricsquest.DoricsQuest;
 import org.dreambot.quests.doricsquest.TalkToDoricLeaf;
 import org.dreambot.quests.impcatcher.GiveBeadsLeaf;
@@ -59,8 +69,14 @@ public class Main extends AbstractScript implements PaintInfo {
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
         tree.addBranches(
-                new PiratesTreasure().addLeafs(new RetrieveCoinsLeaf(), new TalkToRedbeardFrankLeaf(), new RetrieveRumLeaf(),
-                        new RetrieveBananaLeaf(), new TalkToLuthasLeaf())
+                new TimeoutLeaf(),
+                // Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
+
+                new CooksAssistant().addLeafs(new GatherItemsLeaf(), new TalkToCookLeaf(), new FinishedCooksAssistant()),
+                //new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf())
+
+                // Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
+                new FallbackLeaf()
         );
     }
 

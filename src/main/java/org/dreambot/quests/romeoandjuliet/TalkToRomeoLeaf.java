@@ -30,13 +30,11 @@ public class TalkToRomeoLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (PlayerSettings.getBitValue(12139) == 0) {
-            QuestHelper.goAndTalkToNpc(ROMEO_AREA, "Romeo", DIALOGUE_OPTIONS);
-            return Timing.loopReturn();
-        } else {
-            if (Dialogues.inDialogue()) {
-                if (Dialogues.canContinue()) {
-                    Dialogues.continueDialogue();
-                }
+            return QuestHelper.goAndTalkToNpc(ROMEO_AREA, "Romeo", DIALOGUE_OPTIONS);
+        }
+        if (Dialogues.inDialogue()) {
+            if (Dialogues.canContinue()) {
+                Dialogues.continueDialogue();
             }
         }
         return Timing.loopReturn();
