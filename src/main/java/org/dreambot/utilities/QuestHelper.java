@@ -1,5 +1,8 @@
 package org.dreambot.utilities;
 
+import org.dreambot.api.methods.container.impl.Inventory;
+import org.dreambot.api.methods.container.impl.Shop;
+import org.dreambot.api.methods.container.impl.bank.Bank;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
@@ -40,6 +43,33 @@ public class QuestHelper {
             }
         }
 
+        return Timing.loopReturn();
+    }
+
+    public static int withdrawFromBank(String itemName, int quantity) {
+        if (Bank.open()) {
+            Bank.withdraw(itemName, quantity);
+            Sleep.sleepUntil(() -> Inventory.contains(itemName) && Inventory.count(itemName) == quantity, 3000);
+        }
+        return Timing.loopReturn();
+    }
+
+    public static int purchaseFromShop(Area area, String itemName, int quantity, String npcName) {
+        if (!area.contains(Players.getLocal())) {
+            if (Walking.shouldWalk(4)) {
+                Walking.walk(area.getRandomTile());
+            }
+        } else {
+            if (Shop.isOpen()) {
+                Shop.purchase(itemName, quantity);
+                Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
+            } else {
+                NPC shopAssistant = NPCs.closest(npcName);
+                if (shopAssistant.interact("Trade")) {
+                    Sleep.sleepUntil(() -> Shop.isOpen(), 3000);
+                }
+            }
+        }
         return Timing.loopReturn();
     }
 }
