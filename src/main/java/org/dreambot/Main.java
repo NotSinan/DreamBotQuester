@@ -12,6 +12,7 @@ import org.dreambot.quests.cooksassistant.CooksAssistant;
 import org.dreambot.quests.cooksassistant.FinishedCooksAssistant;
 import org.dreambot.quests.cooksassistant.GatherItemsLeaf;
 import org.dreambot.quests.cooksassistant.TalkToCookLeaf;
+import org.dreambot.quests.druidicritual.*;
 import org.dreambot.quests.sheepshearer.CollectWoolLeaf;
 import org.dreambot.quests.sheepshearer.SheepShearer;
 import org.dreambot.quests.sheepshearer.SpinWoolLeaf;
@@ -69,14 +70,15 @@ public class Main extends AbstractScript implements PaintInfo {
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
         tree.addBranches(
-                new TimeoutLeaf(),
-                // Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
+//                new TimeoutLeaf(),
+//                // Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
 
-                new CooksAssistant().addLeafs(new GatherItemsLeaf(), new TalkToCookLeaf(), new FinishedCooksAssistant()),
+                new DruidicRitual().addLeafs(new RetrieveRatMeatLeaf(), new RetrieveCowMeatLeaf(), new RetrieveChickenMeatLeaf(),
+                        new RetrieveBearMeatLeaf(), new TalkToKaqemeexLeaf(), new TalkToSanfewLeaf(), new EnchantMeatLeaf())
                 //new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf())
 
-                // Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
-                new FallbackLeaf()
+//                // Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
+//                new FallbackLeaf()
         );
     }
 
