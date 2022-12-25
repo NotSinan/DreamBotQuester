@@ -24,6 +24,22 @@ import java.util.Comparator;
 
 public class QuestHelper {
 
+    public static int goAndKillNpc(Area area, String name) {
+        if (!area.contains(Players.getLocal())) {
+            if (Walking.shouldWalk(4)) {
+                Walking.walk(area.getRandomTile());
+            }
+            return Timing.loopReturn();
+        }
+
+        if (!Players.getLocal().isInCombat()) {
+            NPC npc = NPCs.closest(n -> !n.isInCombat() && n.getName().equals(name));
+            npc.interact("Attack");
+            Sleep.sleepUntil(() -> Players.getLocal().isInCombat(), 3000);
+        }
+        return Timing.loopReturn();
+    }
+
     public static int goAndTalkToNpc(Area area, String name, String[] dialogueOptions) {
         if (!area.contains(Players.getLocal())) {
             if (Walking.shouldWalk(4)) {
