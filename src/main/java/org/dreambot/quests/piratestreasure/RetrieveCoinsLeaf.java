@@ -18,6 +18,6 @@ public class RetrieveCoinsLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.bank("Coins", 1000);
+        return QuestHelper.withdrawFromBank("Coins", 1000);
     }
 }
