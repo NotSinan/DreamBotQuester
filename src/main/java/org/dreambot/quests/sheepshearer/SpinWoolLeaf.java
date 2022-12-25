@@ -5,6 +5,7 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.methods.widget.Widgets;
@@ -16,6 +17,7 @@ import org.dreambot.framework.Leaf;
 public class SpinWoolLeaf extends Leaf {
 
     Area SPINNING_WHEEL_AREA = new Area(3204, 3215, 3211, 3209, 1);
+    private final Tile DOOR_TILE = new Tile(3207, 3214, 1);
 
     @Override
     public boolean isValid() {
@@ -29,6 +31,13 @@ public class SpinWoolLeaf extends Leaf {
                 Walking.walk(SPINNING_WHEEL_AREA.getRandomTile());
             }
         } else {
+            GameObject door = GameObjects.closest(d -> d.getTile().equals(DOOR_TILE));
+            if (door.hasAction("Open")) {
+                if (door.interact("Open")) {
+                    Sleep.sleepUntil(() -> door.hasAction("Close"), 3000);
+                }
+            }
+
             GameObject spinningWheel = GameObjects.closest(obj -> obj != null && obj.getName().equals("Spinning wheel"));
             if (spinningWheel.interact("Spin")) {
                 WidgetChild craftInterface = Widgets.getWidgetChild(270, 14, 38);
@@ -37,7 +46,7 @@ public class SpinWoolLeaf extends Leaf {
                     craftInterface.interact();
                 }
             }
-            Sleep.sleepWhile(() -> Inventory.contains("Wool"), Calculations.random(60000, 80000));
+            Sleep.sleepUntil(() -> !Inventory.contains("wool"), Players.getLocal()::isAnimating, 2200, 100);
         }
         return Calculations.random(200, 500);
     }

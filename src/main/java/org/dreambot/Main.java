@@ -16,10 +16,21 @@ import org.dreambot.quests.sheepshearer.CollectWoolLeaf;
 import org.dreambot.quests.sheepshearer.SheepShearer;
 import org.dreambot.quests.sheepshearer.SpinWoolLeaf;
 import org.dreambot.quests.sheepshearer.TalkToFredLeaf;
+import org.dreambot.quests.doricsquest.DoricsQuest;
+import org.dreambot.quests.doricsquest.TalkToDoricLeaf;
+import org.dreambot.quests.impcatcher.GiveBeadsLeaf;
+import org.dreambot.quests.impcatcher.ImpCatcher;
+import org.dreambot.quests.impcatcher.RetrieveBeadsLeaf;
+import org.dreambot.quests.piratestreasure.*;
+import org.dreambot.quests.piratestreasure.RetrieveCoinsLeaf;
+import org.dreambot.quests.romeoandjuliet.*;
+import org.dreambot.quests.runemysteries.*;
+import org.dreambot.quests.therestlessghost.*;
+import org.dreambot.quests.vampyreslayer.*;
+import org.dreambot.quests.xmarksthespot.*;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
-import javax.swing.*;
 import java.awt.*;
 
 @ScriptManifest(author = "Bonfire", name = "DreamBot TBL", version = 1.00, category = Category.MAGIC)
