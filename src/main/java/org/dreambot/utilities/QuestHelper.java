@@ -137,4 +137,17 @@ public class QuestHelper {
 
         return Timing.loopReturn();
     }
+
+    /**
+     * Walks to a random tile in an area.
+     * @param area
+     * @return true if inside area already, otherwise walks to random tile and returns false.
+     */
+    public static boolean walkToArea(Area area) {
+        if(area.contains(Players.getLocal())) return true;
+        if(Walking.shouldWalk(6)) {
+            Walking.walk(area.getRandomTile());
+        }
+        return false;
+    }
 }
