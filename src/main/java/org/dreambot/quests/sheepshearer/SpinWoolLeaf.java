@@ -1,53 +1,53 @@
 package org.dreambot.quests.sheepshearer;
 
-import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.widgets.WidgetChild;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.QuestVarPlayer;
+import org.dreambot.utilities.Timing;
 
 public class SpinWoolLeaf extends Leaf {
 
-    Area SPINNING_WHEEL_AREA = new Area(3204, 3215, 3211, 3209, 1);
+    private final Area SPINNING_WHEEL_AREA = new Area(3213, 3212, 3208, 3217, 1);
     private final Tile DOOR_TILE = new Tile(3207, 3214, 1);
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(179) == 1 && Inventory.count("Wool") == 20;
+        //spin wool if have total wool count but not total spun wool count
+        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_SHEEP_SHEARER.getId()) == 1 &&
+                Inventory.count(i -> i.getName().equals("Wool") || i.getName().equals("Ball of wool")) >= 20 &&
+                Inventory.count("Ball of wool") < 20;
     }
 
     @Override
     public int onLoop() {
-        if (!SPINNING_WHEEL_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(SPINNING_WHEEL_AREA.getRandomTile());
-            }
-        } else {
-            GameObject door = GameObjects.closest(d -> d.getTile().equals(DOOR_TILE));
-            if (door.hasAction("Open")) {
-                if (door.interact("Open")) {
-                    Sleep.sleepUntil(() -> door.hasAction("Close"), 3000);
-                }
-            }
+        if(QuestHelper.walkToArea(SPINNING_WHEEL_AREA)) {
+            WidgetChild craftInterface = Widgets.getWidgetChild(270, 14, 38);
+            if (craftInterface != null && craftInterface.isVisible()) {
 
-            GameObject spinningWheel = GameObjects.closest(obj -> obj != null && obj.getName().equals("Spinning wheel"));
-            if (spinningWheel.interact("Spin")) {
-                WidgetChild craftInterface = Widgets.getWidgetChild(270, 14, 38);
-                Sleep.sleepUntil(() -> craftInterface.isVisible(), 3000);
-                if (craftInterface != null) {
-                    craftInterface.interact();
+                if (Interaction.delayWidgetInteract(craftInterface)) {
+                    Sleep.sleepUntil(() -> !Inventory.contains("Wool"), Players.getLocal()::isAnimating, 3000, 100);
                 }
+                return Timing.loopReturn();
             }
-            Sleep.sleepUntil(() -> !Inventory.contains("wool"), Players.getLocal()::isAnimating, 2200, 100);
+            GameObject spinningWheel = GameObjects.closest(obj -> obj != null && obj.getName().equals("Spinning wheel"));
+            if (spinningWheel != null && spinningWheel.exists() && Interaction.delayEntityInteract(spinningWheel, "Spin")) {
+                Sleep.sleepUntil(() -> {
+                    WidgetChild craftInterfaceTmp = Widgets.getWidgetChild(270, 14, 38);
+                    return craftInterfaceTmp != null && craftInterfaceTmp.isVisible();
+                }, 3000);
+            }
         }
-        return Calculations.random(200, 500);
+        return Timing.loopReturn();
     }
 }

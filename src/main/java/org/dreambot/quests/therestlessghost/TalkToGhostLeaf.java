@@ -1,7 +1,6 @@
 package org.dreambot.quests.therestlessghost;
 
 import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.methods.container.impl.equipment.Equipment;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.NPCs;
@@ -13,6 +12,7 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
@@ -30,6 +30,7 @@ public class TalkToGhostLeaf extends Leaf {
     public int onLoop() {
 
         if (Inventory.contains("Ghostspeak amulet")) {
+            Timing.sleepForDelay();
             Inventory.interact("Ghostspeak amulet", "Wear");
             return Timing.loopReturn();
         }
@@ -41,30 +42,32 @@ public class TalkToGhostLeaf extends Leaf {
         }
 
         if (!Dialogues.inDialogue()) {
-            GameObject coffin = GameObjects.closest("Coffin");
-            if (coffin.hasAction("Open")) {
-                coffin.interact("Open");
-            } else {
-                NPC restlessGhost = NPCs.closest(npc -> npc.getName().equals("Restless ghost"));
-                if (restlessGhost != null && restlessGhost.interact("Talk-to")) {
+            NPC restlessGhost = NPCs.closest("Restless ghost");
+            if (restlessGhost != null) {
+                if(restlessGhost.interact("Talk-to")) {
                     Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
                 }
+                return Timing.loopReturn();
+            }
+            GameObject coffin = GameObjects.closest("Coffin");
+            if(coffin != null && coffin.hasAction("Open") && Interaction.delayEntityInteract(coffin, "Open")) {
+                Sleep.sleepUntil(() -> NPCs.closest("Restless ghost") != null, () -> Players.getLocal().isMoving(), 3000, 100);
             }
             return Timing.loopReturn();
         }
 
-        if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-                return Timing.loopReturn();
-            }
+        if (Dialogues.canContinue()) {
+            Timing.sleepForDelay();
+            Dialogues.continueDialogue();
+            Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+            return Timing.loopReturn();
+        }
 
-            if (Dialogues.areOptionsAvailable()) {
-                Dialogues.chooseFirstOptionContaining("Yep, now tell me what the problem is.");
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-                return Timing.loopReturn();
-            }
+        if (Dialogues.areOptionsAvailable()) {
+            Timing.sleepForDelay();
+            Dialogues.chooseFirstOptionContaining("Yep, now tell me what the problem is.");
+            Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+            return Timing.loopReturn();
         }
 
         return Timing.loopReturn();

@@ -35,6 +35,7 @@ public class TalkToRomeoLeaf extends Leaf {
 
         if (Dialogues.inDialogue()) {
             if (Dialogues.canContinue()) {
+                Timing.sleepForDelay();
                 Dialogues.continueDialogue();
             }
         }

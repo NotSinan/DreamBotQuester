@@ -25,13 +25,13 @@ public class TalkToJulietLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!QuestHelper.inCutscene()) {
+        if (PlayerSettings.getBitValue(12139) == 0) {
             return QuestHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
-        } else {
-            if (Dialogues.inDialogue()) {
-                if (Dialogues.canContinue()) {
-                    Dialogues.continueDialogue();
-                }
+        }
+        if (Dialogues.inDialogue()) {
+            if (Dialogues.canContinue()) {
+                Timing.sleepForDelay();
+                Dialogues.continueDialogue();
             }
         }
         return Timing.loopReturn();

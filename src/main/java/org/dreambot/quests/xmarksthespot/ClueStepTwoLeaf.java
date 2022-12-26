@@ -4,10 +4,12 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.quest.book.Quest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
@@ -21,19 +23,17 @@ public class ClueStepTwoLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
-        if (!CLUE_TWO_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(CLUE_TWO_AREA.getRandomTile());
-            }
+        if (!QuestHelper.walkToArea(CLUE_TWO_AREA)) {
             return Timing.loopReturn();
         }
 
-        if (Inventory.contains("Spade")) {
-            if (Inventory.interact("Spade", "Dig")) {
+        Timing.sleepForDelay();
+        if (Inventory.interact("Spade", "Dig")) {
+            if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
                 Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
             }
         }
+
         return Timing.loopReturn();
     }
 }
