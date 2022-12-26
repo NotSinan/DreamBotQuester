@@ -11,6 +11,7 @@ import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
@@ -168,6 +169,10 @@ public class QuestHelper {
         }
 
         return Timing.loopReturn();
+    }
+
+    public static boolean inCutscene() {
+        return PlayerSettings.getBitValue(542) == 1 && PlayerSettings.getBitValue(4606) == 1;
     }
 
     /**
