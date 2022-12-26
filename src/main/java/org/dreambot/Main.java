@@ -10,6 +10,7 @@ import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
 import org.dreambot.quests.cooksassistant.*;
 import org.dreambot.quests.witchspotion.*;
+import org.dreambot.quests.xmarksthespot.*;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
@@ -80,9 +81,12 @@ public class Main extends AbstractScript implements PaintInfo {
 //                new VampyreSlayer().addLeafs(new FinishedVampyreSlayerLeaf(), new RemoveDraynorJailNodesLeaf(), new RetrieveCoinsLeaf(), new RetrieveGarlicLeaf(),
 //                        new RetrieveHammerLeaf(), new TalkToBartenderLeaf(), new TalkToDrHarlowLeaf(), new TalkToMorganLeaf(), new FightCountDraculaLeaf()),
 
-                new WitchsPotion().addLeafs(new FinishedWitchsPotionLeaf(),
-                        new RetrieveRatsTail(), new RetrieveBurntMeat(), new RetrieveEyeOfNewt(), new RetrieveOnion(),
-                        new TalkToWitchLeaf(), new DrinkFromCauldronLeaf()),
+//                new WitchsPotion().addLeafs(new FinishedWitchsPotionLeaf(),
+//                        new RetrieveRatsTail(), new RetrieveBurntMeat(), new RetrieveEyeOfNewt(), new RetrieveOnion(),
+//                        new TalkToWitchLeaf(), new DrinkFromCauldronLeaf()),
+
+                new XMarksTheSpot().addLeafs(new FinishedXMarksTheSpotLeaf(), new RetrieveSpadeLeaf(), new TalkToVeosLumbridgeLeaf(), new TalkToVeosSarimLeaf(),
+                        new ClueStepOneLeaf(), new ClueStepTwoLeaf(), new ClueStepThreeLeaf(), new ClueStepFourLeaf()),
 
 //                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
                 new FallbackLeaf()

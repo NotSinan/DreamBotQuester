@@ -4,17 +4,19 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveSpadeLeaf extends Leaf {
 
-    private final Area FALADOR_SPADE_AREA = new Area(2981, 3370, 2984, 3368);
+    private final Tile FALADOR_SPADE_AREA = new Tile(2981, 3370, 0);
 
     @Override
     public boolean isValid() {
@@ -22,21 +24,5 @@ public class RetrieveSpadeLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() {
-        if (!FALADOR_SPADE_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(FALADOR_SPADE_AREA.getRandomTile());
-            }
-            return Timing.loopReturn();
-        }
-
-        if (!Inventory.contains("Spade")) {
-            GroundItem spade = GroundItems.closest("Spade");
-            if (spade.interact("Take")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Spade"), 3000);
-            }
-            return Timing.loopReturn();
-        }
-        return Timing.loopReturn();
-    }
+    public int onLoop() { return QuestHelper.pickupGroundSpawn(FALADOR_SPADE_AREA, "Spade"); }
 }
