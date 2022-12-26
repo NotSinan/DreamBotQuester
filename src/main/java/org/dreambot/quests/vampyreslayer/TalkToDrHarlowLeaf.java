@@ -16,15 +16,10 @@ public class TalkToDrHarlowLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 &&
-                Inventory.contains("Coins") &&
-                Inventory.contains("Garlic") &&
-                Inventory.contains("Beer") &&
-                Inventory.contains("Hammer") || PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 2 && !Inventory.contains("Stake");
+                Inventory.containsAll("Coins", "Garlic", "Beer", "Hammer") ||
+                PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 2 && !Inventory.contains("Stake");
     }
 
     @Override
-    public int onLoop() {
-        QuestHelper.goAndTalkToNpc(DR_HARLOW_AREA, "Dr Harlow", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
-    }
+    public int onLoop() { return QuestHelper.goAndTalkToNpc(DR_HARLOW_AREA, "Dr Harlow", DIALOGUE_OPTIONS); }
 }

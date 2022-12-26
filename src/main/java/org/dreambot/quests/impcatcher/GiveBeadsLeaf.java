@@ -15,10 +15,8 @@ public class GiveBeadsLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 0 &&
-                Inventory.containsAll("Black bead", "Red bead", "White bead", "Yellow bead") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 1 &&
-                        Inventory.containsAll("Black bead", "Red bead", "White bead", "Yellow bead");
+        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 0 ||
+                PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 1;
     }
 
     @Override

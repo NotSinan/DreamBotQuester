@@ -5,7 +5,7 @@ import org.dreambot.api.utilities.Logger;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestVarPlayer;
 
-public class FinishedWitchsPotion extends Leaf {
+public class FinishedWitchsPotionLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_WITCHS_POTION.getId()) > 2;

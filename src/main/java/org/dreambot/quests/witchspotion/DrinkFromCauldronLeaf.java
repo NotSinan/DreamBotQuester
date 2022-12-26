@@ -8,6 +8,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
@@ -24,7 +25,7 @@ public class DrinkFromCauldronLeaf extends Leaf {
     public int onLoop() {
         if(QuestHelper.walkToArea(WITCH_AREA)) {
             GameObject cauldron = GameObjects.closest("Cauldron");
-            if(cauldron != null && cauldron.exists() && cauldron.interact("Drink From")) {
+            if(cauldron != null && cauldron.exists() && Interaction.delayEntityInteract(cauldron, "Drink From")) {
                 Sleep.sleepUntil(() -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
             }
         }

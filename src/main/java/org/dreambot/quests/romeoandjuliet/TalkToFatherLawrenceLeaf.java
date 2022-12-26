@@ -18,8 +18,5 @@ public class TalkToFatherLawrenceLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() {
-        QuestHelper.goAndTalkToNpc(FATHER_LAWRENCE_AREA, "Father Lawrence", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
-    }
+    public int onLoop() { return QuestHelper.goAndTalkToNpc(FATHER_LAWRENCE_AREA, "Father Lawrence", DIALOGUE_OPTIONS); }
 }

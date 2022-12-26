@@ -3,21 +3,19 @@ package org.dreambot.quests.cooksassistant;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.Players;
-import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
-import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
-public class GatherItemsLeaf extends Leaf {
+public class GatherCooksAssistantItemsLeaf extends Leaf {
 
     public static boolean HOPPER_LOADED = false; //flips to true upon putting grain in hopper
 
@@ -75,7 +73,7 @@ public class GatherItemsLeaf extends Leaf {
                 if(!WHEAT_FIELD_AREA.contains(Players.getLocal()))
                 {
                     if(Walking.shouldWalk(6)) {
-                        Walking.walk(WHEAT_FIELD_AREA.getRandomTile());
+                        Interaction.delayWalk(WHEAT_FIELD_AREA.getRandomTile());
                     }
                     return Timing.loopReturn();
                 }
@@ -91,7 +89,7 @@ public class GatherItemsLeaf extends Leaf {
             if(PlayerSettings.getBitValue(GRAIN_TOWER_FLOUR_COUNT_VARBIT) > 0) {
                 if(!GRAIN_TOWER_LVL1_AREA.contains(Players.getLocal())) {
                     if(Walking.shouldWalk(6)) {
-                        Walking.walk(GRAIN_TOWER_LVL1_AREA.getRandomTile());
+                        Interaction.delayWalk(GRAIN_TOWER_LVL1_AREA.getRandomTile());
                     }
                     return Timing.loopReturn();
                 }
@@ -106,7 +104,7 @@ public class GatherItemsLeaf extends Leaf {
 
             if(!GRAIN_TOWER_LVL3_AREA.contains(Players.getLocal())) {
                 if(Walking.shouldWalk(6)) {
-                    Walking.walk(GRAIN_TOWER_LVL3_AREA.getRandomTile());
+                    Interaction.delayWalk(GRAIN_TOWER_LVL3_AREA.getRandomTile());
                 }
                 return Timing.loopReturn();
             }
@@ -137,7 +135,7 @@ public class GatherItemsLeaf extends Leaf {
 
             if(!DAIRY_COW_WEST_LUMBRIDGE_AREA.contains(Players.getLocal())) {
                 if(Walking.shouldWalk(6)) {
-                    Walking.walk(DAIRY_COW_WEST_LUMBRIDGE_AREA.getRandomTile());
+                    Interaction.delayWalk(DAIRY_COW_WEST_LUMBRIDGE_AREA.getRandomTile());
                 }
                 return Timing.loopReturn();
             }

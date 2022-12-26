@@ -17,19 +17,18 @@ public class RetrieveChickenMeatLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DRUIDIC_RITUAL.getId()) == 0 &&
-                Inventory.contains("Raw rat meat", "Raw beef") &&
+                Inventory.contains("Raw rat meat", "Raw beef", "Raw bear meat") &&
                 !Inventory.contains("Raw chicken");
     }
 
     @Override
     public int onLoop() {
-        QuestHelper.goAndKillNpc(CHICKEN_AREA, "Chicken");
 
         GroundItem rawRatMeat = GroundItems.closest("Raw chicken");
         if (rawRatMeat != null && rawRatMeat.interact("Take")) {
             Sleep.sleepUntil(() -> Inventory.contains("Raw chicken"), 3000);
         }
 
-        return Timing.loopReturn();
+        return QuestHelper.goAndKillNpc(CHICKEN_AREA, "Chicken");
     }
 }
