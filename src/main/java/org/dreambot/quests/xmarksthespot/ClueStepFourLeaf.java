@@ -7,6 +7,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
@@ -22,18 +23,16 @@ public class ClueStepFourLeaf extends Leaf {
     @Override
     public int onLoop() {
 
-        if (!CLUE_FOUR_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(CLUE_FOUR_AREA.getRandomTile());
-            }
+        if (!QuestHelper.walkToArea(CLUE_FOUR_AREA)) {
             return Timing.loopReturn();
         }
 
+        Timing.sleepForDelay();
         if (Inventory.interact("Spade", "Dig")) {
-            Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-            return Timing.loopReturn();
+            if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
+                Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
+            }
         }
-
         return Timing.loopReturn();
     }
 }

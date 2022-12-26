@@ -77,15 +77,19 @@ public class QuestHelper {
         if (Dialogues.canContinue()) {
             Timing.sleepForDelay();
             if(Dialogues.continueDialogue()) {
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+                Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
             }
             return Timing.loopReturn();
         }
 
         if (Dialogues.areOptionsAvailable()) {
+            if(dialogueOptions == null || dialogueOptions.length == 0) {
+                Logger.log("See some options when no options passed to select in goAndTalkToNPC() function!");
+                return Timing.loopReturn();
+            }
             Timing.sleepForDelay();
             if(Dialogues.chooseFirstOptionContaining(dialogueOptions)) {
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+                Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
             }
             return Timing.loopReturn();
         }

@@ -13,7 +13,7 @@ public class FinishedWitchsPotionLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        Logger.log("Finished Witch's Potion! Stopping script...!");
+        Logger.log("Finished Witch's Potion, stopping script...!");
         return -1;
     }
 }

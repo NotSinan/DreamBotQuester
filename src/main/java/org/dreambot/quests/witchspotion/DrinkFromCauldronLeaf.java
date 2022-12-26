@@ -24,6 +24,12 @@ public class DrinkFromCauldronLeaf extends Leaf {
     @Override
     public int onLoop() {
         if(QuestHelper.walkToArea(WITCH_AREA)) {
+            if(Dialogues.canContinue()) {
+                if(Dialogues.continueDialogue()) {
+                    Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
+                }
+                return Timing.loopReturn();
+            }
             GameObject cauldron = GameObjects.closest("Cauldron");
             if(cauldron != null && cauldron.exists() && Interaction.delayEntityInteract(cauldron, "Drink From")) {
                 Sleep.sleepUntil(() -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
