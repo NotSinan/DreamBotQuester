@@ -15,21 +15,13 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
-public class GatherCooksAssistantItemsLeaf extends Leaf {
+public class RetrievePotOfFlourLeaf extends Leaf {
 
     public static boolean HOPPER_LOADED = false; //flips to true upon putting grain in hopper
 
     private final int GRAIN_TOWER_FLOUR_COUNT_VARBIT = 4920; //Indicates the quantity of flour available to take from bin in west lumbridge grain tower
     private final Tile POT_LUMBRIDGE_SPAWN = new Tile(3209, 3214, 0);
-    private final Tile EGG_CHICKEN_WEST_SPAWN = new Tile(3185, 3297, 0);
     private final Tile BUCKET_LUMBRIDGE_SPAWN = new Tile(3216, 9625, 0);
-    private final Area CHICKEN_PEN_WEST_LUMBRIDGE = new Area(
-            new Tile(3185, 3296, 0),
-            new Tile(3185, 3297, 0),
-            new Tile(3183, 3302, 0),
-            new Tile(3173, 3302, 0),
-            new Tile(3175, 3292, 0),
-            new Tile(3181, 3289, 0));
     private final Area WHEAT_FIELD_AREA = new Area(
             new Tile(3161, 3293, 0),
             new Tile(3155, 3297, 0),
@@ -45,21 +37,15 @@ public class GatherCooksAssistantItemsLeaf extends Leaf {
             new Tile(3170, 3307, 0),
             new Tile(3170, 3306, 0));
     private final Area GRAIN_TOWER_LVL3_AREA = new Area(3164, 3309, 3169, 3304, 2);
-    private final Area DAIRY_COW_WEST_LUMBRIDGE_AREA = new Area(3171, 3322, 3177, 3316, 0);
-
     @Override
     public boolean isValid() {
         return (PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 1) &&
-                (!Inventory.contains("Bucket of milk") ||
-                        !Inventory.contains("Egg") ||
-                        !Inventory.contains("Pot of flour"));
+                PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 1) && !Inventory.contains("Pot of flour");
     }
 
 
     @Override
     public int onLoop() {
-        //get the items
         if(!Inventory.contains("Pot of flour")) {
             if(!Inventory.contains("Pot")) {
                 //get bucket and pot together if not have either, because they are so close together, to save a trip
@@ -123,37 +109,8 @@ public class GatherCooksAssistantItemsLeaf extends Leaf {
             if(lever != null && Interaction.delayEntityInteract(lever , "Operate")) {
                 Sleep.sleepUntil(() -> PlayerSettings.getBitValue(GRAIN_TOWER_FLOUR_COUNT_VARBIT) > 0, () -> Players.getLocal().isMoving(), 3000, 100);
             }
-
-            return Timing.loopReturn();
         }
-
-        if(!Inventory.contains("Bucket of milk")) {
-            //Assume that we have started with a pot of flour and no bucket, need to get bucket still
-            if(!Inventory.contains("Bucket")) {
-                return QuestHelper.pickupGroundSpawn(BUCKET_LUMBRIDGE_SPAWN,"Bucket");
-            }
-
-            if(!DAIRY_COW_WEST_LUMBRIDGE_AREA.contains(Players.getLocal())) {
-                if(Walking.shouldWalk(6)) {
-                    Interaction.delayWalk(DAIRY_COW_WEST_LUMBRIDGE_AREA.getRandomTile());
-                }
-                return Timing.loopReturn();
-            }
-
-            GameObject dairyCow = GameObjects.closest(g -> g.getName().equals("Dairy cow") && g.hasAction("Milk"));
-            if(dairyCow != null && Interaction.delayEntityInteract(dairyCow, "Milk")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Bucket of milk"), () -> Players.getLocal().isMoving(), 3000, 100);
-            }
-
-            return Timing.loopReturn();
-        }
-
-        if(!Inventory.contains("Egg")) {
-            return QuestHelper.pickupGroundSpawn(EGG_CHICKEN_WEST_SPAWN,"Egg");
-        }
-
         return Timing.loopReturn();
-
     }
 
 }

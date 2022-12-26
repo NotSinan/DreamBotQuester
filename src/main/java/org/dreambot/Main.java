@@ -54,7 +54,8 @@ public class Main extends AbstractScript implements PaintInfo {
                 new TimeoutLeaf(),
 //                Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
 
-//                new CooksAssistant().addLeafs(new FinishedCooksAssistantLeaf(), new TalkToCookLeaf(), new GatherCooksAssistantItemsLeaf()),
+//                new CooksAssistant().addLeafs(new FinishedCooksAssistantLeaf(), new RetrievePotOfFlourLeaf(), new RetrieveBucketOfMilkLeaf(),
+//                new RetrieveEggLeaf(), new TalkToCookLeaf()),
 
 //                new DoricsQuest().addLeafs(new FinishedDoricsQuestLeaf(), new GetOresLeaf(), new TalkToDoricLeaf()),
 
@@ -79,7 +80,9 @@ public class Main extends AbstractScript implements PaintInfo {
 //                new VampyreSlayer().addLeafs(new FinishedVampyreSlayerLeaf(), new RemoveDraynorJailNodesLeaf(), new RetrieveCoinsLeaf(), new RetrieveGarlicLeaf(),
 //                        new RetrieveHammerLeaf(), new TalkToBartenderLeaf(), new TalkToDrHarlowLeaf(), new TalkToMorganLeaf(), new FightCountDraculaLeaf()),
 
-                new WitchsPotion().addLeafs(new FinishedWitchsPotionLeaf(), new TalkToWitchLeaf(), new DrinkFromCauldronLeaf(), new GatherWitchsPotionItemsLeaf()),
+                new WitchsPotion().addLeafs(new FinishedWitchsPotionLeaf(),
+                        new RetrieveRatsTail(), new RetrieveBurntMeat(), new RetrieveEyeOfNewt(), new RetrieveOnion(),
+                        new TalkToWitchLeaf(), new DrinkFromCauldronLeaf()),
 
 //                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
                 new FallbackLeaf()

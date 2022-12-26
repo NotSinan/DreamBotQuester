@@ -14,7 +14,7 @@ public class TalkToWitchLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_WITCHS_POTION.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_WITCHS_HOUSE.getId()) == 1 && Inventory.containsAll("Onion","Rat's tail","Eye of newt","Burnt meat");
+                PlayerSettings.getConfig(QuestVarPlayer.QUEST_WITCHS_POTION.getId()) == 1 && Inventory.containsAll("Onion","Rat's tail","Eye of newt","Burnt meat");
     }
 
 
