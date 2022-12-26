@@ -12,6 +12,7 @@ public class TalkToDrHarlowLeaf extends Leaf {
 
     private final Area DR_HARLOW_AREA = new Area(3216, 3404, 3227, 3392);
     private final String[] DIALOGUE_OPTIONS = {"Morgan needs your help!"};
+    private final String DR_HARLOW = "Dr Harlow";
 
     @Override
     public boolean isValid() {
@@ -24,7 +25,6 @@ public class TalkToDrHarlowLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        QuestHelper.goAndTalkToNpc(DR_HARLOW_AREA, "Dr Harlow", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
+        return QuestHelper.goAndTalkToNpc(DR_HARLOW_AREA, DR_HARLOW, DIALOGUE_OPTIONS);
     }
 }

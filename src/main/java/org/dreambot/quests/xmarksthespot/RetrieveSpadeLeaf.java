@@ -32,10 +32,9 @@ public class RetrieveSpadeLeaf extends Leaf {
 
         if (!Inventory.contains("Spade")) {
             GroundItem spade = GroundItems.closest("Spade");
-            if (spade.interact("Take")) {
+            if (spade != null && spade.interact("Take")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Spade"), 3000);
             }
-            return Timing.loopReturn();
         }
         return Timing.loopReturn();
     }

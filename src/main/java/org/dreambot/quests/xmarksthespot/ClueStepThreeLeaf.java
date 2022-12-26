@@ -21,19 +21,17 @@ public class ClueStepThreeLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
         if (!CLUE_THREE_AREA.contains(Players.getLocal())) {
             if (Walking.shouldWalk(4)) {
                 Walking.walk(CLUE_THREE_AREA.getRandomTile());
             }
             return Timing.loopReturn();
         }
-
-        if (Inventory.interact("Spade", "Dig")) {
-            Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-            return Timing.loopReturn();
+        if (Inventory.contains("Spade")) {
+            if (Inventory.interact("Spade", "Dig")) {
+                Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
+            }
         }
-
         return Timing.loopReturn();
     }
 }

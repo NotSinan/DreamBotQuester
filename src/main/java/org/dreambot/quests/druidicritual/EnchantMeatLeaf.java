@@ -42,7 +42,6 @@ public class EnchantMeatLeaf extends Leaf {
             GameObject cauldronOfThunder = GameObjects.closest("Cauldron of Thunder");
             cauldronOfThunder.interact("Use");
         }
-
         return Timing.loopReturn();
     }
 }

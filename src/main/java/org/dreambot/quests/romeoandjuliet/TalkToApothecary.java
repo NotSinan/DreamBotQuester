@@ -29,8 +29,7 @@ public class TalkToApothecary extends Leaf {
     public int onLoop() {
 
         if (Inventory.contains("Cadava berries")) {
-            QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
-            return Timing.loopReturn();
+            return QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
         } else {
             if (!CADAVA_BUSH_AREA.contains(Players.getLocal())) {
                 if (Walking.shouldWalk(4)) {

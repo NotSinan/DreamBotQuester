@@ -70,15 +70,15 @@ public class Main extends AbstractScript implements PaintInfo {
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
         tree.addBranches(
-//                new TimeoutLeaf(),
+                new TimeoutLeaf(),
 //                // Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
 
                 new DruidicRitual().addLeafs(new RetrieveRatMeatLeaf(), new RetrieveCowMeatLeaf(), new RetrieveChickenMeatLeaf(),
-                        new RetrieveBearMeatLeaf(), new TalkToKaqemeexLeaf(), new TalkToSanfewLeaf(), new EnchantMeatLeaf())
+                        new RetrieveBearMeatLeaf(), new TalkToKaqemeexLeaf(), new TalkToSanfewLeaf(), new EnchantMeatLeaf()),
                 //new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf())
 
 //                // Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
-//                new FallbackLeaf()
+                new FallbackLeaf()
         );
     }
 

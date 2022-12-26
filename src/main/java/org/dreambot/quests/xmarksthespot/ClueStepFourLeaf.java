@@ -31,9 +31,7 @@ public class ClueStepFourLeaf extends Leaf {
 
         if (Inventory.interact("Spade", "Dig")) {
             Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-            return Timing.loopReturn();
         }
-
         return Timing.loopReturn();
     }
 }

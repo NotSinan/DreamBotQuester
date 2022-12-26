@@ -12,6 +12,7 @@ import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
@@ -74,9 +75,11 @@ public class QuestHelper {
     }
 
     public static int withdrawFromBank(String itemName, int quantity) {
-        if (Bank.open()) {
-            Bank.withdraw(itemName, quantity);
-            Sleep.sleepUntil(() -> Inventory.contains(itemName) && Inventory.count(itemName) == quantity, 3000);
+        if (!Inventory.contains(itemName) && Inventory.count(itemName) != quantity) {
+            if (Bank.open()) {
+                Bank.withdraw(itemName, quantity);
+                Sleep.sleepUntil(() -> Inventory.contains(itemName) && Inventory.count(itemName) == quantity, 3000);
+            }
         }
         return Timing.loopReturn();
     }
@@ -136,5 +139,9 @@ public class QuestHelper {
         }
 
         return Timing.loopReturn();
+    }
+
+    public static boolean inCutscene() {
+        return PlayerSettings.getBitValue(542) == 1 && PlayerSettings.getBitValue(4606) == 1;
     }
 }

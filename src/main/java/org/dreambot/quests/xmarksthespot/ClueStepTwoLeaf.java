@@ -29,11 +29,11 @@ public class ClueStepTwoLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        if (Inventory.interact("Spade", "Dig")) {
-            Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-            return Timing.loopReturn();
+        if (Inventory.contains("Spade")) {
+            if (Inventory.interact("Spade", "Dig")) {
+                Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
+            }
         }
-
         return Timing.loopReturn();
     }
 }

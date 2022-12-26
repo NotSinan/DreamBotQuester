@@ -11,6 +11,7 @@ public class TalkToMorganLeaf extends Leaf {
 
     private final Area MORGAN_AREA = new Area(3096, 3270, 3102, 3266);
     private final String[] DIALOGUE_OPTIONS = {"Yes."};
+    private final String MORGAN = "Morgan";
 
     @Override
     public boolean isValid() {
@@ -19,7 +20,6 @@ public class TalkToMorganLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        QuestHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
+        return QuestHelper.goAndTalkToNpc(MORGAN_AREA, MORGAN, DIALOGUE_OPTIONS);
     }
 }

@@ -25,9 +25,8 @@ public class TalkToJulietLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (PlayerSettings.getBitValue(12139) == 0) {
-            QuestHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
-            return Timing.loopReturn();
+        if (!QuestHelper.inCutscene()) {
+            return QuestHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
         } else {
             if (Dialogues.inDialogue()) {
                 if (Dialogues.canContinue()) {

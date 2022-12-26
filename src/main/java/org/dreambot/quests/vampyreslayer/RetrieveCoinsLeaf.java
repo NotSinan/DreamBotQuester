@@ -21,7 +21,7 @@ public class RetrieveCoinsLeaf extends Leaf {
     public int onLoop() {
         if (Bank.open()) {
             Bank.withdraw("Coins", 100);
-            Sleep.sleepUntil(() -> Inventory.contains("Coins"), 3000);
+            Sleep.sleepUntil(() -> Inventory.count("Coins") == 100, 3000);
         }
         return Timing.loopReturn();
     }
