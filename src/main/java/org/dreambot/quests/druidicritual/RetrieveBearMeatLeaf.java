@@ -7,9 +7,9 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
-import org.dreambot.utilities.Timing;
 
 public class RetrieveBearMeatLeaf extends Leaf {
 
@@ -18,19 +18,15 @@ public class RetrieveBearMeatLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DRUIDIC_RITUAL.getId()) == 0 &&
-                Inventory.contains("Raw rat meat", "Raw beef", "Raw chicken") &&
                 !Inventory.contains("Raw bear meat");
     }
 
     @Override
     public int onLoop() {
-        QuestHelper.goAndKillNpc(BEAR_AREA, "Grizzly bear");
-
         GroundItem rawRatMeat = GroundItems.closest("Raw bear meat");
-        if (rawRatMeat != null && rawRatMeat.interact("Take")) {
+        if (rawRatMeat != null && Interaction.delayEntityInteract(rawRatMeat, "Take")) {
             Sleep.sleepUntil(() -> Inventory.contains("Raw bear meat"), 3000);
         }
-
-        return Timing.loopReturn();
+        return QuestHelper.goAndKillNpc(BEAR_AREA, "Grizzly bear");
     }
 }

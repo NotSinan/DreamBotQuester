@@ -18,8 +18,5 @@ public class TalkToMorganLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() {
-        QuestHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
-    }
+    public int onLoop() { return QuestHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS); }
 }

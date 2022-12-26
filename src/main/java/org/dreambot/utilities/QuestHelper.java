@@ -3,19 +3,17 @@ package org.dreambot.utilities;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.Shop;
 import org.dreambot.api.methods.container.impl.bank.Bank;
+import org.dreambot.api.methods.container.impl.bank.BankLocation;
 import org.dreambot.api.methods.dialogues.Dialogues;
-import org.dreambot.api.methods.filter.Filter;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
-import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
-import org.dreambot.api.utilities.impl.Condition;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
@@ -24,77 +22,107 @@ import java.util.Comparator;
 
 public class QuestHelper {
 
+
     public static int goAndKillNpc(Area area, String name) {
         if (!area.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(area.getRandomTile());
+            if (Walking.shouldWalk(6)) {
+                Interaction.delayWalk(area.getRandomTile());
             }
             return Timing.loopReturn();
         }
 
         if (!Players.getLocal().isInCombat()) {
-            NPC npc = NPCs.closest(n -> !n.isInCombat() && n.getName().equals(name));
-            npc.interact("Attack");
-            Sleep.sleepUntil(() -> Players.getLocal().isInCombat(), 3000);
+            NPC npc = NPCs.closest(n -> !n.isInCombat() && n.getName().equals(name) && area.contains(n));
+            if(npc != null && npc.exists()) {
+                if(npc.canReach()) {
+                    if(Interaction.delayEntityInteract(npc,"Attack")) {
+                        Sleep.sleepUntil(() -> Players.getLocal().isInCombat(), 3000);
+                    }
+                    return Timing.loopReturn();
+                }
+                if(Walking.shouldWalk(6)) {
+                    Interaction.delayWalk(npc);
+                }
+            }
         }
         return Timing.loopReturn();
     }
 
+
     public static int goAndTalkToNpc(Area area, String name, String[] dialogueOptions) {
         if (!area.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(area.getRandomTile());
+            if (Walking.shouldWalk(6)) {
+                Interaction.delayWalk(area.getRandomTile());
             }
             return Timing.loopReturn();
         }
 
         if (!Dialogues.inDialogue()) {
             NPC npc = NPCs.closest(n -> n.getName().equals(name));
-            if (npc != null && npc.interact("Talk-to")) {
-                Sleep.sleepUntil(() -> Dialogues.inDialogue(), () -> Players.getLocal().isMoving(), 3000, 100);
+            if (npc != null) {
+                if(npc.canReach()) {
+                    if(Interaction.delayEntityInteract(npc, "Talk-to")) {
+                        Sleep.sleepUntil(() -> Dialogues.inDialogue(), () -> Players.getLocal().isMoving(), 3000, 100);
+                    }
+                    return Timing.loopReturn();
+                }
+                if(Walking.shouldWalk()) {
+                    Interaction.delayWalk(npc);
+                }
+                return Timing.loopReturn();
             }
             return Timing.loopReturn();
         }
 
-        if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
+        if (Dialogues.canContinue()) {
+            Timing.sleepForDelay();
+            if(Dialogues.continueDialogue()) {
                 Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-                return Timing.loopReturn();
             }
-
-            if (Dialogues.areOptionsAvailable()) {
-                Dialogues.chooseFirstOptionContaining(dialogueOptions);
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-                return Timing.loopReturn();
-            }
+            return Timing.loopReturn();
         }
 
+        if (Dialogues.areOptionsAvailable()) {
+            Timing.sleepForDelay();
+            if(Dialogues.chooseFirstOptionContaining(dialogueOptions)) {
+                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+            }
+            return Timing.loopReturn();
+        }
         return Timing.loopReturn();
     }
 
     public static int withdrawFromBank(String itemName, int quantity) {
-        if (Bank.open()) {
-            Bank.withdraw(itemName, quantity);
+        if(!Bank.isOpen()) {
+            Timing.sleepForDelay();
+            Bank.open(BankLocation.getNearest());
+            return Timing.loopReturn();
+        }
+        int count = Inventory.count(itemName) + Bank.count(itemName);
+        if(count < quantity) {
+            Logger.log("Attempted to withdraw itemName / quantity: " + itemName + " / " + quantity + " - but have only total quantity in bank + inventory: " + count + ", stopping script...!");
+            return -1;
+        }
+        Timing.sleepForDelay();
+        if(Bank.withdraw(itemName, quantity)) {
             Sleep.sleepUntil(() -> Inventory.contains(itemName) && Inventory.count(itemName) == quantity, 3000);
         }
         return Timing.loopReturn();
     }
 
     public static int purchaseFromShop(Area area, String itemName, int quantity, String npcName) {
-        if (!area.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(area.getRandomTile());
-            }
-        } else {
+        if (walkToArea(area)) {
             if (Shop.isOpen()) {
-                Shop.purchase(itemName, quantity);
-                Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
-            } else {
-                NPC shopAssistant = NPCs.closest(npcName);
-                if (shopAssistant.interact("Trade")) {
-                    Sleep.sleepUntil(() -> Shop.isOpen(), 3000);
+                Timing.sleepForDelay();
+                if (Shop.purchase(itemName, quantity)) {
+                    Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
                 }
+                return Timing.loopReturn();
+            }
+
+            NPC shopAssistant = NPCs.closest(npcName);
+            if (shopAssistant != null && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
+                Sleep.sleepUntil(() -> Shop.isOpen(), 3000);
             }
         }
         return Timing.loopReturn();
@@ -103,7 +131,7 @@ public class QuestHelper {
     public static int pickupGroundSpawn(Tile tile, String name) {
         if(tile.distance() >= 15) {
             if(Walking.shouldWalk(6)) {
-                Walking.walk(tile);
+                Interaction.delayWalk(tile);
             }
             return Timing.loopReturn();
         }
@@ -132,7 +160,7 @@ public class QuestHelper {
         }
 
         if(Walking.shouldWalk(6)) {
-            Walking.walk(tile);
+            Interaction.delayWalk(tile);
         }
 
         return Timing.loopReturn();
@@ -146,7 +174,7 @@ public class QuestHelper {
     public static boolean walkToArea(Area area) {
         if(area.contains(Players.getLocal())) return true;
         if(Walking.shouldWalk(6)) {
-            Walking.walk(area.getRandomTile());
+            Interaction.delayWalk(area.getRandomTile());
         }
         return false;
     }

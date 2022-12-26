@@ -6,10 +6,11 @@ import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
@@ -20,28 +21,23 @@ public class RetrieveHammerLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 &&
-                Inventory.contains("Coins") &&
-                Inventory.contains("Garlic") &&
-                Inventory.contains("Beer") &&
+                Inventory.containsAll("Coins", "Garlic", "Beer") &&
                 !Inventory.contains("Hammer");
     }
 
     @Override
     public int onLoop() {
-
-        if (!VARROCK_GENERAL_STORE.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(VARROCK_GENERAL_STORE.getRandomTile());
-            }
-        } else {
+        if (QuestHelper.walkToArea(VARROCK_GENERAL_STORE)) {
             if (Shop.isOpen()) {
-                Shop.purchase("Hammer", 1);
-                Sleep.sleepUntil(() -> Inventory.contains("Hammer"), 3000);
-            } else {
-                NPC shopAssistant = NPCs.closest("Shop assistant");
-                if (shopAssistant.interact("Trade")) {
-                    Sleep.sleepUntil(() -> Shop.isOpen(), 3000);
+                if (Shop.purchase("Hammer", 1)) {
+                    Sleep.sleepUntil(() -> Inventory.contains("Hammer"), 3000);
                 }
+                return Timing.loopReturn();
+            }
+
+            NPC shopAssistant = NPCs.closest("Shop assistant");
+            if (shopAssistant != null && shopAssistant.exists() && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
+                Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
             }
         }
         return Timing.loopReturn();

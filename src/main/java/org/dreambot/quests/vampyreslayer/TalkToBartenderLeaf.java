@@ -16,13 +16,11 @@ public class TalkToBartenderLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 &&
-                Inventory.contains("Coins") &&
-                Inventory.contains("Garlic") && !Inventory.contains("Beer");
+                Inventory.containsAll("Coins", "Garlic") && !Inventory.contains("Beer");
     }
 
     @Override
     public int onLoop() {
-        QuestHelper.goAndTalkToNpc(BARTENDER_AREA, "Bartender", DIALOGUE_OPTIONS);
-        return Timing.loopReturn();
+        return QuestHelper.goAndTalkToNpc(BARTENDER_AREA, "Bartender", DIALOGUE_OPTIONS);
     }
 }

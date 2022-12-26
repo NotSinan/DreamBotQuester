@@ -9,6 +9,7 @@ import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
@@ -29,20 +30,19 @@ public class TalkToApothecary extends Leaf {
     public int onLoop() {
 
         if (Inventory.contains("Cadava berries")) {
-            QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
-            return Timing.loopReturn();
-        } else {
-            if (!CADAVA_BUSH_AREA.contains(Players.getLocal())) {
-                if (Walking.shouldWalk(4)) {
-                    Walking.walk(CADAVA_BUSH_AREA.getRandomTile());
-                }
-                return Timing.loopReturn();
-            }
+            return QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
+        }
 
-            GameObject cadavaBush = GameObjects.closest("Cadava bush");
-            if (cadavaBush != null && cadavaBush.interact("Pick-from")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Cadava berries"), 3000);
+        if (!CADAVA_BUSH_AREA.contains(Players.getLocal())) {
+            if (Walking.shouldWalk(4)) {
+                Interaction.delayWalk(CADAVA_BUSH_AREA.getRandomTile());
             }
+            return Timing.loopReturn();
+        }
+
+        GameObject cadavaBush = GameObjects.closest("Cadava bush");
+        if (cadavaBush != null && Interaction.delayEntityInteract(cadavaBush, "Pick-from")) {
+            Sleep.sleepUntil(() -> Inventory.contains("Cadava berries"), 3000);
         }
         return Timing.loopReturn();
     }

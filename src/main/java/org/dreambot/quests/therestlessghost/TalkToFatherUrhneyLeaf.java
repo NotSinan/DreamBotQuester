@@ -11,13 +11,15 @@ import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class TalkToFatherUrhneyLeaf extends Leaf {
 
     private final Area FATHER_URHNEY_AREA = new Area(3144, 3177, 3151, 3173);
-
+    private final String FATHER_URHNEY_NAME = "Father Urhney";
+    private final String[] DIALOGUE_OPTIONS = { "Father Aereck sent me to talk to you.", "He's got a ghost haunting his graveyard." };
 
     @Override
     public boolean isValid() {
@@ -25,36 +27,5 @@ public class TalkToFatherUrhneyLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() {
-        if (!FATHER_URHNEY_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(FATHER_URHNEY_AREA.getRandomTile());
-            }
-            return Timing.loopReturn();
-        }
-
-        if (!Dialogues.inDialogue()) {
-            NPC fatherAereck = NPCs.closest(npc -> npc.getName().equals("Father Urhney"));
-            if (fatherAereck != null && fatherAereck.interact("Talk-to")) {
-                Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
-            }
-            return Timing.loopReturn();
-        }
-
-        if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-                return Timing.loopReturn();
-            }
-
-            if (Dialogues.areOptionsAvailable()) {
-                Dialogues.chooseFirstOptionContaining("Father Aereck sent me to talk to you.", "He's got a ghost haunting his graveyard.");
-                Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-                return Timing.loopReturn();
-            }
-        }
-
-        return Timing.loopReturn();
-    }
+    public int onLoop() { return QuestHelper.goAndTalkToNpc(FATHER_URHNEY_AREA, FATHER_URHNEY_NAME, DIALOGUE_OPTIONS); }
 }

@@ -9,7 +9,7 @@ public class Timing {
     public static long sleepLength = 100;
     // Sleep Settings
     public static int sleepMin = 75;
-    public static int sleepMax = 450;
+    public static int sleepMax = 750;
     public static int sleepDeviation = 20;
     public static int sleepTarget = 140;
     public static boolean sleepWeightedDistribution = true;
@@ -30,9 +30,15 @@ public class Timing {
         return 60;
     }
 
+    // Sleep for the set delay and re-calculate it
+    public static void sleepForDelay() {
+        Sleep.sleep(sleepLength);
+        getSleepDelay();
+    }
+
     // Get a randomized sleep delay
-    public static long getSleepDelay() {
-        return getRandomDelay(sleepWeightedDistribution, sleepMin, sleepMax, sleepDeviation, sleepTarget);
+    public static void getSleepDelay() {
+        sleepLength = getRandomDelay(sleepWeightedDistribution, sleepMin, sleepMax, sleepDeviation, sleepTarget);
     }
 
     // Get a randomized timeout delay

@@ -8,27 +8,8 @@ import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.quests.cooksassistant.CooksAssistant;
-import org.dreambot.quests.cooksassistant.FinishedCooksAssistant;
-import org.dreambot.quests.cooksassistant.GatherItemsLeaf;
-import org.dreambot.quests.cooksassistant.TalkToCookLeaf;
-import org.dreambot.quests.druidicritual.*;
-import org.dreambot.quests.sheepshearer.CollectWoolLeaf;
-import org.dreambot.quests.sheepshearer.SheepShearer;
-import org.dreambot.quests.sheepshearer.SpinWoolLeaf;
-import org.dreambot.quests.sheepshearer.TalkToFredLeaf;
-import org.dreambot.quests.doricsquest.DoricsQuest;
-import org.dreambot.quests.doricsquest.TalkToDoricLeaf;
-import org.dreambot.quests.impcatcher.GiveBeadsLeaf;
-import org.dreambot.quests.impcatcher.ImpCatcher;
-import org.dreambot.quests.impcatcher.RetrieveBeadsLeaf;
-import org.dreambot.quests.piratestreasure.*;
-import org.dreambot.quests.piratestreasure.RetrieveCoinsLeaf;
-import org.dreambot.quests.romeoandjuliet.*;
-import org.dreambot.quests.runemysteries.*;
-import org.dreambot.quests.therestlessghost.*;
-import org.dreambot.quests.vampyreslayer.*;
-import org.dreambot.quests.xmarksthespot.*;
+import org.dreambot.quests.cooksassistant.*;
+import org.dreambot.quests.witchspotion.*;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
@@ -70,15 +51,38 @@ public class Main extends AbstractScript implements PaintInfo {
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
         tree.addBranches(
-//                new TimeoutLeaf(),
-//                // Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
+                new TimeoutLeaf(),
+//                Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
 
-                new DruidicRitual().addLeafs(new RetrieveRatMeatLeaf(), new RetrieveCowMeatLeaf(), new RetrieveChickenMeatLeaf(),
-                        new RetrieveBearMeatLeaf(), new TalkToKaqemeexLeaf(), new TalkToSanfewLeaf(), new EnchantMeatLeaf())
-                //new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf())
+//                new CooksAssistant().addLeafs(new FinishedCooksAssistantLeaf(), new TalkToCookLeaf(), new GatherCooksAssistantItemsLeaf()),
 
-//                // Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
-//                new FallbackLeaf()
+//                new DoricsQuest().addLeafs(new FinishedDoricsQuestLeaf(), new GetOresLeaf(), new TalkToDoricLeaf()),
+
+//                new DruidicRitual().addLeafs(new FinishedDruidicRitualLeaf(), new RetrieveRatMeatLeaf(), new RetrieveCowMeatLeaf(),
+//                new RetrieveChickenMeatLeaf(), new RetrieveBearMeatLeaf(), new TalkToKaqemeexLeaf(), new TalkToSanfewLeaf(), new EnchantMeatLeaf()),
+
+//                new ImpCatcher().addLeafs(new FinishedImpCatcherLeaf(), new RetrieveBeadsLeaf(), new GiveBeadsLeaf()),
+
+//                new RomeoAndJuliet().addLeafs(new FinishedRomeoAndJulietLeaf(), new RemoveWizardWebnodesLeaf(), new TalkToRomeoLeaf(), new TalkToJulietLeaf(),
+//                        new TalkToApothecary(), new TalkToFatherLawrenceLeaf()),
+
+//                new RuneMysteries().addLeafs(new FinishedRuneMysteriesLeaf(), new RemoveDraynorJailWebnodesLeaf(),
+//                  new TalkToLumbridgeDukeLeaf(), new TalkToAuburyLeaf(), new TalkToArchmageLeaf()),
+
+//                new TheRestlessGhost().addLeafs(new FinishedRestlessGhostLeaf(), new RemoveDraynorJailNodesLeaf(), new RetrieveGhostHeadLeaf(), new TalkToFatherAereckLeaf(),
+//                        new TalkToFatherUrhneyLeaf(), new TalkToGhostLeaf(), new ReturnSkullToGhostLeaf()),
+
+//                new SheepShearer().addLeafs(new FinishedSheepShearerLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf(), new TalkToFredLeaf()),
+
+//                new SheepShearer().addLeafs(new TalkToFredLeaf(), new CollectWoolLeaf(), new SpinWoolLeaf()),
+
+//                new VampyreSlayer().addLeafs(new FinishedVampyreSlayerLeaf(), new RemoveDraynorJailNodesLeaf(), new RetrieveCoinsLeaf(), new RetrieveGarlicLeaf(),
+//                        new RetrieveHammerLeaf(), new TalkToBartenderLeaf(), new TalkToDrHarlowLeaf(), new TalkToMorganLeaf(), new FightCountDraculaLeaf()),
+
+                new WitchsPotion().addLeafs(new FinishedWitchsPotionLeaf(), new TalkToWitchLeaf(), new DrinkFromCauldronLeaf(), new GatherWitchsPotionItemsLeaf()),
+
+//                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
+                new FallbackLeaf()
         );
     }
 
