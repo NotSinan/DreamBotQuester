@@ -17,6 +17,7 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
+import org.dreambot.api.wrappers.items.Item;
 
 import java.util.Comparator;
 
@@ -117,9 +118,12 @@ public class QuestHelper {
     public static int purchaseFromShop(Area area, String itemName, int quantity, String npcName) {
         if (walkToArea(area)) {
             if (Shop.isOpen()) {
-                Timing.sleepForDelay();
-                if (Shop.purchase(itemName, quantity)) {
-                    Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
+                Item item = Shop.get(itemName);
+                if(item != null && item.isValid() && item.getAmount() > 0) {
+                    Timing.sleepForDelay();
+                    if (Shop.purchase(itemName, quantity)) {
+                        Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
+                    }
                 }
                 return Timing.loopReturn();
             }

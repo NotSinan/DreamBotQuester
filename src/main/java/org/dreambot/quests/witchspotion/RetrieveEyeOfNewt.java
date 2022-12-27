@@ -37,21 +37,7 @@ public class RetrieveEyeOfNewt extends Leaf {
         if (Inventory.count("Coins") < 3) {
             return withdraw5Coins();
         }
-        if (QuestHelper.walkToArea(PORT_SARIM_MAGE_SHOP_AREA)) {
-            if (!Shop.isOpen()) {
-                NPC betty = NPCs.closest("Betty");
-                if (betty != null && betty.exists() && Interaction.delayEntityInteract(betty, "Trade")) {
-                    Sleep.sleepUntil(Shop::isOpen, () -> Players.getLocal().isMoving(), 3000, 100);
-                }
-                return Timing.loopReturn();
-            }
-            Item eyeOfNewt = Shop.get("Eye of newt");
-            if (eyeOfNewt != null && eyeOfNewt.isValid() && eyeOfNewt.getAmount() > 0 && Interaction.delayItemInteract(eyeOfNewt, "Buy 1")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Eye of newt"), () -> Players.getLocal().isMoving(), 3000, 100);
-            }
-            return Timing.loopReturn();
-        }
-        return Timing.loopReturn();
+        return QuestHelper.purchaseFromShop(PORT_SARIM_MAGE_SHOP_AREA, "Eye of newt", 1, "Betty");
     }
     private int withdraw5Coins() {
         if(Bank.getLastBankHistoryCacheTime() <= 0) {
