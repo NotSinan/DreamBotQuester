@@ -23,6 +23,21 @@ import java.util.Comparator;
 
 public class QuestHelper {
 
+    public static int goAndInteractWithGameObject(Area area, String gameObject, String action, String item) {
+        if (!area.contains(Players.getLocal())) {
+            if (Walking.shouldWalk(6)) {
+                Interaction.delayWalk(area.getRandomTile());
+            }
+            return Timing.loopReturn();
+        }
+
+        GameObject interactableGameObject = GameObjects.closest(gameObject);
+        if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
+            Sleep.sleepUntil(() -> Inventory.contains(item), 2000);
+        }
+        return Timing.loopReturn();
+    }
+
 
     public static int goAndKillNpc(Area area, String name) {
         if (!area.contains(Players.getLocal())) {
