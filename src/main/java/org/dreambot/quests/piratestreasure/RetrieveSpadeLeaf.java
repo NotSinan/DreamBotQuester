@@ -14,7 +14,7 @@ public class RetrieveSpadeLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return !Inventory.contains("Spade") && PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 0;
+        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 0 && !Inventory.contains("Spade");
     }
 
     @Override

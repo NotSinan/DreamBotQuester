@@ -13,18 +13,21 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
+import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
+import org.dreambot.api.utilities.impl.Condition;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.api.wrappers.items.Item;
+import org.dreambot.api.wrappers.widgets.WidgetChild;
 
 import java.util.Comparator;
 
 public class QuestHelper {
 
-    public static int goAndInteractWithGameObject(Area area, String gameObject, String action, String item) {
+    public static int goAndInteractWithGameObject(Area area, String gameObject, String action, Condition sleepUntilAfterInteract) {
         if (!area.contains(Players.getLocal())) {
             if (Walking.shouldWalk(6)) {
                 Interaction.delayWalk(area.getRandomTile());
@@ -32,9 +35,9 @@ public class QuestHelper {
             return Timing.loopReturn();
         }
 
-        GameObject interactableGameObject = GameObjects.closest(gameObject);
+        GameObject interactableGameObject = GameObjects.closest(g -> g.getName().equals(gameObject) && area.contains(g) && g.hasAction(action));
         if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
-            Sleep.sleepUntil(() -> Inventory.contains(item), 2000);
+            Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
     }
@@ -205,5 +208,27 @@ public class QuestHelper {
             Interaction.delayWalk(area.getRandomTile());
         }
         return false;
+    }
+
+    public static String getDialogue() {
+        String txt = "";
+        WidgetChild dialogWidget = Widgets.getWidgetChild(193, 2);
+        if(dialogWidget == null || !dialogWidget.isVisible()) {
+            dialogWidget = Widgets.getWidgetChild(231,6);
+        }
+        if(dialogWidget != null && dialogWidget.isVisible()) {
+            txt = dialogWidget.getText();
+            if(txt != null && !txt.isEmpty() && !txt.equalsIgnoreCase("null"))
+            {
+                Logger.log("NPC Dialogue: " + txt);
+                return txt;
+            }
+        }
+        txt = Dialogues.getNPCDialogue();
+        if(txt != null && !txt.isEmpty() && !txt.equalsIgnoreCase("null")) {
+            Logger.log("NPC Dialogue: " + txt);
+            return txt;
+        }
+        return null;
     }
 }
