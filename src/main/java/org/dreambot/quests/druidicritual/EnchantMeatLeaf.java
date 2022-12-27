@@ -49,7 +49,6 @@ public class EnchantMeatLeaf extends Leaf {
                 Sleep.sleepUntil(() -> Inventory.count(item -> item.getName().startsWith("Raw")) != count, 3000);
             }
         }
-
         return Timing.loopReturn();
     }
 }

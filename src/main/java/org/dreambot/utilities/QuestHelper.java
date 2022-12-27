@@ -11,6 +11,7 @@ import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
@@ -22,6 +23,21 @@ import org.dreambot.api.wrappers.items.Item;
 import java.util.Comparator;
 
 public class QuestHelper {
+
+    public static int goAndInteractWithGameObject(Area area, String gameObject, String action, String item) {
+        if (!area.contains(Players.getLocal())) {
+            if (Walking.shouldWalk(6)) {
+                Interaction.delayWalk(area.getRandomTile());
+            }
+            return Timing.loopReturn();
+        }
+
+        GameObject interactableGameObject = GameObjects.closest(gameObject);
+        if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
+            Sleep.sleepUntil(() -> Inventory.contains(item), 2000);
+        }
+        return Timing.loopReturn();
+    }
 
 
     public static int goAndKillNpc(Area area, String name) {
@@ -172,6 +188,10 @@ public class QuestHelper {
         }
 
         return Timing.loopReturn();
+    }
+
+    public static boolean inCutscene() {
+        return PlayerSettings.getBitValue(542) == 1 && PlayerSettings.getBitValue(4606) == 1;
     }
 
     /**

@@ -8,10 +8,14 @@ import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
+import org.dreambot.quests.clocktower.ClockTower;
+import org.dreambot.quests.clocktower.RetrieveBlueCogLeaf;
+import org.dreambot.quests.clocktower.RetrieveRedCogLeaf;
+import org.dreambot.quests.clocktower.TalkToBrotherKojoLeaf;
 import org.dreambot.quests.cooksassistant.*;
-import org.dreambot.quests.piratestreasure.*;
-import org.dreambot.quests.piratestreasure.RetrieveSpadeLeaf;
-import org.dreambot.quests.piratestreasure.smugglerum.SmuggleRumBranch;
+import org.dreambot.quests.monksfriend.MonksFriend;
+import org.dreambot.quests.monksfriend.RetrieveChildsBlanketLeaf;
+import org.dreambot.quests.monksfriend.TalkToBrotherOmadLeaf;
 import org.dreambot.quests.witchspotion.*;
 import org.dreambot.quests.xmarksthespot.*;
 import org.dreambot.utilities.API;
@@ -68,12 +72,6 @@ public class Main extends AbstractScript implements PaintInfo {
 
 //                new ImpCatcher().addLeafs(new FinishedImpCatcherLeaf(), new RetrieveBeadsLeaf(), new GiveBeadsLeaf()),
 
-                new PiratesTreasure().addLeafs(new FinishedPiratesTreasureLeaf(), new RetrievePiratesTreasureCoinsLeaf(), new RetrieveSpadeLeaf(),
-                        new RetrieveWhiteApronLeaf(), new TalkToRedbeardFrankLeaf(),
-                        new SmuggleRumBranch().addLeafs(
-
-                        )),
-
 //                new RomeoAndJuliet().addLeafs(new FinishedRomeoAndJulietLeaf(), new RemoveWizardWebnodesLeaf(), new TalkToRomeoLeaf(), new TalkToJulietLeaf(),
 //                        new TalkToApothecary(), new TalkToFatherLawrenceLeaf()),
 
@@ -94,8 +92,10 @@ public class Main extends AbstractScript implements PaintInfo {
 //                        new RetrieveRatsTail(), new RetrieveBurntMeat(), new RetrieveEyeOfNewt(), new RetrieveOnion(),
 //                        new TalkToWitchLeaf(), new DrinkFromCauldronLeaf()),
 
-//                new XMarksTheSpot().addLeafs(new FinishedXMarksTheSpotLeaf(), new RetrieveSpadeLeaf(), new TalkToVeosLumbridgeLeaf(), new TalkToVeosSarimLeaf(),
-//                        new ClueStepOneLeaf(), new ClueStepTwoLeaf(), new ClueStepThreeLeaf(), new ClueStepFourLeaf()),
+                //new XMarksTheSpot().addLeafs(new FinishedXMarksTheSpotLeaf(), new RetrieveSpadeLeaf(), new TalkToVeosLumbridgeLeaf(), new TalkToVeosSarimLeaf(),
+                        //new ClueStepOneLeaf(), new ClueStepTwoLeaf(), new ClueStepThreeLeaf(), new ClueStepFourLeaf()),
+
+                new MonksFriend().addLeafs(new TalkToBrotherOmadLeaf(), new RetrieveChildsBlanketLeaf()),
 
 //                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
                 new FallbackLeaf()
