@@ -21,6 +21,6 @@ public class RetrieveCabbageLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndInteractWithGameObject(CABBAGE_AREA, GAME_OBJECT, ACTION, ITEM);
+        return QuestHelper.goAndInteractWithGameObject(CABBAGE_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
     }
 }

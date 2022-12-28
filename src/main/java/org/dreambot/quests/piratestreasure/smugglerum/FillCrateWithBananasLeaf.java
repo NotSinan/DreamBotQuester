@@ -3,30 +3,31 @@ package org.dreambot.quests.piratestreasure.smugglerum;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
 
 public class FillCrateWithBananasLeaf extends Leaf {
-    private final Area CRATE_AREA = new Area(2938, 3155, 2944, 3150, 0);
-    private final String LUTHAS_NAME = "Luthas";
-    private final String[] DIALOGUE_OPTIONS = {"Could you offer me employment on your plantation?"};
+    private final Area CRATE_AREA = new Area(
+            new Tile(2936, 3151, 0),
+            new Tile(2936, 3149, 0),
+            new Tile(2945, 3149, 0),
+            new Tile(2945, 3156, 0),
+            new Tile(2942, 3156, 0),
+            new Tile(2942, 3152, 0));
     @Override
     public boolean isValid() {
-        return SmuggleState.atStart && Inventory.contains("Karamjan rum") && SmuggleState.isOnKaramja();
+        return !SmuggleState.filledCrateWithBananas && Inventory.count("Banana") >= 10 && SmuggleState.isOnKaramja();
     }
 
     @Override
     public int onLoop() {
         if(Dialogues.inDialogue()) {
             String dialog = QuestHelper.getDialogue();
-            if(dialog != null) {
-                if(dialog.contains("You wouldn't believe the demand for bananas from")) {
-                    SmuggleState.talkedLuthasBeforeBananas = true;
-                }
+            if(dialog != null && dialog.contains("You pack all your bananas into the crate")) {
+                SmuggleState.filledCrateWithBananas = true;
             }
         }
-        
-
-        return QuestHelper.goAndTalkToNpc(LUTHAS_AREA, "Luthas", DIALOGUE_OPTIONS);
+        return QuestHelper.goAndInteractWithGameObject(CRATE_AREA, "Crate", "Fill", () -> Dialogues.inDialogue());
     }
 }

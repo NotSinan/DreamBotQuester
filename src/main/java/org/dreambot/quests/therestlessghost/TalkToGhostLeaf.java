@@ -13,6 +13,7 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
@@ -34,10 +35,7 @@ public class TalkToGhostLeaf extends Leaf {
             Inventory.interact("Ghostspeak amulet", "Wear");
             return Timing.loopReturn();
         }
-        if (!GHOST_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(GHOST_AREA.getRandomTile());
-            }
+        if (!QuestHelper.walkToArea(GHOST_AREA)) {
             return Timing.loopReturn();
         }
 

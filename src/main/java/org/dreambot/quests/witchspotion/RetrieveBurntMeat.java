@@ -73,24 +73,4 @@ public class RetrieveBurntMeat extends Leaf {
         }
         return Timing.loopReturn();
     }
-    private int withdraw5Coins() {
-        if(Bank.getLastBankHistoryCacheTime() <= 0) {
-            Bank.open(BankLocation.getNearest());
-            return Timing.loopReturn();
-        }
-
-        if(Bank.count("Coins") < 5) {
-            Logger.log("Stopping script due to lack of coins! Total coins (bank + inventory): "+
-                    (Bank.count("Coins") + Inventory.count("Coins")));
-            return -1;
-        }
-
-        if(Bank.open(BankLocation.getNearest())) {
-            Timing.sleepForDelay();
-            if(Bank.withdraw("Coins",5)) {
-                Sleep.sleepUntil(() -> Inventory.count("Coins") >= 5, 3000);
-            }
-        }
-        return Timing.loopReturn();
-    }
 }

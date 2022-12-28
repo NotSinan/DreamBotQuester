@@ -3,21 +3,29 @@ package org.dreambot;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
+import org.dreambot.api.script.listener.ChatListener;
+import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.framework.Tree;
+import org.dreambot.framework.bank.BankOnceLeaf;
 import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.quests.blackknightsfortress.*;
-import org.dreambot.quests.gertrudescat.*;
-import org.dreambot.quests.gertrudescat.RetrieveCoinsLeaf;
+import org.dreambot.quests.piratestreasure.*;
+import org.dreambot.quests.piratestreasure.SeeGardenerPresentLeaf;
+import org.dreambot.quests.piratestreasure.smugglerum.*;
+import org.dreambot.quests.piratestreasure.smugglerum.TalkToLuthasLeaf;
+import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeCrateSentLeaf;
+import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeFullBananasCrateLeaf;
+import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeRumNoBananasLeaf;
+import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeStashedRumLeaf;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
 import java.awt.*;
 
 @ScriptManifest(author = "Bonfire", name = "DreamBot TBL", version = 1.00, category = Category.MAGIC)
-public class Main extends AbstractScript implements PaintInfo {
+public class Main extends AbstractScript implements PaintInfo, ChatListener {
 
     // Instantiate the tree to hold our branches and leaves
     private final Tree tree = new Tree();
@@ -53,6 +61,9 @@ public class Main extends AbstractScript implements PaintInfo {
     private void instantiateTree() {
         tree.addBranches(
                 new TimeoutLeaf(),
+
+                new BankOnceLeaf(),
+
 //                Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
 
 //                new CooksAssistant().addLeafs(new FinishedCooksAssistantLeaf(), new RetrievePotOfFlourLeaf(), new RetrieveBucketOfMilkLeaf(),
@@ -64,6 +75,13 @@ public class Main extends AbstractScript implements PaintInfo {
 //                new RetrieveChickenMeatLeaf(), new RetrieveBearMeatLeaf(), new TalkToKaqemeexLeaf(), new TalkToSanfewLeaf(), new EnchantMeatLeaf()),
 
 //                new ImpCatcher().addLeafs(new FinishedImpCatcherLeaf(), new RetrieveBeadsLeaf(), new GiveBeadsLeaf()),
+
+/*                new PiratesTreasure().addLeafs(new WithdrawFromBankPiratesTreasureLeaf(), new TalkToRedbeardFrankLeaf(), new RetrieveSpadePiratesTreasureLeaf(), new RetrievePiratesTreasureCoinsLeaf(),
+                        new SmuggleRumBranch().addLeafs(new PauseForCutsceneLeaf(), new SeeCrateSentLeaf(), new SeeFullBananasCrateLeaf(), new SeeRumNoBananasLeaf(), new SeeStashedRumLeaf(),
+                                new RetrieveSmuggledRumLeaf(), new EnterStoreBackhouseLeaf(), new LeaveKaramjaLeaf(), new RetrieveWhiteApronLeaf(),
+                                new TalkToLuthasLeaf(), new FillCrateWithBananasLeaf(), new StashRumLeaf(), new RetrieveRumLeaf(), new RetrieveBananaLeaf()),
+                        new RetrievePiratesMessageLeaf(), new SeeGardenerPresentLeaf(), new DigGardenLeaf()),
+*/
 
 //                new RomeoAndJuliet().addLeafs(new FinishedRomeoAndJulietLeaf(), new RemoveWizardWebnodesLeaf(), new TalkToRomeoLeaf(), new TalkToJulietLeaf(),
 //                        new TalkToApothecary(), new TalkToFatherLawrenceLeaf()),
@@ -88,9 +106,7 @@ public class Main extends AbstractScript implements PaintInfo {
                 //new XMarksTheSpot().addLeafs(new FinishedXMarksTheSpotLeaf(), new RetrieveSpadeLeaf(), new TalkToVeosLumbridgeLeaf(), new TalkToVeosSarimLeaf(),
                         //new ClueStepOneLeaf(), new ClueStepTwoLeaf(), new ClueStepThreeLeaf(), new ClueStepFourLeaf()),
 
-                new GertrudesCat().addLeafs(new RetrieveCoinsLeaf(), new RetrieveRawSardineLeaf(), new RetrieveBucketOfMilkLeaf(), new RetrieveDoogleLeavesLeaf(),
-                        new TalkToGertrudeLeaf(), new TalkToWiloughLeaf(), new GiveMilkToCatLeaf(), new MixSardineAndDoogleLeavesLeaf(), new GiveSeasonedSardineToCatLeaf()
-                , new FindKittensLeaf(), new GiveKittenToFluffsLeaf()),
+//                new MonksFriend().addLeafs(new TalkToBrotherOmadLeaf(), new RetrieveChildsBlanketLeaf()),
 
 //                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
                 new FallbackLeaf()
@@ -121,5 +137,24 @@ public class Main extends AbstractScript implements PaintInfo {
     public void onPaint(Graphics2D graphics2D) {
         graphics2D.setRenderingHints(aa);
         CUSTOM_PAINT.paint(graphics2D);
+    }
+
+    @Override
+    public void onMessage(Message msg) {
+        switch(msg.getType()) {
+            case TIMEOUT_MESSAGE:
+            case GAME:
+            case ENGINE:
+            case WELCOME:
+            case FEEDBACK:
+            case BROADCAST:
+            case NPC_EXAMINE:
+            case ITEM_EXAMINE:
+            case OBJECT_EXAMINE:
+            {
+                API.lastGameMessage = msg.getMessage();
+            }
+            break;
+        }
     }
 }
