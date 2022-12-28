@@ -90,7 +90,7 @@ public class Main extends AbstractScript implements PaintInfo {
 
                 new GertrudesCat().addLeafs(new RetrieveCoinsLeaf(), new RetrieveRawSardineLeaf(), new RetrieveBucketOfMilkLeaf(), new RetrieveDoogleLeavesLeaf(),
                         new TalkToGertrudeLeaf(), new TalkToWiloughLeaf(), new GiveMilkToCatLeaf(), new MixSardineAndDoogleLeavesLeaf(), new GiveSeasonedSardineToCatLeaf()
-                , new FindKittensLeaf()),
+                , new FindKittensLeaf(), new GiveKittenToFluffsLeaf()),
 
 //                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
                 new FallbackLeaf()
