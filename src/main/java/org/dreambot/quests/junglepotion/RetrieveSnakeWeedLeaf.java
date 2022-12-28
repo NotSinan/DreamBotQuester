@@ -30,6 +30,6 @@ public class RetrieveSnakeWeedLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(SNAKE_WEED_AREA, GAME_OBJECT, ACTION, ITEM);
+        return QuestHelper.goAndInteractWithGameObject(SNAKE_WEED_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
     }
 }

@@ -31,6 +31,6 @@ public class RetrieveSiteFoilLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(SITO_FOIL_AREA, GAME_OBJECT, ACTION, ITEM);
+        return QuestHelper.goAndInteractWithGameObject(SITO_FOIL_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
     }
 }

@@ -31,6 +31,6 @@ public class RetrieveAdrigalLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(ARDRIGAL_AREA, GAME_OBJECT, ACTION, ITEM);
+        return QuestHelper.goAndInteractWithGameObject(ARDRIGAL_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
     }
 }

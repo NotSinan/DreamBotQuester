@@ -1,4 +1,4 @@
-package org.dreambot.quests.piratestreasure;
+package org.dreambot.quests.piratestreasure.smugglerum;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.Shop;
@@ -19,9 +19,7 @@ public class RetrieveRumLeaf extends Leaf {
     private final Area KARAMJA_PUB_AREA = new Area(2917, 3148, 2930, 3142);
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 1 &&
-                Inventory.contains("Coins") &&
-                !Inventory.contains("Karamjan rum");
+        return !Inventory.contains("Karamjan rum");
     }
 
     @Override

@@ -33,12 +33,15 @@ public class Timing {
     // Sleep for the set delay and re-calculate it
     public static void sleepForDelay() {
         Sleep.sleep(sleepLength);
-        getSleepDelay();
+        setSleepDelay();
     }
 
     // Get a randomized sleep delay
-    public static void getSleepDelay() {
+    public static void setSleepDelay() {
         sleepLength = getRandomDelay(sleepWeightedDistribution, sleepMin, sleepMax, sleepDeviation, sleepTarget);
+    }
+    public static int getSleepDelay() {
+        return (int) getRandomDelay(sleepWeightedDistribution, sleepMin, sleepMax, sleepDeviation, sleepTarget);
     }
 
     // Get a randomized timeout delay
