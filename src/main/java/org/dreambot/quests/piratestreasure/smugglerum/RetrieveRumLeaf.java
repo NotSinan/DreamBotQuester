@@ -1,22 +1,21 @@
 package org.dreambot.quests.piratestreasure.smugglerum;
 
 import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.methods.container.impl.Shop;
-import org.dreambot.api.methods.interactive.NPCs;
-import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
-import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
-import org.dreambot.api.utilities.Sleep;
-import org.dreambot.api.wrappers.interactive.NPC;
+import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
-import org.dreambot.utilities.Timing;
 
 public class RetrieveRumLeaf extends Leaf {
-
-    private final Area KARAMJA_PUB_AREA = new Area(2917, 3148, 2930, 3142);
+    private final Area KARAMJA_PUB_AREA = new Area(
+            new Tile(2930, 3142, 0),
+            new Tile(2930, 3148, 0),
+            new Tile(2921, 3147, 0),
+            new Tile(2920, 3149, 0),
+            new Tile(2917, 3149, 0),
+            new Tile(2916, 3148, 0),
+            new Tile(2916, 3143, 0),
+            new Tile(2917, 3142, 0));
     @Override
     public boolean isValid() {
         return !Inventory.contains("Karamjan rum");

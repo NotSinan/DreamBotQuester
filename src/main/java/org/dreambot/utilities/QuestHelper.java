@@ -28,26 +28,26 @@ import java.util.Comparator;
 public class QuestHelper {
 
     public static int goAndInteractWithGameObject(Area area, String gameObject, String action, Condition sleepUntilAfterInteract) {
-        if (!area.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(6)) {
-                Interaction.delayWalk(area.getRandomTile());
+        return goAndInteractWithGameObject(area, gameObject, action, sleepUntilAfterInteract, null, 0, 0);
+    }
+    public static int goAndInteractWithGameObject(Area area, String gameObject, String action, Condition sleepUntilAfterInteract, Condition sleepUntilReset, int timeout, int polling) {
+        if (walkToArea(area)) {
+            GameObject interactableGameObject = GameObjects.closest(g -> g.getName().equals(gameObject) && area.contains(g) && g.hasAction(action));
+            if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
+                if(sleepUntilReset == null) {
+                    Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
+                    return Timing.loopReturn();
+                }
+                Sleep.sleepUntil(sleepUntilAfterInteract, sleepUntilReset, timeout, polling);
             }
-            return Timing.loopReturn();
-        }
-
-        GameObject interactableGameObject = GameObjects.closest(g -> g.getName().equals(gameObject) && area.contains(g) && g.hasAction(action));
-        if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
-            Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
     }
 
 
+
     public static int goAndKillNpc(Area area, String name) {
-        if (!area.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(6)) {
-                Interaction.delayWalk(area.getRandomTile());
-            }
+        if (!walkToArea(area)) {
             return Timing.loopReturn();
         }
 
@@ -70,10 +70,7 @@ public class QuestHelper {
 
 
     public static int goAndTalkToNpc(Area area, String name, String[] dialogueOptions) {
-        if (!area.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(6)) {
-                Interaction.delayWalk(area.getRandomTile());
-            }
+        if (!walkToArea(area)) {
             return Timing.loopReturn();
         }
 
@@ -119,17 +116,18 @@ public class QuestHelper {
     public static int withdrawFromBank(String itemName, int quantity) {
         if(!Bank.isOpen()) {
             Timing.sleepForDelay();
-            Bank.open(BankLocation.getNearest());
+            Bank.open();
             return Timing.loopReturn();
         }
-        int count = Inventory.count(itemName) + Bank.count(itemName);
-        if(count < quantity) {
-            Logger.log("Attempted to withdraw itemName / quantity: " + itemName + " / " + quantity + " - but have only total quantity in bank + inventory: " + count + ", stopping script...!");
-            return -1;
+
+        if(Bank.count(itemName) <= 0) {
+            Logger.log("Attempted to withdraw itemName / quantity: " + itemName + " / " + quantity + " - but have none in bank!");
+            return Timing.loopReturn();
         }
+
         Timing.sleepForDelay();
         if(Bank.withdraw(itemName, quantity)) {
-            Sleep.sleepUntil(() -> Inventory.contains(itemName) && Inventory.count(itemName) == quantity, 3000);
+            Sleep.sleepUntil(() -> Inventory.count(itemName) >= quantity, 3000);
         }
         return Timing.loopReturn();
     }
@@ -149,7 +147,7 @@ public class QuestHelper {
 
             NPC shopAssistant = NPCs.closest(npcName);
             if (shopAssistant != null && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
-                Sleep.sleepUntil(() -> Shop.isOpen(), 3000);
+                Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
             }
         }
         return Timing.loopReturn();
@@ -206,6 +204,14 @@ public class QuestHelper {
         if(area.contains(Players.getLocal())) return true;
         if(Walking.shouldWalk(6)) {
             Interaction.delayWalk(area.getRandomTile());
+        }
+        return false;
+    }
+
+    public static boolean walkToTile(Tile tile) {
+        if (tile.equals(Players.getLocal().getTile())) return true;
+        if(Walking.shouldWalk(6)) {
+            Interaction.delayWalk(tile);
         }
         return false;
     }

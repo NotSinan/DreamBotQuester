@@ -27,18 +27,20 @@ public class RetrieveHammerLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (QuestHelper.walkToArea(VARROCK_GENERAL_STORE)) {
-            if (Shop.isOpen()) {
-                if (Shop.purchase("Hammer", 1)) {
-                    Sleep.sleepUntil(() -> Inventory.contains("Hammer"), 3000);
-                }
-                return Timing.loopReturn();
-            }
+        if (!QuestHelper.walkToArea(VARROCK_GENERAL_STORE)) {
+            return Timing.loopReturn();
+        }
 
-            NPC shopAssistant = NPCs.closest("Shop assistant");
-            if (shopAssistant != null && shopAssistant.exists() && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
-                Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
+        if (Shop.isOpen()) {
+            if (Shop.purchase("Hammer", 1)) {
+                Sleep.sleepUntil(() -> Inventory.contains("Hammer"), 3000);
             }
+            return Timing.loopReturn();
+        }
+
+        NPC shopAssistant = NPCs.closest("Shop assistant");
+        if (shopAssistant != null && shopAssistant.exists() && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
+            Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
     }

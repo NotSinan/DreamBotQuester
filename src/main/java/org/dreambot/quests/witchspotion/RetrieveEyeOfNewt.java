@@ -35,28 +35,8 @@ public class RetrieveEyeOfNewt extends Leaf {
     @Override
     public int onLoop() {
         if (Inventory.count("Coins") < 3) {
-            return withdraw5Coins();
+            return QuestHelper.withdrawFromBank("Coins", 5);
         }
         return QuestHelper.purchaseFromShop(PORT_SARIM_MAGE_SHOP_AREA, "Eye of newt", 1, "Betty");
-    }
-    private int withdraw5Coins() {
-        if(Bank.getLastBankHistoryCacheTime() <= 0) {
-            Bank.open(BankLocation.getNearest());
-            return Timing.loopReturn();
-        }
-
-        if(Bank.count("Coins") < 5) {
-            Logger.log("Stopping script due to lack of coins! Total coins (bank + inventory): "+
-                    (Bank.count("Coins") + Inventory.count("Coins")));
-            return -1;
-        }
-
-        if(Bank.open(BankLocation.getNearest())) {
-            Timing.sleepForDelay();
-            if(Bank.withdraw("Coins",5)) {
-                Sleep.sleepUntil(() -> Inventory.count("Coins") >= 5, 3000);
-            }
-        }
-        return Timing.loopReturn();
     }
 }

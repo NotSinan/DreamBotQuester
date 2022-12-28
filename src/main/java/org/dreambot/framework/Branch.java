@@ -1,6 +1,8 @@
 package org.dreambot.framework;
 
+import org.dreambot.api.utilities.Sleep;
 import org.dreambot.utilities.API;
+import org.dreambot.utilities.Timing;
 
 import java.util.Collections;
 import java.util.LinkedList;
