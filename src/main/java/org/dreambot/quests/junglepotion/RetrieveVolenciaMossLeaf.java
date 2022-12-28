@@ -31,6 +31,6 @@ public class RetrieveVolenciaMossLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(VOLENCIA_MOSS_AREA, GAME_OBJECT, ACTION, ITEM);
+        return QuestHelper.goAndInteractWithGameObject(VOLENCIA_MOSS_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
     }
 }
