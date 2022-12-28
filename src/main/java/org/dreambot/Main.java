@@ -8,16 +8,9 @@ import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.quests.clocktower.ClockTower;
-import org.dreambot.quests.clocktower.RetrieveBlueCogLeaf;
-import org.dreambot.quests.clocktower.RetrieveRedCogLeaf;
-import org.dreambot.quests.clocktower.TalkToBrotherKojoLeaf;
-import org.dreambot.quests.cooksassistant.*;
-import org.dreambot.quests.monksfriend.MonksFriend;
-import org.dreambot.quests.monksfriend.RetrieveChildsBlanketLeaf;
-import org.dreambot.quests.monksfriend.TalkToBrotherOmadLeaf;
-import org.dreambot.quests.witchspotion.*;
-import org.dreambot.quests.xmarksthespot.*;
+import org.dreambot.quests.blackknightsfortress.*;
+import org.dreambot.quests.gertrudescat.*;
+import org.dreambot.quests.gertrudescat.RetrieveCoinsLeaf;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
@@ -95,7 +88,9 @@ public class Main extends AbstractScript implements PaintInfo {
                 //new XMarksTheSpot().addLeafs(new FinishedXMarksTheSpotLeaf(), new RetrieveSpadeLeaf(), new TalkToVeosLumbridgeLeaf(), new TalkToVeosSarimLeaf(),
                         //new ClueStepOneLeaf(), new ClueStepTwoLeaf(), new ClueStepThreeLeaf(), new ClueStepFourLeaf()),
 
-                new MonksFriend().addLeafs(new TalkToBrotherOmadLeaf(), new RetrieveChildsBlanketLeaf()),
+                new GertrudesCat().addLeafs(new RetrieveCoinsLeaf(), new RetrieveRawSardineLeaf(), new RetrieveBucketOfMilkLeaf(), new RetrieveDoogleLeavesLeaf(),
+                        new TalkToGertrudeLeaf(), new TalkToWiloughLeaf(), new GiveMilkToCatLeaf(), new MixSardineAndDoogleLeavesLeaf(), new GiveSeasonedSardineToCatLeaf()
+                , new FindKittensLeaf()),
 
 //                Place your own branches and leaves above this. The FallbackLeaf is a failsafe in case there none of the leafs execute, and generates new Timing.tickTimeout.
                 new FallbackLeaf()
