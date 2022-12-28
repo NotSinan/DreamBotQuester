@@ -1,4 +1,4 @@
-package org.dreambot.quests.cooksassistant;
+package org.dreambot.quests.gertrudescat;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
@@ -22,8 +22,7 @@ public class RetrieveBucketOfMilkLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return (PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 1) && !Inventory.contains("Bucket of milk");
+        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_GERTRUDES_CAT.getId()) == 0 && !Inventory.contains("Bucket of milk");
     }
 
 
@@ -44,7 +43,6 @@ public class RetrieveBucketOfMilkLeaf extends Leaf {
         if(dairyCow != null && Interaction.delayEntityInteract(dairyCow, "Milk")) {
             Sleep.sleepUntil(() -> Inventory.contains("Bucket of milk"), () -> Players.getLocal().isMoving(), 3000, 100);
         }
-
         return Timing.loopReturn();
     }
 }
