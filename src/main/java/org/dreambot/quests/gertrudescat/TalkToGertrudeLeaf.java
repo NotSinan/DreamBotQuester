@@ -36,11 +36,9 @@ public class TalkToGertrudeLeaf extends Leaf {
             }
     );
 
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_GERTRUDES_CAT.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_GERTRUDES_CAT.getId()) == 4 && Inventory.contains("Fluffs' kitten") ||
                 PlayerSettings.getConfig(QuestVarPlayer.QUEST_GERTRUDES_CAT.getId()) == 5;
     }
 
