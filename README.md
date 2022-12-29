@@ -27,8 +27,7 @@ To install and use DreamBotQuester, you will need to have the following tools in
 Once you have these tools installed, you can use the following steps to build and package DreamBotQuester:
 
 1. Navigate to the root directory of the DreamBotQuester project in a terminal window.
-2. Run the `mvn package` command
-   ```mvn package```
+2. Run the `mvn package` command. code(mvn package)
 3. This will create a jar file in the `DreamBot/scripts` directory.
 
 # Running the script
