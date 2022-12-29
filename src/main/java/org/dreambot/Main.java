@@ -1,9 +1,13 @@
 package org.dreambot;
 
+import org.dreambot.api.methods.walking.pathfinding.impl.web.WebFinder;
+import org.dreambot.api.methods.walking.web.node.CustomWebPath;
+import org.dreambot.api.methods.walking.web.node.impl.EntranceWebNode;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.script.listener.ChatListener;
+import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.framework.Tree;
 import org.dreambot.framework.bank.BankOnceLeaf;
@@ -11,14 +15,8 @@ import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.quests.piratestreasure.*;
-import org.dreambot.quests.piratestreasure.SeeGardenerPresentLeaf;
-import org.dreambot.quests.piratestreasure.smugglerum.*;
-import org.dreambot.quests.piratestreasure.smugglerum.TalkToLuthasLeaf;
-import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeCrateSentLeaf;
-import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeFullBananasCrateLeaf;
-import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeRumNoBananasLeaf;
-import org.dreambot.quests.piratestreasure.smugglerum.chatmsg.SeeStashedRumLeaf;
+import org.dreambot.quests.alfredgrimhandsbarcrawl.*;
+import org.dreambot.quests.thecorsaircurse.WalkGangplankTest;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 
@@ -61,10 +59,13 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
     private void instantiateTree() {
         tree.addBranches(
                 new TimeoutLeaf(),
-
-                new BankOnceLeaf(),
+                new WalkGangplankTest(),
+ //               new BankOnceLeaf(),
 
 //                Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
+
+//                new AlfredGrimhandsBarcrawl().addLeafs(new FinishedAlfredGrimhandsBarcrawlLeaf(), new SeeAllFinishedMessage(), new SeeBartenderMessageLeaf(),
+//                        new CheckCardLeaf(), new TalkToBarbarianGuardsLeaf(), new TalkToGrimhandBartenderLeaf()),
 
 //                new CooksAssistant().addLeafs(new FinishedCooksAssistantLeaf(), new RetrievePotOfFlourLeaf(), new RetrieveBucketOfMilkLeaf(),
 //                new RetrieveEggLeaf(), new TalkToCookLeaf()),
@@ -76,7 +77,8 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
 
 //                new ImpCatcher().addLeafs(new FinishedImpCatcherLeaf(), new RetrieveBeadsLeaf(), new GiveBeadsLeaf()),
 
-/*                new PiratesTreasure().addLeafs(new WithdrawFromBankPiratesTreasureLeaf(), new TalkToRedbeardFrankLeaf(), new RetrieveSpadePiratesTreasureLeaf(), new RetrievePiratesTreasureCoinsLeaf(),
+/*                new PiratesTreasure().addLeafs(new FinishedPiratesTreasureLeaf(), new WithdrawFromBankPiratesTreasureLeaf(), new TalkToRedbeardFrankLeaf(),
+                        new RetrieveSpadePiratesTreasureLeaf(), new RetrievePiratesTreasureCoinsLeaf(),
                         new SmuggleRumBranch().addLeafs(new PauseForCutsceneLeaf(), new SeeCrateSentLeaf(), new SeeFullBananasCrateLeaf(), new SeeRumNoBananasLeaf(), new SeeStashedRumLeaf(),
                                 new RetrieveSmuggledRumLeaf(), new EnterStoreBackhouseLeaf(), new LeaveKaramjaLeaf(), new RetrieveWhiteApronLeaf(),
                                 new TalkToLuthasLeaf(), new FillCrateWithBananasLeaf(), new StashRumLeaf(), new RetrieveRumLeaf(), new RetrieveBananaLeaf()),

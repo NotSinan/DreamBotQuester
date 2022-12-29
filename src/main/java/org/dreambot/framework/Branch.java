@@ -28,7 +28,7 @@ public abstract class Branch extends Leaf {
     public int onLoop() {
         return children.stream()
                 .filter(c -> Objects.nonNull(c) && c.isValid())
-                .findAny()
+                .findFirst()
                 .map(tLeaf -> {
                     API.currentBranch = this.getClass().getSimpleName();
                     API.currentLeaf = tLeaf.getClass().getSimpleName();
