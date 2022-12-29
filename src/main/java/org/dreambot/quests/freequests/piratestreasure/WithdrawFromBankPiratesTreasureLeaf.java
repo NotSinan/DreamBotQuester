@@ -1,4 +1,4 @@
-package org.dreambot.quests.piratestreasure;
+package org.dreambot.quests.freequests.piratestreasure;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;

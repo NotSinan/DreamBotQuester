@@ -1,4 +1,4 @@
-package org.dreambot.quests.piratestreasure;
+package org.dreambot.quests.freequests.piratestreasure;
 
 import org.dreambot.framework.Branch;
 

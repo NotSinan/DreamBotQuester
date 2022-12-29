@@ -1,4 +1,4 @@
-package org.dreambot.quests.gertrudescat;
+package org.dreambot.quests.paidquests.gertrudescat;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;

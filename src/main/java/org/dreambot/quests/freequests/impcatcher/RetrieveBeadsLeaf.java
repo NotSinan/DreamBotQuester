@@ -1,4 +1,4 @@
-package org.dreambot.quests.impcatcher;
+package org.dreambot.quests.freequests.impcatcher;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.NPCs;

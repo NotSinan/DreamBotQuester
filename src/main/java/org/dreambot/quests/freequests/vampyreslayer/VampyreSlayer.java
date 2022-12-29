@@ -1,4 +1,4 @@
-package org.dreambot.quests.vampyreslayer;
+package org.dreambot.quests.freequests.vampyreslayer;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.framework.Branch;

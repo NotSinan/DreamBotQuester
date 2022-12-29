@@ -1,4 +1,4 @@
-package org.dreambot.quests.doricsquest;
+package org.dreambot.quests.freequests.doricsquest;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

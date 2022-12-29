@@ -1,4 +1,4 @@
-package org.dreambot.quests.alfredgrimhandsbarcrawl;
+package org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl;
 
 public class CardState {
     public static boolean finishedCard = false;

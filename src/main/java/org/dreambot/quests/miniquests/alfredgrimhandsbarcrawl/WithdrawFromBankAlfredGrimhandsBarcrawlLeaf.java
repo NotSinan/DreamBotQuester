@@ -1,4 +1,4 @@
-package org.dreambot.quests.alfredgrimhandsbarcrawl;
+package org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;

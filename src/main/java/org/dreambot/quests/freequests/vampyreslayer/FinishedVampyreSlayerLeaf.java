@@ -1,4 +1,4 @@
-package org.dreambot.quests.vampyreslayer;
+package org.dreambot.quests.freequests.vampyreslayer;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

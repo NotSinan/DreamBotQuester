@@ -1,7 +1,7 @@
-package org.dreambot.quests.piratestreasure.smugglerum.chatmsg;
+package org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg;
 
 import org.dreambot.framework.Leaf;
-import org.dreambot.quests.piratestreasure.smugglerum.SmuggleState;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.SmuggleState;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 

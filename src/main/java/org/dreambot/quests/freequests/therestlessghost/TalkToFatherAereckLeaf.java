@@ -1,4 +1,4 @@
-package org.dreambot.quests.therestlessghost;
+package org.dreambot.quests.freequests.therestlessghost;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;

@@ -1,4 +1,4 @@
-package org.dreambot.quests.doricsquest;
+package org.dreambot.quests.freequests.doricsquest;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.equipment.Equipment;

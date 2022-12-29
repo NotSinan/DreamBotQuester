@@ -1,4 +1,4 @@
-package org.dreambot.quests.thecorsaircurse;
+package org.dreambot.quests.freequests.thecorsaircurse;
 
 import org.dreambot.api.Client;
 import org.dreambot.framework.Leaf;

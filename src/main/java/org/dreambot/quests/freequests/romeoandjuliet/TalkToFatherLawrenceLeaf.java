@@ -1,4 +1,4 @@
-package org.dreambot.quests.romeoandjuliet;
+package org.dreambot.quests.freequests.romeoandjuliet;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;

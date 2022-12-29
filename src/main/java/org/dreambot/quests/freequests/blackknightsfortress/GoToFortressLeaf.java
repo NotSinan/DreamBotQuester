@@ -1,4 +1,4 @@
-package org.dreambot.quests.blackknightsfortress;
+package org.dreambot.quests.freequests.blackknightsfortress;
 
 import org.dreambot.api.methods.container.impl.equipment.Equipment;
 import org.dreambot.api.methods.container.impl.equipment.EquipmentSlot;

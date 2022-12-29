@@ -1,4 +1,4 @@
-package org.dreambot.quests.goblindiplomacy;
+package org.dreambot.quests.freequests.goblindiplomacy;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.framework.Branch;

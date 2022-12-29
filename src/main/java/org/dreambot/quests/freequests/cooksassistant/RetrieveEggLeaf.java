@@ -1,4 +1,4 @@
-package org.dreambot.quests.cooksassistant;
+package org.dreambot.quests.freequests.cooksassistant;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Tile;

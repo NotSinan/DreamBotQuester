@@ -1,4 +1,4 @@
-package org.dreambot.quests.romeoandjuliet;
+package org.dreambot.quests.freequests.romeoandjuliet;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.framework.Branch;

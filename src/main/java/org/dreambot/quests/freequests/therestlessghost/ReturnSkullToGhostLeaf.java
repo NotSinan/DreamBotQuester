@@ -1,4 +1,4 @@
-package org.dreambot.quests.therestlessghost;
+package org.dreambot.quests.freequests.therestlessghost;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;

@@ -1,4 +1,4 @@
-package org.dreambot.quests.impcatcher;
+package org.dreambot.quests.freequests.impcatcher;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.framework.Branch;

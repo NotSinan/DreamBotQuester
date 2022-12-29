@@ -1,4 +1,4 @@
-package org.dreambot.quests.therestlessghost;
+package org.dreambot.quests.freequests.therestlessghost;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.framework.Branch;

@@ -1,4 +1,4 @@
-package org.dreambot.quests.cooksassistant;
+package org.dreambot.quests.freequests.cooksassistant;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

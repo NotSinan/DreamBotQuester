@@ -1,4 +1,4 @@
-package org.dreambot.quests.xmarksthespot;
+package org.dreambot.quests.freequests.xmarksthespot;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.framework.Branch;

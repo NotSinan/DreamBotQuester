@@ -1,4 +1,4 @@
-package org.dreambot.quests.druidicritual;
+package org.dreambot.quests.paidquests.druidicritual;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;

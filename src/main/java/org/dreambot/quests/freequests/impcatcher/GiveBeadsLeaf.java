@@ -1,4 +1,4 @@
-package org.dreambot.quests.impcatcher;
+package org.dreambot.quests.freequests.impcatcher;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;

@@ -1,4 +1,4 @@
-package org.dreambot.quests.sheepshearer;
+package org.dreambot.quests.freequests.sheepshearer;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.NPCs;

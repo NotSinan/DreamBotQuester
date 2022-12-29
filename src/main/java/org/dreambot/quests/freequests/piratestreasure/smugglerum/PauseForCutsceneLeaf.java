@@ -1,4 +1,4 @@
-package org.dreambot.quests.piratestreasure.smugglerum;
+package org.dreambot.quests.freequests.piratestreasure.smugglerum;
 
 import org.dreambot.api.Client;
 import org.dreambot.framework.Leaf;

@@ -1,4 +1,4 @@
-package org.dreambot.quests.gertrudescat;
+package org.dreambot.quests.paidquests.gertrudescat;
 
 import org.dreambot.framework.Branch;
 

@@ -1,4 +1,4 @@
-package org.dreambot.quests.xmarksthespot;
+package org.dreambot.quests.freequests.xmarksthespot;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

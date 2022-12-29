@@ -1,4 +1,4 @@
-package org.dreambot.quests.therestlessghost;
+package org.dreambot.quests.freequests.therestlessghost;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

@@ -1,4 +1,4 @@
-package org.dreambot.quests.monksfriend;
+package org.dreambot.quests.paidquests.monksfriend;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;

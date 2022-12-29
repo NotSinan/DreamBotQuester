@@ -1,4 +1,4 @@
-package org.dreambot.quests.alfredgrimhandsbarcrawl;
+package org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl;
 
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.API;

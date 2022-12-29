@@ -1,4 +1,4 @@
-package org.dreambot.quests.sheepshearer;
+package org.dreambot.quests.freequests.sheepshearer;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

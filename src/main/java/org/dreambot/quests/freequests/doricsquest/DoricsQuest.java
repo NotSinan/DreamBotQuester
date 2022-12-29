@@ -1,4 +1,4 @@
-package org.dreambot.quests.doricsquest;
+package org.dreambot.quests.freequests.doricsquest;
 
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.skills.Skill;

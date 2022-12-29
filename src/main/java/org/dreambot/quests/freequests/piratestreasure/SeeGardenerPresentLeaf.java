@@ -1,9 +1,8 @@
-package org.dreambot.quests.piratestreasure;
+package org.dreambot.quests.freequests.piratestreasure;
 
 import org.dreambot.api.methods.hint.HintArrow;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.quests.piratestreasure.DigGardenLeaf;
 import org.dreambot.utilities.API;
 import org.dreambot.utilities.Timing;
 

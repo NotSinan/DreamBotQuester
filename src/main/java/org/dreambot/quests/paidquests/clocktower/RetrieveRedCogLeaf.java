@@ -1,4 +1,4 @@
-package org.dreambot.quests.clocktower;
+package org.dreambot.quests.paidquests.clocktower;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Tile;

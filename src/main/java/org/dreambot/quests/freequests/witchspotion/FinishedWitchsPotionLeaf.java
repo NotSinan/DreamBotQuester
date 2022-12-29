@@ -1,4 +1,4 @@
-package org.dreambot.quests.witchspotion;
+package org.dreambot.quests.freequests.witchspotion;
 
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Logger;

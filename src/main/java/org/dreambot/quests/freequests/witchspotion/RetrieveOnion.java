@@ -1,4 +1,4 @@
-package org.dreambot.quests.witchspotion;
+package org.dreambot.quests.freequests.witchspotion;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;

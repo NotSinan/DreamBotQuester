@@ -1,4 +1,4 @@
-package org.dreambot.quests.vampyreslayer;
+package org.dreambot.quests.freequests.vampyreslayer;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
