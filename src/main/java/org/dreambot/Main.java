@@ -11,6 +11,7 @@ import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
+import org.dreambot.quests.alfredgrimhandsbarcrawl.*;
 import org.dreambot.quests.piratestreasure.*;
 import org.dreambot.quests.piratestreasure.SeeGardenerPresentLeaf;
 import org.dreambot.quests.piratestreasure.smugglerum.*;
@@ -66,6 +67,9 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
 
 //                Place your own branches and leaves below this. The TimeoutLeaf waits one tick and decrements Timing.tickTimeout int.
 
+                new AlfredGrimhandsBarcrawl().addLeafs(new FinishedAlfredGrimhandsBarcrawlLeaf(), new SeeAllFinishedMessage(), new SeeBartenderMessageLeaf(),
+                        new CheckCardLeaf(), new TalkToBarbarianGuardsLeaf(), new TalkToGrimhandBartenderLeaf()),
+
 //                new CooksAssistant().addLeafs(new FinishedCooksAssistantLeaf(), new RetrievePotOfFlourLeaf(), new RetrieveBucketOfMilkLeaf(),
 //                new RetrieveEggLeaf(), new TalkToCookLeaf()),
 
@@ -76,7 +80,8 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
 
 //                new ImpCatcher().addLeafs(new FinishedImpCatcherLeaf(), new RetrieveBeadsLeaf(), new GiveBeadsLeaf()),
 
-/*                new PiratesTreasure().addLeafs(new WithdrawFromBankPiratesTreasureLeaf(), new TalkToRedbeardFrankLeaf(), new RetrieveSpadePiratesTreasureLeaf(), new RetrievePiratesTreasureCoinsLeaf(),
+/*                new PiratesTreasure().addLeafs(new FinishedPiratesTreasureLeaf(), new WithdrawFromBankPiratesTreasureLeaf(), new TalkToRedbeardFrankLeaf(),
+                        new RetrieveSpadePiratesTreasureLeaf(), new RetrievePiratesTreasureCoinsLeaf(),
                         new SmuggleRumBranch().addLeafs(new PauseForCutsceneLeaf(), new SeeCrateSentLeaf(), new SeeFullBananasCrateLeaf(), new SeeRumNoBananasLeaf(), new SeeStashedRumLeaf(),
                                 new RetrieveSmuggledRumLeaf(), new EnterStoreBackhouseLeaf(), new LeaveKaramjaLeaf(), new RetrieveWhiteApronLeaf(),
                                 new TalkToLuthasLeaf(), new FillCrateWithBananasLeaf(), new StashRumLeaf(), new RetrieveRumLeaf(), new RetrieveBananaLeaf()),
