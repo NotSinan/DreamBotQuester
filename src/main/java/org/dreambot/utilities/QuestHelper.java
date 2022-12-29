@@ -13,6 +13,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
+import org.dreambot.api.methods.walking.path.impl.LocalPath;
 import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
@@ -30,6 +31,7 @@ public class QuestHelper {
     public static int goAndInteractWithGameObject(Area area, String gameObject, String action, Condition sleepUntilAfterInteract) {
         return goAndInteractWithGameObject(area, gameObject, action, sleepUntilAfterInteract, null, 0, 0);
     }
+
     public static int goAndInteractWithGameObject(Area area, String gameObject, String action, Condition sleepUntilAfterInteract, Condition sleepUntilReset, int timeout, int polling) {
         if (walkToArea(area)) {
             GameObject interactableGameObject = GameObjects.closest(g -> g.getName().equals(gameObject) && area.contains(g) && g.hasAction(action));
