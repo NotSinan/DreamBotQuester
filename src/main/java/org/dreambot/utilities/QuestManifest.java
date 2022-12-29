@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface QuestManifest {
     String author();
 
+    String questName();
 }
