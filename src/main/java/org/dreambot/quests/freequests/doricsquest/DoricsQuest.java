@@ -11,7 +11,7 @@ public class DoricsQuest extends Branch {
 
     @Override
     public boolean isValid() {
-        return FreeQuest.DORICS_QUEST.hasRequirements() && Skills.getRealLevel(Skill.MINING) >= 15;
+        return FreeQuest.DORICS_QUEST.hasRequirements() && Skills.getRealLevel(Skill.MINING) >= 15 && !FreeQuest.DORICS_QUEST.isFinished();
     }
 
 }
