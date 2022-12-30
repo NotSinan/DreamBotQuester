@@ -6,12 +6,13 @@ import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.script.listener.ChatListener;
 import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.framework.Tree;
+import org.dreambot.framework.bank.BankOnceLeaf;
 import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.quests.thecorsaircurse.WalkGangplankTest;
 import org.dreambot.utilities.API;
+import org.dreambot.utilities.QuestBranch;
 import org.dreambot.utilities.Timing;
 
 import java.awt.*;
@@ -49,10 +50,8 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
     private void instantiateTree() {
         tree.addBranches(
                 new TimeoutLeaf(),
-                new WalkGangplankTest(),
- //             new BankOnceLeaf(),
-
-
+                new BankOnceLeaf(),
+                QuestBranch.ROMEO_AND_JULIET.getQuestBranch(),
                 new FallbackLeaf()
         );
     }
