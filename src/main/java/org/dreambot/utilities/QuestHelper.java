@@ -16,6 +16,11 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.methods.walking.path.impl.LocalPath;
+import org.dreambot.api.methods.walking.pathfinding.impl.web.WebFinder;
+import org.dreambot.api.methods.walking.web.node.AbstractWebNode;
+import org.dreambot.api.methods.walking.web.node.CustomWebPath;
+import org.dreambot.api.methods.walking.web.node.impl.BasicWebNode;
+import org.dreambot.api.methods.walking.web.node.impl.EntranceWebNode;
 import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.methods.world.World;
 import org.dreambot.api.methods.world.Worlds;
@@ -279,4 +284,19 @@ public class QuestHelper {
         Logger.log("Worldhop timeout! Did not hop from world: " + initWorld + " in 60s...");
         return false;
     }
+
+    public static void addEntranceWebNodePair(Tile outsideTile, String outsideName, String outsideAction, Condition isOutsideEntranceValidCondition,
+                                              Tile insideTile, String insideName, String insideAction, Condition isInsideEntranceValidCondition) {
+
+        AbstractWebNode outsideNode = WebFinder.getWebFinder().getNearest(outsideTile, 10);
+        AbstractWebNode insideNode = WebFinder.getWebFinder().getNearest(insideTile, 10);
+        EntranceWebNode outsideToInside = new EntranceWebNode(outsideTile.getX(), outsideTile.getY(), outsideTile.getZ());
+        EntranceWebNode insideToOutside = new EntranceWebNode(insideTile.getX(), insideTile.getY(), insideTile.getZ());
+
+        CustomWebPath outsideToInsidePath = new CustomWebPath( false, outsideToInside, insideToOutside);
+        outsideToInsidePath.connectToStart(WebFinder.getWebFinder().getId(outsideNode));
+        outsideToInsidePath.connectToEnd(WebFinder.getWebFinder().getId(insideNode));
+        WebFinder.getWebFinder().addCustomWebPath(outsideToInsidePath);
+    }
+
 }

@@ -11,6 +11,8 @@ import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.*;
 import org.dreambot.quests.freequests.romeoandjuliet.*;
 import org.dreambot.quests.freequests.runemysteries.*;
 import org.dreambot.quests.freequests.sheepshearer.*;
+import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.*;
+import org.dreambot.quests.freequests.thecorsaircurse.*;
 import org.dreambot.quests.freequests.therestlessghost.*;
 import org.dreambot.quests.freequests.vampyreslayer.*;
 import org.dreambot.quests.freequests.witchspotion.*;
@@ -35,13 +37,19 @@ public enum QuestBranch {
                     new TalkToCookLeaf(),
                     new RetrieveEggLeaf(),
                     new RetrieveBucketOfMilkLeaf(),
-                    new RetrievePotOfFlourLeaf(),
-                    new FinishedCooksAssistantLeaf()
+                    new RetrievePotOfFlourLeaf()
+            )),
+
+    CORSAIR_CURSE(
+            new TheCorsairCurse().addLeafs(
+                    new PauseForCutsceneLeaf(),
+                    new TalkToTockFarmLeaf(),
+                    new TalkToTockRimmingtonLeaf(),
+                    new RetrieveSpadeCorsairCurseLeaf()
             )),
 
     DORICS_QUEST(
             new DoricsQuest().addLeafs(
-                    new FinishedDoricsQuestLeaf(),
                     new GetOresLeaf(),
                     new TalkToDoricLeaf()
             )),
@@ -60,7 +68,6 @@ public enum QuestBranch {
 
     IMP_CATCHER(
             new ImpCatcher().addLeafs(
-                    new FinishedImpCatcherLeaf(),
                     new RetrieveBeadsLeaf(),
                     new GiveBeadsLeaf()
             )),
@@ -73,7 +80,6 @@ public enum QuestBranch {
 
     PIRATES_TREASURE(
             new PiratesTreasure().addLeafs(
-                    new FinishedPiratesTreasureLeaf(),
                     new WithdrawFromBankPiratesTreasureLeaf(),
                     new TalkToRedbeardFrankLeaf(),
                     new RetrieveSpadePiratesTreasureLeaf(),
@@ -100,7 +106,6 @@ public enum QuestBranch {
 
     RUNE_MYSTERIES(
             new RuneMysteries().addLeafs(
-                    new FinishedRuneMysteriesLeaf(),
                     new RemoveDraynorJailNodesLeaf(),
                     new TalkToLumbridgeDukeLeaf(),
                     new TalkToAuburyLeaf(),
@@ -160,7 +165,6 @@ public enum QuestBranch {
 
     ROMEO_AND_JULIET(
             new RomeoAndJuliet().addLeafs(
-                    new FinishedRomeoAndJulietLeaf(),
                     new TalkToRomeoLeaf(),
                     new TalkToJulietLeaf(),
                     new TalkToFatherLawrenceLeaf(),
