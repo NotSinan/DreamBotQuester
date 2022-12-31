@@ -54,7 +54,7 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
         tree.addBranches(
                 new TimeoutLeaf(),
                 //new BankOnceLeaf(),
-                QuestBranch.WITCHS_POTION.getQuestBranch(),
+                QuestBranch.CORSAIR_CURSE.getQuestBranch(),
                 new FallbackLeaf()
         );
     }
