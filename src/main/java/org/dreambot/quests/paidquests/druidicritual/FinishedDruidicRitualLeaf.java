@@ -5,7 +5,7 @@ import org.dreambot.api.utilities.Logger;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestVarPlayer;
 
-public class FinishedDruidicRitual extends Leaf {
+public class FinishedDruidicRitualLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
