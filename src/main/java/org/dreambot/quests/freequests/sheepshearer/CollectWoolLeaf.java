@@ -19,7 +19,6 @@ public class CollectWoolLeaf extends Leaf {
     private final Tile SHEARS_SPAWN = new Tile(3192, 3272, 0);
     @Override
     public boolean isValid() {
-        //collect more wool if total wool count less than required
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_SHEEP_SHEARER.getId()) == 1 &&
                 Inventory.count(i -> i.getName().equals("Wool") || i.getName().equals("Ball of wool")) < 20;
     }
@@ -30,7 +29,7 @@ public class CollectWoolLeaf extends Leaf {
             return QuestHelper.pickupGroundSpawn(SHEARS_SPAWN, "Shears");
         }
         if(QuestHelper.walkToArea(SHEEP_AREA)) {
-            NPC sheep = NPCs.closest(npc -> npc.getName().equals("Sheep") && npc.hasAction("Shear"));
+            NPC sheep = NPCs.closest(npc -> npc.getName().equals("Sheep") && npc.hasAction("Shear") && npc.getID() != 731);
             if (sheep != null && Interaction.delayEntityInteract(sheep, "Shear")) {
                 int count = Inventory.count("Wool");
                 Sleep.sleepUntil(() -> Inventory.count("Wool") > count, () -> Players.getLocal().isMoving(), 3000, 100);
