@@ -12,9 +12,10 @@ import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
 import org.dreambot.utilities.API;
-import org.dreambot.utilities.QuestBranch;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.ui.UserInterface;
 
+import javax.swing.*;
 import java.awt.*;
 
 @ScriptManifest(author = "Sinan x 420", name = "DreamBotQuester", version = 1.0, category = Category.QUEST)
@@ -38,7 +39,9 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
 
     @Override
     public void onStart() {
-        instantiateTree();
+        SwingUtilities.invokeLater(() -> {
+            UserInterface ui = new UserInterface();
+        });
     }
 
     @Override
@@ -51,13 +54,16 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
         tree.addBranches(
                 new TimeoutLeaf(),
                 new BankOnceLeaf(),
-                QuestBranch.ROMEO_AND_JULIET.getQuestBranch(),
+                UserInterface.getSelectedItem().getQuestBranch(),
                 new FallbackLeaf()
         );
     }
 
     @Override
     public int onLoop() {
+        if (UserInterface.isStartLoop()) {
+            instantiateTree();
+        }
         return this.tree.onLoop();
     }
 
@@ -68,7 +74,8 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
                 "Current Branch: " + API.currentBranch,
                 "Current Leaf: " + API.currentLeaf,
                 "Tick Timeout: " + Timing.tickTimeout,
-                "Sleep Delay: " + Timing.sleepLength + "ms"
+                "Sleep Delay: " + Timing.sleepLength + "ms",
+                "Quest: " + UserInterface.getSelectedItem()
         };
     }
 
