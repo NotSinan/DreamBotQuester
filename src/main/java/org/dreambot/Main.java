@@ -1,9 +1,12 @@
 package org.dreambot;
 
+import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.script.listener.ChatListener;
+import org.dreambot.api.utilities.Logger;
+import org.dreambot.api.wrappers.interactive.Player;
 import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.framework.Tree;
 import org.dreambot.framework.bank.BankOnceLeaf;
@@ -60,6 +63,7 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
     }
 
     @Override
+
     public int onLoop() {
         if (UserInterface.isStartLoop()) {
             instantiateTree();
