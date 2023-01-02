@@ -3,23 +3,41 @@ package org.dreambot.utilities;
 import org.dreambot.framework.Branch;
 import org.dreambot.framework.webnodes.RemoveDraynorJailNodesLeaf;
 import org.dreambot.quests.freequests.cooksassistant.*;
-import org.dreambot.quests.freequests.doricsquest.*;
-import org.dreambot.quests.freequests.impcatcher.*;
+import org.dreambot.quests.freequests.demonslayer.*;
+import org.dreambot.quests.freequests.doricsquest.DoricsQuest;
+import org.dreambot.quests.freequests.doricsquest.GetOresLeaf;
+import org.dreambot.quests.freequests.doricsquest.TalkToDoricLeaf;
+import org.dreambot.quests.freequests.impcatcher.GiveBeadsLeaf;
+import org.dreambot.quests.freequests.impcatcher.ImpCatcher;
+import org.dreambot.quests.freequests.impcatcher.RetrieveBeadsLeaf;
 import org.dreambot.quests.freequests.piratestreasure.*;
 import org.dreambot.quests.freequests.piratestreasure.smugglerum.*;
-import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.*;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeCrateSentLeaf;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeFullBananasCrateLeaf;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeRumNoBananasLeaf;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeStashedRumLeaf;
 import org.dreambot.quests.freequests.romeoandjuliet.*;
-import org.dreambot.quests.freequests.runemysteries.*;
-import org.dreambot.quests.freequests.sheepshearer.*;
-import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.*;
-import org.dreambot.quests.freequests.thecorsaircurse.*;
+import org.dreambot.quests.freequests.runemysteries.RuneMysteries;
+import org.dreambot.quests.freequests.runemysteries.TalkToArchmageLeaf;
+import org.dreambot.quests.freequests.runemysteries.TalkToAuburyLeaf;
+import org.dreambot.quests.freequests.runemysteries.TalkToLumbridgeDukeLeaf;
+import org.dreambot.quests.freequests.sheepshearer.CollectWoolLeaf;
+import org.dreambot.quests.freequests.sheepshearer.SheepShearer;
+import org.dreambot.quests.freequests.sheepshearer.SpinWoolLeaf;
+import org.dreambot.quests.freequests.sheepshearer.TalkToFredLeaf;
+import org.dreambot.quests.freequests.thecorsaircurse.TalkToTockFarmLeaf;
+import org.dreambot.quests.freequests.thecorsaircurse.TalkToTockRimmingtonLeaf;
+import org.dreambot.quests.freequests.thecorsaircurse.TheCorsairCurse;
+import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.RetrieveSpadeCorsairCurseLeaf;
 import org.dreambot.quests.freequests.therestlessghost.*;
 import org.dreambot.quests.freequests.vampyreslayer.*;
 import org.dreambot.quests.freequests.witchspotion.*;
 import org.dreambot.quests.freequests.xmarksthespot.*;
 import org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl.*;
 import org.dreambot.quests.paidquests.druidicritual.*;
-import org.dreambot.quests.paidquests.monksfriend.*;
+import org.dreambot.quests.paidquests.monksfriend.MonksFriend;
+import org.dreambot.quests.paidquests.monksfriend.RetrieveChildsBlanketLeaf;
+import org.dreambot.quests.paidquests.monksfriend.TalkToBrotherOmadLeaf;
 
 
 public enum QuestBranch {
@@ -169,6 +187,21 @@ public enum QuestBranch {
                     new TalkToJulietLeaf(),
                     new TalkToFatherLawrenceLeaf(),
                     new TalkToApothecary()
+            )),
+
+    DEMON_SLAYER(
+            new DemonSlayer().addLeafs(
+                    new RetrieveDemonSlayerCoinsLeaf(),
+                    new TalkToArisLeaf(),
+                    new TalkToSirPrysinLeaf(),
+                    new TalkToCaptainRovinLeaf(),
+                    new RetrieveBucketLeaf(),
+                    new FillBucketLeaf(),
+                    new PourWaterIntoDrainLeaf(),
+                    new RetrieveSecondKeyLeaf(),
+                    new KillGoblinsLeaf(),
+                    new TalkToWizardTraibornLeaf(),
+                    new KillDelrithLeaf()
             ));
 
     private final Branch questBranch;
