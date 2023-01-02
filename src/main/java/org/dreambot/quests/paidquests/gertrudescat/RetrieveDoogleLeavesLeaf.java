@@ -9,8 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveDoogleLeavesLeaf extends Leaf {
 
-    private final Tile DOOGLE_LEAVES_AREA = new Tile(3152, 3399, 0);
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_GERTRUDES_CAT.getId()) == 0 && !Inventory.contains("Doogle leaves");
@@ -18,6 +16,9 @@ public class RetrieveDoogleLeavesLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-            return QuestHelper.pickupGroundSpawn(DOOGLE_LEAVES_AREA,"Doogle leaves");
+        return QuestHelper.pickupGroundSpawn(
+                new Tile(3152, 3399, 0), //doogle leaves spawn
+                "Doogle leaves"
+        );
     }
 }

@@ -4,12 +4,10 @@ import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.CurseState;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarBits;
 
 public class ObserveIthoiTelescopeLeaf extends Leaf {
-    private final Area ITHOI_AREA = new Area(2527, 2841, 2532, 2835, 1);
 
     @Override
     public boolean isValid() {
@@ -22,6 +20,12 @@ public class ObserveIthoiTelescopeLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.goAndInteractWithGameObject(ITHOI_AREA, "Telescope", "Observe", () -> Dialogues.inDialogue()); }
-
+    public int onLoop() {
+        return QuestHelper.goAndInteractWithGameObject(
+                new Area(2527, 2841, 2532, 2835, 1), // ithoi upstairs telescope
+                "Telescope",
+                "Observe",
+                () -> Dialogues.inDialogue()
+        );
+    }
 }

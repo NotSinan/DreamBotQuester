@@ -44,6 +44,7 @@ public class Interaction {
         Timing.sleepForDelay();
         return Walking.walk(tile);
     }
+
     public static boolean delayWalk(Entity entity) {
         Logger.log("Walking to entity: " + entity.getName() + " at tile: " + entity.getTile().toString());
         Timing.sleepForDelay();
@@ -55,7 +56,7 @@ public class Interaction {
         return item.useOn(entity);
     }
 
-    public static boolean delayUseItemWith(Item item1, Item item2) {
+    public static boolean delayUseItemOn(Item item1, Item item2) {
         Timing.sleepForDelay();
         return item1.useOn(item2);
     }

@@ -3,7 +3,6 @@ package org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Branch;
 import org.dreambot.utilities.QuestVarBits;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class SolveCurseBranch extends Branch {
     @Override

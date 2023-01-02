@@ -15,17 +15,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveRatsTail extends Leaf {
-    private final Area PORT_SARIM_RAT_AREA = new Area(
-            new Tile(3012, 3196, 0),
-            new Tile(3001, 3196, 0),
-            new Tile(3001, 3173, 0),
-            new Tile(3021, 3172, 0),
-            new Tile(3021, 3178, 0),
-            new Tile(3010, 3179, 0),
-            new Tile(3010, 3182, 0),
-            new Tile(3020, 3182, 0),
-            new Tile(3020, 3187, 0),
-            new Tile(3013, 3188, 0));
 
     @Override
     public boolean isValid() {
@@ -34,6 +23,17 @@ public class RetrieveRatsTail extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area PORT_SARIM_RAT_AREA = new Area(
+                new Tile(3012, 3196, 0),
+                new Tile(3001, 3196, 0),
+                new Tile(3001, 3173, 0),
+                new Tile(3021, 3172, 0),
+                new Tile(3021, 3178, 0),
+                new Tile(3010, 3179, 0),
+                new Tile(3010, 3182, 0),
+                new Tile(3020, 3182, 0),
+                new Tile(3020, 3187, 0),
+                new Tile(3013, 3188, 0));
         if (!QuestHelper.walkToArea(PORT_SARIM_RAT_AREA)) {
             return Timing.loopReturn();
         }
@@ -46,6 +46,6 @@ public class RetrieveRatsTail extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndKillNpc(PORT_SARIM_RAT_AREA,"Rat");
+        return QuestHelper.goAndKillNpc(PORT_SARIM_RAT_AREA, "Rat");
     }
 }

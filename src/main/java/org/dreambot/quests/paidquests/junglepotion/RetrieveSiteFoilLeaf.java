@@ -11,11 +11,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveSiteFoilLeaf extends Leaf {
 
-    private final Area SITO_FOIL_AREA = new Area(2787, 3051, 2794, 3046);
-    private final String GAME_OBJECT = "Scorched earth";
-    private final String ACTION = "Search";
-    private final String ITEM = "Grimy sito foil";
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 5 && !Inventory.contains("Sito foil");
@@ -23,7 +18,7 @@ public class RetrieveSiteFoilLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
+        final String ITEM = "Grimy sito foil";
         if (Inventory.contains(ITEM)) {
             if (Inventory.interact(ITEM, "Clean")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Sito foil"), 3000);
@@ -31,6 +26,11 @@ public class RetrieveSiteFoilLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(SITO_FOIL_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
+        return QuestHelper.goAndInteractWithGameObject(
+                new Area(2787, 3051, 2794, 3046),
+                "Scorched earth",
+                "Search",
+                () -> Inventory.contains(ITEM)
+        );
     }
 }

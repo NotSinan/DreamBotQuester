@@ -11,8 +11,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveRatMeatLeaf extends Leaf {
-
-    private final Area RAT_AREA = new Area(3191, 3211, 3199, 3204);
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DRUIDIC_RITUAL.getId()) == 0 &&
@@ -27,6 +25,9 @@ public class RetrieveRatMeatLeaf extends Leaf {
             Sleep.sleepUntil(() -> Inventory.contains("Raw rat meat"), 3000);
         }
 
-        return QuestHelper.goAndKillNpc(RAT_AREA, "Giant rat");
+        return QuestHelper.goAndKillNpc(
+                new Area(3191, 3211, 3199, 3204), //rat area
+                "Giant rat"
+        );
     }
 }

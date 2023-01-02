@@ -9,10 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveBronzeMedHelmLeaf extends Leaf {
 
-    private final Area PEKSA_AREA = new Area(3073, 3431, 3077, 3427);
-    private final String ITEM_NAME = "Bronze med helm";
-    private final int QUANTITY = 1;
-    private final String NPC_NAME = "Peksa";
 
     @Override
     public boolean isValid() {
@@ -23,6 +19,10 @@ public class RetrieveBronzeMedHelmLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area PEKSA_AREA = new Area(3073, 3431, 3077, 3427);
+        final String ITEM_NAME = "Bronze med helm";
+        final int QUANTITY = 1;
+        final String NPC_NAME = "Peksa";
         return QuestHelper.purchaseFromShop(PEKSA_AREA, ITEM_NAME, QUANTITY, NPC_NAME);
     }
 }

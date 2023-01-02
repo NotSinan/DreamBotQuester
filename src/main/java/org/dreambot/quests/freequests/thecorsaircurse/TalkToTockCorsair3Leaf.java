@@ -13,7 +13,7 @@ public class TalkToTockCorsair3Leaf extends Leaf {
     @Override
     public int onLoop() {
         return QuestHelper.goAndTalkToNpc(
-            new Area(2573, 2837, 2583, 2835, 1),
+                new Area(2573, 2837, 2583, 2835, 1),
                 "Captain Tock",
                 new String[]{"I've seen Ithoi running around. He's not sick at all."}
         );

@@ -11,11 +11,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveRoguesPurseLeaf extends Leaf {
 
-    private final Area ARDRIGAL_AREA = new Area(2870, 3126, 2879, 3114);
-    private final String GAME_OBJECT = "Palm tree";
-    private final String ACTION = "Search";
-    private final String ITEM = "Grimy rogue's purse";
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 9 && !Inventory.contains("Rogue's purse");
@@ -23,7 +18,7 @@ public class RetrieveRoguesPurseLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
+        final String ITEM = "Grimy rogue's purse";
         if (Inventory.contains(ITEM)) {
             if (Inventory.interact(ITEM, "Clean")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Rogue's purse"), 3000);
@@ -31,6 +26,8 @@ public class RetrieveRoguesPurseLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(ARDRIGAL_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
+        return QuestHelper.goAndInteractWithGameObject(
+                new Area(2870, 3126, 2879, 3114), //adrigal area
+                "Palm tree", "Search", () -> Inventory.contains(ITEM));
     }
 }

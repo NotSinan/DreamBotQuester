@@ -6,8 +6,6 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
 
 public class TalkToTockCorsair1Leaf extends Leaf {
-    private final Area CAPTAIN_TOCK_AREA = new Area(2573, 2837, 2583, 2835, 1);
-    private final String[] DIALOGUE_OPTIONS = {"Arsen says he gave you a sacred ogre relic.", "About that sacred ogre relic..."};
 
     @Override
     public boolean isValid() {
@@ -20,8 +18,11 @@ public class TalkToTockCorsair1Leaf extends Leaf {
 
     @Override
     public int onLoop() {
-
-        return QuestHelper.goAndTalkToNpc(CAPTAIN_TOCK_AREA, "Captain Tock", DIALOGUE_OPTIONS);
+        return QuestHelper.goAndTalkToNpc(
+                new Area(2573, 2837, 2583, 2835, 1),
+                "Captain Tock",
+                new String[]{"Arsen says he gave you a sacred ogre relic.", "About that sacred ogre relic..."}
+        );
     }
 
 }

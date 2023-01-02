@@ -13,16 +13,18 @@ import org.dreambot.utilities.Timing;
 
 public class EnterFortressLeaf extends Leaf {
 
-    private final Area INSIDE_FORTRESS_AREA = new Area(3015, 3516, 3017, 3515);
-    private final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_BLACK_KNIGHTS_FORTRESS.getId()) == 1 && FORTRESS_ENTRANCE_AREA.contains(Players.getLocal()) && Equipment.containsAll("Iron chainbody", "Bronze med helm");
+
+        final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
+        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_BLACK_KNIGHTS_FORTRESS.getId()) == 1 &&
+                FORTRESS_ENTRANCE_AREA.contains(Players.getLocal()) && Equipment.containsAll("Iron chainbody", "Bronze med helm");
     }
 
     @Override
     public int onLoop() {
+        final Area INSIDE_FORTRESS_AREA = new Area(3015, 3516, 3017, 3515);
 
         if (!INSIDE_FORTRESS_AREA.contains(Players.getLocal())) {
             GameObject sturdyDoor = GameObjects.closest("Sturdy door");

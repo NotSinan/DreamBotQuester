@@ -8,18 +8,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToTrufitusLeaf extends Leaf {
-
-    private final Area TRUFITUS_AREA = new Area(2805, 3089, 2814, 3082);
-    private final String[] DIALOGUE_OPTIONS = {
-            "It's a nice village, where is everyone?",
-            "Me? How can I help?",
-            "It sounds like just the challenge for me.",
-            "Yes.",
-            "Of course!"
-    };
-
-    private final String TRUFITUS = "Trufitis";
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 0 ||
@@ -32,6 +20,16 @@ public class TalkToTrufitusLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(TRUFITUS_AREA, TRUFITUS, DIALOGUE_OPTIONS);
+        return QuestHelper.goAndTalkToNpc(
+                new Area(2805, 3089, 2814, 3082),
+                "Trufitis",
+                new String[]{
+                        "It's a nice village, where is everyone?",
+                        "Me? How can I help?",
+                        "It sounds like just the challenge for me.",
+                        "Yes.",
+                        "Of course!"
+                }
+        );
     }
 }

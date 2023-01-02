@@ -15,24 +15,10 @@ import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
 public class TalkToTessLeaf extends Leaf {
-    private static final Area CHIEF_TESS_AREA = new Area(2007, 9010, 2018, 8999, 1);
-    private final String[] DIALOGUE_OPTIONS = {"I've come to return what Arsen stole."};
-
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(QuestVarBits.QUEST_THE_CORSAIR_CURSE.getId()) == 15 &&
-                        CurseState.talkedToIthoi() &&
-                        CurseState.talkedToGnocci() &&
-                        CurseState.talkedToArsen() &&
-                        CurseState.talkedToColin() &&
-                        Inventory.contains("Ogre artefact");
-    }
-    @Override
-    public int onLoop() { return QuestHelper.goAndTalkToNpc(CHIEF_TESS_AREA, "Chief Tess", DIALOGUE_OPTIONS); }
-
     private static final Tile LADDER_TILE = new Tile(2012, 9005, 1);
 
     public static boolean leaveTessArea() {
+        final Area CHIEF_TESS_AREA = new Area(2007, 9010, 2018, 8999, 1);
         if (CHIEF_TESS_AREA.contains(Players.getLocal())) {
             GameObject vineLadder = GameObjects.closest(g -> g.hasAction("Climb") && g.getName().equals("Vine ladder"));
             if (vineLadder != null && vineLadder.exists()) {
@@ -47,6 +33,26 @@ public class TalkToTessLeaf extends Leaf {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean isValid() {
+        return PlayerSettings.getBitValue(QuestVarBits.QUEST_THE_CORSAIR_CURSE.getId()) == 15 &&
+                CurseState.talkedToIthoi() &&
+                CurseState.talkedToGnocci() &&
+                CurseState.talkedToArsen() &&
+                CurseState.talkedToColin() &&
+                Inventory.contains("Ogre artefact");
+    }
+
+    @Override
+    public int onLoop() {
+        final Area CHIEF_TESS_AREA = new Area(2007, 9010, 2018, 8999, 1);
+        return QuestHelper.goAndTalkToNpc(
+                CHIEF_TESS_AREA,
+                "Chief Tess",
+                new String[]{"I've come to return what Arsen stole."}
+        );
     }
 
 }

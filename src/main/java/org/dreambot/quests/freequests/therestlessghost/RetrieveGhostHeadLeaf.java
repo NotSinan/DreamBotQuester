@@ -14,8 +14,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveGhostHeadLeaf extends Leaf {
 
-    private final Area ALTAR_AREA = new Area(3112, 9569, 3121, 9564);
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_THE_RESTLESS_GHOST.getId()) == 3 && !Inventory.contains("Skull");
@@ -23,7 +21,7 @@ public class RetrieveGhostHeadLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (QuestHelper.walkToArea(ALTAR_AREA)) {
+        if (QuestHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
             GameObject altar = GameObjects.closest("Altar");
             if (altar != null && Interaction.delayEntityInteract(altar, "Search")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Skull"), 3000);

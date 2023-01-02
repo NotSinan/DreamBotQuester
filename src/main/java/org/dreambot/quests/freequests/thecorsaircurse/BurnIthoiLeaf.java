@@ -15,7 +15,6 @@ import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
 public class BurnIthoiLeaf extends Leaf {
-    private final Area DRIFTWOOD_AREA = new Area(2527, 2840, 2534, 2833, 0);
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarBits.QUEST_THE_CORSAIR_CURSE.getId()) == 45;
@@ -23,7 +22,7 @@ public class BurnIthoiLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!QuestHelper.walkToArea(DRIFTWOOD_AREA)) {
+        if (!QuestHelper.walkToArea(new Area(2527, 2840, 2534, 2833, 0))) { // driftwood area under ithoi's house
             return Timing.loopReturn();
         }
 

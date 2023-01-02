@@ -24,9 +24,14 @@ public class CheckCardLeaf extends Leaf {
             new Tile(2539, 3563, 0),
             new Tile(2545, 3562, 0),
             new Tile(2546, 3574, 0));
+
+    private static WidgetChild getCardInterface() {
+        return Widgets.getWidgetChild(220, 16);
+    }
+
     @Override
     public boolean isValid() {
-        return Inventory.contains("Barcrawl card") && !CardState.checkedCard;
+        return Inventory.contains("Barcrawl card") && !AlfredGrimhandsBarcrawl.checkedCard;
     }
 
     @Override
@@ -34,12 +39,12 @@ public class CheckCardLeaf extends Leaf {
         WidgetChild cardInterfaceClose = getCardInterface();
         if (cardInterfaceClose != null && cardInterfaceClose.isVisible()) {
             for (Bar bar : Bar.values()) {
-                if (Widgets.getWidgetChild(220,bar.getGCIndex()).getText().contains("00ff00")) {
+                if (Widgets.getWidgetChild(220, bar.getGCIndex()).getText().contains("00ff00")) {
                     bar.setVisited(true);
                 }
             }
-            Logger.log ("Updated list of bars crawled!");
-            CardState.checkedCard = true;
+            Logger.log("Updated list of bars crawled!");
+            AlfredGrimhandsBarcrawl.checkedCard = true;
             return Timing.getSleepDelay();
         }
         Item card = Inventory.get("Barcrawl card");
@@ -52,9 +57,5 @@ public class CheckCardLeaf extends Leaf {
             }
         }
         return Timing.loopReturn();
-    }
-
-    private static WidgetChild getCardInterface() {
-        return Widgets.getWidgetChild(220,16);
     }
 }

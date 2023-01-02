@@ -16,8 +16,9 @@ public class RetrieveEggLeaf extends Leaf {
                 PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 1) && !Inventory.contains("Egg");
     }
 
-
     @Override
-    public int onLoop() { return QuestHelper.pickupGroundSpawn(EGG_CHICKEN_WEST_SPAWN,"Egg"); }
+    public int onLoop() {
+        return QuestHelper.pickupGroundSpawn(EGG_CHICKEN_WEST_SPAWN, "Egg");
+    }
 
 }

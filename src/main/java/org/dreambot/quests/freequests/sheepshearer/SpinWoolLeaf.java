@@ -4,7 +4,6 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
-import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.utilities.Sleep;
@@ -18,9 +17,6 @@ import org.dreambot.utilities.Timing;
 
 public class SpinWoolLeaf extends Leaf {
 
-    private final Area SPINNING_WHEEL_AREA = new Area(3213, 3212, 3208, 3217, 1);
-    private final Tile DOOR_TILE = new Tile(3207, 3214, 1);
-
     @Override
     public boolean isValid() {
         //spin wool if have total wool count but not total spun wool count
@@ -31,7 +27,8 @@ public class SpinWoolLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if(QuestHelper.walkToArea(SPINNING_WHEEL_AREA)) {
+        final Area SPINNING_WHEEL_AREA = new Area(3213, 3212, 3208, 3217, 1);
+        if (QuestHelper.walkToArea(SPINNING_WHEEL_AREA)) {
             WidgetChild craftInterface = Widgets.getWidgetChild(270, 14, 38);
             if (craftInterface != null && craftInterface.isVisible()) {
 

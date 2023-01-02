@@ -17,8 +17,8 @@ public class TalkToTockFarmLeaf extends Leaf {
     public int onLoop() {
         return QuestHelper.goAndTalkToNpc(
                 new Area(3028, 3275, 3033, 3270, 0),
-            "Captain Tock",
-            new String[]{"What kind of help do you need?","Sure, I'll try to help with your curse.","Yes."}
+                "Captain Tock",
+                new String[]{"What kind of help do you need?","Sure, I'll try to help with your curse.","Yes."}
         );
     }
 }

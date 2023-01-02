@@ -11,10 +11,6 @@ import org.dreambot.utilities.Timing;
 
 public class TalkToJulietLeaf extends Leaf {
 
-    private final Area JULIET_AREA = new Area(3155, 3426, 3161, 3425, 1);
-    private final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
-
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_ROMEO_AND_JULIET.getId()) == 10 ||
@@ -25,6 +21,8 @@ public class TalkToJulietLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (PlayerSettings.getBitValue(12139) == 0) {
+            final Area JULIET_AREA = new Area(3155, 3426, 3161, 3425, 1);
+            final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
             return QuestHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
         }
         if (Dialogues.inDialogue()) {

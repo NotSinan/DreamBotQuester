@@ -8,9 +8,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToKaqemeexLeaf extends Leaf {
-
-    private final Area KAQEMEEX_AREA = new Area(2914, 3490, 2931, 3478);
-    private final String[] DIALOGUE_OPTIONS = {"I'm in search of a quest.", "Okay, I will try and help.", "Yes."};
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DRUIDIC_RITUAL.getId()) == 0 &&
@@ -20,6 +17,10 @@ public class TalkToKaqemeexLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(KAQEMEEX_AREA, "Kaqemeex", DIALOGUE_OPTIONS);
+        return QuestHelper.goAndTalkToNpc(
+                new Area(2914, 3490, 2931, 3478), //kaqemeex area
+                "Kaqemeex",
+                new String[]{"I'm in search of a quest.", "Okay, I will try and help.", "Yes."}
+        );
     }
 }

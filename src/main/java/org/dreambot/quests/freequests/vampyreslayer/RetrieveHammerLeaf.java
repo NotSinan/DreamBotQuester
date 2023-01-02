@@ -14,8 +14,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveHammerLeaf extends Leaf {
 
-    private final Area VARROCK_GENERAL_STORE = new Area(3214, 3418, 3220, 3411);
-
     @Override
     public boolean isValid() {
         return !Inventory.contains("Hammer");
@@ -23,6 +21,9 @@ public class RetrieveHammerLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+
+        final Area VARROCK_GENERAL_STORE = new Area(3214, 3418, 3220, 3411);
+
         if (!QuestHelper.walkToArea(VARROCK_GENERAL_STORE)) {
             return Timing.loopReturn();
         }

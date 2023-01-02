@@ -17,10 +17,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class TalkToGhostLeaf extends Leaf {
-
-    private final Area GHOST_AREA = new Area(3247, 3195, 3252, 3190);
-
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_THE_RESTLESS_GHOST.getId()) == 2;
@@ -34,7 +30,8 @@ public class TalkToGhostLeaf extends Leaf {
             Inventory.interact("Ghostspeak amulet", "Wear");
             return Timing.loopReturn();
         }
-        if (!QuestHelper.walkToArea(GHOST_AREA)) {
+
+        if (!QuestHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
             return Timing.loopReturn();
         }
 

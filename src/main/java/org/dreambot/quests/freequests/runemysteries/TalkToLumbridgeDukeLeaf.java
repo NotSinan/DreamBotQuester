@@ -9,9 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToLumbridgeDukeLeaf extends Leaf {
 
-    private final Area LUMBRIDGE_DUKE_AREA = new Area(3208, 3225, 3213, 3218, 1);
-    private final String DUKE_NAME = "Duke Horacio";
-    private final String[] DIALOGUE_OPTIONS = {"Have you any quests for me?", "Sure, no problem", "Yes."};
 
     @Override
     public boolean isValid() {
@@ -20,5 +17,10 @@ public class TalkToLumbridgeDukeLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.goAndTalkToNpc(LUMBRIDGE_DUKE_AREA, DUKE_NAME, DIALOGUE_OPTIONS); }
+    public int onLoop() {
+        final Area LUMBRIDGE_DUKE_AREA = new Area(3208, 3225, 3213, 3218, 1);
+        final String DUKE_NAME = "Duke Horacio";
+        final String[] DIALOGUE_OPTIONS = {"Have you any quests for me?", "Sure, no problem", "Yes."};
+        return QuestHelper.goAndTalkToNpc(LUMBRIDGE_DUKE_AREA, DUKE_NAME, DIALOGUE_OPTIONS);
+    }
 }

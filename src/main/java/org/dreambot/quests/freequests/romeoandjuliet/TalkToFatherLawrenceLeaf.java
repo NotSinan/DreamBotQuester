@@ -7,8 +7,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToFatherLawrenceLeaf extends Leaf {
-    private final Area FATHER_LAWRENCE_AREA = new Area(3252, 3488, 3255, 3482);
-    private final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
 
 
     @Override
@@ -17,5 +15,9 @@ public class TalkToFatherLawrenceLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.goAndTalkToNpc(FATHER_LAWRENCE_AREA, "Father Lawrence", DIALOGUE_OPTIONS); }
+    public int onLoop() {
+        final Area FATHER_LAWRENCE_AREA = new Area(3252, 3488, 3255, 3482);
+        final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
+        return QuestHelper.goAndTalkToNpc(FATHER_LAWRENCE_AREA, "Father Lawrence", DIALOGUE_OPTIONS);
+    }
 }

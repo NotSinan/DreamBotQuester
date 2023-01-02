@@ -9,8 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToBartenderLeaf extends Leaf {
 
-    private final Area BARTENDER_AREA = new Area(3216, 3404, 3227, 3392);
-    private final String[] DIALOGUE_OPTIONS = {"A glass of your finest ale please."};
 
     @Override
     public boolean isValid() {
@@ -20,6 +18,8 @@ public class TalkToBartenderLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area BARTENDER_AREA = new Area(3216, 3404, 3227, 3392);
+        final String[] DIALOGUE_OPTIONS = {"A glass of your finest ale please."};
         return QuestHelper.goAndTalkToNpc(BARTENDER_AREA, "Bartender", DIALOGUE_OPTIONS);
     }
 }

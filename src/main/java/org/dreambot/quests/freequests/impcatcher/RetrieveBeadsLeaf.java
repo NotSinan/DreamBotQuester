@@ -18,7 +18,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveBeadsLeaf extends Leaf {
 
-    private final Area IMP_SPAWN_AREA = new Area(2816, 3188, 2840, 3166);
 
     @Override
     public boolean isValid() {
@@ -32,6 +31,7 @@ public class RetrieveBeadsLeaf extends Leaf {
             QuestHelper.withdrawFromBank("Coins", 1000);
         }
 
+        final Area IMP_SPAWN_AREA = new Area(2816, 3188, 2840, 3166);
         if (!IMP_SPAWN_AREA.contains(Players.getLocal())) {
             if (Walking.shouldWalk(4)) {
                 Interaction.delayWalk(IMP_SPAWN_AREA.getRandomTile());

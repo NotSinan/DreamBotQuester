@@ -17,8 +17,6 @@ import org.dreambot.utilities.Timing;
 
 public class FightCountDraynor extends Leaf {
 
-    private final Area DRAYNOR_STAIRS_TO_COUNT_AREA = new Area(3119, 3354, 3113, 3363);
-    private final Area COUNT_DRAYNOR_AREA = new Area(3075, 9778, 3080, 9768);
 
     @Override
     public boolean isValid() {
@@ -27,6 +25,8 @@ public class FightCountDraynor extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area DRAYNOR_STAIRS_TO_COUNT_AREA = new Area(3119, 3354, 3113, 3363);
+        final Area COUNT_DRAYNOR_AREA = new Area(3075, 9778, 3080, 9768);
         if (COUNT_DRAYNOR_AREA.contains(Players.getLocal())) {
             if (!Players.getLocal().isInCombat()) {
                 GameObject coffin = GameObjects.closest("Coffin");
@@ -44,8 +44,8 @@ public class FightCountDraynor extends Leaf {
         }
         if (QuestHelper.walkToArea(DRAYNOR_STAIRS_TO_COUNT_AREA)) {
             GameObject stairs = GameObjects.closest(g -> g.hasAction("Walk-Down") && g.getName().equals("Stairs"));
-            if(stairs != null && stairs.exists()) {
-                if(Interaction.delayEntityInteract(stairs, "Walk-Down")) {
+            if (stairs != null && stairs.exists()) {
+                if (Interaction.delayEntityInteract(stairs, "Walk-Down")) {
                     Sleep.sleepUntil(() -> COUNT_DRAYNOR_AREA.contains(Players.getLocal()), () -> Players.getLocal().isMoving(), 3000, 100);
                 }
             }

@@ -14,7 +14,6 @@ import org.dreambot.utilities.Timing;
 
 public class FillBucketLeaf extends Leaf {
 
-    private final Area SINK_AREA = new Area(3218, 3497, 3224, 3491);
 
     @Override
     public boolean isValid() {
@@ -26,7 +25,7 @@ public class FillBucketLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
+        final Area SINK_AREA = new Area(3218, 3497, 3224, 3491);
         if (!SINK_AREA.contains(Players.getLocal())) {
             if (Walking.shouldWalk(4)) {
                 Walking.walk(SINK_AREA.getRandomTile());

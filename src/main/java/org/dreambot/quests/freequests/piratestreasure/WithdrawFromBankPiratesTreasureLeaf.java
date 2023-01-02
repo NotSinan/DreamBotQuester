@@ -18,42 +18,42 @@ public class WithdrawFromBankPiratesTreasureLeaf extends Leaf {
     @Override
     public int onLoop() {
         switch (PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId())) {
-            case (0):
-            case (1): {
-                if(!Inventory.contains("Karamjan rum") && Bank.contains("Karamjan rum")) {
+            case 0:
+            case 1: {
+                if (!Inventory.contains("Karamjan rum") && Bank.contains("Karamjan rum")) {
                     return QuestHelper.withdrawFromBank("Karamjan rum", 1);
                 }
-                if(!Inventory.contains("Karamjan rum") && Inventory.count("Coins") < 1000 && Bank.contains("Coins")) {
+                if (!Inventory.contains("Karamjan rum") && Inventory.count("Coins") < 1000 && Bank.contains("Coins")) {
                     return QuestHelper.withdrawFromBank("Coins", 1000);
                 }
-                if(!Inventory.contains("Spade") && Bank.contains("Spade")) {
+                if (!Inventory.contains("Spade") && Bank.contains("Spade")) {
                     return QuestHelper.withdrawFromBank("Spade", 1);
                 }
-                if(Inventory.count("Banana") < 10 && Bank.contains("Banana")) {
+                if (Inventory.count("Banana") < 10 && Bank.contains("Banana")) {
                     return QuestHelper.withdrawFromBank("Banana", 10);
                 }
-                if(Inventory.count("White apron") < 10 && Bank.contains("White apron")) {
+                if (Inventory.count("White apron") < 10 && Bank.contains("White apron")) {
                     return QuestHelper.withdrawFromBank("White apron", 1);
                 }
                 break;
             }
-            case(2): {
-                if(!Inventory.contains("Spade") && Bank.contains("Spade")) {
+            case 2: {
+                if (!Inventory.contains("Spade") && Bank.contains("Spade")) {
                     return QuestHelper.withdrawFromBank("Spade", 1);
                 }
-                if(!Inventory.contains("Chest key") && Bank.contains("Chest key")) {
+                if (!Inventory.contains("Chest key") && Bank.contains("Chest key")) {
                     return QuestHelper.withdrawFromBank("Chest key", 1);
                 }
                 break;
             }
-            case(3): {
-                if(!Inventory.contains("Spade") && Bank.contains("Spade")) {
+            case 3: {
+                if (!Inventory.contains("Spade") && Bank.contains("Spade")) {
                     return QuestHelper.withdrawFromBank("Spade", 1);
                 }
                 break;
             }
         }
-        if(Bank.close()) {
+        if (Bank.close()) {
             Sleep.sleepUntil(() -> !Bank.isOpen(), 3000);
         }
         return Timing.loopReturn();

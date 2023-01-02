@@ -11,7 +11,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveSecondKeyLeaf extends Leaf {
 
-    private final Area RUSTY_KEY_AREA = new Area(3224, 9899, 3232, 9896);
 
     @Override
     public boolean isValid() {
@@ -25,7 +24,7 @@ public class RetrieveSecondKeyLeaf extends Leaf {
             Sleep.sleepUntil(() -> !Inventory.contains("Bucket"), 3000);
             return Timing.loopReturn();
         }
-
+        final Area RUSTY_KEY_AREA = new Area(3224, 9899, 3232, 9896);
         return QuestHelper.goAndInteractWithGameObject(RUSTY_KEY_AREA, "Rusty key", "Take", () -> Inventory.contains("Rusty key"));
     }
 }

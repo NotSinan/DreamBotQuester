@@ -12,9 +12,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveBearMeatLeaf extends Leaf {
-
-    private final Area BEAR_AREA = new Area(3070, 3612, 3094, 3597);
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DRUIDIC_RITUAL.getId()) == 0 &&
@@ -27,6 +24,8 @@ public class RetrieveBearMeatLeaf extends Leaf {
         if (rawRatMeat != null && Interaction.delayEntityInteract(rawRatMeat, "Take")) {
             Sleep.sleepUntil(() -> Inventory.contains("Raw bear meat"), 3000);
         }
-        return QuestHelper.goAndKillNpc(BEAR_AREA, "Grizzly bear");
+        return QuestHelper.goAndKillNpc(
+                new Area(3070, 3612, 3094, 3597), //bear area
+                "Grizzly bear");
     }
 }

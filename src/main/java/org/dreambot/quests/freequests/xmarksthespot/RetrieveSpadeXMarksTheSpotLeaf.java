@@ -9,7 +9,6 @@ import org.dreambot.utilities.QuestVarBits;
 
 public class RetrieveSpadeXMarksTheSpotLeaf extends Leaf {
 
-    private final Tile FALADOR_SPADE_AREA = new Tile(2981, 3370, 0);
 
     @Override
     public boolean isValid() {
@@ -17,5 +16,8 @@ public class RetrieveSpadeXMarksTheSpotLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.pickupGroundSpawn(FALADOR_SPADE_AREA, "Spade"); }
+    public int onLoop() {
+        final Tile FALADOR_SPADE_AREA = new Tile(2981, 3370, 0);
+        return QuestHelper.pickupGroundSpawn(FALADOR_SPADE_AREA, "Spade");
+    }
 }

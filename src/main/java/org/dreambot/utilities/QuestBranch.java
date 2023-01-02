@@ -2,28 +2,68 @@ package org.dreambot.utilities;
 
 import org.dreambot.framework.Branch;
 import org.dreambot.framework.webnodes.RemoveDraynorJailNodesLeaf;
-import org.dreambot.quests.freequests.cooksassistant.*;
+import org.dreambot.quests.freequests.cooksassistant.CooksAssistant;
+import org.dreambot.quests.freequests.cooksassistant.RetrieveBucketOfMilkLeaf;
+import org.dreambot.quests.freequests.cooksassistant.RetrieveEggLeaf;
+import org.dreambot.quests.freequests.cooksassistant.TalkToCookLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.OperateGrainMillLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrieveGrainLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrievePotLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrievePotOfFlourBranch;
 import org.dreambot.quests.freequests.doricsquest.*;
-import org.dreambot.quests.freequests.impcatcher.*;
+import org.dreambot.quests.freequests.impcatcher.GiveBeadsLeaf;
+import org.dreambot.quests.freequests.impcatcher.ImpCatcher;
+import org.dreambot.quests.freequests.impcatcher.RetrieveBeadsLeaf;
 import org.dreambot.quests.freequests.piratestreasure.*;
 import org.dreambot.quests.freequests.piratestreasure.smugglerum.*;
-import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.*;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeCrateSentLeaf;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeFullBananasCrateLeaf;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeRumNoBananasLeaf;
+import org.dreambot.quests.freequests.piratestreasure.smugglerum.chatmsg.SeeStashedRumLeaf;
 import org.dreambot.quests.freequests.romeoandjuliet.*;
-import org.dreambot.quests.freequests.runemysteries.*;
-import org.dreambot.quests.freequests.sheepshearer.*;
+import org.dreambot.quests.freequests.runemysteries.RuneMysteries;
+import org.dreambot.quests.freequests.runemysteries.TalkToArchmageLeaf;
+import org.dreambot.quests.freequests.runemysteries.TalkToAuburyLeaf;
+import org.dreambot.quests.freequests.runemysteries.TalkToLumbridgeDukeLeaf;
+import org.dreambot.quests.freequests.sheepshearer.CollectWoolLeaf;
+import org.dreambot.quests.freequests.sheepshearer.SheepShearer;
+import org.dreambot.quests.freequests.sheepshearer.SpinWoolLeaf;
+import org.dreambot.quests.freequests.sheepshearer.TalkToFredLeaf;
 import org.dreambot.quests.freequests.thecorsaircurse.*;
 import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.*;
 import org.dreambot.quests.freequests.therestlessghost.*;
+import org.dreambot.quests.freequests.vampyreslayer.RetrieveCoinsLeaf;
 import org.dreambot.quests.freequests.vampyreslayer.*;
 import org.dreambot.quests.freequests.witchspotion.*;
 import org.dreambot.quests.freequests.xmarksthespot.*;
 import org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl.*;
 import org.dreambot.quests.paidquests.druidicritual.*;
-import org.dreambot.quests.paidquests.monksfriend.*;
+import org.dreambot.quests.paidquests.gertrudescat.*;
+import org.dreambot.quests.paidquests.monksfriend.MonksFriend;
+import org.dreambot.quests.paidquests.monksfriend.RetrieveChildsBlanketLeaf;
+import org.dreambot.quests.paidquests.monksfriend.TalkToBrotherOmadLeaf;
 
 import java.util.function.Supplier;
 
 public enum QuestBranch {
+    GERTRUDES_CAT(() -> {
+        Branch questBranch = new GertrudesCat();
+        questBranch.addLeafs(
+                new org.dreambot.quests.paidquests.gertrudescat.RetrieveCoinsLeaf(),
+                new org.dreambot.quests.paidquests.gertrudescat.RetrieveBucketOfMilkLeaf(),
+                new RetrieveRawSardineLeaf(),
+                new RetrieveDoogleLeavesLeaf(),
+                new TalkToGertrudeLeaf(),
+                new TalkToWiloughLeaf(),
+                new GiveMilkToCatLeaf(),
+                new GiveSeasonedSardineToCatLeaf(),
+                new MixSardineAndDoogleLeavesLeaf(),
+                new FindKittensLeaf(),
+                new GiveKittenToFluffsLeaf()
+        );
+        return questBranch;
+    }),
+
     ROMEO_AND_JULIET(() -> {
         Branch questBranch = new RomeoAndJuliet();
         questBranch.addLeafs(
@@ -51,9 +91,13 @@ public enum QuestBranch {
         Branch questBranch = new CooksAssistant();
         questBranch.addLeafs(
                 new TalkToCookLeaf(),
+                new RetrievePotOfFlourBranch().addLeafs(
+                        new RetrievePotLeaf(),
+                        new RetrieveGrainLeaf(),
+                        new OperateGrainMillLeaf()),
+                new RetrieveGrainLeaf(),
                 new RetrieveEggLeaf(),
-                new RetrieveBucketOfMilkLeaf(),
-                new RetrievePotOfFlourLeaf()
+                new RetrieveBucketOfMilkLeaf()
         );
         return questBranch;
     }),
@@ -93,7 +137,6 @@ public enum QuestBranch {
     DRUIDIC_RITUAL(() -> {
         Branch questBranch = new DruidicRitual();
         questBranch.addLeafs(
-                new FinishedDruidicRitualLeaf(),
                 new RetrieveRatMeatLeaf(),
                 new RetrieveCowMeatLeaf(),
                 new RetrieveChickenMeatLeaf(),
@@ -108,8 +151,11 @@ public enum QuestBranch {
     DORICS_QUEST(() -> {
         Branch questBranch = new DoricsQuest();
         questBranch.addLeafs(
-                new GetOresLeaf(),
-                new TalkToDoricLeaf()
+                new TalkToDoricLeaf(),
+                new RetrievePickaxeLeaf(),
+                new RetrieveIronLeaf(),
+                new RetrieveCopperLeaf(),
+                new RetrieveClayLeaf()
         );
         return questBranch;
     }),
@@ -157,7 +203,6 @@ public enum QuestBranch {
                         new RetrieveBananaLeaf()
                 ),
                 new RetrievePiratesMessageLeaf(),
-                new SeeGardenerPresentLeaf(),
                 new DigGardenLeaf()
         );
         return questBranch;
@@ -196,7 +241,7 @@ public enum QuestBranch {
                 new TalkToBartenderLeaf(),
                 new TalkToDrHarlowLeaf(),
                 new TalkToMorganLeaf(),
-                new FightCountDraculaLeaf()
+                new FightCountDraynor()
         );
         return questBranch;
     }),
@@ -226,7 +271,7 @@ public enum QuestBranch {
     WITCHS_POTION(() -> {
         Branch questBranch = new WitchsPotion();
         questBranch.addLeafs(new RetrieveSpadeXMarksTheSpotLeaf(),
-                new EnableRunDuringCombatLeaf(),
+                new EngageBoosterThrusters(),
                 new TalkToWitchLeaf(),
                 new RetrieveRatsTail(),
                 new RetrieveOnion(),

@@ -9,9 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToArchmageLeaf extends Leaf {
 
-    private final Area WIZARD_TOWER_AREA = new Area(3099, 9574, 3107, 9569);
-    private final String ARCHMAGE_SEDRIDOR_NAME = "Archmage Sedridor";
-    private final String[] DIALOGUE_OPTIONS = {"I'm looking for the head wizard.", "Okay, here you are.", "Go ahead.", "Yes, certainly."};
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_RUNE_MYSTERIES.getId()) == 1 && Inventory.contains("Air talisman") ||
@@ -22,6 +19,9 @@ public class TalkToArchmageLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area WIZARD_TOWER_AREA = new Area(3099, 9574, 3107, 9569);
+        final String ARCHMAGE_SEDRIDOR_NAME = "Archmage Sedridor";
+        final String[] DIALOGUE_OPTIONS = {"I'm looking for the head wizard.", "Okay, here you are.", "Go ahead.", "Yes, certainly."};
         return QuestHelper.goAndTalkToNpc(WIZARD_TOWER_AREA, ARCHMAGE_SEDRIDOR_NAME, DIALOGUE_OPTIONS);
     }
 }
