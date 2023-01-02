@@ -15,10 +15,11 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
-public class FightCountDraculaLeaf extends Leaf {
+public class FightCountDraynor extends Leaf {
 
     private final Area DRAYNOR_STAIRS_TO_COUNT_AREA = new Area(3119, 3354, 3113, 3363);
     private final Area COUNT_DRAYNOR_AREA = new Area(3075, 9778, 3080, 9768);
+
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 2 && Inventory.contains("Garlic", "Stake", "Hammer");
