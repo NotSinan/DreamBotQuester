@@ -156,7 +156,7 @@ public enum QuestBranch {
                     new TalkToBartenderLeaf(),
                     new TalkToDrHarlowLeaf(),
                     new TalkToMorganLeaf(),
-                    new FightCountDraculaLeaf()
+                    new FightCountDraynor()
             )),
 
     X_MARKS_THE_SPOT(
