@@ -49,9 +49,11 @@ public class TalkToGrimhandBartenderLeaf extends Leaf {
                 Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
                 if(foundLongWait) {
                     Sleep.sleep(10000,12000);
+                    foundLongWait = false;
                 }
                 if(foundWait) {
                     Sleep.sleep(5000,7000);
+                    foundWait = false;
                 }
             }
             return Timing.loopReturn();

@@ -1,15 +1,11 @@
 package org.dreambot;
 
-import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.script.listener.ChatListener;
-import org.dreambot.api.utilities.Logger;
-import org.dreambot.api.wrappers.interactive.Player;
 import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.framework.Tree;
-import org.dreambot.framework.bank.BankOnceLeaf;
 import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;

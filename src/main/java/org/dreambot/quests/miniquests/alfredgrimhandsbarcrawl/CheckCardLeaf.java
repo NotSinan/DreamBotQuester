@@ -26,7 +26,7 @@ public class CheckCardLeaf extends Leaf {
             new Tile(2546, 3574, 0));
     @Override
     public boolean isValid() {
-        return !CardState.checkedCard;
+        return Inventory.contains("Barcrawl card") && !CardState.checkedCard;
     }
 
     @Override

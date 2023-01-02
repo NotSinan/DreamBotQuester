@@ -1,6 +1,7 @@
 package org.dreambot.utilities;
 
 import org.dreambot.api.methods.Calculations;
+import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.utilities.Sleep;
 
 public class Timing {

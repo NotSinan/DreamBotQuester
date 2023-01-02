@@ -1,5 +1,6 @@
 package org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle;
 
+import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
@@ -10,19 +11,19 @@ import org.dreambot.utilities.QuestVarBits;
 
 public class RetrieveSpadeCorsairCurseLeaf extends Leaf {
     private final Tile SPADE_TILE = new Tile(2552, 2846, 0);
-    private final Tile TEST1 = new Tile(2578, 2838, 1);
-    private final Tile TEST2 = new Tile(2578, 2839, 0);
-
 
     @Override
     public boolean isValid() {
-        return true;
+        return PlayerSettings.getBitValue(QuestVarBits.QUEST_THE_CORSAIR_CURSE.getId()) == 15 &&
+                CurseState.talkedToIthoi() &&
+                CurseState.talkedToGnocci() &&
+                CurseState.talkedToArsen() &&
+                CurseState.talkedToColin() &&
+                !Inventory.contains("Spade");
     }
 
     @Override
     public int onLoop() {
-        QuestHelper.addEntranceWebNodePair(TEST1, "Gangplank", "Cross", () -> Players.getLocal().getZ() == 1,
-                TEST2, "Gangplank", "Cross", () -> Players.getLocal().getZ() == 0);
         return QuestHelper.pickupGroundSpawn(SPADE_TILE, "Spade");
     }
 
