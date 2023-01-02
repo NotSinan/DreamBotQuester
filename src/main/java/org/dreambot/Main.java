@@ -6,7 +6,6 @@ import org.dreambot.api.script.ScriptManifest;
 import org.dreambot.api.script.listener.ChatListener;
 import org.dreambot.api.wrappers.widgets.message.Message;
 import org.dreambot.framework.Tree;
-import org.dreambot.framework.bank.BankOnceLeaf;
 import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
@@ -53,7 +52,7 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
     private void instantiateTree() {
         tree.addBranches(
                 new TimeoutLeaf(),
-                new BankOnceLeaf(),
+                //new BankOnceLeaf(),
                 UserInterface.getSelectedItem().getQuestBranch(),
                 new FallbackLeaf()
         );
