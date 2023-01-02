@@ -6,7 +6,7 @@ import org.dreambot.api.utilities.Sleep;
 
 public class Timing {
     // Variables to hold our various timings
-    public static int tickTimeout = 3;
+    public static int tickTimeout = 1;
     public static long sleepLength = 100;
     // Sleep Settings
     public static int sleepMin = 75;
@@ -16,7 +16,7 @@ public class Timing {
     public static boolean sleepWeightedDistribution = true;
     // Tick Settings
     public static int tickDelayMin = 1;
-    public static int tickDelayMax = 5;
+    public static int tickDelayMax = 3;
     public static int tickDelayDeviation = 1;
     public static int tickDelayTarget = 2;
     public static boolean tickDelayWeightedDistribution = true;

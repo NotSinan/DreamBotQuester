@@ -5,13 +5,11 @@ import org.dreambot.api.methods.container.impl.Shop;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
-import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveHammerLeaf extends Leaf {
@@ -20,9 +18,7 @@ public class RetrieveHammerLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 &&
-                Inventory.containsAll("Coins", "Garlic", "Beer") &&
-                !Inventory.contains("Hammer");
+        return !Inventory.contains("Hammer");
     }
 
     @Override

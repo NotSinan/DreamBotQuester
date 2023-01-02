@@ -14,8 +14,8 @@ public class TalkToBartenderLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 &&
-                Inventory.containsAll("Coins", "Garlic") && !Inventory.contains("Beer");
+        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 && !Inventory.contains("Beer") ||
+                PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 2 && !Inventory.contains("Stake") && !Inventory.contains("Beer");
     }
 
     @Override
