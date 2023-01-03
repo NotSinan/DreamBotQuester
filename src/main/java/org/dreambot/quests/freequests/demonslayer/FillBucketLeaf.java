@@ -14,20 +14,23 @@ import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
 
-public class FillBucketLeaf extends Leaf {
+/**
+ * This class fills an empty bucket with water in the kitchen of the Varrock palace.
+ */
 
+public class FillBucketLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
                 Inventory.contains("Bucket") &&
-                PlayerSettings.getBitValue(2568) != 1 &&
-                !Inventory.contains(2401);
+                PlayerSettings.getBitValue(2568) != 1 && // Determine if a local player has poured water in the drain.
+                !Inventory.contains(2401); // Second key.
     }
 
     @Override
     public int onLoop() {
-        final Area SINK_AREA = new Area(3218, 3497, 3224, 3491);
+        final Area SINK_AREA = new Area(3218, 3497, 3224, 3491); // Kitchen of the Varrock palace.
         if (!QuestHelper.walkToArea(SINK_AREA)) {
             return Timing.getSleepDelay();
         }
@@ -36,8 +39,13 @@ public class FillBucketLeaf extends Leaf {
         Item bucket = Inventory.get("Bucket");
         if (sink != null && sink.exists() && bucket != null && bucket.isValid() &&
                 Interaction.delayUseItemOn(bucket, sink)) {
-            Sleep.sleepUntil(() -> Inventory.contains("Bucket of water"), () -> Players.getLocal().isMoving(), 3000, 100);
+            Sleep.sleepUntil(
+                    () -> Inventory.contains("Bucket of water"),
+                    () -> Players.getLocal().isMoving(),
+                    3000,
+                    100);
         }
         return Timing.loopReturn();
     }
 }
+
