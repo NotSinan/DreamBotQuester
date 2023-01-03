@@ -1,5 +1,6 @@
 package org.dreambot.quests.freequests.demonslayer;
 
+import org.dreambot.api.Client;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
@@ -19,7 +20,7 @@ public class TalkToArisLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (QuestHelper.inCutscene()) {
+        if (Client.isInCutscene()) {
             if (Dialogues.inDialogue()) {
                 if (Dialogues.canContinue()) {
                     Dialogues.continueDialogue();

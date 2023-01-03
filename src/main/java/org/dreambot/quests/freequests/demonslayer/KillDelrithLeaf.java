@@ -12,7 +12,6 @@ import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
@@ -60,7 +59,7 @@ public class KillDelrithLeaf extends Leaf {
             }
         }
 
-        if (QuestHelper.inCutscene()) {
+        if (Client.isInCutscene()) {
             if (Dialogues.inDialogue()) {
                 if (Dialogues.canContinue()) {
                     Dialogues.continueDialogue();

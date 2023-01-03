@@ -1,5 +1,6 @@
 package org.dreambot.quests.freequests.romeoandjuliet;
 
+import org.dreambot.api.Client;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;
@@ -23,7 +24,7 @@ public class TalkToRomeoLeaf extends Leaf {
     public int onLoop() {
         final Area ROMEO_AREA = new Area(3205, 3438, 3223, 3422);
         final String[] DIALOGUE_OPTIONS = {"Yes, I have seen her actually!", "Yes, ok, I'll let her know.", "Yes."};
-        if (!QuestHelper.inCutscene()) {
+        if (!Client.isInCutscene()) {
             return QuestHelper.goAndTalkToNpc(ROMEO_AREA, "Romeo", DIALOGUE_OPTIONS);
         }
 
