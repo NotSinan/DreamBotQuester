@@ -112,7 +112,7 @@ public class QuestHelper {
                     }
                     return Timing.loopReturn();
                 }
-                if(walkToTile(npc)) {
+                if (!walkToTile(npc)) {
                     return Timing.getSleepDelay();
                 }
             }
@@ -184,7 +184,7 @@ public class QuestHelper {
 
     public static int pickupGroundSpawn(Tile tile, String name) {
         if(tile.distance() >= 15) {
-            if (walkToTile(tile)) {
+            if (!walkToTile(tile)) {
                 return Timing.getSleepDelay();
             }
         }
@@ -229,7 +229,7 @@ public class QuestHelper {
                 return Timing.loopReturn();
             }
         }
-        if (walkToTile(tile)) {
+        if (!walkToTile(tile)) {
             return Timing.getSleepDelay();
         }
 
