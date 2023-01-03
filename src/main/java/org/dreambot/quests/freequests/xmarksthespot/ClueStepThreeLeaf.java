@@ -21,7 +21,7 @@ public class ClueStepThreeLeaf extends Leaf {
     public int onLoop() {
         final Area CLUE_THREE_AREA = new Area(3109, 3263, 3109, 3263);
         if (!QuestHelper.walkToArea(CLUE_THREE_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         Timing.sleepForDelay();

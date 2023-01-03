@@ -9,10 +9,10 @@ import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
 
 import java.util.ArrayList;
@@ -21,7 +21,6 @@ import java.util.HashMap;
 
 public class KillDelrithLeaf extends Leaf {
 
-    private final Area DELRITH_AREA = new Area(3224, 3373, 3232, 3366);
     private final HashMap<Integer, String> words = new HashMap<Integer, String>() {{
         put(0, "Carlem");
         put(1, "Aber");
@@ -51,12 +50,10 @@ public class KillDelrithLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
+        Area DELRITH_AREA = new Area(3224, 3373, 3232, 3366);
         if (!DELRITH_AREA.contains(Players.getLocal()) && !Client.isDynamicRegion()) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(DELRITH_AREA.getRandomTile());
-                return Timing.loopReturn();
-            }
+            QuestHelper.walkToArea(DELRITH_AREA);
+            return Timing.getSleepDelay();
         }
 
         if (Client.isInCutscene()) {

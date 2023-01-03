@@ -1,7 +1,6 @@
 package org.dreambot.utilities;
 
 import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.utilities.Sleep;
 
 public class Timing {
@@ -35,6 +34,11 @@ public class Timing {
     public static void sleepForDelay() {
         Sleep.sleep(sleepLength);
         setSleepDelay();
+    }
+
+    // Calculate new tick delay and sleep for it
+    public static void sleepForTickDelay() {
+        Sleep.sleepTicks(getTickDelay());
     }
 
     // Get a randomized sleep delay

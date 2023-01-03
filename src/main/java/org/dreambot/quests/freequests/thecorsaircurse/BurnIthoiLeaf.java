@@ -23,7 +23,7 @@ public class BurnIthoiLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (!QuestHelper.walkToArea(new Area(2527, 2840, 2534, 2833, 0))) { // driftwood area under ithoi's house
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject driftwood = GameObjects.closest("Driftwood");

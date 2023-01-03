@@ -35,7 +35,7 @@ public class RetrieveRatsTail extends Leaf {
                 new Tile(3020, 3187, 0),
                 new Tile(3013, 3188, 0));
         if (!QuestHelper.walkToArea(PORT_SARIM_RAT_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GroundItem ratTail = GroundItems.closest(g -> g.getName().equals("Rat's tail") && PORT_SARIM_RAT_AREA.contains(g));

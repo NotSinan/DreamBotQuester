@@ -24,7 +24,7 @@ public class RetrieveCopperLeaf extends Leaf {
     public int onLoop() {
         final Area RIMMINGTON_COPPER_ROCKS_AREA = new Area(2975, 3249, 2980, 3246, 0);
         if (!QuestHelper.walkToArea(RIMMINGTON_COPPER_ROCKS_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
         GameObject rock = GameObjects.closest(g -> RIMMINGTON_COPPER_ROCKS_AREA.contains(g) && Arrays.stream(new int[]{11161, 10943}).anyMatch(i -> i == g.getID()));
         if (rock != null && rock.exists() && Interaction.delayEntityInteract(rock, "Mine")) {

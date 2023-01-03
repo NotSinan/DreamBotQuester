@@ -6,8 +6,8 @@ import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
 
 public class GoToFortressLeaf extends Leaf {
@@ -25,12 +25,7 @@ public class GoToFortressLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
-        if (!FORTRESS_ENTRANCE_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(FORTRESS_ENTRANCE_AREA.getRandomTile());
-            }
-            return Timing.loopReturn();
-        }
-        return Timing.loopReturn();
+        QuestHelper.walkToArea(FORTRESS_ENTRANCE_AREA);
+        return Timing.getSleepDelay();
     }
 }

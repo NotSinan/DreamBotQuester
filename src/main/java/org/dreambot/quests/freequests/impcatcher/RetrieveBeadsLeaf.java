@@ -32,11 +32,8 @@ public class RetrieveBeadsLeaf extends Leaf {
         }
 
         final Area IMP_SPAWN_AREA = new Area(2816, 3188, 2840, 3166);
-        if (!IMP_SPAWN_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Interaction.delayWalk(IMP_SPAWN_AREA.getRandomTile());
-            }
-            return Timing.loopReturn();
+        if (!QuestHelper.walkToArea(IMP_SPAWN_AREA)) {
+            return Timing.getSleepDelay();
         }
 
         GroundItem bead = GroundItems.closest(item -> item.getName().endsWith("bead") && IMP_SPAWN_AREA.contains(item));

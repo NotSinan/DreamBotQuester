@@ -25,7 +25,7 @@ public class RetrieveHammerLeaf extends Leaf {
         final Area VARROCK_GENERAL_STORE = new Area(3214, 3418, 3220, 3411);
 
         if (!QuestHelper.walkToArea(VARROCK_GENERAL_STORE)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (Shop.isOpen()) {

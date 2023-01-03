@@ -29,7 +29,7 @@ public class PourWaterIntoDrainLeaf extends Leaf {
     public int onLoop() {
         final Area DRAIN_AREA = new Area(3225, 3497, 3227, 3495);
         if (!QuestHelper.walkToArea(DRAIN_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (Dialogues.inDialogue()) {

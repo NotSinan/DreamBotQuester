@@ -36,7 +36,7 @@ public class RetrieveBucketLeaf extends Leaf {
                 new Tile(2617, 3251, 0),
                 new Tile(2608, 3251, 0));
         if (!QuestHelper.walkToArea(WELL_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject well = GameObjects.closest("Well");

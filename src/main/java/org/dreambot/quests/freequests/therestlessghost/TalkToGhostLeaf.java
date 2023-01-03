@@ -32,7 +32,7 @@ public class TalkToGhostLeaf extends Leaf {
         }
 
         if (!QuestHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (!Dialogues.inDialogue()) {

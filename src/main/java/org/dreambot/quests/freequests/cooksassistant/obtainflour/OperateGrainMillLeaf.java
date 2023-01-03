@@ -41,7 +41,7 @@ public class OperateGrainMillLeaf extends Leaf {
 
         final Area GRAIN_TOWER_LVL3_AREA = new Area(3164, 3309, 3169, 3304, 2);
         if (!QuestHelper.walkToArea(GRAIN_TOWER_LVL3_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (!HOPPER_LOADED) {

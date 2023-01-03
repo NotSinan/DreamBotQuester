@@ -21,11 +21,13 @@ public class RetrieveGhostHeadLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (QuestHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
-            GameObject altar = GameObjects.closest("Altar");
-            if (altar != null && Interaction.delayEntityInteract(altar, "Search")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Skull"), 3000);
-            }
+        if (!QuestHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
+            return Timing.getSleepDelay();
+        }
+        
+        GameObject altar = GameObjects.closest("Altar");
+        if (altar != null && Interaction.delayEntityInteract(altar, "Search")) {
+            Sleep.sleepUntil(() -> Inventory.contains("Skull"), 3000);
         }
         return Timing.loopReturn();
     }
