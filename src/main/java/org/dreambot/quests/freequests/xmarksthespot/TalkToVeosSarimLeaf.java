@@ -2,18 +2,18 @@ package org.dreambot.quests.freequests.xmarksthespot;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarBits;
 
 public class TalkToVeosSarimLeaf extends Leaf {
 
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getBitValue(QuestVarBits.QUEST_X_MARKS_THE_SPOT.getId()) == 6 && Inventory.contains("Ancient casket") ||
-                PlayerSettings.getBitValue(QuestVarBits.QUEST_X_MARKS_THE_SPOT.getId()) == 7;
+        return PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 6 && Inventory.contains("Ancient casket") ||
+                PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 7;
     }
 
     @Override

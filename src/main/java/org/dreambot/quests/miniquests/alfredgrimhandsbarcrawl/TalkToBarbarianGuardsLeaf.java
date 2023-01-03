@@ -2,16 +2,16 @@ package org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.quest.book.MiniQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToBarbarianGuardsLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_ALFRED_GRIMHANDS_BARCRAWL_STATE_76.getId()) == 0 ||
+        return PlayerSettings.getConfig(MiniQuest.ALFRED_GRIMHANDS_BARCRAWL.getConfigID()) == 0 ||
                 AlfredGrimhandsBarcrawl.finishedCard;
     }
 

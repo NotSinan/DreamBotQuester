@@ -2,17 +2,17 @@ package org.dreambot.quests.freequests.witchspotion;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToWitchLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_WITCHS_POTION.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_WITCHS_POTION.getId()) == 1 && Inventory.containsAll("Onion", "Rat's tail", "Eye of newt", "Burnt meat");
+        return PlayerSettings.getConfig(FreeQuest.WITCHS_POTION.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(FreeQuest.WITCHS_POTION.getConfigID()) == 1 && Inventory.containsAll("Onion", "Rat's tail", "Eye of newt", "Burnt meat");
     }
 
 

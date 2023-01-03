@@ -257,7 +257,8 @@ public enum QuestBranch {
 
     X_MARKS_THE_SPOT(() -> {
         Branch questBranch = new XMarksTheSpot();
-        questBranch.addLeafs(new RetrieveSpadeXMarksTheSpotLeaf(),
+        questBranch.addLeafs(
+                new RetrieveSpadeXMarksTheSpotLeaf(),
                 new TalkToVeosLumbridgeLeaf(),
                 new TalkToVeosSarimLeaf(),
                 new ClueStepOneLeaf(),
@@ -270,7 +271,8 @@ public enum QuestBranch {
 
     WITCHS_POTION(() -> {
         Branch questBranch = new WitchsPotion();
-        questBranch.addLeafs(new RetrieveSpadeXMarksTheSpotLeaf(),
+        questBranch.addLeafs(
+                new RetrieveSpadeXMarksTheSpotLeaf(),
                 new EngageBoosterThrusters(),
                 new TalkToWitchLeaf(),
                 new RetrieveRatsTail(),
