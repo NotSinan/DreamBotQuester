@@ -74,13 +74,27 @@ public class EquipmentLoadout {
 
                     Timing.sleepForDelay();
                     if (Bank.withdraw(item.getItemName(), neededQuantity) &&
-                        !Sleep.sleepUntil(() -> Equipment.count(item.getItemName()) == item.getItemQty(), 4000, 100)) {
+                            !Sleep.sleepUntil(() -> Equipment.count(item.getItemName()) == item.getItemQty(), 4000, 100)) {
                         break;
                     }
                 }
             }
-        }
-    }
-*/
 
+            for (LoadoutItem item : items) {
+                int currentInvyQuantity = Inventory.count(item.getItemName());
+                int neededInvytQuantity = item.getItemQty() - currentEquipmentQuantity;
+                if (neededEquipmentQuantity > 0) {
+                    // Equip from inventory if have any
+                    int currentInventoryQuantity = Inventory.count(item.getItemName());
+
+                    Timing.sleepForDelay();
+                    if (Bank.withdraw(item.getItemName(), neededQuantity) &&
+                            !Sleep.sleepUntil(() -> Equipment.count(item.getItemName()) == item.getItemQty(), 4000, 100)) {
+                        break;
+                    }
+                }
+            }
+
+        }
+    }*/
 }
