@@ -10,6 +10,7 @@ import org.dreambot.utilities.QuestHelper;
 
 public class RetrieveBucketLeaf extends Leaf {
 
+    private final Tile BUCKET_TILE = new Tile(3221, 3497, 1);
 
     @Override
     public boolean isValid() {
@@ -22,8 +23,6 @@ public class RetrieveBucketLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        final Tile BUCKET_TILE = new Tile(3221, 3497, 1);
-        final String BUCKET = "Bucket";
-        return QuestHelper.pickupGroundSpawn(BUCKET_TILE, BUCKET);
+        return QuestHelper.pickupGroundSpawn(BUCKET_TILE, "Bucket");
     }
 }

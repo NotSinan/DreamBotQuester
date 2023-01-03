@@ -16,7 +16,6 @@ import org.dreambot.utilities.Timing;
 
 public class PourWaterIntoDrainLeaf extends Leaf {
 
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&

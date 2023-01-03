@@ -9,7 +9,6 @@ import org.dreambot.utilities.QuestHelper;
 
 public class TalkToWizardTraibornLeaf extends Leaf {
 
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
@@ -19,14 +18,14 @@ public class TalkToWizardTraibornLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        final Area WIZARD_TRAIBORN_AREA = new Area(3099, 3168, 3117, 3154, 1);
-        final String[] DIALOGUE_OPTIONS = {
-                "Talk about Demon Slayer.",
-                "I need to get a key given to you by Sir Prysin.",
-                "Well, have you got any keys knocking around?",
-                "I'll get the bones for you."
-        };
-        final String WIZARD_TRAIBORN = "Wizard Traiborn";
-        return QuestHelper.goAndTalkToNpc(WIZARD_TRAIBORN_AREA, WIZARD_TRAIBORN, DIALOGUE_OPTIONS);
+        return QuestHelper.goAndTalkToNpc(
+                new Area(3099, 3168, 3117, 3154, 1),
+                "Wizard Traiborn",
+                new String[]{
+                        "Talk about Demon Slayer.",
+                        "I need to get a key given to you by Sir Prysin.",
+                        "Well, have you got any keys knocking around?",
+                        "I'll get the bones for you."
+                });
     }
 }
