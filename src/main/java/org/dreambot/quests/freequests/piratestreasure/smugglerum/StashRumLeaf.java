@@ -10,6 +10,7 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
 
@@ -43,7 +44,8 @@ public class StashRumLeaf extends Leaf {
         }
         GameObject crate = GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));
         Item karamjanRum = Inventory.get("Karamjan rum");
-        if (crate != null && crate.exists() && karamjanRum != null && karamjanRum.isValid() && karamjanRum.useOn(crate)) {
+        if (crate != null && crate.exists() && karamjanRum != null && karamjanRum.isValid() &&
+                Interaction.delayUseItemOn(karamjanRum, crate)) {
             Sleep.sleepUntil(() -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();

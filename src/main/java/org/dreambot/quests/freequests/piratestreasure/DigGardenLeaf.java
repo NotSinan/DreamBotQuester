@@ -6,13 +6,13 @@ import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.Entity;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class DigGardenLeaf extends Leaf {
@@ -31,7 +31,7 @@ public class DigGardenLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 3 && Inventory.contains("Spade");
+        return PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 3 && Inventory.contains("Spade");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DigGardenLeaf extends Leaf {
         }
 
         if (Inventory.interact("Spade", "Dig")) {
-            Sleep.sleepUntil(() -> PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) != 3 || escapingGardener(), 8000);
+            Sleep.sleepUntil(() -> PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) != 3 || escapingGardener(), 8000);
         }
         return Timing.loopReturn();
     }

@@ -1,18 +1,18 @@
 package org.dreambot.quests.freequests.impcatcher;
 
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class GiveBeadsLeaf extends Leaf {
 
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_IMP_CATCHER.getId()) == 1;
+        return PlayerSettings.getConfig(FreeQuest.IMP_CATCHER.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(FreeQuest.IMP_CATCHER.getConfigID()) == 1;
     }
 
     @Override

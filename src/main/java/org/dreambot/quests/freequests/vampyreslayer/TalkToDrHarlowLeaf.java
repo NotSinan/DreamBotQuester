@@ -2,18 +2,18 @@ package org.dreambot.quests.freequests.vampyreslayer;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToDrHarlowLeaf extends Leaf {
 
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 1 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_VAMPYRE_SLAYER.getId()) == 2 && !Inventory.contains("Stake");
+        return PlayerSettings.getConfig(FreeQuest.VAMPIRE_SLAYER.getConfigID()) == 1 ||
+                PlayerSettings.getConfig(FreeQuest.VAMPIRE_SLAYER.getConfigID()) == 2 && !Inventory.contains("Stake");
     }
 
     @Override

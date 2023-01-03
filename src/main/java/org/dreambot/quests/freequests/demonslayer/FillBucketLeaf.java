@@ -4,12 +4,12 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestVarBits;
 import org.dreambot.utilities.Timing;
 
 public class FillBucketLeaf extends Leaf {
@@ -17,7 +17,7 @@ public class FillBucketLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getBitValue(QuestVarBits.QUEST_DEMON_SLAYER.getId()) == 2 &&
+        return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
                 Inventory.contains("Bucket") &&
                 PlayerSettings.getBitValue(2568) != 1 &&
                 !Inventory.contains(2401);

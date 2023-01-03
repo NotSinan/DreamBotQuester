@@ -2,11 +2,11 @@ package org.dreambot.quests.freequests.piratestreasure;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class WithdrawFromBankPiratesTreasureLeaf extends Leaf {
@@ -17,7 +17,7 @@ public class WithdrawFromBankPiratesTreasureLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        switch (PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId())) {
+        switch (PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID())) {
             case 0:
             case 1: {
                 if (!Inventory.contains("Karamjan rum") && Bank.contains("Karamjan rum")) {

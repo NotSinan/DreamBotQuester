@@ -3,18 +3,18 @@ package org.dreambot.quests.freequests.cooksassistant;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveBucketOfMilkLeaf extends Leaf {
 
 
     @Override
     public boolean isValid() {
-        return (PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_COOKS_ASSISTANT.getId()) == 1) && !Inventory.contains("Bucket of milk");
+        return (PlayerSettings.getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 1) && !Inventory.contains("Bucket of milk");
     }
 
     @Override

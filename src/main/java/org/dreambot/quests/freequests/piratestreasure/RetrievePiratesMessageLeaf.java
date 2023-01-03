@@ -4,6 +4,7 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
@@ -11,7 +12,6 @@ import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class RetrievePiratesMessageLeaf extends Leaf {
@@ -23,7 +23,7 @@ public class RetrievePiratesMessageLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 2 && Inventory.contains("Chest key");
+        return PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 2 && Inventory.contains("Chest key");
     }
 
     @Override

@@ -1,18 +1,18 @@
 package org.dreambot.quests.paidquests.clocktower;
 
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.quests.paidquests.clocktower.placecogs.CogState;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 import java.util.Arrays;
 
 public class TalkToBrotherKojoLeaf extends Leaf {
     @Override
     public boolean isValid() {
-        return CogState.finished() || Arrays.stream(new int[]{0, 5, 6, 7}).anyMatch(i -> i == PlayerSettings.getConfig(QuestVarPlayer.QUEST_CLOCK_TOWER.getId()));
+        return CogState.finished() || Arrays.stream(new int[]{0, 5, 6, 7}).anyMatch(i -> i == PlayerSettings.getConfig(PaidQuest.CLOCK_TOWER.getConfigID()));
     }
 
     @Override

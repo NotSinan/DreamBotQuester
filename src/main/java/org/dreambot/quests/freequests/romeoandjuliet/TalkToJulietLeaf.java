@@ -3,19 +3,19 @@ package org.dreambot.quests.freequests.romeoandjuliet;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class TalkToJulietLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_ROMEO_AND_JULIET.getId()) == 10 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_ROMEO_AND_JULIET.getId()) == 50 && Inventory.contains("Cadava potion") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_ROMEO_AND_JULIET.getId()) == 50 && PlayerSettings.getBitValue(12139) == 1;
+        return PlayerSettings.getConfig(FreeQuest.ROMEO_AND_JULIET.getConfigID()) == 10 ||
+                PlayerSettings.getConfig(FreeQuest.ROMEO_AND_JULIET.getConfigID()) == 50 && Inventory.contains("Cadava potion") ||
+                PlayerSettings.getConfig(FreeQuest.ROMEO_AND_JULIET.getConfigID()) == 50 && PlayerSettings.getBitValue(12139) == 1;
     }
 
     @Override

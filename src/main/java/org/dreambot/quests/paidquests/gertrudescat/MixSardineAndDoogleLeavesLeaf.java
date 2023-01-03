@@ -2,18 +2,18 @@ package org.dreambot.quests.paidquests.gertrudescat;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.dialogues.Dialogues;
+import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class MixSardineAndDoogleLeavesLeaf extends Leaf {
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_GERTRUDES_CAT.getId()) == 3 && Inventory.containsAll("Doogle leaves", "Raw sardine");
+        return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 3 && Inventory.containsAll("Doogle leaves", "Raw sardine");
     }
 
     @Override

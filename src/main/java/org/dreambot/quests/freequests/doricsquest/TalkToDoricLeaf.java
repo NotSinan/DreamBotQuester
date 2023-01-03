@@ -1,17 +1,17 @@
 package org.dreambot.quests.freequests.doricsquest;
 
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToDoricLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DORICS_QUEST.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_DORICS_QUEST.getId()) == 10;
+        return PlayerSettings.getConfig(FreeQuest.DORICS_QUEST.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(FreeQuest.DORICS_QUEST.getConfigID()) == 10;
     }
 
     @Override

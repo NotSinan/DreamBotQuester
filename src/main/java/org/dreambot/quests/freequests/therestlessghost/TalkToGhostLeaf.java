@@ -6,6 +6,7 @@ import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
@@ -13,13 +14,12 @@ import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class TalkToGhostLeaf extends Leaf {
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_THE_RESTLESS_GHOST.getId()) == 2;
+        return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 2;
     }
 
     @Override
@@ -38,13 +38,13 @@ public class TalkToGhostLeaf extends Leaf {
         if (!Dialogues.inDialogue()) {
             NPC restlessGhost = NPCs.closest("Restless ghost");
             if (restlessGhost != null) {
-                if(restlessGhost.interact("Talk-to")) {
+                if (restlessGhost.interact("Talk-to")) {
                     Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
                 }
                 return Timing.loopReturn();
             }
             GameObject coffin = GameObjects.closest("Coffin");
-            if(coffin != null && coffin.hasAction("Open") && Interaction.delayEntityInteract(coffin, "Open")) {
+            if (coffin != null && coffin.hasAction("Open") && Interaction.delayEntityInteract(coffin, "Open")) {
                 Sleep.sleepUntil(() -> NPCs.closest("Restless ghost") != null, () -> Players.getLocal().isMoving(), 3000, 100);
             }
             return Timing.loopReturn();

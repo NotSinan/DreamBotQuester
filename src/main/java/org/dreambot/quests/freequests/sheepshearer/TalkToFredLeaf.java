@@ -2,6 +2,7 @@ package org.dreambot.quests.freequests.sheepshearer;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
@@ -10,9 +11,9 @@ public class TalkToFredLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(179) == 0 ||
-                PlayerSettings.getConfig(179) == 1 && Inventory.count("Ball of wool") >= 20 ||
-                PlayerSettings.getConfig(179) == 20;
+        return PlayerSettings.getConfig(FreeQuest.SHEEP_SHEARER.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(FreeQuest.SHEEP_SHEARER.getConfigID()) == 1 && Inventory.count("Ball of wool") >= 20 ||
+                PlayerSettings.getConfig(FreeQuest.SHEEP_SHEARER.getConfigID()) == 20;
     }
 
     @Override

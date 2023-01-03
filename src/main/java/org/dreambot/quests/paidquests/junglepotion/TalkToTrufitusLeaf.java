@@ -2,20 +2,20 @@ package org.dreambot.quests.paidquests.junglepotion;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToTrufitusLeaf extends Leaf {
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 1 && Inventory.contains("Snake weed") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 4 && Inventory.contains("Ardrigal") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 6 && Inventory.contains("Sito foil") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 8 && Inventory.contains("Volencia moss") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 10 && Inventory.contains("Rogue's purse");
+        return PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 1 && Inventory.contains("Snake weed") ||
+                PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 4 && Inventory.contains("Ardrigal") ||
+                PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 6 && Inventory.contains("Sito foil") ||
+                PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 8 && Inventory.contains("Volencia moss") ||
+                PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 10 && Inventory.contains("Rogue's purse");
     }
 
     @Override
