@@ -38,17 +38,28 @@ public class QuestHelper {
     }
 
     public static int goAndInteractWithGameObject(Area area, String gameObject, String action, Condition sleepUntilAfterInteract, Condition sleepUntilReset, int timeout, int polling) {
+
+
         if (!walkToArea(area)) {
             return Timing.getSleepDelay();
         }
 
+
         GameObject interactableGameObject = GameObjects.closest(g -> g.getName().equals(gameObject) && area.contains(g) && g.hasAction(action));
-        if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
-            if(sleepUntilReset == null) {
-                Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
+        if (interactableGameObject != null) {
+            if (interactableGameObject.canReach()) {
+                if (Interaction.delayEntityInteract(interactableGameObject, action)) {
+                    if (sleepUntilReset == null) {
+                        Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
+                        return Timing.loopReturn();
+                    }
+                    Sleep.sleepUntil(sleepUntilAfterInteract, sleepUntilReset, timeout, polling);
+                }
                 return Timing.loopReturn();
             }
-            Sleep.sleepUntil(sleepUntilAfterInteract, sleepUntilReset, timeout, polling);
+            if (!walkToTile(interactableGameObject)) {
+                return Timing.getSleepDelay();
+            }
         }
         return Timing.loopReturn();
     }
@@ -58,17 +69,29 @@ public class QuestHelper {
     }
 
     public static int goAndInteractWithNPC(Area area, String npc, String action, Condition sleepUntilAfterInteract, Condition sleepUntilReset, int timeout, int polling) {
-        if (!walkToArea(area)) {
-            return Timing.getSleepDelay();
+        Tile closestAreaTile = area.getNearestTile(Players.getLocal());
+        if (closestAreaTile.distance() > 20 || closestAreaTile.getZ() != Players.getLocal().getZ()) {
+            if (!walkToArea(area)) {
+                return Timing.getSleepDelay();
+            }
+            return Timing.loopReturn();
         }
 
         NPC interactableNPC = NPCs.closest(g -> g.getName().equals(npc) && area.contains(g) && g.hasAction(action));
-        if (interactableNPC != null && Interaction.delayEntityInteract(interactableNPC, action)) {
-            if(sleepUntilReset == null) {
-                Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
+        if (interactableNPC != null) {
+            if (interactableNPC.canReach()) {
+                if (Interaction.delayEntityInteract(interactableNPC, action)) {
+                    if(sleepUntilReset == null) {
+                        Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
+                        return Timing.loopReturn();
+                    }
+                    Sleep.sleepUntil(sleepUntilAfterInteract, sleepUntilReset, timeout, polling);
+                }
                 return Timing.loopReturn();
             }
-            Sleep.sleepUntil(sleepUntilAfterInteract, sleepUntilReset, timeout, polling);
+            if (!walkToTile(interactableNPC)) {
+                return Timing.getSleepDelay();
+            }
         }
         return Timing.loopReturn();
     }
@@ -83,7 +106,7 @@ public class QuestHelper {
         if (!Players.getLocal().isInCombat()) {
             NPC npc = NPCs.closest(n -> !n.isInCombat() && n.getName().equals(name) && area.contains(n));
             if(npc != null && npc.exists()) {
-                if(npc.canReach()) {
+                if (npc.canReach()) {
                     if(Interaction.delayEntityInteract(npc,"Attack")) {
                         Sleep.sleepUntil(() -> Players.getLocal().isInCombat(), 3000);
                     }
@@ -144,8 +167,10 @@ public class QuestHelper {
     public static int withdrawFromBank(String itemName, int quantity) {
         if(!Bank.isOpen()) {
             Timing.sleepForDelay();
-            Bank.open();
-            return Timing.loopReturn();
+            if (Bank.open()) {
+                Timing.loopReturn();
+            }
+            return Timing.getSleepDelay();
         }
 
         if(Bank.count(itemName) <= 0) {
