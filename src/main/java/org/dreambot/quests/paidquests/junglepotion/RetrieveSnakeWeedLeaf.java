@@ -11,10 +11,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveSnakeWeedLeaf extends Leaf {
 
-    private final Area SNAKE_WEED_AREA = new Area(2759, 3043, 2773, 3034);
-    private final String GAME_OBJECT = "Marshy jungle vine";
-    private final String ACTION = "Search";
-    private final String ITEM = "Grimy snake weed";
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 1 && !Inventory.contains("Snake weed");
@@ -22,6 +18,7 @@ public class RetrieveSnakeWeedLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final String ITEM = "Grimy snake weed";
 
         if (Inventory.contains(ITEM)) {
             if (Inventory.interact(ITEM, "Clean")) {
@@ -30,6 +27,10 @@ public class RetrieveSnakeWeedLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(SNAKE_WEED_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
+        return QuestHelper.goAndInteractWithGameObject(
+                new Area(2759, 3043, 2773, 3034),
+                "Marshy jungle vine",
+                "Search",
+                () -> Inventory.contains(ITEM));
     }
 }

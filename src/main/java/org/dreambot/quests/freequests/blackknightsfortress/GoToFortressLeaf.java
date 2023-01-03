@@ -12,10 +12,10 @@ import org.dreambot.utilities.Timing;
 
 public class GoToFortressLeaf extends Leaf {
 
-    private final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
 
     @Override
     public boolean isValid() {
+        final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_BLACK_KNIGHTS_FORTRESS.getId()) == 1 &&
                 !FORTRESS_ENTRANCE_AREA.contains(Players.getLocal()) &&
                 !Equipment.slotContains(EquipmentSlot.HAT, "Bronze med helm") ||
@@ -24,6 +24,7 @@ public class GoToFortressLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
         if (!FORTRESS_ENTRANCE_AREA.contains(Players.getLocal())) {
             if (Walking.shouldWalk(4)) {
                 Walking.walk(FORTRESS_ENTRANCE_AREA.getRandomTile());

@@ -9,10 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveCabbageLeaf extends Leaf {
 
-    private final Area CABBAGE_AREA = new Area(3049, 3506, 3055, 3502);
-    private final String GAME_OBJECT = "Cabbage";
-    private final String ACTION = "Pick";
-    private final String ITEM = "Cabbage";
 
     @Override
     public boolean isValid() {
@@ -21,6 +17,14 @@ public class RetrieveCabbageLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndInteractWithGameObject(CABBAGE_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
+        final Area CABBAGE_AREA = new Area(3049, 3506, 3055, 3502);
+        final String GAME_OBJECT = "Cabbage";
+        final String ACTION = "Pick";
+        final String ITEM = "Cabbage";
+        return QuestHelper.goAndInteractWithGameObject(
+                CABBAGE_AREA,
+                GAME_OBJECT,
+                ACTION,
+                () -> Inventory.contains(ITEM));
     }
 }

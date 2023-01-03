@@ -7,11 +7,12 @@ import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
@@ -21,19 +22,8 @@ import java.util.Map;
 
 public class FindKittensLeaf extends Leaf {
 
-    private final Area KITTEN_SEARCH_AREA = new Area(
-            new Tile[] {
-                    new Tile(3293, 3512, 0),
-                    new Tile(3298, 3517, 0),
-                    new Tile(3321, 3517, 0),
-                    new Tile(3325, 3505, 0),
-                    new Tile(3313, 3494, 0),
-                    new Tile(3299, 3494, 0)
-            }
-    );
-
-    Map<NPC, Boolean> crates = new HashMap<>();
     List<NPC> cratesList;
+    Map<NPC, Boolean> crates = new HashMap<>();
 
     @Override
     public boolean isValid() {
@@ -42,10 +32,16 @@ public class FindKittensLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!KITTEN_SEARCH_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Walking.walk(KITTEN_SEARCH_AREA.getRandomTile());
-            }
+        if (!QuestHelper.walkToArea(
+                new Area( //kitten search area
+                        new Tile(3293, 3512, 0),
+                        new Tile(3298, 3517, 0),
+                        new Tile(3321, 3517, 0),
+                        new Tile(3325, 3505, 0),
+                        new Tile(3313, 3494, 0),
+                        new Tile(3299, 3494, 0)
+                )
+        )) {
             return Timing.loopReturn();
         }
 
@@ -57,10 +53,10 @@ public class FindKittensLeaf extends Leaf {
         }
 
         if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
-                Sleep.sleepUntil(() -> !Dialogues.inDialogue(), 3000);
+            if (Dialogues.canContinue() && Dialogues.continueDialogue()) {
+                Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
             }
+            return Timing.loopReturn();
         }
 
         if (!Inventory.contains("Fluffs' kitten")) {
@@ -69,9 +65,9 @@ public class FindKittensLeaf extends Leaf {
                 NPC crate = entry.getKey();
                 boolean interacted = entry.getValue();
                 if (!interacted) {
-                    crate.interact("Search");
-                    if (Sleep.sleepUntil(() -> crate.distance() <= 1, 2400, 200)) {
-                        Logger.log(crate.distance());
+                    if (Interaction.delayEntityInteract(crate, "Search") &&
+                            Sleep.sleepUntil(() -> crate.distance() <= 1, () -> Players.getLocal().isMoving(), 2400, 200)) {
+                        Logger.log("Interacted 'Search' 'Crate', distance to us after sleeping: " + crate.distance());
                         crates.put(crate, true);
                     }
                     return Timing.loopReturn();

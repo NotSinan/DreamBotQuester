@@ -20,12 +20,7 @@ import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveBurntMeat extends Leaf {
-    private final Area PORT_SARIM_FOOD_SHOP_AREA = new Area(
-            new Tile(3016, 3203, 0),
-            new Tile(3012, 3203, 0),
-            new Tile(3012, 3210, 0),
-            new Tile(3016, 3207, 0));
-    private final Area PORT_SARIM_RANGE_AREA = new Area(3015, 3240, 3019, 3236, 0);
+
 
     @Override
     public boolean isValid() {
@@ -34,13 +29,19 @@ public class RetrieveBurntMeat extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area PORT_SARIM_FOOD_SHOP_AREA = new Area(
+                new Tile(3016, 3203, 0),
+                new Tile(3012, 3203, 0),
+                new Tile(3012, 3210, 0),
+                new Tile(3016, 3207, 0));
+        final Area PORT_SARIM_RANGE_AREA = new Area(3015, 3240, 3019, 3236, 0);
         if (!Inventory.contains("Raw beef", "Cooked meat")) {
             if (!QuestHelper.walkToArea(PORT_SARIM_FOOD_SHOP_AREA)) {
                 return Timing.loopReturn();
             }
             if (!Shop.isOpen()) {
                 NPC wydin = NPCs.closest(n -> n.hasAction("Trade") && n.getName().equals("Wydin") && PORT_SARIM_FOOD_SHOP_AREA.contains(n));
-                if(wydin != null && wydin.exists() && Interaction.delayEntityInteract(wydin, "Trade")) {
+                if (wydin != null && wydin.exists() && Interaction.delayEntityInteract(wydin, "Trade")) {
                     Sleep.sleepUntil(Shop::isOpen, () -> Players.getLocal().isMoving(), 3000, 100);
                 }
                 return Timing.loopReturn();
@@ -56,7 +57,7 @@ public class RetrieveBurntMeat extends Leaf {
             return Timing.loopReturn();
         }
         if (ItemProcessing.isOpen()) {
-            if(ItemProcessing.makeAll("Cooked meat")) {
+            if (ItemProcessing.makeAll("Cooked meat")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Burnt meat"), 3000);
             }
             return Timing.loopReturn();
@@ -64,7 +65,7 @@ public class RetrieveBurntMeat extends Leaf {
         GameObject range = GameObjects.closest("Range");
         if (range != null && range.distance() < 10 && Interaction.delayEntityInteract(range, "Cook")) {
             Sleep.sleepUntil(() -> Inventory.contains("Cooked meat", "Burnt meat"),
-                    () -> Players.getLocal().isMoving() || Players.getLocal().isAnimating(), 3000,100);
+                    () -> Players.getLocal().isMoving() || Players.getLocal().isAnimating(), 3000, 100);
         }
         return Timing.loopReturn();
     }

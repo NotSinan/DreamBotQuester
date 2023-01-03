@@ -16,8 +16,6 @@ import org.dreambot.utilities.Timing;
 
 public class ReturnSkullToGhostLeaf extends Leaf {
 
-    private final Area GHOST_AREA = new Area(3247, 3195, 3252, 3190);
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_THE_RESTLESS_GHOST.getId()) == 4 && Inventory.contains("Ghost's skull");
@@ -25,7 +23,7 @@ public class ReturnSkullToGhostLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (QuestHelper.walkToArea(GHOST_AREA)) {
+        if (QuestHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
             GameObject coffin = GameObjects.closest("Coffin");
             if(coffin != null) {
                 if (coffin.hasAction("Open")) {

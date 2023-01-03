@@ -15,10 +15,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class TalkToApothecary extends Leaf {
-    private final Area APOTHECARY_AREA = new Area(3192, 3406, 3198, 3402);
-    private final Area CADAVA_BUSH_AREA = new Area(3264, 3374, 3279, 3370);
-    private final String[] DIALOGUE_OPTIONS = {"Talk about something else.", "Talk about Romeo & Juliet."};
-
 
     @Override
     public boolean isValid() {
@@ -28,7 +24,9 @@ public class TalkToApothecary extends Leaf {
 
     @Override
     public int onLoop() {
-
+        final Area APOTHECARY_AREA = new Area(3192, 3406, 3198, 3402);
+        final Area CADAVA_BUSH_AREA = new Area(3264, 3374, 3279, 3370);
+        final String[] DIALOGUE_OPTIONS = {"Talk about something else.", "Talk about Romeo & Juliet."};
         if (Inventory.contains("Cadava berries")) {
             return QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
         }

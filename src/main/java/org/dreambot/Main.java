@@ -1,5 +1,6 @@
 package org.dreambot;
 
+import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
@@ -87,7 +88,7 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
 
     @Override
     public void onMessage(Message msg) {
-        switch(msg.getType()) {
+        switch (msg.getType()) {
             case TIMEOUT_MESSAGE:
             case GAME:
             case ENGINE:
@@ -96,9 +97,9 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
             case BROADCAST:
             case NPC_EXAMINE:
             case ITEM_EXAMINE:
-            case OBJECT_EXAMINE:
-            {
+            case OBJECT_EXAMINE: {
                 API.lastGameMessage = msg.getMessage();
+                API.lastGameMessageTile = Players.getLocal().getTile();
             }
             break;
         }

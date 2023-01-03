@@ -11,11 +11,6 @@ import org.dreambot.utilities.Timing;
 
 public class RetrieveVolenciaMossLeaf extends Leaf {
 
-    private final Area VOLENCIA_MOSS_AREA = new Area(2844, 3038, 2853, 3029);
-    private final String GAME_OBJECT = "Rock";
-    private final String ACTION = "Search";
-    private final String ITEM = "Grimy volencia moss";
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_JUNGLE_POTION.getId()) == 3 && !Inventory.contains("Volencia moss");
@@ -24,13 +19,18 @@ public class RetrieveVolenciaMossLeaf extends Leaf {
     @Override
     public int onLoop() {
 
-        if (Inventory.contains(ITEM)) {
-            if (Inventory.interact(ITEM, "Clean")) {
+        if (Inventory.contains("Grimy volencia moss")) {
+            if (Inventory.interact("Grimy volencia moss", "Clean")) {
                 Sleep.sleepUntil(() -> Inventory.contains("Volencia moss"), 3000);
             }
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(VOLENCIA_MOSS_AREA, GAME_OBJECT, ACTION, () -> Inventory.contains(ITEM));
+        return QuestHelper.goAndInteractWithGameObject(
+                new Area(2844, 3038, 2853, 3029),
+                "Rock",
+                "Search",
+                () -> Inventory.contains("Grimy volencia moss")
+        );
     }
 }

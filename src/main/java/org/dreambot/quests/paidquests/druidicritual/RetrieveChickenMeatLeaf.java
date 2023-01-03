@@ -11,8 +11,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveChickenMeatLeaf extends Leaf {
-
-    private final Area CHICKEN_AREA = new Area(3227, 3300, 3232, 3296);
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_DRUIDIC_RITUAL.getId()) == 0 &&
@@ -28,6 +26,8 @@ public class RetrieveChickenMeatLeaf extends Leaf {
             Sleep.sleepUntil(() -> Inventory.contains("Raw chicken"), 3000);
         }
 
-        return QuestHelper.goAndKillNpc(CHICKEN_AREA, "Chicken");
+        return QuestHelper.goAndKillNpc(
+                new Area(3227, 3300, 3232, 3296),
+                "Chicken");
     }
 }

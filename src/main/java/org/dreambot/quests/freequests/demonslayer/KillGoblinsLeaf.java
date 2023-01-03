@@ -14,8 +14,6 @@ import org.dreambot.utilities.Timing;
 
 public class KillGoblinsLeaf extends Leaf {
 
-    private final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227);
-    private final String GOBLIN = "Goblin";
 
     @Override
     public boolean isValid() {
@@ -27,6 +25,7 @@ public class KillGoblinsLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227);
         GroundItem bones = GroundItems.closest(item -> item.getName().equals("Bones") && GOBLIN_AREA.contains(item));
         if (bones != null) {
             if (Interaction.delayEntityInteract(bones, "Take")) {
@@ -34,7 +33,6 @@ public class KillGoblinsLeaf extends Leaf {
             }
             return Timing.loopReturn();
         }
-
-        return QuestHelper.goAndKillNpc(GOBLIN_AREA, GOBLIN);
+        return QuestHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
     }
 }

@@ -12,7 +12,6 @@ import org.dreambot.utilities.Timing;
 
 public class ClueStepFourLeaf extends Leaf {
 
-    private Area CLUE_FOUR_AREA = new Area(3075, 3261, 3079, 3259);
 
     @Override
     public boolean isValid() {
@@ -21,6 +20,7 @@ public class ClueStepFourLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area CLUE_FOUR_AREA = new Area(3075, 3261, 3079, 3259);
 
         if (!QuestHelper.walkToArea(CLUE_FOUR_AREA)) {
             return Timing.loopReturn();

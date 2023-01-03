@@ -2,11 +2,15 @@ package org.dreambot.utilities;
 
 import org.dreambot.framework.Branch;
 import org.dreambot.framework.webnodes.RemoveDraynorJailNodesLeaf;
-import org.dreambot.quests.freequests.cooksassistant.*;
-import org.dreambot.quests.freequests.demonslayer.*;
-import org.dreambot.quests.freequests.doricsquest.DoricsQuest;
-import org.dreambot.quests.freequests.doricsquest.GetOresLeaf;
-import org.dreambot.quests.freequests.doricsquest.TalkToDoricLeaf;
+import org.dreambot.quests.freequests.cooksassistant.CooksAssistant;
+import org.dreambot.quests.freequests.cooksassistant.RetrieveBucketOfMilkLeaf;
+import org.dreambot.quests.freequests.cooksassistant.RetrieveEggLeaf;
+import org.dreambot.quests.freequests.cooksassistant.TalkToCookLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.OperateGrainMillLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrieveGrainLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrievePotLeaf;
+import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrievePotOfFlourBranch;
+import org.dreambot.quests.freequests.doricsquest.*;
 import org.dreambot.quests.freequests.impcatcher.GiveBeadsLeaf;
 import org.dreambot.quests.freequests.impcatcher.ImpCatcher;
 import org.dreambot.quests.freequests.impcatcher.RetrieveBeadsLeaf;
@@ -25,193 +29,267 @@ import org.dreambot.quests.freequests.sheepshearer.CollectWoolLeaf;
 import org.dreambot.quests.freequests.sheepshearer.SheepShearer;
 import org.dreambot.quests.freequests.sheepshearer.SpinWoolLeaf;
 import org.dreambot.quests.freequests.sheepshearer.TalkToFredLeaf;
-import org.dreambot.quests.freequests.thecorsaircurse.TalkToTockFarmLeaf;
-import org.dreambot.quests.freequests.thecorsaircurse.TalkToTockRimmingtonLeaf;
-import org.dreambot.quests.freequests.thecorsaircurse.TheCorsairCurse;
-import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.RetrieveSpadeCorsairCurseLeaf;
+import org.dreambot.quests.freequests.thecorsaircurse.*;
+import org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle.*;
 import org.dreambot.quests.freequests.therestlessghost.*;
+import org.dreambot.quests.freequests.vampyreslayer.RetrieveCoinsLeaf;
 import org.dreambot.quests.freequests.vampyreslayer.*;
 import org.dreambot.quests.freequests.witchspotion.*;
 import org.dreambot.quests.freequests.xmarksthespot.*;
 import org.dreambot.quests.miniquests.alfredgrimhandsbarcrawl.*;
 import org.dreambot.quests.paidquests.druidicritual.*;
+import org.dreambot.quests.paidquests.gertrudescat.*;
 import org.dreambot.quests.paidquests.monksfriend.MonksFriend;
 import org.dreambot.quests.paidquests.monksfriend.RetrieveChildsBlanketLeaf;
 import org.dreambot.quests.paidquests.monksfriend.TalkToBrotherOmadLeaf;
 
+import java.util.function.Supplier;
 
 public enum QuestBranch {
-    ALFRED_GRIMHANDS_BARCRAWL(
-            new AlfredGrimhandsBarcrawl().addLeafs(
-                    new SeeAllFinishedMessage(),
-                    new SeeBartenderMessageLeaf(),
-                    new CheckCardLeaf(),
-                    new TalkToBarbarianGuardsLeaf(),
-                    new TalkToGrimhandBartenderLeaf()
-            )),
+    GERTRUDES_CAT(() -> {
+        Branch questBranch = new GertrudesCat();
+        questBranch.addLeafs(
+                new org.dreambot.quests.paidquests.gertrudescat.RetrieveCoinsLeaf(),
+                new org.dreambot.quests.paidquests.gertrudescat.RetrieveBucketOfMilkLeaf(),
+                new RetrieveRawSardineLeaf(),
+                new RetrieveDoogleLeavesLeaf(),
+                new TalkToGertrudeLeaf(),
+                new TalkToWiloughLeaf(),
+                new GiveMilkToCatLeaf(),
+                new GiveSeasonedSardineToCatLeaf(),
+                new MixSardineAndDoogleLeavesLeaf(),
+                new FindKittensLeaf(),
+                new GiveKittenToFluffsLeaf()
+        );
+        return questBranch;
+    }),
 
-    COOKS_ASSISTANT(
-            new CooksAssistant().addLeafs(
-                    new TalkToCookLeaf(),
-                    new RetrieveEggLeaf(),
-                    new RetrieveBucketOfMilkLeaf(),
-                    new RetrievePotOfFlourLeaf()
-            )),
+    ROMEO_AND_JULIET(() -> {
+        Branch questBranch = new RomeoAndJuliet();
+        questBranch.addLeafs(
+                new TalkToRomeoLeaf(),
+                new TalkToJulietLeaf(),
+                new TalkToFatherLawrenceLeaf(),
+                new TalkToApothecary()
+        );
+        return questBranch;
+    }),
 
-    CORSAIR_CURSE(
-            new TheCorsairCurse().addLeafs(
-                    new PauseForCutsceneLeaf(),
-                    new TalkToTockFarmLeaf(),
-                    new TalkToTockRimmingtonLeaf(),
-                    new RetrieveSpadeCorsairCurseLeaf()
-            )),
+    ALFRED_GRIMHANDS_BARCRAWL(() -> {
+        Branch questBranch = new AlfredGrimhandsBarcrawl();
+        questBranch.addLeafs(
+                new SeeAllFinishedMessage(),
+                new SeeBartenderMessageLeaf(),
+                new CheckCardLeaf(),
+                new TalkToBarbarianGuardsLeaf(),
+                new TalkToGrimhandBartenderLeaf()
+        );
+        return questBranch;
+    }),
 
-    DORICS_QUEST(
-            new DoricsQuest().addLeafs(
-                    new GetOresLeaf(),
-                    new TalkToDoricLeaf()
-            )),
+    COOKS_ASSISTANT(() -> {
+        Branch questBranch = new CooksAssistant();
+        questBranch.addLeafs(
+                new TalkToCookLeaf(),
+                new RetrievePotOfFlourBranch().addLeafs(
+                        new RetrievePotLeaf(),
+                        new RetrieveGrainLeaf(),
+                        new OperateGrainMillLeaf()),
+                new RetrieveGrainLeaf(),
+                new RetrieveEggLeaf(),
+                new RetrieveBucketOfMilkLeaf()
+        );
+        return questBranch;
+    }),
 
-    DRUIDIC_RITUAL(
-            new DruidicRitual().addLeafs(
-                    new FinishedDruidicRitualLeaf(),
-                    new RetrieveRatMeatLeaf(),
-                    new RetrieveCowMeatLeaf(),
-                    new RetrieveChickenMeatLeaf(),
-                    new RetrieveBearMeatLeaf(),
-                    new TalkToKaqemeexLeaf(),
-                    new TalkToSanfewLeaf(),
-                    new EnchantMeatLeaf()
-            )),
+    CORSAIR_CURSE(() -> {
+        Branch questBranch = new TheCorsairCurse();
+        questBranch.addLeafs(
+                new PauseForCorsairCurseCutsceneLeaf(),
+                new RetrieveTinderboxCorsairCurseLeaf(),
+                new TalkToTockFarmLeaf(),
+                new TalkToTockRimmingtonLeaf(),
+                new TravelToCorsairCoveLeaf(),
+                new SolveCurseBranch().addLeafs(
+                        new TalkToIthoiLeaf(),
+                        new TalkToArsenLeaf(),
+                        new TalkToColinLeaf(),
+                        new TalkToGnocciLeaf(),
+                        new TalkToTessLeaf(),
+                        new RetrieveSpadeCorsairCurseLeaf(),
+                        new TalkToTockCorsair1Leaf(),
+                        new DigForDollLeaf(),
+                        new ObserveIthoiTelescopeLeaf()
+                ),
+                new TalkToTockCorsair2Leaf(),
+                new SolveGnocciFoodMysteryLeaf(),
+                new SolveArsenFoodMystery(),
+                new SolveIthoiFoodMysteryLeaf(),
+                new BurnIthoiLeaf(),
+                new TalkToTockCorsair3Leaf(),
+                new KillIthoiLeaf(),
+                new TalkToTockCorsair4Leaf(),
+                new RetrieveTinderboxCorsairCurseLeaf()
+        );
+        return questBranch;
+    }),
 
-    IMP_CATCHER(
-            new ImpCatcher().addLeafs(
-                    new RetrieveBeadsLeaf(),
-                    new GiveBeadsLeaf()
-            )),
+    DRUIDIC_RITUAL(() -> {
+        Branch questBranch = new DruidicRitual();
+        questBranch.addLeafs(
+                new RetrieveRatMeatLeaf(),
+                new RetrieveCowMeatLeaf(),
+                new RetrieveChickenMeatLeaf(),
+                new RetrieveBearMeatLeaf(),
+                new TalkToKaqemeexLeaf(),
+                new TalkToSanfewLeaf(),
+                new EnchantMeatLeaf()
+        );
+        return questBranch;
+    }),
 
-    MONKS_FRIEND(
-            new MonksFriend().addLeafs(
-                    new TalkToBrotherOmadLeaf(),
-                    new RetrieveChildsBlanketLeaf()
-            )),
+    DORICS_QUEST(() -> {
+        Branch questBranch = new DoricsQuest();
+        questBranch.addLeafs(
+                new TalkToDoricLeaf(),
+                new RetrievePickaxeLeaf(),
+                new RetrieveIronLeaf(),
+                new RetrieveCopperLeaf(),
+                new RetrieveClayLeaf()
+        );
+        return questBranch;
+    }),
 
-    PIRATES_TREASURE(
-            new PiratesTreasure().addLeafs(
-                    new WithdrawFromBankPiratesTreasureLeaf(),
-                    new TalkToRedbeardFrankLeaf(),
-                    new RetrieveSpadePiratesTreasureLeaf(),
-                    new RetrievePiratesTreasureCoinsLeaf(),
-                    new SmuggleRumBranch().addLeafs(
-                            new PauseForCutsceneLeaf(),
-                            new SeeCrateSentLeaf(),
-                            new SeeFullBananasCrateLeaf(),
-                            new SeeRumNoBananasLeaf(),
-                            new SeeStashedRumLeaf(),
-                            new RetrieveSmuggledRumLeaf(),
-                            new EnterStoreBackhouseLeaf(),
-                            new LeaveKaramjaLeaf(),
-                            new RetrieveWhiteApronLeaf(),
-                            new TalkToLuthasLeaf(),
-                            new FillCrateWithBananasLeaf(),
-                            new StashRumLeaf(),
-                            new RetrieveRumLeaf(),
-                            new RetrieveBananaLeaf()),
-                    new RetrievePiratesMessageLeaf(),
-                    new SeeGardenerPresentLeaf(),
-                    new DigGardenLeaf()
-            )),
+    MONKS_FRIEND(() -> {
+        Branch questBranch = new MonksFriend();
+        questBranch.addLeafs(
+                new TalkToBrotherOmadLeaf(),
+                new RetrieveChildsBlanketLeaf()
+        );
+        return questBranch;
+    }),
 
-    RUNE_MYSTERIES(
-            new RuneMysteries().addLeafs(
-                    new RemoveDraynorJailNodesLeaf(),
-                    new TalkToLumbridgeDukeLeaf(),
-                    new TalkToAuburyLeaf(),
-                    new TalkToArchmageLeaf()
-            )),
+    IMP_CATCHER(() -> {
+        Branch questBranch = new ImpCatcher();
+        questBranch.addLeafs(
+                new RetrieveBeadsLeaf(),
+                new GiveBeadsLeaf()
+        );
+        return questBranch;
+    }),
 
-    RESTLESS_GHOST(
-            new TheRestlessGhost().addLeafs(
-                    new RemoveDraynorJailNodesLeaf(),
-                    new RetrieveGhostHeadLeaf(),
-                    new TalkToFatherAereckLeaf(),
-                    new TalkToFatherUrhneyLeaf(),
-                    new TalkToGhostLeaf(),
-                    new ReturnSkullToGhostLeaf()
-            )),
 
-    SHEEP_SHEARER(
-            new SheepShearer().addLeafs(
-                    new CollectWoolLeaf(),
-                    new SpinWoolLeaf(),
-                    new TalkToFredLeaf()
-            )),
+    PIRATES_TREASURE(() -> {
+        Branch questBranch = new PiratesTreasure();
+        questBranch.addLeafs(
+                new WithdrawFromBankPiratesTreasureLeaf(),
+                new TalkToRedbeardFrankLeaf(),
+                new RetrieveSpadePiratesTreasureLeaf(),
+                new RetrievePiratesTreasureCoinsLeaf(),
+                new SmuggleRumBranch().addLeafs(
+                        new PauseForCutsceneLeaf(),
+                        new SeeCrateSentLeaf(),
+                        new SeeFullBananasCrateLeaf(),
+                        new SeeRumNoBananasLeaf(),
+                        new SeeStashedRumLeaf(),
+                        new RetrieveSmuggledRumLeaf(),
+                        new EnterStoreBackhouseLeaf(),
+                        new LeaveKaramjaLeaf(),
+                        new RetrieveWhiteApronLeaf(),
+                        new TalkToLuthasLeaf(),
+                        new FillCrateWithBananasLeaf(),
+                        new StashRumLeaf(),
+                        new RetrieveRumLeaf(),
+                        new RetrieveBananaLeaf()
+                ),
+                new RetrievePiratesMessageLeaf(),
+                new DigGardenLeaf()
+        );
+        return questBranch;
+    }),
 
-    VAMPYRE_SLAYER(
-            new VampyreSlayer().addLeafs(
-                    new RemoveDraynorJailNodesLeaf(),
-                    new RetrieveCoinsLeaf(),
-                    new RetrieveGarlicLeaf(),
-                    new RetrieveHammerLeaf(),
-                    new TalkToBartenderLeaf(),
-                    new TalkToDrHarlowLeaf(),
-                    new TalkToMorganLeaf(),
-                    new FightCountDraynor()
-            )),
+    RESTLESS_GHOST(() -> {
+        Branch questBranch = new TheRestlessGhost();
+        questBranch.addLeafs(
+                new RemoveDraynorJailNodesLeaf(),
+                new RetrieveGhostHeadLeaf(),
+                new TalkToFatherAereckLeaf(),
+                new TalkToFatherUrhneyLeaf(),
+                new TalkToGhostLeaf(),
+                new ReturnSkullToGhostLeaf()
+        );
+        return questBranch;
+    }),
+    RUNE_MYSTERIES(() -> {
+        Branch questBranch = new RuneMysteries();
+        questBranch.addLeafs(
+                new RemoveDraynorJailNodesLeaf(),
+                new TalkToLumbridgeDukeLeaf(),
+                new TalkToAuburyLeaf(),
+                new TalkToArchmageLeaf()
+        );
+        return questBranch;
+    }),
 
-    X_MARKS_THE_SPOT(
-            new XMarksTheSpot().addLeafs(
-                    new RetrieveSpadeXMarksTheSpotLeaf(),
-                    new TalkToVeosLumbridgeLeaf(),
-                    new TalkToVeosSarimLeaf(),
-                    new ClueStepOneLeaf(),
-                    new ClueStepTwoLeaf(),
-                    new ClueStepThreeLeaf(),
-                    new ClueStepFourLeaf()
-            )),
+    VAMPYRE_SLAYER(() -> {
+        Branch questBranch = new VampyreSlayer();
+        questBranch.addLeafs(
+                new RemoveDraynorJailNodesLeaf(),
+                new RetrieveCoinsLeaf(),
+                new RetrieveGarlicLeaf(),
+                new RetrieveHammerLeaf(),
+                new TalkToBartenderLeaf(),
+                new TalkToDrHarlowLeaf(),
+                new TalkToMorganLeaf(),
+                new FightCountDraynor()
+        );
+        return questBranch;
+    }),
+    SHEEP_SHEARER(() -> {
+        Branch questBranch = new SheepShearer();
+        questBranch.addLeafs(
+                new CollectWoolLeaf(),
+                new SpinWoolLeaf(),
+                new TalkToFredLeaf()
+        );
+        return questBranch;
+    }),
 
-    WITCHS_POTION(
-            new WitchsPotion().addLeafs(
-                    new EnableRunDuringCombatLeaf(),
-                    new TalkToWitchLeaf(),
-                    new RetrieveRatsTail(),
-                    new RetrieveOnion(),
-                    new RetrieveEyeOfNewt(),
-                    new RetrieveBurntMeat(),
-                    new DrinkFromCauldronLeaf()
-            )),
+    X_MARKS_THE_SPOT(() -> {
+        Branch questBranch = new XMarksTheSpot();
+        questBranch.addLeafs(new RetrieveSpadeXMarksTheSpotLeaf(),
+                new TalkToVeosLumbridgeLeaf(),
+                new TalkToVeosSarimLeaf(),
+                new ClueStepOneLeaf(),
+                new ClueStepTwoLeaf(),
+                new ClueStepThreeLeaf(),
+                new ClueStepFourLeaf()
+        );
+        return questBranch;
+    }),
 
-    ROMEO_AND_JULIET(
-            new RomeoAndJuliet().addLeafs(
-                    new TalkToRomeoLeaf(),
-                    new TalkToJulietLeaf(),
-                    new TalkToFatherLawrenceLeaf(),
-                    new TalkToApothecary()
-            )),
+    WITCHS_POTION(() -> {
+        Branch questBranch = new WitchsPotion();
+        questBranch.addLeafs(new RetrieveSpadeXMarksTheSpotLeaf(),
+                new EngageBoosterThrusters(),
+                new TalkToWitchLeaf(),
+                new RetrieveRatsTail(),
+                new RetrieveOnion(),
+                new RetrieveEyeOfNewt(),
+                new RetrieveBurntMeat(),
+                new DrinkFromCauldronLeaf()
+        );
+        return questBranch;
+    });
 
-    DEMON_SLAYER(
-            new DemonSlayer().addLeafs(
-                    new RetrieveDemonSlayerCoinsLeaf(),
-                    new TalkToArisLeaf(),
-                    new TalkToSirPrysinLeaf(),
-                    new TalkToCaptainRovinLeaf(),
-                    new RetrieveBucketLeaf(),
-                    new FillBucketLeaf(),
-                    new PourWaterIntoDrainLeaf(),
-                    new RetrieveSecondKeyLeaf(),
-                    new KillGoblinsLeaf(),
-                    new TalkToWizardTraibornLeaf(),
-                    new KillDelrithLeaf()
-            ));
+    private final Supplier<Branch> questBranchSupplier;
 
-    private final Branch questBranch;
-
-    QuestBranch(Branch questBranch) {
-        this.questBranch = questBranch;
+    QuestBranch(Supplier<Branch> questBranchSupplier) {
+        this.questBranchSupplier = questBranchSupplier;
     }
 
     public Branch getQuestBranch() {
-        return questBranch;
+        return questBranchSupplier.get();
     }
 }
 

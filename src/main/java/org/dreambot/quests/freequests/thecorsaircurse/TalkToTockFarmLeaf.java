@@ -7,9 +7,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.QuestVarBits;
 
 public class TalkToTockFarmLeaf extends Leaf {
-    private final Area CAPTAIN_TOCK_AREA = new Area(3028, 3275, 3033, 3270, 0);
-    private final String[] DIALOGUE_OPTIONS = {"What kind of help do you need?","Sure, I'll try to help with your curse.","Yes."};
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarBits.QUEST_THE_CORSAIR_CURSE.getId()) == 0 ||
@@ -17,6 +14,11 @@ public class TalkToTockFarmLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.goAndTalkToNpc(CAPTAIN_TOCK_AREA, "Captain Tock", DIALOGUE_OPTIONS); }
-
+    public int onLoop() {
+        return QuestHelper.goAndTalkToNpc(
+                new Area(3028, 3275, 3033, 3270, 0),
+                "Captain Tock",
+                new String[]{"What kind of help do you need?","Sure, I'll try to help with your curse.","Yes."}
+        );
+    }
 }

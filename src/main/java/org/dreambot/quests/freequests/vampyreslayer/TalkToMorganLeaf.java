@@ -8,8 +8,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToMorganLeaf extends Leaf {
 
-    private final Area MORGAN_AREA = new Area(3096, 3270, 3102, 3266);
-    private final String[] DIALOGUE_OPTIONS = {"Yes."};
 
     @Override
     public boolean isValid() {
@@ -17,5 +15,10 @@ public class TalkToMorganLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS); }
+    public int onLoop() {
+        final Area MORGAN_AREA = new Area(3096, 3270, 3102, 3266);
+        final String[] DIALOGUE_OPTIONS = {"Yes."};
+
+        return QuestHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
+    }
 }

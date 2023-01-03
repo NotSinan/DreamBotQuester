@@ -8,8 +8,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class GiveBeadsLeaf extends Leaf {
 
-    private final Area MIZGOG_AREA = new Area(3099, 3166, 3107, 3159, 2);
-    private final String[] DIALOGUE_OPTIONS = {"Give me a quest please.", "Yes."};
 
     @Override
     public boolean isValid() {
@@ -19,6 +17,8 @@ public class GiveBeadsLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area MIZGOG_AREA = new Area(3099, 3166, 3107, 3159, 2);
+        final String[] DIALOGUE_OPTIONS = {"Give me a quest please.", "Yes."};
         return QuestHelper.goAndTalkToNpc(MIZGOG_AREA, "Wizard Mizgog", DIALOGUE_OPTIONS);
     }
 }

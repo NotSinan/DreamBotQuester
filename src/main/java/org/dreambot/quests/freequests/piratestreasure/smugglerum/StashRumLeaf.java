@@ -14,13 +14,6 @@ import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
 
 public class StashRumLeaf extends Leaf {
-    private final Area CRATE_AREA = new Area(
-            new Tile(2936, 3151, 0),
-            new Tile(2936, 3149, 0),
-            new Tile(2945, 3149, 0),
-            new Tile(2945, 3156, 0),
-            new Tile(2942, 3156, 0),
-            new Tile(2942, 3152, 0));
     @Override
     public boolean isValid() {
         return !SmuggleState.stashedRum && Inventory.contains("Karamjan rum") && SmuggleState.isOnKaramja();
@@ -29,21 +22,29 @@ public class StashRumLeaf extends Leaf {
     @Override
     public int onLoop() {
 
-        if(Dialogues.canContinue()) {
+        if (Dialogues.canContinue()) {
             String dialog = QuestHelper.getDialogue();
-            if(dialog != null && dialog.contains("You stash the rum in the crate")) {
+            if (dialog != null && dialog.contains("You stash the rum in the crate")) {
                 SmuggleState.stashedRum = true;
             }
-            if(Dialogues.continueDialogue())
+            if (Dialogues.continueDialogue())
                 return Timing.loopReturn();
             return Timing.getSleepDelay();
         }
-        if(QuestHelper.walkToArea(CRATE_AREA)) {
-            GameObject crate = GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));
-            Item karamjanRum = Inventory.get("Karamjan rum");
-            if(crate != null && crate.exists() && karamjanRum != null && karamjanRum.isValid() && karamjanRum.useOn(crate)) {
-                Sleep.sleepUntil(() -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
-            }
+        final Area CRATE_AREA = new Area(
+                new Tile(2936, 3151, 0),
+                new Tile(2936, 3149, 0),
+                new Tile(2945, 3149, 0),
+                new Tile(2945, 3156, 0),
+                new Tile(2942, 3156, 0),
+                new Tile(2942, 3152, 0));
+        if (!QuestHelper.walkToArea(CRATE_AREA)) {
+            return Timing.loopReturn();
+        }
+        GameObject crate = GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));
+        Item karamjanRum = Inventory.get("Karamjan rum");
+        if (crate != null && crate.exists() && karamjanRum != null && karamjanRum.isValid() && karamjanRum.useOn(crate)) {
+            Sleep.sleepUntil(() -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
     }

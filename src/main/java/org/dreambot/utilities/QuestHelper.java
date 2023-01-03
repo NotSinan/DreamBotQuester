@@ -12,6 +12,7 @@ import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
@@ -35,7 +36,9 @@ import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.api.wrappers.widgets.WidgetChild;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class QuestHelper {
 
@@ -47,6 +50,24 @@ public class QuestHelper {
         if (walkToArea(area)) {
             GameObject interactableGameObject = GameObjects.closest(g -> g.getName().equals(gameObject) && area.contains(g) && g.hasAction(action));
             if (interactableGameObject != null && Interaction.delayEntityInteract(interactableGameObject, action)) {
+                if(sleepUntilReset == null) {
+                    Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
+                    return Timing.loopReturn();
+                }
+                Sleep.sleepUntil(sleepUntilAfterInteract, sleepUntilReset, timeout, polling);
+            }
+        }
+        return Timing.loopReturn();
+    }
+
+    public static int goAndInteractWithNPC(Area area, String npc, String action, Condition sleepUntilAfterInteract) {
+        return goAndInteractWithNPC(area, npc, action, sleepUntilAfterInteract, null, 0, 0);
+    }
+
+    public static int goAndInteractWithNPC(Area area, String npc, String action, Condition sleepUntilAfterInteract, Condition sleepUntilReset, int timeout, int polling) {
+        if (walkToArea(area)) {
+            NPC interactableNPC = NPCs.closest(g -> g.getName().equals(npc) && area.contains(g) && g.hasAction(action));
+            if (interactableNPC != null && Interaction.delayEntityInteract(interactableNPC, action)) {
                 if(sleepUntilReset == null) {
                     Sleep.sleepUntil(sleepUntilAfterInteract, () -> Players.getLocal().isMoving(), 3000, 100);
                     return Timing.loopReturn();
@@ -175,7 +196,7 @@ public class QuestHelper {
         }
 
         Tile interactableTile = null;
-        GroundItem groundItem = GroundItems.closest(x -> x != null && x.exists() && x.getTile().equals(tile) && x.getName().equals(name));
+        GroundItem groundItem = GroundItems.closest(x -> x.getTile().equals(tile) && x.getName().contains(name));
         if(groundItem != null) {
             if(groundItem.canReach()) interactableTile = groundItem.getTile();
             else {
@@ -190,7 +211,25 @@ public class QuestHelper {
                     }
                 }
             }
-            if(interactableTile != null && interactableTile.canReach() && Interaction.delayEntityInteract(groundItem, "Take")) {
+            if(interactableTile != null && Interaction.delayEntityInteract(groundItem, "Take")) {
+                int count = Inventory.count(name);
+                Sleep.sleepUntil(() -> Inventory.count(name) > count, () -> Players.getLocal().isMoving(), 3000, 100);
+                return Timing.loopReturn();
+            }
+        }
+
+        //check for fake GroundItem being actually a goddamn GameObject with <col=ff9040>Item Name</col> tag
+        GameObject fakeGroundItem = GameObjects.closest(x -> x.getTile().equals(tile) && x.getName().contains(name));
+        if(fakeGroundItem != null && fakeGroundItem.canReach()) {
+            Tile target = fakeGroundItem.getInteractableFrom().stream()
+                    .filter(x -> x != null && x.distance(fakeGroundItem.getTile()) <= 1)
+                    .min(Comparator.comparingDouble(Tile::distance))
+                    .orElse(null);
+            if(target != null) {
+                interactableTile = target;
+            }
+
+            if(interactableTile != null && Interaction.delayEntityInteract(fakeGroundItem, "Take")) {
                 int count = Inventory.count(name);
                 Sleep.sleepUntil(() -> Inventory.count(name) > count, () -> Players.getLocal().isMoving(), 3000, 100);
                 return Timing.loopReturn();
@@ -216,11 +255,32 @@ public class QuestHelper {
     public static boolean walkToArea(Area area) {
         if(area.contains(Players.getLocal())) return true;
         if(Walking.shouldWalk(6)) {
-            Interaction.delayWalk(area.getRandomTile());
+            Tile randTile = getWalkableTileInArea(area, 50);
+            if (randTile == null) {
+                Logger.log("Defined area returned null tile on API call Map.getWalkable(area.getRandomTile())");
+                return false;
+            }
+            Interaction.delayWalk(randTile);
         }
         return false;
     }
+    private static Tile getWalkableTileInArea(Area area, int tries) {
 
+        Tile t = Map.getWalkable(area.getRandomTile());
+        if (t == null) {
+            return null;
+        }
+
+        if (tries <= 0) {
+            return t;
+        }
+
+        if (!area.contains(t))  {
+            t = getWalkableTileInArea(area, --tries);
+        }
+
+        return t;
+    }
     public static boolean walkToTile(Tile tile) {
         if (tile.equals(Players.getLocal().getTile())) return true;
         if(Walking.shouldWalk(6)) {
@@ -283,20 +343,6 @@ public class QuestHelper {
         }
         Logger.log("Worldhop timeout! Did not hop from world: " + initWorld + " in 60s...");
         return false;
-    }
-
-    public static void addEntranceWebNodePair(Tile outsideTile, String outsideName, String outsideAction, Condition isOutsideEntranceValidCondition,
-                                              Tile insideTile, String insideName, String insideAction, Condition isInsideEntranceValidCondition) {
-
-        AbstractWebNode outsideNode = WebFinder.getWebFinder().getNearest(outsideTile, 10);
-        AbstractWebNode insideNode = WebFinder.getWebFinder().getNearest(insideTile, 10);
-        EntranceWebNode outsideToInside = new EntranceWebNode(outsideTile.getX(), outsideTile.getY(), outsideTile.getZ());
-        EntranceWebNode insideToOutside = new EntranceWebNode(insideTile.getX(), insideTile.getY(), insideTile.getZ());
-
-        CustomWebPath outsideToInsidePath = new CustomWebPath( false, outsideToInside, insideToOutside);
-        outsideToInsidePath.connectToStart(WebFinder.getWebFinder().getId(outsideNode));
-        outsideToInsidePath.connectToEnd(WebFinder.getWebFinder().getId(insideNode));
-        WebFinder.getWebFinder().addCustomWebPath(outsideToInsidePath);
     }
 
 }

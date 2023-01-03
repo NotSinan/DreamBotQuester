@@ -12,8 +12,6 @@ import org.dreambot.utilities.Timing;
 
 public class ClueStepThreeLeaf extends Leaf {
 
-    private final Area CLUE_THREE_AREA = new Area(3109, 3263, 3109, 3263);
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(QuestVarBits.QUEST_X_MARKS_THE_SPOT.getId()) == 4 && Inventory.contains("Mysterious orb");
@@ -21,7 +19,7 @@ public class ClueStepThreeLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-
+        final Area CLUE_THREE_AREA = new Area(3109, 3263, 3109, 3263);
         if (!QuestHelper.walkToArea(CLUE_THREE_AREA)) {
             return Timing.loopReturn();
         }

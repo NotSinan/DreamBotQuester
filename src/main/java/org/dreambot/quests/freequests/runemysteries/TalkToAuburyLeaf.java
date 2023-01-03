@@ -9,9 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToAuburyLeaf extends Leaf {
 
-    private final Area AUBURY_AREA = new Area(3250, 3402, 3255, 3400);
-    private final String AUBURY_NAME = "Aubury";
-    private final String[] DIALOGUE_OPTIONS = {"I've been sent here with a package for you."};
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_RUNE_MYSTERIES.getId()) == 3 && Inventory.contains("Research package") ||
@@ -20,5 +17,10 @@ public class TalkToAuburyLeaf extends Leaf {
     }
 
     @Override
-    public int onLoop() { return QuestHelper.goAndTalkToNpc(AUBURY_AREA, AUBURY_NAME, DIALOGUE_OPTIONS); }
+    public int onLoop() {
+        final Area AUBURY_AREA = new Area(3250, 3402, 3255, 3400);
+        final String AUBURY_NAME = "Aubury";
+        final String[] DIALOGUE_OPTIONS = {"I've been sent here with a package for you."};
+        return QuestHelper.goAndTalkToNpc(AUBURY_AREA, AUBURY_NAME, DIALOGUE_OPTIONS);
+    }
 }

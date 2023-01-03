@@ -15,18 +15,17 @@ public class SmuggleState {
     public static boolean crateSent = false;
     public static boolean atStart = true;
 
-
-    private static final Area karamjaZone1 = new Area(2688, 3235, 2903, 2879);
-    private static final Area karamjaZone2 = new Area(2903, 2879, 2964, 3187);
-    private static final Area karamjaBoat = new Area(2964, 3138, 2951, 3144, 1);
-
-
     public static boolean haveShippedRum() {
         return crateSent && stashedRum;
     }
 
     public static boolean isOnKaramja() {
-        return karamjaZone1.contains(Players.getLocal()) || karamjaZone2.contains(Players.getLocal()) || karamjaBoat.contains(Players.getLocal());
+        final Area karamjaZone1 = new Area(2688, 3235, 2903, 2879);
+        final Area karamjaZone2 = new Area(2903, 2879, 2964, 3187);
+        final Area karamjaBoat = new Area(2964, 3138, 2951, 3144, 1);
+        return karamjaZone1.contains(Players.getLocal()) ||
+                karamjaZone2.contains(Players.getLocal()) ||
+                karamjaBoat.contains(Players.getLocal());
     }
 
     public static boolean hasRumOffKaramja() {

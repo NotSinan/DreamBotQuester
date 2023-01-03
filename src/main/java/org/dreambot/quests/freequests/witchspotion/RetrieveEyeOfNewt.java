@@ -6,7 +6,6 @@ import org.dreambot.api.methods.interactive.NPCs;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.worldhopper.WorldHopper;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
@@ -14,7 +13,7 @@ import org.dreambot.utilities.QuestVarPlayer;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveEyeOfNewt extends Leaf {
-    private final Area PORT_SARIM_MAGE_SHOP_AREA = new Area(3011, 3261, 3016, 3256, 0);
+
 
     @Override
     public boolean isValid() {
@@ -23,15 +22,16 @@ public class RetrieveEyeOfNewt extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area PORT_SARIM_MAGE_SHOP_AREA = new Area(3011, 3261, 3016, 3256, 0);
         if (Inventory.count("Coins") < 3) {
             return QuestHelper.withdrawFromBank("Coins", 5);
         }
 
         //highwayman aggressivity check
-        if(Players.getLocal().getLevel() <= 10) {
+        if (Players.getLocal().getLevel() <= 10) {
             NPC highwayManInsideShop = NPCs.closest(n -> n.getName().equals("Highwayman") && PORT_SARIM_MAGE_SHOP_AREA.contains(n));
-            if(highwayManInsideShop != null && highwayManInsideShop.exists()) {
-                if(Players.getLocal().isInCombat()) {
+            if (highwayManInsideShop != null && highwayManInsideShop.exists()) {
+                if (Players.getLocal().isInCombat()) {
                     Timing.sleepForDelay();
                     Bank.open();
                     return Timing.loopReturn();

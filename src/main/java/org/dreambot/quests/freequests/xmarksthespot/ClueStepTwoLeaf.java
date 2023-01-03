@@ -12,7 +12,6 @@ import org.dreambot.utilities.Timing;
 
 public class ClueStepTwoLeaf extends Leaf {
 
-    public final Area CLUE_TWO_AREA = new Area(3203, 3213, 3203, 3213);
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(QuestVarBits.QUEST_X_MARKS_THE_SPOT.getId()) == 3 && Inventory.contains("Treasure scroll");
@@ -20,6 +19,8 @@ public class ClueStepTwoLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+        final Area CLUE_TWO_AREA = new Area(3203, 3213, 3203, 3213);
+
         if (!QuestHelper.walkToArea(CLUE_TWO_AREA)) {
             return Timing.loopReturn();
         }

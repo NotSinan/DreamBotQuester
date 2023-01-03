@@ -7,12 +7,15 @@ import org.dreambot.utilities.Timing;
 public class SeeAllFinishedMessage extends Leaf {
 
     @Override
-    public boolean isValid() { return API.lastGameMessage.contains("You are too drunk to be able to read the barcrawl card."); }
+    public boolean isValid() {
+        return API.lastGameMessage.contains("You are too drunk to be able to read the barcrawl card.");
+    }
 
     @Override
     public int onLoop() {
-        CardState.finishedCard = true;
+        AlfredGrimhandsBarcrawl.finishedCard = true;
         API.lastGameMessage = "";
+        API.lastGameMessageTile = null;
         return Timing.loopReturn();
     }
 }

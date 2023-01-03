@@ -9,10 +9,6 @@ import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveIronChainbodyLeaf extends Leaf {
 
-    private final Area HORVIK_AREA = new Area(3227, 3441, 3232, 3433);
-    private final String ITEM_NAME = "Iron chainbody";
-    private final int QUANTITY = 1;
-    private final String NPC_NAME = "Horvik";
     @Override
     public boolean isValid() {
         return PlayerSettings.getConfig(QuestVarPlayer.QUEST_BLACK_KNIGHTS_FORTRESS.getId()) == 0 &&
@@ -22,6 +18,11 @@ public class RetrieveIronChainbodyLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.purchaseFromShop(HORVIK_AREA, ITEM_NAME, QUANTITY, NPC_NAME);
+        final Area HORVIK_AREA = new Area(3227, 3441, 3232, 3433);
+        return QuestHelper.purchaseFromShop(
+                HORVIK_AREA,
+                "Iron chainbody",
+                1,
+                "Horvik");
     }
 }
