@@ -2,10 +2,10 @@ package org.dreambot.quests.freequests.piratestreasure;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class RetrieveSpadePiratesTreasureLeaf extends Leaf {
 
@@ -13,8 +13,8 @@ public class RetrieveSpadePiratesTreasureLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 0 && !Inventory.contains("Spade") ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_PIRATES_TREASURE.getId()) == 3 && !Inventory.contains("Spade");
+        return PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 0 && !Inventory.contains("Spade") ||
+                PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 3 && !Inventory.contains("Spade");
     }
 
     @Override

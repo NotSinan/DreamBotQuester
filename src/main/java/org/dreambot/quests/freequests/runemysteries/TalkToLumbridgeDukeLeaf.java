@@ -2,18 +2,18 @@ package org.dreambot.quests.freequests.runemysteries;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.QuestVarPlayer;
 
 public class TalkToLumbridgeDukeLeaf extends Leaf {
 
 
     @Override
     public boolean isValid() {
-        return PlayerSettings.getConfig(QuestVarPlayer.QUEST_RUNE_MYSTERIES.getId()) == 0 ||
-                PlayerSettings.getConfig(QuestVarPlayer.QUEST_RUNE_MYSTERIES.getId()) == 1 && !Inventory.contains("Air talisman");
+        return PlayerSettings.getConfig(FreeQuest.RUNE_MYSTERIES.getConfigID()) == 0 ||
+                PlayerSettings.getConfig(FreeQuest.RUNE_MYSTERIES.getConfigID()) == 1 && !Inventory.contains("Air talisman");
     }
 
     @Override
