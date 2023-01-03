@@ -16,7 +16,12 @@ import java.util.List;
 
 public class EquipmentLoadout {
     private List<LoadoutItem> items;
-
+    public EquipmentLoadout(LoadoutItem... loadoutItems) {
+        this.items = new ArrayList<>();
+        for (LoadoutItem i : loadoutItems) {
+            this.items.add(i);
+        }
+    }
 
     public void addItem(LoadoutItem loadoutItem) {
         items.add(loadoutItem);
@@ -27,6 +32,7 @@ public class EquipmentLoadout {
         List<LoadoutItem> equipmentItems = new ArrayList<>();
 
         for (Item i : Equipment.all()) {
+            if (i == null || !i.isValid()) continue;
             equipmentItems.add(new LoadoutItem(i.getName(), i.getAmount()));
         }
 
@@ -47,7 +53,7 @@ public class EquipmentLoadout {
     }
 
     public boolean fulfilledExact() {
-        //check extranneous items
+        //check extranneous items2
         List<LoadoutItem> extraEquipmentItems = getExtraItems();
         if (!extraEquipmentItems.isEmpty()) {
             return false;

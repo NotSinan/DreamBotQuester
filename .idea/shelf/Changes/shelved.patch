@@ -1,0 +1,65 @@
+Index: src/main/java/org/dreambot/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.dreambot;\r\n\r\nimport org.dreambot.api.script.AbstractScript;\r\nimport org.dreambot.api.script.Category;\r\nimport org.dreambot.api.script.ScriptManifest;\r\nimport org.dreambot.api.script.listener.ChatListener;\r\nimport org.dreambot.api.wrappers.widgets.message.Message;\r\nimport org.dreambot.framework.Tree;\r\nimport org.dreambot.framework.fallback.FallbackLeaf;\r\nimport org.dreambot.framework.timeout.TimeoutLeaf;\r\nimport org.dreambot.paint.CustomPaint;\r\nimport org.dreambot.paint.PaintInfo;\r\nimport org.dreambot.quests.thecorsaircurse.WalkGangplankTest;\r\nimport org.dreambot.utilities.API;\r\nimport org.dreambot.utilities.Timing;\r\n\r\nimport java.awt.*;\r\n\r\n@ScriptManifest(author = \"Sinan x 420\", name = \"DreamBotQuester\", version = 1.0, category = Category.QUEST)\r\npublic class Main extends AbstractScript implements PaintInfo, ChatListener {\r\n\r\n    private final Tree tree = new Tree();\r\n\r\n    private final CustomPaint CUSTOM_PAINT = new CustomPaint(this,\r\n            CustomPaint.PaintLocations.BOTTOM_LEFT_PLAY_SCREEN, new Color[]{new Color(255, 251, 255)},\r\n            \"Trebuchet MS\",\r\n            new Color[]{new Color(50, 50, 50, 175)},\r\n            new Color[]{new Color(28, 28, 29)},\r\n            1, false, 5, 3, 0);\r\n    private final RenderingHints aa = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);\r\n\r\n    // Our onStart that supports arguments\r\n    @Override\r\n    public void onStart(String... args) {\r\n        instantiateTree();\r\n    }\r\n\r\n    @Override\r\n    public void onStart() {\r\n        instantiateTree();\r\n    }\r\n\r\n    @Override\r\n    public void onExit() {\r\n        Timing.tickTimeout = 0;\r\n        Timing.sleepLength = 0;\r\n    }\r\n\r\n    private void instantiateTree() {\r\n        tree.addBranches(\r\n                new TimeoutLeaf(),\r\n                new WalkGangplankTest(),\r\n //             new BankOnceLeaf(),\r\n\r\n\r\n                new FallbackLeaf()\r\n        );\r\n    }\r\n\r\n    @Override\r\n    public int onLoop() {\r\n        return this.tree.onLoop();\r\n    }\r\n\r\n    @Override\r\n    public String[] getPaintInfo() {\r\n        return new String[]{\r\n                getManifest().name() + \" V\" + getManifest().version(),\r\n                \"Current Branch: \" + API.currentBranch,\r\n                \"Current Leaf: \" + API.currentLeaf,\r\n                \"Tick Timeout: \" + Timing.tickTimeout,\r\n                \"Sleep Delay: \" + Timing.sleepLength + \"ms\"\r\n        };\r\n    }\r\n\r\n    @Override\r\n    public void onPaint(Graphics2D graphics2D) {\r\n        graphics2D.setRenderingHints(aa);\r\n        CUSTOM_PAINT.paint(graphics2D);\r\n    }\r\n\r\n    @Override\r\n    public void onMessage(Message msg) {\r\n        switch(msg.getType()) {\r\n            case TIMEOUT_MESSAGE:\r\n            case GAME:\r\n            case ENGINE:\r\n            case WELCOME:\r\n            case FEEDBACK:\r\n            case BROADCAST:\r\n            case NPC_EXAMINE:\r\n            case ITEM_EXAMINE:\r\n            case OBJECT_EXAMINE:\r\n            {\r\n                API.lastGameMessage = msg.getMessage();\r\n            }\r\n            break;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/dreambot/Main.java b/src/main/java/org/dreambot/Main.java
+--- a/src/main/java/org/dreambot/Main.java	(revision 6deb2e921fda3a233294b70fd1c19aea93e0eea0)
++++ b/src/main/java/org/dreambot/Main.java	(date 1672323853184)
+@@ -10,7 +10,6 @@
+ import org.dreambot.framework.timeout.TimeoutLeaf;
+ import org.dreambot.paint.CustomPaint;
+ import org.dreambot.paint.PaintInfo;
+-import org.dreambot.quests.thecorsaircurse.WalkGangplankTest;
+ import org.dreambot.utilities.API;
+ import org.dreambot.utilities.Timing;
+ 
+Index: src/main/java/org/dreambot/utilities/WebNodesHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/dreambot/utilities/WebNodesHelper.java b/src/main/java/org/dreambot/utilities/WebNodesHelper.java
+new file mode 100644
+--- /dev/null	(date 1672323853173)
++++ b/src/main/java/org/dreambot/utilities/WebNodesHelper.java	(date 1672323853173)
+@@ -0,0 +1,37 @@
++package org.dreambot.utilities;
++
++import org.dreambot.api.methods.interactive.Players;
++import org.dreambot.api.methods.map.Tile;
++import org.dreambot.api.methods.walking.pathfinding.impl.web.WebFinder;
++import org.dreambot.api.methods.walking.web.node.AbstractWebNode;
++import org.dreambot.api.methods.walking.web.node.CustomWebPath;
++import org.dreambot.api.methods.walking.web.node.impl.BasicWebNode;
++import org.dreambot.api.methods.walking.web.node.impl.EntranceWebNode;
++import org.dreambot.api.utilities.impl.Condition;
++
++public class WebNodesHelper {
++
++    public static void addEntranceNodePairs(Tile tile1, String entranceObjectName1, String entranceObjectAction1, Condition entrance1ValidCondition,
++                                            Tile tile2, String entranceObjectName2, String entranceObjectAction2, Condition entrance2ValidCondition) {
++        AbstractWebNode outsideNode = WebFinder.getWebFinder().getNearest(GANGPLANK_1_TILE, 7);
++        AbstractWebNode insideNode = new BasicWebNode(2909, 3231, 1);
++        EntranceWebNode outsideToInside = new EntranceWebNode(2909, 3227, 0);
++        outsideToInside.setAction("Cross");
++        outsideToInside.setEntityName("Gangplank");
++        outsideToInside.setCondition(() -> Players.getLocal().getZ() == 0);
++
++
++        CustomWebPath outsideToInsidePath = new CustomWebPath(false, outsideToInside, insideNode);
++        outsideToInsidePath.connectToStart(WebFinder.getWebFinder().getId(outsideNode));
++        WebFinder.getWebFinder().addCustomWebPath(outsideToInsidePath);
++
++        EntranceWebNode insideToOutside = new EntranceWebNode(2909, 3228, 1);
++        insideToOutside.setAction("Cross");
++        insideToOutside.setEntityName("Gangplank");
++        insideToOutside.setCondition(() -> Players.getLocal().getZ() == 1);
++
++        CustomWebPath insideToOutsidePath = new CustomWebPath(false, insideToOutside, outsideNode);
++        insideToOutsidePath.connectToStart(WebFinder.getWebFinder().getId(insideNode));
++        WebFinder.getWebFinder().addCustomWebPath(insideToOutsidePath);
++    }
++}
