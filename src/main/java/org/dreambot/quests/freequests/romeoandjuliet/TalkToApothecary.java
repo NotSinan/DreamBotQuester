@@ -2,11 +2,9 @@ package org.dreambot.quests.freequests.romeoandjuliet;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
-import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
@@ -31,11 +29,8 @@ public class TalkToApothecary extends Leaf {
             return QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
         }
 
-        if (!CADAVA_BUSH_AREA.contains(Players.getLocal())) {
-            if (Walking.shouldWalk(4)) {
-                Interaction.delayWalk(CADAVA_BUSH_AREA.getRandomTile());
-            }
-            return Timing.loopReturn();
+        if (!QuestHelper.walkToArea(CADAVA_BUSH_AREA)) {
+            return Timing.getSleepDelay();
         }
 
         GameObject cadavaBush = GameObjects.closest("Cadava bush");

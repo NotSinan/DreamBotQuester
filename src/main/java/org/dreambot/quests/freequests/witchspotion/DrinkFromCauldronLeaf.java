@@ -25,7 +25,7 @@ public class DrinkFromCauldronLeaf extends Leaf {
     public int onLoop() {
         final Area WITCH_AREA = new Area(2965, 3208, 2970, 3203, 0);
         if (!QuestHelper.walkToArea(WITCH_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (Dialogues.canContinue()) {

@@ -29,7 +29,7 @@ public class TalkToTessLeaf extends Leaf {
                 return false;
             }
             QuestHelper.walkToTile(LADDER_TILE);
-            Timing.loopReturn();
+            Timing.getSleepDelay();
             return false;
         }
         return true;

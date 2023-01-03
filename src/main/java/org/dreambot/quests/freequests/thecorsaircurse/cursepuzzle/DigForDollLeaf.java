@@ -21,7 +21,7 @@ public class DigForDollLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (!QuestHelper.walkToArea(new Area(2501, 2843, 2510, 2836, 0))) { //doll dig area
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (Dialogues.inDialogue()) {

@@ -37,7 +37,7 @@ public class RetrieveBurntMeat extends Leaf {
         final Area PORT_SARIM_RANGE_AREA = new Area(3015, 3240, 3019, 3236, 0);
         if (!Inventory.contains("Raw beef", "Cooked meat")) {
             if (!QuestHelper.walkToArea(PORT_SARIM_FOOD_SHOP_AREA)) {
-                return Timing.loopReturn();
+                return Timing.getSleepDelay();
             }
             if (!Shop.isOpen()) {
                 NPC wydin = NPCs.closest(n -> n.hasAction("Trade") && n.getName().equals("Wydin") && PORT_SARIM_FOOD_SHOP_AREA.contains(n));
@@ -54,7 +54,7 @@ public class RetrieveBurntMeat extends Leaf {
         }
 
         if (!QuestHelper.walkToArea(PORT_SARIM_RANGE_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
         if (ItemProcessing.isOpen()) {
             if (ItemProcessing.makeAll("Cooked meat")) {

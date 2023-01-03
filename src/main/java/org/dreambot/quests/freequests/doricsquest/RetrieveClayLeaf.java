@@ -24,7 +24,7 @@ public class RetrieveClayLeaf extends Leaf {
     public int onLoop() {
         final Area RIMMINGTON_CLAY_ROCKS_AREA = new Area(2985, 3241, 2988, 3238, 0);
         if (!QuestHelper.walkToArea(RIMMINGTON_CLAY_ROCKS_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject rock = GameObjects.closest(g ->

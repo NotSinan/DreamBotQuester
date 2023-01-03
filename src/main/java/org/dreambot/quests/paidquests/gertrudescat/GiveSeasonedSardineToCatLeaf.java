@@ -26,7 +26,7 @@ public class GiveSeasonedSardineToCatLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (!QuestHelper.walkToArea(new Area(3305, 3513, 3312, 3507, 1))) { //cat area
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         NPC cat = NPCs.closest("Gertrude's cat");

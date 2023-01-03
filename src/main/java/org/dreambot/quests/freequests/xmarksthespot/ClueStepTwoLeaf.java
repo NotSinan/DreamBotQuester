@@ -22,7 +22,7 @@ public class ClueStepTwoLeaf extends Leaf {
         final Area CLUE_TWO_AREA = new Area(3203, 3213, 3203, 3213);
 
         if (!QuestHelper.walkToArea(CLUE_TWO_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         Timing.sleepForDelay();

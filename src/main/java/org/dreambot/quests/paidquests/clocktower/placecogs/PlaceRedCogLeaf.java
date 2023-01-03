@@ -32,7 +32,7 @@ public class PlaceRedCogLeaf extends Leaf {
         }
 
         if (!QuestHelper.walkToArea(new Area(2564, 3245, 2573, 3239, 0))) { // clocktower middle room
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject redSpindle = GameObjects.closest(g -> g.getName().equals("Clock spindle") && g.getTile().equals(new Tile(2568, 3243, 0)));

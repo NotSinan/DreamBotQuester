@@ -29,12 +29,14 @@ public class CollectWoolLeaf extends Leaf {
         if (!Inventory.contains("Shears")) {
             return QuestHelper.pickupGroundSpawn(SHEARS_SPAWN, "Shears");
         }
-        if (QuestHelper.walkToArea(SHEEP_AREA)) {
-            NPC sheep = NPCs.closest(npc -> npc.getName().equals("Sheep") && npc.hasAction("Shear") && npc.getID() != 731);
-            if (sheep != null && Interaction.delayEntityInteract(sheep, "Shear")) {
-                int count = Inventory.count("Wool");
-                Sleep.sleepUntil(() -> Inventory.count("Wool") > count, () -> Players.getLocal().isMoving(), 3000, 100);
-            }
+        if (!QuestHelper.walkToArea(SHEEP_AREA)) {
+            return Timing.getSleepDelay();
+        }
+
+        NPC sheep = NPCs.closest(npc -> npc.getName().equals("Sheep") && npc.hasAction("Shear") && npc.getID() != 731);
+        if (sheep != null && Interaction.delayEntityInteract(sheep, "Shear")) {
+            int count = Inventory.count("Wool");
+            Sleep.sleepUntil(() -> Inventory.count("Wool") > count, () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
     }

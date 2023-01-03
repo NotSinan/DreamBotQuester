@@ -42,7 +42,7 @@ public class FindKittensLeaf extends Leaf {
                         new Tile(3299, 3494, 0)
                 )
         )) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (cratesList == null) {

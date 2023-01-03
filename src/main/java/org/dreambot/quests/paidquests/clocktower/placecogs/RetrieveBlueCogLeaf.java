@@ -67,7 +67,7 @@ public class RetrieveBlueCogLeaf extends Leaf {
         for (Tile tileOnBluePath : PATH_TO_BLUE_COG) {
             if (tileOnBluePath.canReach()) {
                 QuestHelper.walkToTile(tileOnBluePath);
-                return Timing.loopReturn();
+                return Timing.getSleepDelay();
             }
         }
 
