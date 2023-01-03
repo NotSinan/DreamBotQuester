@@ -5,7 +5,6 @@ import org.dreambot.api.data.GameState;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.Shop;
 import org.dreambot.api.methods.container.impl.bank.Bank;
-import org.dreambot.api.methods.container.impl.bank.BankLocation;
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.NPCs;
@@ -14,14 +13,7 @@ import org.dreambot.api.methods.item.GroundItems;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
-import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.impl.Walking;
-import org.dreambot.api.methods.walking.path.impl.LocalPath;
-import org.dreambot.api.methods.walking.pathfinding.impl.web.WebFinder;
-import org.dreambot.api.methods.walking.web.node.AbstractWebNode;
-import org.dreambot.api.methods.walking.web.node.CustomWebPath;
-import org.dreambot.api.methods.walking.web.node.impl.BasicWebNode;
-import org.dreambot.api.methods.walking.web.node.impl.EntranceWebNode;
 import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.methods.world.World;
 import org.dreambot.api.methods.world.Worlds;
@@ -36,9 +28,7 @@ import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.api.wrappers.widgets.WidgetChild;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 public class QuestHelper {
 
@@ -241,10 +231,6 @@ public class QuestHelper {
         }
 
         return Timing.loopReturn();
-    }
-
-    public static boolean inCutscene() {
-        return PlayerSettings.getBitValue(542) == 1 && PlayerSettings.getBitValue(4606) == 1;
     }
 
     /**
