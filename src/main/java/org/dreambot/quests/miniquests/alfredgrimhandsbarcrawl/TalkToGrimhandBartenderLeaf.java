@@ -5,6 +5,7 @@ import org.dreambot.api.methods.quest.book.MiniQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.NPCHelper;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
 
@@ -64,7 +65,7 @@ public class TalkToGrimhandBartenderLeaf extends Leaf {
             return Timing.loopReturn();
         }
         Arrays.stream(Bar.values()).filter(bar -> bar.visited()).findFirst().ifPresent(bar -> {
-            QuestHelper.goAndTalkToNpc(bar.getArea(), bar.getBartender(), new String[]{"I'm doing Alfred Grimhand's barcrawl.", "I'm doing Alfred Grimhands Barcrawl."});
+            NPCHelper.goAndTalkToNpc(bar.getArea(), bar.getBartender(), new String[]{"I'm doing Alfred Grimhand's barcrawl.", "I'm doing Alfred Grimhands Barcrawl."});
         });
         return Timing.loopReturn();
     }

@@ -12,8 +12,8 @@ import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class GiveKittenToFluffsLeaf extends Leaf {
 
@@ -24,7 +24,7 @@ public class GiveKittenToFluffsLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!QuestHelper.walkToArea(new Area(3305, 3513, 3312, 3507, 1))) { //cat area
+        if (!WalkingHelper.walkToArea(new Area(3305, 3513, 3312, 3507, 1))) { //cat area
             return Timing.getSleepDelay();
         }
 

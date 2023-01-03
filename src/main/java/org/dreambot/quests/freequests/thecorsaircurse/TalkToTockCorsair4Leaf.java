@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToTockCorsair4Leaf extends Leaf {
 
@@ -15,7 +15,7 @@ public class TalkToTockCorsair4Leaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2573, 2837, 2583, 2835, 1),
                 "Captain Tock",
                 new String[]{"I've killed Ithoi for poisoning your crew."}

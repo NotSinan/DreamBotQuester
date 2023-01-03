@@ -25,9 +25,12 @@ public class Timing {
     }
 
     public static int loopReturn() {
-        if (tickTimeout <= 0) tickTimeout += getTickDelay();
-        Sleep.sleepTick();
-        return 60;
+        if (tickTimeout <= 0) {
+            tickTimeout += getTickDelay();
+            Sleep.sleepTick();
+        }
+
+        return Calculations.random(25,75);
     }
 
     // Sleep for the set delay and re-calculate it

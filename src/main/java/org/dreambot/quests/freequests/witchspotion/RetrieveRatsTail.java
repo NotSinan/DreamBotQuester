@@ -10,9 +10,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.*;
 
 public class RetrieveRatsTail extends Leaf {
 
@@ -34,7 +32,7 @@ public class RetrieveRatsTail extends Leaf {
                 new Tile(3020, 3182, 0),
                 new Tile(3020, 3187, 0),
                 new Tile(3013, 3188, 0));
-        if (!QuestHelper.walkToArea(PORT_SARIM_RAT_AREA)) {
+        if (!WalkingHelper.walkToArea(PORT_SARIM_RAT_AREA)) {
             return Timing.getSleepDelay();
         }
 
@@ -46,6 +44,6 @@ public class RetrieveRatsTail extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndKillNpc(PORT_SARIM_RAT_AREA, "Rat");
+        return NPCHelper.goAndKillNpc(PORT_SARIM_RAT_AREA, "Rat");
     }
 }

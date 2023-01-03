@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToKaqemeexLeaf extends Leaf {
     @Override
@@ -17,7 +17,7 @@ public class TalkToKaqemeexLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2914, 3490, 2931, 3478), //kaqemeex area
                 "Kaqemeex",
                 new String[]{"I'm in search of a quest.", "Okay, I will try and help.", "Yes."}

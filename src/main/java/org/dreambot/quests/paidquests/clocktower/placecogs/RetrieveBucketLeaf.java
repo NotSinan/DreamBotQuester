@@ -12,6 +12,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class RetrieveBucketLeaf extends Leaf {
 
@@ -35,7 +36,7 @@ public class RetrieveBucketLeaf extends Leaf {
                 new Tile(2617, 3261, 0),
                 new Tile(2617, 3251, 0),
                 new Tile(2608, 3251, 0));
-        if (!QuestHelper.walkToArea(WELL_AREA)) {
+        if (!WalkingHelper.walkToArea(WELL_AREA)) {
             return Timing.getSleepDelay();
         }
 

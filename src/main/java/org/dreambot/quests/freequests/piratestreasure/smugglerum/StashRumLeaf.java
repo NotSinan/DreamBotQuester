@@ -39,7 +39,7 @@ public class StashRumLeaf extends Leaf {
                 new Tile(2945, 3156, 0),
                 new Tile(2942, 3156, 0),
                 new Tile(2942, 3152, 0));
-        if (!QuestHelper.walkToArea(CRATE_AREA)) {
+        if (!WalkingHelper.walkToArea(CRATE_AREA)) {
             return Timing.loopReturn();
         }
         GameObject crate = GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));

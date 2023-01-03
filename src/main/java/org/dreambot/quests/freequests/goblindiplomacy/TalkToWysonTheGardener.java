@@ -23,6 +23,6 @@ public class TalkToWysonTheGardener extends Leaf {
         final Area WYSON_AREA = new Area(3024, 3383, 3029, 3375);
         final String[] DIALOGUE_OPTIONS = {"Yes please, I need woad leaves.", "How about 20 coins?"};
         final String WYSON = "Wyson the gardener";
-        return QuestHelper.goAndTalkToNpc(WYSON_AREA, WYSON, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(WYSON_AREA, WYSON, DIALOGUE_OPTIONS);
     }
 }

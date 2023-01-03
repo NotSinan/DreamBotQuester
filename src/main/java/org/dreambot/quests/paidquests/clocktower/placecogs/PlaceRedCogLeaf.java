@@ -12,6 +12,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class PlaceRedCogLeaf extends Leaf {
     @Override
@@ -31,7 +32,7 @@ public class PlaceRedCogLeaf extends Leaf {
             );
         }
 
-        if (!QuestHelper.walkToArea(new Area(2564, 3245, 2573, 3239, 0))) { // clocktower middle room
+        if (!WalkingHelper.walkToArea(new Area(2564, 3245, 2573, 3239, 0))) { // clocktower middle room
             return Timing.getSleepDelay();
         }
 

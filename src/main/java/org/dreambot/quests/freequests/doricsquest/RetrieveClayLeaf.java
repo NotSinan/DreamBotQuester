@@ -23,7 +23,7 @@ public class RetrieveClayLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area RIMMINGTON_CLAY_ROCKS_AREA = new Area(2985, 3241, 2988, 3238, 0);
-        if (!QuestHelper.walkToArea(RIMMINGTON_CLAY_ROCKS_AREA)) {
+        if (!WalkingHelper.walkToArea(RIMMINGTON_CLAY_ROCKS_AREA)) {
             return Timing.getSleepDelay();
         }
 

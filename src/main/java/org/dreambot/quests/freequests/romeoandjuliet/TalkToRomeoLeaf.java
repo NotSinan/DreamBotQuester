@@ -25,7 +25,7 @@ public class TalkToRomeoLeaf extends Leaf {
         final Area ROMEO_AREA = new Area(3205, 3438, 3223, 3422);
         final String[] DIALOGUE_OPTIONS = {"Yes, I have seen her actually!", "Yes, ok, I'll let her know.", "Yes."};
         if (!Client.isInCutscene()) {
-            return QuestHelper.goAndTalkToNpc(ROMEO_AREA, "Romeo", DIALOGUE_OPTIONS);
+            return NPCHelper.goAndTalkToNpc(ROMEO_AREA, "Romeo", DIALOGUE_OPTIONS);
         }
 
         if (Dialogues.inDialogue()) {

@@ -23,7 +23,7 @@ public class TalkToJulietLeaf extends Leaf {
         if (PlayerSettings.getBitValue(12139) == 0) {
             final Area JULIET_AREA = new Area(3155, 3426, 3161, 3425, 1);
             final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
-            return QuestHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
+            return NPCHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
         }
         if (Dialogues.inDialogue()) {
             if (Dialogues.canContinue()) {

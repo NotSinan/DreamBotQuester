@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToCookLeaf extends Leaf {
 
@@ -22,6 +22,6 @@ public class TalkToCookLeaf extends Leaf {
         final Area COOK_AREA = new Area(3205, 3217, 3212, 3212, 0);
         final String COOK_NAME = "Cook";
         final String[] DIALOGUE_OPTIONS = {"I'll get right on it."};
-        return QuestHelper.goAndTalkToNpc(COOK_AREA, COOK_NAME, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(COOK_AREA, COOK_NAME, DIALOGUE_OPTIONS);
     }
 }

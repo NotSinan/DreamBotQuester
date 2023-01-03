@@ -12,8 +12,8 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +52,7 @@ public class KillDelrithLeaf extends Leaf {
     public int onLoop() {
         Area DELRITH_AREA = new Area(3224, 3373, 3232, 3366);
         if (!DELRITH_AREA.contains(Players.getLocal()) && !Client.isDynamicRegion()) {
-            QuestHelper.walkToArea(DELRITH_AREA);
+            WalkingHelper.walkToArea(DELRITH_AREA);
             return Timing.getSleepDelay();
         }
 

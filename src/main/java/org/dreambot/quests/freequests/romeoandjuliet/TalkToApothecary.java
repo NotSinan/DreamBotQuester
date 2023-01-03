@@ -9,8 +9,9 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class TalkToApothecary extends Leaf {
 
@@ -26,10 +27,10 @@ public class TalkToApothecary extends Leaf {
         final Area CADAVA_BUSH_AREA = new Area(3264, 3374, 3279, 3370);
         final String[] DIALOGUE_OPTIONS = {"Talk about something else.", "Talk about Romeo & Juliet."};
         if (Inventory.contains("Cadava berries")) {
-            return QuestHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
+            return NPCHelper.goAndTalkToNpc(APOTHECARY_AREA, "Apothecary", DIALOGUE_OPTIONS);
         }
 
-        if (!QuestHelper.walkToArea(CADAVA_BUSH_AREA)) {
+        if (!WalkingHelper.walkToArea(CADAVA_BUSH_AREA)) {
             return Timing.getSleepDelay();
         }
 

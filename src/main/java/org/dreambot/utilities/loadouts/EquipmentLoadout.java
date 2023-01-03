@@ -1,19 +1,28 @@
 package org.dreambot.utilities.loadouts;
 
+import org.dreambot.api.methods.container.impl.Inventory;
+import org.dreambot.api.methods.container.impl.bank.Bank;
 import org.dreambot.api.methods.container.impl.equipment.Equipment;
+import org.dreambot.api.script.ScriptManager;
+import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.wrappers.items.Item;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.Timing;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EquipmentLoadout {
-    private LoadoutItem[] items;
+    private List<LoadoutItem> items;
 
-    public EquipmentLoadout(LoadoutItem... items) {
-        this.items = items;
+
+    public void addItem(LoadoutItem loadoutItem) {
+        items.add(loadoutItem);
     }
 
-    public List<LoadoutItem> getExtraItems() {
+    private List<LoadoutItem> getExtraItems() {
         List<LoadoutItem> extraItems = new ArrayList<>();
         List<LoadoutItem> equipmentItems = new ArrayList<>();
 
@@ -34,18 +43,48 @@ public class EquipmentLoadout {
                 extraItems.add(new LoadoutItem(item.getItemName(), extra));
             }
         }
-
         return extraItems;
     }
-/*
-    public void fulfill() {
-        if (!Bank.isOpen()) {
-            return;
+
+    public boolean fulfilledExact() {
+        //check extranneous items
+        List<LoadoutItem> extraEquipmentItems = getExtraItems();
+        if (!extraEquipmentItems.isEmpty()) {
+            return false;
         }
 
-        Instant end = Instant.now().plusSeconds(120);
+        //check missing items
+        for (LoadoutItem item : items) {
+            int currentQuantity = Equipment.count(item.getItemName());
+            int neededQuantity = item.getItemQty() - currentQuantity;
+            if (neededQuantity > 0) {
+                return false;
+            }
+        }
+
+        //exactly fulfilled
+        return true;
+    }
+
+    public boolean fulfill() {
+        //90s to open nearest bank
+        Instant end = Instant.now().plusSeconds(90);
         while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
-            //diff check of LoadoutItems parameter and given Equipment/Inventory before depositing all - fuck you camal
+            if (!Bank.isOpen()) {
+                Timing.sleepForDelay();
+                Bank.open();
+                Timing.sleepForTickDelay();
+                continue;
+            }
+            break;
+        }
+
+
+        //90s to fulfill equipment while in bank
+        end = Instant.now().plusSeconds(90);
+        while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
+            //diff check of LoadoutItems parameter and given Equipment before depositing all - fuck you camal
+            //step 1: empty equipment
             List<LoadoutItem> extraEquipmentItems = getExtraItems();
             if (!extraEquipmentItems.isEmpty()) {
                 Timing.sleepForDelay();
@@ -55,46 +94,37 @@ public class EquipmentLoadout {
                 }
                 continue;
             }
-            List<LoadoutItem> extraInventoryItems = new InventoryLoadout(items).getExtraItems();
-            if (!extraInventoryItems.isEmpty()) {
-                Timing.sleepForDelay();
-                if (Bank.depositAllItems()) {
-                    extraInventoryItems.stream().forEach(i -> Logger.log("found extra Inventory item: " + i.getItemName() + " in qty: " + i.getItemQty()));
-                    Timing.sleepForTickDelay();
-                }
-                continue;
+            //step 2: withdraw equipment as inventory loadout
+            InventoryLoadout loadoutUnnoted = new InventoryLoadout();
+            for (LoadoutItem loadoutItem : items) {
+                loadoutUnnoted.addItem(new LoadoutItem(loadoutItem.getItemName(), loadoutItem.getItemQty()));
             }
-
-            for (LoadoutItem item : items) {
-                int currentEquipmentQuantity = Equipment.count(item.getItemName());
-                int neededEquipmentQuantity = item.getItemQty() - currentEquipmentQuantity;
-                if (neededEquipmentQuantity > 0) {
-                    // Equip from inventory if have any
-                    int currentInventoryQuantity = Inventory.count(item.getItemName());
-
-                    Timing.sleepForDelay();
-                    if (Bank.withdraw(item.getItemName(), neededQuantity) &&
-                            !Sleep.sleepUntil(() -> Equipment.count(item.getItemName()) == item.getItemQty(), 4000, 100)) {
-                        break;
+            if(loadoutUnnoted.fulfill()) {
+                //step 3: wear equipment
+                boolean wearingAllEquipment = true;
+                while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
+                    for (LoadoutItem item : items) {
+                        Item invyItem = Inventory.get(item.getItemName());
+                        if (invyItem == null || !invyItem.isValid()) {
+                            continue;
+                        }
+                        String[] actions = new String[]{"Wear","Wield","Equip"};
+                        String action = Arrays.stream(invyItem.getActions())
+                                .filter(a -> Arrays.stream(actions).anyMatch(i -> i.equals(a)))
+                                .findFirst().orElse(null);
+                        if (action != null && Interaction.delayInventoryInteract(invyItem.getName(), action)) {
+                            wearingAllEquipment = false;
+                            Timing.sleepForDelay();
+                        }
+                    }
+                    if (wearingAllEquipment) {
+                        Logger.log("Have no extra equipment and no equipment missing, equipment fulfilled!");
+                        return true;
                     }
                 }
             }
-
-            for (LoadoutItem item : items) {
-                int currentInvyQuantity = Inventory.count(item.getItemName());
-                int neededInvytQuantity = item.getItemQty() - currentEquipmentQuantity;
-                if (neededEquipmentQuantity > 0) {
-                    // Equip from inventory if have any
-                    int currentInventoryQuantity = Inventory.count(item.getItemName());
-
-                    Timing.sleepForDelay();
-                    if (Bank.withdraw(item.getItemName(), neededQuantity) &&
-                            !Sleep.sleepUntil(() -> Equipment.count(item.getItemName()) == item.getItemQty(), 4000, 100)) {
-                        break;
-                    }
-                }
-            }
-
         }
-    }*/
+        Logger.log("120s timeout for EquipmentLoadout.fulfill() occurred - failed to fulfill equipment");
+        return false;
+    }
 }

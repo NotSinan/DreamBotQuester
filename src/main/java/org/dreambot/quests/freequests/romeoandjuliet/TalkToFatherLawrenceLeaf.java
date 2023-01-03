@@ -18,6 +18,6 @@ public class TalkToFatherLawrenceLeaf extends Leaf {
     public int onLoop() {
         final Area FATHER_LAWRENCE_AREA = new Area(3252, 3488, 3255, 3482);
         final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
-        return QuestHelper.goAndTalkToNpc(FATHER_LAWRENCE_AREA, "Father Lawrence", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(FATHER_LAWRENCE_AREA, "Father Lawrence", DIALOGUE_OPTIONS);
     }
 }

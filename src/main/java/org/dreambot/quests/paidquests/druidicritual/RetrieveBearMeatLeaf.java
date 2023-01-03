@@ -9,7 +9,7 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class RetrieveBearMeatLeaf extends Leaf {
     @Override
@@ -24,8 +24,9 @@ public class RetrieveBearMeatLeaf extends Leaf {
         if (rawRatMeat != null && Interaction.delayEntityInteract(rawRatMeat, "Take")) {
             Sleep.sleepUntil(() -> Inventory.contains("Raw bear meat"), 3000);
         }
-        return QuestHelper.goAndKillNpc(
+        return NPCHelper.goAndKillNpc(
                 new Area(3070, 3612, 3094, 3597), //bear area
-                "Grizzly bear");
+                "Grizzly bear"
+        );
     }
 }

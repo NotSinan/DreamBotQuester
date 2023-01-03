@@ -13,6 +13,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class RetrieveBucketOfMilkLeaf extends Leaf {
 
@@ -32,7 +33,7 @@ public class RetrieveBucketOfMilkLeaf extends Leaf {
             );
         }
 
-        if (!QuestHelper.walkToArea(new Area(3171, 3322, 3177, 3316, 0))) { //west lumbridge dairy cow area
+        if (!WalkingHelper.walkToArea(new Area(3171, 3322, 3177, 3316, 0))) { //west lumbridge dairy cow area
             return Timing.getSleepDelay();
         }
 

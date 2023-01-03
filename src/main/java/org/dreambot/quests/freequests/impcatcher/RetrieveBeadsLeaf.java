@@ -32,7 +32,7 @@ public class RetrieveBeadsLeaf extends Leaf {
         }
 
         Area IMP_SPAWN_AREA = new Area(2816, 3188, 2840, 3166);
-        if (!QuestHelper.walkToArea(IMP_SPAWN_AREA)) {
+        if (!WalkingHelper.walkToArea(IMP_SPAWN_AREA)) {
             return Timing.getSleepDelay();
         }
 

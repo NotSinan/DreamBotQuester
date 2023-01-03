@@ -29,7 +29,7 @@ public class CollectWoolLeaf extends Leaf {
         if (!Inventory.contains("Shears")) {
             return QuestHelper.pickupGroundSpawn(SHEARS_SPAWN, "Shears");
         }
-        if (!QuestHelper.walkToArea(SHEEP_AREA)) {
+        if (!WalkingHelper.walkToArea(SHEEP_AREA)) {
             return Timing.getSleepDelay();
         }
 

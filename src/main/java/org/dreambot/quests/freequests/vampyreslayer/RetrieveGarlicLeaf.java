@@ -8,8 +8,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class RetrieveGarlicLeaf extends Leaf {
 
@@ -23,7 +23,7 @@ public class RetrieveGarlicLeaf extends Leaf {
     public int onLoop() {
         final Area GARLIC_AREA = new Area(3096, 3270, 3102, 3266, 1);
 
-        if (!QuestHelper.walkToArea(GARLIC_AREA)) {
+        if (!WalkingHelper.walkToArea(GARLIC_AREA)) {
             return Timing.getSleepDelay();
         }
 

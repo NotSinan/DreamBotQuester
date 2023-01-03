@@ -5,7 +5,7 @@ import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.quests.paidquests.clocktower.placecogs.CogState;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 import java.util.Arrays;
 
@@ -17,7 +17,7 @@ public class TalkToBrotherKojoLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2563, 3255, 2574, 3239), //brother kojo area
                 "Brother Kojo",
                 new String[]{"OK old monk, what can I do?", "Yes."}

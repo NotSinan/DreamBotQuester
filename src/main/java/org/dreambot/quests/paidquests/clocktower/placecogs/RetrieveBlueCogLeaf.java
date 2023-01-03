@@ -13,6 +13,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class RetrieveBlueCogLeaf extends Leaf {
 
@@ -66,7 +67,7 @@ public class RetrieveBlueCogLeaf extends Leaf {
 
         for (Tile tileOnBluePath : PATH_TO_BLUE_COG) {
             if (tileOnBluePath.canReach()) {
-                QuestHelper.walkToTile(tileOnBluePath);
+                WalkingHelper.walkToTile(tileOnBluePath);
                 return Timing.getSleepDelay();
             }
         }

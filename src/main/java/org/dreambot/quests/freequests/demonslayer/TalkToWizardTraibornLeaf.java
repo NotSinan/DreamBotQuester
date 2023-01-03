@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToWizardTraibornLeaf extends Leaf {
 
@@ -27,6 +27,6 @@ public class TalkToWizardTraibornLeaf extends Leaf {
                 "I'll get the bones for you."
         };
         final String WIZARD_TRAIBORN = "Wizard Traiborn";
-        return QuestHelper.goAndTalkToNpc(WIZARD_TRAIBORN_AREA, WIZARD_TRAIBORN, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(WIZARD_TRAIBORN_AREA, WIZARD_TRAIBORN, DIALOGUE_OPTIONS);
     }
 }

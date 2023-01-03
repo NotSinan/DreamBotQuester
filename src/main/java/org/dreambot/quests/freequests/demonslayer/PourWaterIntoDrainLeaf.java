@@ -11,8 +11,8 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class PourWaterIntoDrainLeaf extends Leaf {
 
@@ -28,7 +28,7 @@ public class PourWaterIntoDrainLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area DRAIN_AREA = new Area(3225, 3497, 3227, 3495);
-        if (!QuestHelper.walkToArea(DRAIN_AREA)) {
+        if (!WalkingHelper.walkToArea(DRAIN_AREA)) {
             return Timing.getSleepDelay();
         }
 

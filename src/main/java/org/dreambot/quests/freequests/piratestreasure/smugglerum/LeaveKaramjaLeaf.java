@@ -26,7 +26,7 @@ public class LeaveKaramjaLeaf extends Leaf {
                 new Tile(2949, 3148, 0));
         final String SEAMAN_NAME = "Customs officer";
         final String[] DIALOGUE_OPTIONS = {"Can I journey on this ship?", "Search away, I have nothing to hide.", "Ok."};
-        return QuestHelper.goAndTalkToNpc(SEAMAN_AREA, SEAMAN_NAME, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(SEAMAN_AREA, SEAMAN_NAME, DIALOGUE_OPTIONS);
     }
 }
 

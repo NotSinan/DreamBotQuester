@@ -34,7 +34,7 @@ public class RetrievePiratesMessageLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        if (!QuestHelper.walkToArea(CHEST_AREA)) {
+        if (!WalkingHelper.walkToArea(CHEST_AREA)) {
             return Timing.getSleepDelay();
         }
 

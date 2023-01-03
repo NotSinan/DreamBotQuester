@@ -11,8 +11,8 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class FillBucketLeaf extends Leaf {
 
@@ -28,7 +28,7 @@ public class FillBucketLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area SINK_AREA = new Area(3218, 3497, 3224, 3491);
-        if (!QuestHelper.walkToArea(SINK_AREA)) {
+        if (!WalkingHelper.walkToArea(SINK_AREA)) {
             return Timing.getSleepDelay();
         }
 

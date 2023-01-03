@@ -9,6 +9,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class DigForDollLeaf extends Leaf {
     @Override
@@ -20,7 +21,7 @@ public class DigForDollLeaf extends Leaf {
     }
     @Override
     public int onLoop() {
-        if (!QuestHelper.walkToArea(new Area(2501, 2843, 2510, 2836, 0))) { //doll dig area
+        if (!WalkingHelper.walkToArea(new Area(2501, 2843, 2510, 2836, 0))) { //doll dig area
             return Timing.getSleepDelay();
         }
 

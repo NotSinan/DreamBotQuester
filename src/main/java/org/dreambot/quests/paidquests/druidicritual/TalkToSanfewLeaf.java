@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToSanfewLeaf extends Leaf {
 
@@ -19,7 +19,7 @@ public class TalkToSanfewLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2894, 3431, 2901, 3425, 1), //sanfew area
                 "Sanfew",
                 new String[]{"I've been sent to help purify the Varrock stone circle."});

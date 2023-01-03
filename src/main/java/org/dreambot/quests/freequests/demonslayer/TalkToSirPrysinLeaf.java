@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToSirPrysinLeaf extends Leaf {
 
@@ -26,6 +26,6 @@ public class TalkToSirPrysinLeaf extends Leaf {
                 "Can you give me your key?"
         };
         final String SIR_PRYSIN = "Sir Prysin";
-        return QuestHelper.goAndTalkToNpc(SIR_PRYSIN_AREA, SIR_PRYSIN, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(SIR_PRYSIN_AREA, SIR_PRYSIN, DIALOGUE_OPTIONS);
     }
 }

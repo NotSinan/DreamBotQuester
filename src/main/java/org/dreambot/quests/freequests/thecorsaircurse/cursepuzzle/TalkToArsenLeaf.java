@@ -2,7 +2,7 @@ package org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToArsenLeaf extends Leaf {
 
@@ -18,7 +18,7 @@ public class TalkToArsenLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2553, 2859, 2559, 2853, 1),
                 "Arsen the Thief",
                 new String[]{"I hear you've been cursed."}

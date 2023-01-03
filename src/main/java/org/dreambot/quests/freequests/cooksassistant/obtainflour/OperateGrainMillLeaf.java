@@ -7,6 +7,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class OperateGrainMillLeaf extends Leaf {
 
@@ -40,7 +41,7 @@ public class OperateGrainMillLeaf extends Leaf {
         }
 
         final Area GRAIN_TOWER_LVL3_AREA = new Area(3164, 3309, 3169, 3304, 2);
-        if (!QuestHelper.walkToArea(GRAIN_TOWER_LVL3_AREA)) {
+        if (!WalkingHelper.walkToArea(GRAIN_TOWER_LVL3_AREA)) {
             return Timing.getSleepDelay();
         }
 

@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToMorganLeaf extends Leaf {
 
@@ -19,6 +19,6 @@ public class TalkToMorganLeaf extends Leaf {
         final Area MORGAN_AREA = new Area(3096, 3270, 3102, 3266);
         final String[] DIALOGUE_OPTIONS = {"Yes."};
 
-        return QuestHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
     }
 }

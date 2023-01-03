@@ -9,7 +9,7 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 import org.dreambot.utilities.Timing;
 
 public class KillGoblinsLeaf extends Leaf {
@@ -33,6 +33,6 @@ public class KillGoblinsLeaf extends Leaf {
             }
             return Timing.loopReturn();
         }
-        return QuestHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
+        return NPCHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
     }
 }

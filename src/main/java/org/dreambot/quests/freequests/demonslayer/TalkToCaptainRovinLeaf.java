@@ -6,7 +6,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToCaptainRovinLeaf extends Leaf {
 
@@ -40,6 +40,6 @@ public class TalkToCaptainRovinLeaf extends Leaf {
                 "Why did he give you one of the keys then?"
         };
         final String CAPTAIN_ROVIN = "Captain Rovin";
-        return QuestHelper.goAndTalkToNpc(CAPTAIN_ROVIN_AREA, CAPTAIN_ROVIN, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(CAPTAIN_ROVIN_AREA, CAPTAIN_ROVIN, DIALOGUE_OPTIONS);
     }
 }

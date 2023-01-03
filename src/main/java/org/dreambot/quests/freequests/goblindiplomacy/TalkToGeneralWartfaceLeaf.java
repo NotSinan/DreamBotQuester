@@ -36,6 +36,6 @@ public class TalkToGeneralWartfaceLeaf extends Leaf {
                 "What about a different colour?",
                 "I have some orange armour here"
         };
-        return QuestHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
     }
 }

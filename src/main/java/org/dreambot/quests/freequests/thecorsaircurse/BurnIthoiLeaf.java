@@ -11,8 +11,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class BurnIthoiLeaf extends Leaf {
     @Override
@@ -22,7 +22,7 @@ public class BurnIthoiLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!QuestHelper.walkToArea(new Area(2527, 2840, 2534, 2833, 0))) { // driftwood area under ithoi's house
+        if (!WalkingHelper.walkToArea(new Area(2527, 2840, 2534, 2833, 0))) { // driftwood area under ithoi's house
             return Timing.getSleepDelay();
         }
 

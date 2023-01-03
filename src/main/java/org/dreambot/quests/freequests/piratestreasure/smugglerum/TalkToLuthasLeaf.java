@@ -35,6 +35,6 @@ public class TalkToLuthasLeaf extends Leaf {
 
         final Area LUTHAS_AREA = new Area(2941, 3152, 2935, 3156, 0);
         final String[] DIALOGUE_OPTIONS = {"Could you offer me employment on your plantation?", "What did I have to do again?"};
-        return QuestHelper.goAndTalkToNpc(LUTHAS_AREA, "Luthas", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(LUTHAS_AREA, "Luthas", DIALOGUE_OPTIONS);
     }
 }

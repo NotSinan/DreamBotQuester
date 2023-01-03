@@ -13,8 +13,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +32,7 @@ public class FindKittensLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!QuestHelper.walkToArea(
+        if (!WalkingHelper.walkToArea(
                 new Area( //kitten search area
                         new Tile(3293, 3512, 0),
                         new Tile(3298, 3517, 0),

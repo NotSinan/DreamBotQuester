@@ -8,7 +8,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class RetrieveRatMeatLeaf extends Leaf {
     @Override
@@ -25,7 +25,7 @@ public class RetrieveRatMeatLeaf extends Leaf {
             Sleep.sleepUntil(() -> Inventory.contains("Raw rat meat"), 3000);
         }
 
-        return QuestHelper.goAndKillNpc(
+        return NPCHelper.goAndKillNpc(
                 new Area(3191, 3211, 3199, 3204), //rat area
                 "Giant rat"
         );
