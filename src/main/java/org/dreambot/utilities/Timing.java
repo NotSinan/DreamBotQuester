@@ -25,7 +25,7 @@ public class Timing {
     }
 
     public static int loopReturn() {
-        tickTimeout += getTickDelay();
+        if (tickTimeout <= 0) tickTimeout += getTickDelay();
         Sleep.sleepTick();
         return 60;
     }

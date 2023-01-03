@@ -89,7 +89,7 @@ public class QuestHelper {
                     }
                     return Timing.loopReturn();
                 }
-                if(walkToTile(npc)) {
+                if (!walkToTile(npc)) {
                     return Timing.getSleepDelay();
                 }
             }
@@ -243,16 +243,12 @@ public class QuestHelper {
      */
     public static boolean walkToArea(Area area) {
         if(area.contains(Players.getLocal())) return true;
-        if(Walking.shouldWalk(6)) {
-            Tile randTile = getWalkableTileInArea(area, 50);
-            if (randTile == null) {
-                Logger.log("Defined area returned null tile on API call Map.getWalkable(area.getRandomTile())");
-                return false;
-            }
-            if (Interaction.delayWalk(randTile)) {
-                Timing.loopReturn();
-            }
+        Tile randTile = getWalkableTileInArea(area, 50);
+        if (randTile == null) {
+            Logger.log("Defined area returned null tile on API call Map.getWalkable(area.getRandomTile())");
+            return false;
         }
+        walkToTile(randTile);
         return false;
     }
     private static Tile getWalkableTileInArea(Area area, int tries) {
@@ -274,39 +270,31 @@ public class QuestHelper {
     }
     public static boolean walkToTile(Tile tile) {
         if (tile.equals(Players.getLocal().getTile())) return true;
-        if(Walking.shouldWalk(6)) {
-            if(Interaction.delayWalk(tile)) {
-                Timing.loopReturn();
-            }
+        if(Walking.shouldWalk(6) && Interaction.delayWalk(tile)) {
+            Timing.loopReturn();
         }
         return false;
     }
     public static boolean walkToTile(int x, int y, int z) {
         Tile t = new Tile(x, y, z);
         if (t.equals(Players.getLocal().getTile())) return true;
-        if(Walking.shouldWalk(6)) {
-            if(Interaction.delayWalk(t)) {
-                Timing.loopReturn();
-            }
+        if(Walking.shouldWalk(6) && Interaction.delayWalk(t)) {
+            Timing.loopReturn();
         }
         return false;
     }
     public static boolean walkToTile(int x, int y) {
         Tile t = new Tile(x, y);
         if (t.equals(Players.getLocal().getTile())) return true;
-        if(Walking.shouldWalk(6)) {
-            if(Interaction.delayWalk(t)) {
-                Timing.loopReturn();
-            }
+        if(Walking.shouldWalk(6) && Interaction.delayWalk(t)) {
+            Timing.loopReturn();
         }
         return false;
     }
     public static boolean walkToTile(Entity entity) {
         if (entity.getTile().equals(Players.getLocal().getTile())) return true;
-        if(Walking.shouldWalk(6)) {
-            if(Interaction.delayWalk(entity)) {
-                Timing.loopReturn();
-            }
+        if(Walking.shouldWalk(6) && Interaction.delayWalk(entity)) {
+            Timing.loopReturn();
         }
         return false;
     }

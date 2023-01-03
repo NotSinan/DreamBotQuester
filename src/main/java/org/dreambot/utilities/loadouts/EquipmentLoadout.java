@@ -45,12 +45,21 @@ public class EquipmentLoadout {
 
         Instant end = Instant.now().plusSeconds(120);
         while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
-            //diff check of LoadoutItems parameter and given Inventory before depositing all - fuck you camal
+            //diff check of LoadoutItems parameter and given Equipment/Inventory before depositing all - fuck you camal
             List<LoadoutItem> extraEquipmentItems = getExtraItems();
             if (!extraEquipmentItems.isEmpty()) {
                 Timing.sleepForDelay();
                 if (Bank.depositAllEquipment()) {
-                    extraEquipmentItems.stream().forEach(i -> Logger.log("found extra item: " + i.getItemName() + " in qty: " + i.getItemQty()));
+                    extraEquipmentItems.stream().forEach(i -> Logger.log("found extra Equipment item: " + i.getItemName() + " in qty: " + i.getItemQty()));
+                    Timing.sleepForTickDelay();
+                }
+                continue;
+            }
+            List<LoadoutItem> extraInventoryItems = new InventoryLoadout(items).getExtraItems();
+            if (!extraInventoryItems.isEmpty()) {
+                Timing.sleepForDelay();
+                if (Bank.depositAllItems()) {
+                    extraInventoryItems.stream().forEach(i -> Logger.log("found extra Inventory item: " + i.getItemName() + " in qty: " + i.getItemQty()));
                     Timing.sleepForTickDelay();
                 }
                 continue;

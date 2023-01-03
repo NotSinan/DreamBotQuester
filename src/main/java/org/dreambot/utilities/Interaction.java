@@ -48,7 +48,7 @@ public class Interaction {
     public static boolean delayWalk(Entity entity) {
         Logger.log("Walking to entity: " + entity.getName() + " at tile: " + entity.getTile().toString());
         Timing.sleepForDelay();
-        return QuestHelper.walkToTile(entity);
+        return Walking.walk(entity);
     }
 
     public static boolean delayUseItemOn(Item item, Entity entity) {
