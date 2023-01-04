@@ -27,8 +27,7 @@ public class KillGoblinsLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227); // Lumbridge goblin area.
-        GroundItem bones = GroundItems.closest(
-                item -> item.getName().equals("Bones") && GOBLIN_AREA.contains(item));
+        GroundItem bones = GroundItems.closest(item -> item.getName().equals("Bones") && GOBLIN_AREA.contains(item));
         if (bones != null) {
             if (Interaction.delayEntityInteract(bones, "Take")) {
                 Sleep.sleep(2000, 3000);
