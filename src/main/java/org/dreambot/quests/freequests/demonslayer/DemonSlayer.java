@@ -10,3 +10,4 @@ public class DemonSlayer extends Branch {
         return CheckRequirements.checkRequirements(FreeQuest.DEMON_SLAYER);
     }
 }
+
