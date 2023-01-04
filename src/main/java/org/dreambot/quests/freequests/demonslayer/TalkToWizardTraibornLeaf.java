@@ -7,9 +7,10 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
 
+/**
+ * This class speaks to gives Wizard Traiborn the 25 bones to retrieve the 3rd key.
+ */
 public class TalkToWizardTraibornLeaf extends Leaf {
-
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
@@ -26,7 +27,6 @@ public class TalkToWizardTraibornLeaf extends Leaf {
                 "Well, have you got any keys knocking around?",
                 "I'll get the bones for you."
         };
-        final String WIZARD_TRAIBORN = "Wizard Traiborn";
-        return QuestHelper.goAndTalkToNpc(WIZARD_TRAIBORN_AREA, WIZARD_TRAIBORN, DIALOGUE_OPTIONS);
+        return QuestHelper.goAndTalkToNpc(WIZARD_TRAIBORN_AREA, "Wizard Traiborn", DIALOGUE_OPTIONS);
     }
 }

@@ -6,6 +6,9 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
 
+/**
+ * This class withdraws 100 coins from the bank.
+ */
 public class RetrieveDemonSlayerCoinsLeaf extends Leaf {
     @Override
     public boolean isValid() {
