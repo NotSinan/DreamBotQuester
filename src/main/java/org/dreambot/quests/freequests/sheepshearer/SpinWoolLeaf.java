@@ -28,22 +28,24 @@ public class SpinWoolLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area SPINNING_WHEEL_AREA = new Area(3213, 3212, 3208, 3217, 1);
-        if (QuestHelper.walkToArea(SPINNING_WHEEL_AREA)) {
-            WidgetChild craftInterface = Widgets.getWidgetChild(270, 14, 38);
-            if (craftInterface != null && craftInterface.isVisible()) {
+        if (!QuestHelper.walkToArea(SPINNING_WHEEL_AREA)) {
+            return Timing.getSleepDelay();
+        }
 
-                if (Interaction.delayWidgetInteract(craftInterface)) {
-                    Sleep.sleepUntil(() -> !Inventory.contains("Wool"), Players.getLocal()::isAnimating, 3000, 100);
-                }
-                return Timing.loopReturn();
+        WidgetChild craftInterface = Widgets.getWidgetChild(270, 14, 38);
+        if (craftInterface != null && craftInterface.isVisible()) {
+            if (Interaction.delayWidgetInteract(craftInterface)) {
+                Sleep.sleepUntil(() -> !Inventory.contains("Wool"), Players.getLocal()::isAnimating, 3000, 100);
             }
-            GameObject spinningWheel = GameObjects.closest(obj -> obj != null && obj.getName().equals("Spinning wheel"));
-            if (spinningWheel != null && spinningWheel.exists() && Interaction.delayEntityInteract(spinningWheel, "Spin")) {
-                Sleep.sleepUntil(() -> {
-                    WidgetChild craftInterfaceTmp = Widgets.getWidgetChild(270, 14, 38);
-                    return craftInterfaceTmp != null && craftInterfaceTmp.isVisible();
-                }, 3000);
-            }
+            return Timing.loopReturn();
+        }
+
+        GameObject spinningWheel = GameObjects.closest(obj -> obj != null && obj.getName().equals("Spinning wheel"));
+        if (spinningWheel != null && spinningWheel.exists() && Interaction.delayEntityInteract(spinningWheel, "Spin")) {
+            Sleep.sleepUntil(() -> {
+                WidgetChild craftInterfaceTmp = Widgets.getWidgetChild(270, 14, 38);
+                return craftInterfaceTmp != null && craftInterfaceTmp.isVisible();
+            }, 3000);
         }
         return Timing.loopReturn();
     }

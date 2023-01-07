@@ -23,7 +23,7 @@ public class RetrieveOnion extends Leaf {
     public int onLoop() {
         final Area ONION_AREA = new Area(2955, 3254, 2945, 3248, 0);
         if (!QuestHelper.walkToArea(ONION_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject onion = GameObjects.closest("Onion");

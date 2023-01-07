@@ -24,7 +24,7 @@ public class RetrieveGarlicLeaf extends Leaf {
         final Area GARLIC_AREA = new Area(3096, 3270, 3102, 3266, 1);
 
         if (!QuestHelper.walkToArea(GARLIC_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject cupboard = GameObjects.closest("Cupboard");

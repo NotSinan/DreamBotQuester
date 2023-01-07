@@ -33,7 +33,7 @@ public class RetrieveBucketOfMilkLeaf extends Leaf {
         }
 
         if (!QuestHelper.walkToArea(new Area(3171, 3322, 3177, 3316, 0))) { //west lumbridge dairy cow area
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         GameObject dairyCow = GameObjects.closest(g -> g.getName().equals("Dairy cow") && g.hasAction("Milk"));

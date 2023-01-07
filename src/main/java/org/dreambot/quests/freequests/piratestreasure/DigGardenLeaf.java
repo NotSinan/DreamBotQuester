@@ -45,7 +45,7 @@ public class DigGardenLeaf extends Leaf {
         }
 
         if (!QuestHelper.walkToTile(FALADOR_GARDEN_DIG_TILE)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (Inventory.interact("Spade", "Dig")) {

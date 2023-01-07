@@ -5,6 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.Timing;
 
 public class TravelToCorsairCoveLeaf extends Leaf {
 
@@ -75,6 +76,7 @@ public class TravelToCorsairCoveLeaf extends Leaf {
         final Tile CAPTAIN_TOCK_RIMMINGTON_TILE = new Tile(2910, 3226, 0);
         if (CAPTAIN_TOCK_RIMMINGTON_TILE.distance() > 145) {
             QuestHelper.walkToArea(CORSAIR_COVE_GROUND_LEVEL);
+            return Timing.getSleepDelay();
         }
         return QuestHelper.goAndInteractWithNPC(CAPTAIN_TOCK_PORT, "Captain Tock", "Travel", () -> !CAPTAIN_TOCK_PORT.contains(Players.getLocal()));
     }

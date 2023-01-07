@@ -6,7 +6,6 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
-import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
@@ -42,7 +41,8 @@ public class TalkToGertrudeLeaf extends Leaf {
                 Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
                 return Timing.loopReturn();
             } else {
-                Walking.walk(3308, 3492, 0);
+                QuestHelper.walkToTile(3308, 3492, 0);
+                return Timing.getSleepDelay();
             }
         }
 

@@ -34,13 +34,15 @@ public class RetrievePiratesMessageLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        if (QuestHelper.walkToArea(CHEST_AREA)) {
-            GameObject chest = GameObjects.closest(g -> CHEST_AREA.contains(g) && g.getName().equals("Chest"));
-            Item key = Inventory.get("Chest key");
-            if(chest != null && chest.exists() && key != null && key.isValid()) {
-                if(Interaction.delayUseItemOn(key, chest)) {
-                    Sleep.sleepUntil(() -> Inventory.contains("Pirate message"), 8000, 100);
-                }
+        if (!QuestHelper.walkToArea(CHEST_AREA)) {
+            return Timing.getSleepDelay();
+        }
+
+        GameObject chest = GameObjects.closest(g -> CHEST_AREA.contains(g) && g.getName().equals("Chest"));
+        Item key = Inventory.get("Chest key");
+        if(chest != null && chest.exists() && key != null && key.isValid()) {
+            if(Interaction.delayUseItemOn(key, chest)) {
+                Sleep.sleepUntil(() -> Inventory.contains("Pirate message"), 8000, 100);
             }
         }
         return Timing.loopReturn();

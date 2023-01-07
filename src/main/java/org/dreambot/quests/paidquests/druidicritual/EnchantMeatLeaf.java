@@ -33,7 +33,7 @@ public class EnchantMeatLeaf extends Leaf {
 
 
         if (!QuestHelper.walkToArea(CAULDRON_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         if (Inventory.contains("Raw rat meat", "Raw beef", "Raw chicken", "Raw bear meat")) {

@@ -42,12 +42,14 @@ public class FightCountDraynor extends Leaf {
             }
             return Timing.loopReturn();
         }
-        if (QuestHelper.walkToArea(DRAYNOR_STAIRS_TO_COUNT_AREA)) {
-            GameObject stairs = GameObjects.closest(g -> g.hasAction("Walk-Down") && g.getName().equals("Stairs"));
-            if (stairs != null && stairs.exists()) {
-                if (Interaction.delayEntityInteract(stairs, "Walk-Down")) {
-                    Sleep.sleepUntil(() -> COUNT_DRAYNOR_AREA.contains(Players.getLocal()), () -> Players.getLocal().isMoving(), 3000, 100);
-                }
+        if (!QuestHelper.walkToArea(DRAYNOR_STAIRS_TO_COUNT_AREA)) {
+            return Timing.getSleepDelay();
+        }
+
+        GameObject stairs = GameObjects.closest(g -> g.hasAction("Walk-Down") && g.getName().equals("Stairs"));
+        if (stairs != null && stairs.exists()) {
+            if (Interaction.delayEntityInteract(stairs, "Walk-Down")) {
+                Sleep.sleepUntil(() -> COUNT_DRAYNOR_AREA.contains(Players.getLocal()), () -> Players.getLocal().isMoving(), 3000, 100);
             }
         }
         return Timing.loopReturn();

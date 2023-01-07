@@ -23,7 +23,7 @@ public class ClueStepFourLeaf extends Leaf {
         final Area CLUE_FOUR_AREA = new Area(3075, 3261, 3079, 3259);
 
         if (!QuestHelper.walkToArea(CLUE_FOUR_AREA)) {
-            return Timing.loopReturn();
+            return Timing.getSleepDelay();
         }
 
         Timing.sleepForDelay();

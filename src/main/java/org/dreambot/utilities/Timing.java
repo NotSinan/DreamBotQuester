@@ -1,7 +1,6 @@
 package org.dreambot.utilities;
 
 import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.utilities.Sleep;
 
 public class Timing {
@@ -9,8 +8,8 @@ public class Timing {
     public static int tickTimeout = 1;
     public static long sleepLength = 100;
     // Sleep Settings
-    public static int sleepMin = 75;
-    public static int sleepMax = 750;
+    public static int sleepMin = 25;
+    public static int sleepMax = 100;
     public static int sleepDeviation = 20;
     public static int sleepTarget = 140;
     public static boolean sleepWeightedDistribution = true;
@@ -26,7 +25,7 @@ public class Timing {
     }
 
     public static int loopReturn() {
-        tickTimeout += getTickDelay();
+        if (tickTimeout <= 0) tickTimeout += getTickDelay();
         Sleep.sleepTick();
         return 60;
     }
@@ -35,6 +34,11 @@ public class Timing {
     public static void sleepForDelay() {
         Sleep.sleep(sleepLength);
         setSleepDelay();
+    }
+
+    // Calculate new tick delay and sleep for it
+    public static void sleepForTickDelay() {
+        Sleep.sleepTicks(getTickDelay());
     }
 
     // Get a randomized sleep delay
