@@ -29,6 +29,7 @@ public class TalkToArisLeaf extends Leaf {
                 }
             }
         }
+        
         final Area ARIS_AREA = new Area(3200, 3427, 3206, 3421); // This is where Aris can be found (Varrock Square).
         final String[] DIALOGUE_OPTIONS = {
                 "Yes.",
