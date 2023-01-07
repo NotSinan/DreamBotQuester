@@ -13,9 +13,7 @@ public class TalkToGeneralWartfaceLeaf extends Leaf {
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0 &&
-                Inventory.count("Woad leaves") == 2 &&
-                Inventory.count("Onion") == 2 &&
-                Inventory.count("Redberries") == 3;
+                Inventory.containsAll("Blue goblin mail", "Orange goblin mail", "Goblin mail");
     }
 
     @Override
@@ -34,8 +32,11 @@ public class TalkToGeneralWartfaceLeaf extends Leaf {
                 "Yes, Wartface looks fat",
                 "Do you want me to pick an armour colour for you?",
                 "What about a different colour?",
-                "I have some orange armour here"
+                "I have some orange armour here",
+                "No he doesn't look fat",
+                "Yes."
         };
+
         return QuestHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
     }
 }
