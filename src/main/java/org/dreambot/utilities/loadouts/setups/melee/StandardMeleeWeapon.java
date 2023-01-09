@@ -2,7 +2,7 @@ package org.dreambot.utilities.loadouts.setups.melee;
 
 import org.dreambot.api.methods.container.impl.equipment.EquipmentSlot;
 import org.dreambot.api.methods.quest.book.PaidQuest;
-import org.dreambot.utilities.loadouts.setups.EquipmentItem;
+import org.dreambot.utilities.loadouts.EquipmentItem;
 
 import java.util.function.Supplier;
 

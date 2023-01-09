@@ -1,4 +1,4 @@
-package org.dreambot.utilities.loadouts.setups;
+package org.dreambot.utilities.loadouts;
 
 
 import org.dreambot.api.methods.container.impl.equipment.EquipmentSlot;
@@ -19,6 +19,14 @@ public class EquipmentItem {
         this.strLvl = strLvl;
         this.defLvl = defLvl;
         this.otherCondition = otherCondition;
+    }
+    public EquipmentItem(String name, EquipmentSlot slot) {
+        this.name = name;
+        this.slot = slot;
+        this.attLvl = 1;
+        this.strLvl = 1;
+        this.defLvl = 1;
+        this.otherCondition = () -> true;
     }
 
     public String getName() {
