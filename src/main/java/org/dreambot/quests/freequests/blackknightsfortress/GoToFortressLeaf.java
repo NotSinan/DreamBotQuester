@@ -8,7 +8,7 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class GoToFortressLeaf extends Leaf {
 

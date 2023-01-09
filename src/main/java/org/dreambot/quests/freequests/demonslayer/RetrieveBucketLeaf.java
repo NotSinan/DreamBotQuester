@@ -6,7 +6,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 
 /**
  * This class picks up the bucket that spawns upstairs in Varrock palace.
@@ -24,6 +24,6 @@ public class RetrieveBucketLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Tile BUCKET_SPAWN_TILE = new Tile(3221, 3497, 1); // Bucket spawn upstairs in Varrock palace.
-        return QuestHelper.pickupGroundSpawn(BUCKET_SPAWN_TILE, "Bucket");
+        return GroundItemHelper.pickupGroundSpawn(BUCKET_SPAWN_TILE, "Bucket");
     }
 }

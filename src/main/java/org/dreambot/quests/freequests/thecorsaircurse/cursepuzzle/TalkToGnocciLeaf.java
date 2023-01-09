@@ -2,7 +2,7 @@ package org.dreambot.quests.freequests.thecorsaircurse.cursepuzzle;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.NPCHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToGnocciLeaf extends Leaf {
 

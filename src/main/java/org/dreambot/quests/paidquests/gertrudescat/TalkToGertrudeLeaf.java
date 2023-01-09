@@ -9,9 +9,9 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.NPCHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToGertrudeLeaf extends Leaf {
 

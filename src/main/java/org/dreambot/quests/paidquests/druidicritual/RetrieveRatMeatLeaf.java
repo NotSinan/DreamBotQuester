@@ -8,7 +8,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.NPCHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveRatMeatLeaf extends Leaf {
     @Override

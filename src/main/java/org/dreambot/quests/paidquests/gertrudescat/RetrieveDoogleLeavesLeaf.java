@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveDoogleLeavesLeaf extends Leaf {
 
@@ -16,7 +16,7 @@ public class RetrieveDoogleLeavesLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.pickupGroundSpawn(
+        return GroundItemHelper.pickupGroundSpawn(
                 new Tile(3152, 3399, 0), //doogle leaves spawn
                 "Doogle leaves"
         );

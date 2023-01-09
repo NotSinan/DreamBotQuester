@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class ObserveIthoiTelescopeLeaf extends Leaf {
 
@@ -21,7 +21,7 @@ public class ObserveIthoiTelescopeLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 new Area(2527, 2841, 2532, 2835, 1), // ithoi upstairs telescope
                 "Telescope",
                 "Observe",

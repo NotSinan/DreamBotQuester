@@ -1,4 +1,4 @@
-package org.dreambot.utilities;
+package org.dreambot.utilities.helpers;
 
 import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.interactive.NPCs;
@@ -9,9 +9,10 @@ import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.utilities.impl.Condition;
 import org.dreambot.api.wrappers.interactive.NPC;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.Timing;
 
 public class NPCHelper {
-
     public static int goAndInteractWithNPC(Area area, String npc, String action, Condition sleepUntilAfterInteract) {
         return goAndInteractWithNPC(area, npc, action, sleepUntilAfterInteract, null, 0, 0);
     }
@@ -43,8 +44,6 @@ public class NPCHelper {
         }
         return Timing.loopReturn();
     }
-
-
 
     public static int goAndKillNpc(Area area, String name) {
         if (!WalkingHelper.walkToArea(area)) {

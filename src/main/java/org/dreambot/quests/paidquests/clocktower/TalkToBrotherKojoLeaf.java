@@ -5,7 +5,7 @@ import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.quests.paidquests.clocktower.placecogs.CogState;
-import org.dreambot.utilities.NPCHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 import java.util.Arrays;
 

@@ -5,8 +5,8 @@ import org.dreambot.api.methods.quest.book.MiniQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.NPCHelper;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.DialogueHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
 
 import java.util.Arrays;
@@ -24,7 +24,7 @@ public class TalkToGrimhandBartenderLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        String dialog = QuestHelper.getDialogue();
+        String dialog = DialogueHelper.getDialogue();
         if (dialog != null) {
             if (dialog.contains("of expensive parts to the cocktail, though, so it will cost") ||
                     dialog.contains("Ah, you'll be wanting some Ape Bite Liqueur then. It's") ||

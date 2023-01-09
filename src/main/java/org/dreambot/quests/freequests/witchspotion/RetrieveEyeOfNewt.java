@@ -9,8 +9,10 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.BankHelper;
+import org.dreambot.utilities.helpers.ShopHelper;
+import org.dreambot.utilities.helpers.WorldsHelper;
 
 public class RetrieveEyeOfNewt extends Leaf {
 
@@ -24,7 +26,7 @@ public class RetrieveEyeOfNewt extends Leaf {
     public int onLoop() {
         final Area PORT_SARIM_MAGE_SHOP_AREA = new Area(3011, 3261, 3016, 3256, 0);
         if (Inventory.count("Coins") < 3) {
-            return QuestHelper.withdrawFromBank("Coins", 5);
+            return BankHelper.withdrawFromBank("Coins", 5);
         }
 
         //highwayman aggressivity check
@@ -37,11 +39,11 @@ public class RetrieveEyeOfNewt extends Leaf {
                     return Timing.loopReturn();
                 }
 
-                QuestHelper.hopSimilarWorld();
+                WorldsHelper.hopSimilarWorld();
                 return Timing.loopReturn();
             }
         }
 
-        return QuestHelper.purchaseFromShop(PORT_SARIM_MAGE_SHOP_AREA, "Eye of newt", 1, "Betty");
+        return ShopHelper.purchaseFromShop(PORT_SARIM_MAGE_SHOP_AREA, "Eye of newt", 1, "Betty");
     }
 }

@@ -2,8 +2,8 @@ package org.dreambot.quests.freequests.vampyreslayer;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.OwnedItems;
+import org.dreambot.utilities.helpers.BankHelper;
 
 public class RetrieveOwnedStakeLeaf extends Leaf {
     @Override
@@ -13,6 +13,6 @@ public class RetrieveOwnedStakeLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.withdrawFromBank("Stake", 1);
+        return BankHelper.withdrawFromBank("Stake", 1);
     }
 }

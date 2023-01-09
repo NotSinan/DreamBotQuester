@@ -11,6 +11,9 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.*;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.helpers.NPCHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveRatsTail extends Leaf {
 

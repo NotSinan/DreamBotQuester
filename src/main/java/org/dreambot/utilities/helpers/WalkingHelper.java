@@ -1,4 +1,4 @@
-package org.dreambot.utilities;
+package org.dreambot.utilities.helpers;
 
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
@@ -6,6 +6,8 @@ import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.wrappers.interactive.Entity;
+import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.Timing;
 
 import java.util.Arrays;
 import java.util.Comparator;

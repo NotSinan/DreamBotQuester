@@ -11,9 +11,9 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.NPCHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToTessLeaf extends Leaf {
     private static final Tile LADDER_TILE = new Tile(2012, 9005, 1);

@@ -2,17 +2,45 @@ package org.dreambot.utilities;
 
 import org.dreambot.api.methods.Calculations;
 import org.dreambot.api.methods.container.impl.Inventory;
+import org.dreambot.api.methods.interactive.NPCs;
+import org.dreambot.api.methods.interactive.Players;
+import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.skills.Skill;
 import org.dreambot.api.methods.skills.Skills;
 import org.dreambot.api.script.ScriptManager;
 import org.dreambot.api.utilities.Logger;
+import org.dreambot.api.utilities.Sleep;
+import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.Item;
+import org.dreambot.utilities.helpers.WalkingHelper;
 import org.dreambot.utilities.loadouts.setups.food.Food;
 
 import java.time.Instant;
 import java.util.Arrays;
 
 public class Fighting {
+    public static int goAndKillNpc(Area area, String name) {
+        if (!WalkingHelper.walkToArea(area)) {
+            return Timing.getSleepDelay();
+        }
+
+        if (!Players.getLocal().isInCombat()) {
+            NPC npc = NPCs.closest(n -> !n.isInCombat() && n.getName().equals(name) && area.contains(n));
+            if(npc != null && npc.exists()) {
+                if (npc.canReach()) {
+                    if(Interaction.delayEntityInteract(npc,"Attack")) {
+                        Sleep.sleepUntil(() -> Players.getLocal().isInCombat(), 3000);
+                    }
+                    return Timing.loopReturn();
+                }
+                if (!WalkingHelper.walkToTile(npc)) {
+                    return Timing.getSleepDelay();
+                }
+            }
+        }
+        return Timing.loopReturn();
+    }
+
     private static int lastMaxHix = 0;
     public static int HPThreshold = 0;
 

@@ -6,7 +6,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToGeneralWartfaceLeaf extends Leaf {
 
@@ -37,6 +37,6 @@ public class TalkToGeneralWartfaceLeaf extends Leaf {
                 "Yes."
         };
 
-        return QuestHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
     }
 }

@@ -7,8 +7,8 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 /**
  * This class enables the local player to speak with Aris to begin the quest.
@@ -37,6 +37,6 @@ public class TalkToArisLeaf extends Leaf {
                 "Okay, where is he? I'll kill him for you!",
                 "So how did Wally kill Delrith?"
         };
-        return QuestHelper.goAndTalkToNpc(ARIS_AREA, "Aris", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(ARIS_AREA, "Aris", DIALOGUE_OPTIONS);
     }
 }

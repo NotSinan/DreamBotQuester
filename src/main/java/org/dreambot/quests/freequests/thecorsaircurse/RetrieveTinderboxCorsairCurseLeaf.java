@@ -7,7 +7,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveTinderboxCorsairCurseLeaf extends Leaf {
 
@@ -23,7 +23,7 @@ public class RetrieveTinderboxCorsairCurseLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.pickupGroundSpawn(new Tile(2543, 2862, 1), "Tinderbox"); //gnocci upstairs tinderbox spawn
+        return GroundItemHelper.pickupGroundSpawn(new Tile(2543, 2862, 1), "Tinderbox"); //gnocci upstairs tinderbox spawn
     }
 
 }

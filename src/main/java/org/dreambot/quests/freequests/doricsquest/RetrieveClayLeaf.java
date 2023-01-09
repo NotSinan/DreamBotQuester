@@ -9,7 +9,7 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 import java.util.Arrays;
 

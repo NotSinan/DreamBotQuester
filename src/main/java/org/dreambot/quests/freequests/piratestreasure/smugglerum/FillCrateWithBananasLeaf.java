@@ -5,7 +5,8 @@ import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.DialogueHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class FillCrateWithBananasLeaf extends Leaf {
     @Override
@@ -16,7 +17,7 @@ public class FillCrateWithBananasLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (Dialogues.inDialogue()) {
-            String dialog = QuestHelper.getDialogue();
+            String dialog = DialogueHelper.getDialogue();
             if (dialog != null && dialog.contains("You pack all your bananas into the crate")) {
                 SmuggleState.filledCrateWithBananas = true;
             }
@@ -28,6 +29,6 @@ public class FillCrateWithBananasLeaf extends Leaf {
                 new Tile(2945, 3156, 0),
                 new Tile(2942, 3156, 0),
                 new Tile(2942, 3152, 0));
-        return QuestHelper.goAndInteractWithGameObject(CRATE_AREA, "Crate", "Fill", () -> Dialogues.inDialogue());
+        return GameObjectHelper.goAndInteractWithGameObject(CRATE_AREA, "Crate", "Fill", () -> Dialogues.inDialogue());
     }
 }

@@ -12,7 +12,7 @@ import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class ReturnSkullToGhostLeaf extends Leaf {
 

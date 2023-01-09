@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.ShopHelper;
 
 public class RetrieveRawSardineLeaf extends Leaf {
 
@@ -16,7 +16,7 @@ public class RetrieveRawSardineLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.purchaseFromShop(
+        return ShopHelper.purchaseFromShop(
                 new Area(3011, 3229, 3017, 3223),
                 "Raw sardine",
                 1,

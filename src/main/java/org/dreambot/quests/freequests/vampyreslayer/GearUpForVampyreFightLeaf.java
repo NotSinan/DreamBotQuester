@@ -8,7 +8,7 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.OwnedItems;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.ShopHelper;
 import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.loadouts.EquipmentLoadout;
 import org.dreambot.utilities.loadouts.InventoryLoadout;
@@ -55,7 +55,7 @@ public class GearUpForVampyreFightLeaf extends Leaf {
             return Timing.loopReturn();
         }
         Tile DIANGO_TILE = new Tile(3081,3249);
-        return QuestHelper.purchaseFromShop(
+        return ShopHelper.purchaseFromShop(
                 DIANGO_TILE.getArea(10),
                 "Goblin paint cannon",
                 1,

@@ -6,7 +6,7 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.quests.freequests.piratestreasure.smugglerum.SmuggleState;
-import org.dreambot.utilities.NPCHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToRedbeardFrankLeaf extends Leaf {
 

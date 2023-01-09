@@ -13,7 +13,7 @@ import org.dreambot.api.wrappers.interactive.Entity;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class DigGardenLeaf extends Leaf {
     public static boolean escapingGardener() {

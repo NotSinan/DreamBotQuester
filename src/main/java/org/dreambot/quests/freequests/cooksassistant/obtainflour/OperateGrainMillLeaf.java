@@ -5,9 +5,9 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class OperateGrainMillLeaf extends Leaf {
 
@@ -33,7 +33,7 @@ public class OperateGrainMillLeaf extends Leaf {
         if (PlayerSettings.getBitValue(GRAIN_TOWER_FLOUR_COUNT_VARBIT) > 0) {
 
 
-            return QuestHelper.goAndInteractWithGameObject(
+            return GameObjectHelper.goAndInteractWithGameObject(
                     GRAIN_TOWER_LVL1_AREA,
                     "Flour bin",
                     "Empty",
@@ -47,13 +47,13 @@ public class OperateGrainMillLeaf extends Leaf {
 
         if (!HOPPER_LOADED) {
             int count = Inventory.count("Grain");
-            return QuestHelper.goAndInteractWithGameObject(
+            return GameObjectHelper.goAndInteractWithGameObject(
                     GRAIN_TOWER_LVL3_AREA,
                     "Hopper",
                     "Fill",
                     () -> Inventory.count("Grain") < count);
         }
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 GRAIN_TOWER_LVL3_AREA,
                 "Hopper controls",
                 "Operate",

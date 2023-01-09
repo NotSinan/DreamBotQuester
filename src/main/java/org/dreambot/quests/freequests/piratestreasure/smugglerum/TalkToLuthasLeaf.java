@@ -5,8 +5,8 @@ import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.NPCHelper;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.DialogueHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToLuthasLeaf extends Leaf {
     @Override
@@ -19,7 +19,7 @@ public class TalkToLuthasLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (Dialogues.inDialogue()) {
-            String dialog = QuestHelper.getDialogue();
+            String dialog = DialogueHelper.getDialogue();
             if (dialog != null) {
                 if (dialog.contains("You wouldn't believe the demand for bananas from") ||
                         dialog.contains("Have you completed your task yet?")) {
