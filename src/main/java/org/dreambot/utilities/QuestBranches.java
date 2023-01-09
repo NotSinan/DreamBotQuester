@@ -11,6 +11,11 @@ import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrieveGrainLe
 import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrievePotLeaf;
 import org.dreambot.quests.freequests.cooksassistant.obtainflour.RetrievePotOfFlourBranch;
 import org.dreambot.quests.freequests.doricsquest.*;
+import org.dreambot.quests.freequests.goblindiplomacy.*;
+import org.dreambot.quests.freequests.goblindiplomacy.retrieveitems.RetrieveGoblinMailLeaf;
+import org.dreambot.quests.freequests.goblindiplomacy.retrieveitems.RetrieveOnionLeaf;
+import org.dreambot.quests.freequests.goblindiplomacy.retrieveitems.RetrieveRedBerryLeaf;
+import org.dreambot.quests.freequests.goblindiplomacy.retrieveitems.RetrieveWoadLeavesLeaf;
 import org.dreambot.quests.freequests.impcatcher.GiveBeadsLeaf;
 import org.dreambot.quests.freequests.impcatcher.ImpCatcher;
 import org.dreambot.quests.freequests.impcatcher.RetrieveBeadsLeaf;
@@ -267,6 +272,25 @@ public enum QuestBranches {
                 new ClueStepTwoLeaf(),
                 new ClueStepThreeLeaf(),
                 new ClueStepFourLeaf()
+        );
+        return questBranch;
+    }),
+
+    GOBLIN_DIPLOMACY(() -> {
+        Branch questBranch = new GoblinDiplomacy();
+        questBranch.addLeafs(
+                new RetrieveGoblinMailLeaf(),
+                new RetrieveOnionLeaf(),
+                new RetrieveRedBerryLeaf(),
+                new RetrieveWoadLeavesLeaf(),
+                new RetrieveYellowDyeLeaf(),
+                new RetrieveBlueDyeLeaf(),
+                new RetrieveRedDyeLeaf(),
+                new MixDyeLeaf(),
+                new MixBlueGoblinMailLeaf(),
+                new MixOrangeGoblinMailLeaf(),
+                new TalkToGeneralWartfaceLeaf(),
+                new TalkToGeneralWartfaceTwoLeaf()
         );
         return questBranch;
     }),

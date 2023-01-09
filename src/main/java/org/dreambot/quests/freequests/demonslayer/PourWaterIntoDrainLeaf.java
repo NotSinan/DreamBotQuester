@@ -14,19 +14,21 @@ import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.WalkingHelper;
 
+/**
+ * This class pours water in the drain that is outside of Varrock palace kitchen.
+ */
 public class PourWaterIntoDrainLeaf extends Leaf {
-
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
-                PlayerSettings.getBitValue(2568) == 0 &&
-                !Inventory.contains(2401) &&
+                PlayerSettings.getBitValue(2568) == 0 && // Player setting to determine if a player has poured water in the drain.
+                !Inventory.contains(2401) && // Silverlight key ID.
                 Inventory.contains("Bucket of water");
     }
 
     @Override
     public int onLoop() {
+        // Drain that is outside the kitchen at Varrock palace.
         final Area DRAIN_AREA = new Area(3225, 3497, 3227, 3495);
         if (!WalkingHelper.walkToArea(DRAIN_AREA)) {
             return Timing.getSleepDelay();
@@ -40,8 +42,7 @@ public class PourWaterIntoDrainLeaf extends Leaf {
 
         GameObject drain = GameObjects.closest("Drain");
         Item bucketWater = Inventory.get("Bucket of water");
-        if (drain != null && drain.exists() && bucketWater != null && bucketWater.isValid() &&
-                Interaction.delayUseItemOn(bucketWater, drain)) {
+        if (drain != null && bucketWater != null && Interaction.delayUseItemOn(bucketWater, drain)) {
             Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
         }
         return Timing.loopReturn();

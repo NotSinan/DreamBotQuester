@@ -8,8 +8,8 @@ public class Timing {
     public static int tickTimeout = 1;
     public static int sleepLength = 100;
     // Sleep Settings
-    public static int sleepMin = 75;
-    public static int sleepMax = 750;
+    public static int sleepMin = 25;
+    public static int sleepMax = 100;
     public static int sleepDeviation = 20;
     public static int sleepTarget = 140;
     public static boolean sleepWeightedDistribution = true;
