@@ -17,8 +17,10 @@ public class StandardMeleeLoadouts {
             // Get a list of all the equipment items applicable to this slot
             if (equipSlot.equals(EquipmentSlot.WEAPON)) {
                 final int attLvl = Skills.getRealLevel(Skill.ATTACK);
+                final int strLvl = Skills.getRealLevel(Skill.STRENGTH);
                 StandardMeleeWeapon bestWep = Arrays.stream(StandardMeleeWeapon.values())
                         .filter(meleeWep -> attLvl >= meleeWep.getEquipmentItem().getAttLvl() &&
+                                strLvl >= meleeWep.getEquipmentItem().getStrLvl() &&
                                 OwnedItems.contains(meleeWep.getEquipmentItem().getName()) &&
                                 meleeWep.getEquipmentItem().getOtherCondition().verify())
                         .max(Comparator.comparingInt(o -> o.getEquipmentItem().getAttLvl()))

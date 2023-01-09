@@ -22,8 +22,8 @@ public class InventoryLoadout {
         this.items = new ArrayList<>(Arrays.asList(items));
     }
 
-    public void addItem(LoadoutItem loadoutItem) {
-        items.add(loadoutItem);
+    public void addItem(LoadoutItem... loadoutItem) {
+        items.addAll(Arrays.asList(loadoutItem));
     }
 
     public boolean fulfilled() {
