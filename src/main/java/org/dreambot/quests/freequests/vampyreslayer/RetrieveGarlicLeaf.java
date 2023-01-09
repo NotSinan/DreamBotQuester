@@ -7,20 +7,23 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.Timing;
-import org.dreambot.utilities.WalkingHelper;
+import org.dreambot.utilities.*;
 
 public class RetrieveGarlicLeaf extends Leaf {
 
 
     @Override
     public boolean isValid() {
+        // 🐰🐰🐰 Check if there is no Garlic in the inventory
         return !Inventory.contains("Garlic");
     }
 
     @Override
     public int onLoop() {
+        if (OwnedItems.contains("Garlic")) {
+            return QuestHelper.withdrawFromBank("Garlic", 1);
+        }
+
         final Area GARLIC_AREA = new Area(3096, 3270, 3102, 3266, 1);
 
         if (!WalkingHelper.walkToArea(GARLIC_AREA)) {

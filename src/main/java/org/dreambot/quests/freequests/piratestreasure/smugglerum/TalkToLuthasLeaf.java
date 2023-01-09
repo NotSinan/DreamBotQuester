@@ -5,6 +5,7 @@ import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.framework.Leaf;
+import org.dreambot.utilities.NPCHelper;
 import org.dreambot.utilities.QuestHelper;
 
 public class TalkToLuthasLeaf extends Leaf {

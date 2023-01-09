@@ -13,6 +13,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class CollectWoolLeaf extends Leaf {
     private final Area SHEEP_AREA = new Area(3193, 3276, 3211, 3257);

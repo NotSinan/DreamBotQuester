@@ -2,7 +2,6 @@ package org.dreambot.framework.bank;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
-import org.dreambot.api.methods.container.impl.bank.BankLocation;
 import org.dreambot.api.methods.container.impl.equipment.Equipment;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;

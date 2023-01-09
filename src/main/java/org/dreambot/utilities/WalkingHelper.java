@@ -7,6 +7,9 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.wrappers.interactive.Entity;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class WalkingHelper {
 
     /**
@@ -49,7 +52,7 @@ public class WalkingHelper {
     }
     public static boolean walkToTile(Tile tile) {
         if (tile.equals(Players.getLocal().getTile())) return true;
-        if(org.dreambot.api.methods.walking.impl.Walking.shouldWalk(6) && Interaction.delayWalk(tile)) {
+        if(Interaction.delayWalk(tile)) {
             Timing.loopReturn();
         }
         return false;
@@ -57,7 +60,7 @@ public class WalkingHelper {
     public static boolean walkToTile(int x, int y, int z) {
         Tile t = new Tile(x, y, z);
         if (t.equals(Players.getLocal().getTile())) return true;
-        if(org.dreambot.api.methods.walking.impl.Walking.shouldWalk(6) && Interaction.delayWalk(t)) {
+        if(Interaction.delayWalk(t)) {
             Timing.loopReturn();
         }
         return false;
@@ -65,17 +68,24 @@ public class WalkingHelper {
     public static boolean walkToTile(int x, int y) {
         Tile t = new Tile(x, y);
         if (t.equals(Players.getLocal().getTile())) return true;
-        if(org.dreambot.api.methods.walking.impl.Walking.shouldWalk(6) && Interaction.delayWalk(t)) {
+        if(Interaction.delayWalk(t)) {
             Timing.loopReturn();
         }
         return false;
     }
     public static boolean walkToTile(Entity entity) {
         if (entity.getTile().equals(Players.getLocal().getTile())) return true;
-        if(org.dreambot.api.methods.walking.impl.Walking.shouldWalk(6) && Interaction.delayWalk(entity)) {
+        if(Interaction.delayWalk(entity)) {
             Timing.loopReturn();
         }
         return false;
     }
 
+
+    public static Area getClosestArea(Area... areas) {
+        return Arrays.stream(areas)
+                .min(
+                        Comparator.comparingInt(area -> (int) (area.getCenter().distance()))
+                ).get();
+    }
 }

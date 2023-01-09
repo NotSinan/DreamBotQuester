@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class TalkToDoricLeaf extends Leaf {
 

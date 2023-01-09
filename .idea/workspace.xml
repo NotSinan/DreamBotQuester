@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70777ee3-c8e7-46bc-8356-c59205046c64" name="Changes" comment="Worked a lot on Loadouts">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_dreambot_client_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DreamBotQuester.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/DreamBotQuester-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/framework/unbankables/UnbankableItemsLeaf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveOwnedStakeLeaf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/Fighting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/food/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/framework/bank/BankOnceLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/framework/bank/BankOnceLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/RetrieveClayLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/RetrieveClayLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/RetrieveCopperLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/RetrieveCopperLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/RetrieveIronLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/RetrieveIronLeaf.java" afterDir="false" />
@@ -38,18 +29,29 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/romeoandjuliet/TalkToJulietLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/romeoandjuliet/TalkToJulietLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/romeoandjuliet/TalkToRomeoLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/romeoandjuliet/TalkToRomeoLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/sheepshearer/CollectWoolLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/sheepshearer/CollectWoolLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/FightCountDraynor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/FightCountDraynor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/GearUpForVampyreFightLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/GearUpForVampyreFightLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveCoinsLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveCoinsLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveGarlicLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveGarlicLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveHammerLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveHammerLeaf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/TalkToBartenderLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/TalkToBartenderLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/TalkToDrHarlowLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/TalkToDrHarlowLeaf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/witchspotion/WitchsPotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/witchspotion/WitchsPotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/paidquests/monksfriend/MonksFriend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/paidquests/monksfriend/MonksFriend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/Interaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/QuestBranch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/QuestBranches.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/QuestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/QuestHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/Timing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/Timing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/WalkingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/WalkingHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/EquipmentLoadout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/EquipmentLoadout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/InventoryLoadout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/InventoryLoadout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/Loadout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/Loadout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/LoadoutItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/LoadoutItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/OwnedItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/OwnedItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeLoadouts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeLoadouts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/ui/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/ui/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/DreamBotQuester-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/DreamBotQuester-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,18 +90,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/USER/IdeaProjects/DreamBotQuesteragain/src/main/java/org/dreambot/quests/alfredgrimhandsbarcrawl",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.4275862",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/IdeaProjects/DreamBotQuesteragain/src/main/java/org/dreambot/quests/alfredgrimhandsbarcrawl&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.4275862&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\USER\IdeaProjects\DreamBotQuesteragain\src\main\java\org\dreambot\quests\alfredgrimhandsbarcrawl" />
@@ -109,11 +111,11 @@
       <recent name="C:\Users\USER\IdeaProjects\DreamBotQuesteragain\src\main\java\script\quests\therestlessghost" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.dreambot.quests.freequests.vampyreslayer" />
       <recent name="org.dreambot.utilities.loadouts.setups.ranged" />
       <recent name="org.dreambot.utilities.loadouts" />
       <recent name="org.dreambot.utilities" />
       <recent name="org.dreambot.quests.freequests.doricsquest" />
-      <recent name="org.dreambot.quests.freequests.cooksassistant" />
     </key>
   </component>
   <component name="RunAnythingCache">

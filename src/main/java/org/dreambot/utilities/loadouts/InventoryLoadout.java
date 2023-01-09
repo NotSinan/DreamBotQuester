@@ -6,6 +6,7 @@ import org.dreambot.api.script.ScriptManager;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.Item;
+import org.dreambot.utilities.OwnedItems;
 import org.dreambot.utilities.Timing;
 
 import java.time.Instant;
@@ -17,36 +18,31 @@ public class InventoryLoadout {
     private List<LoadoutItem> items;
 
     public InventoryLoadout(LoadoutItem... items) {
-        this.items = Arrays.asList(items);
+        this.items = new ArrayList<>(Arrays.asList(items));
     }
 
     public void addItem(LoadoutItem loadoutItem) {
         items.add(loadoutItem);
     }
 
-    private List<LoadoutItem> getExtraItems() {
-        List<LoadoutItem> extraItems = new ArrayList<>();
-        List<LoadoutItem> inventoryItems = new ArrayList<>();
-
-        for (Item i : Inventory.all()) {
-            inventoryItems.add(new LoadoutItem(i.getName(), i.getAmount(), i.isNoted()));
+    public boolean fulfilled() {
+        //check extra items
+        List<LoadoutItem> extraEquipmentItems = getExtraItems();
+        if (!extraEquipmentItems.isEmpty()) {
+            return false;
         }
 
+        //check missing items
         for (LoadoutItem item : items) {
-            int extra = 0;
-            for (LoadoutItem invyItem : inventoryItems) {
-                if (invyItem.isNoted() == item.isNoted() && invyItem.getItemName().equals(item.getItemName())) {
-                    extra = invyItem.getItemQty();
-                    break;
-                }
-            }
-            extra -= item.getItemQty();
-            if (extra > 0) {
-                extraItems.add(new LoadoutItem(item.getItemName(), extra));
+            if (!OwnedItems.contains(item.getItemName())) continue;
+            int currentQuantity = Inventory.count(item.getItemName());
+            int neededQuantity = item.getItemQty() - currentQuantity;
+            if (neededQuantity > 0) {
+                return false;
             }
         }
 
-        return extraItems;
+        return true;
     }
 
     public boolean fulfill() {
@@ -63,7 +59,7 @@ public class InventoryLoadout {
         }
 
 
-        //90s to fulfill equipment while in bank
+        //90s timer to fulfill equipment while in bank
         end = Instant.now().plusSeconds(90);
         while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
             //diff check of LoadoutItems parameter and given Inventory before depositing all - fuck you camal
@@ -102,5 +98,31 @@ public class InventoryLoadout {
         return false;
     }
 
+    private List<LoadoutItem> getExtraItems() {
+        List<LoadoutItem> extraItems = new ArrayList<>();
+        List<LoadoutItem> inventoryItems = new ArrayList<>();
 
+        for (Item i : Inventory.all()) {
+            if (i == null || !i.isValid()) {
+                continue;
+            }
+            inventoryItems.add(new LoadoutItem(i.getName(), i.getAmount(), i.isNoted()));
+        }
+
+        for (LoadoutItem item : items) {
+            int extra = 0;
+            for (LoadoutItem invyItem : inventoryItems) {
+                if (invyItem.isNoted() == item.isNoted() && invyItem.getItemName().equals(item.getItemName())) {
+                    extra = invyItem.getItemQty();
+                    break;
+                }
+            }
+            extra -= item.getItemQty();
+            if (extra > 0) {
+                extraItems.add(new LoadoutItem(item.getItemName(), extra));
+            }
+        }
+
+        return extraItems;
+    }
 }

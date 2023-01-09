@@ -3,7 +3,7 @@ package org.dreambot.quests.freequests.piratestreasure.smugglerum;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.NPCHelper;
 
 public class LeaveKaramjaLeaf extends Leaf {
 

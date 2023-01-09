@@ -1,8 +1,10 @@
-package org.dreambot.utilities.loadouts;
+package org.dreambot.utilities;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
 import org.dreambot.api.methods.container.impl.equipment.Equipment;
+
+import java.util.Arrays;
 
 public class OwnedItems {
     public static int count(String itemName) {
@@ -18,13 +20,7 @@ public class OwnedItems {
     }
 
     public static boolean containsAll(String... itemNames) {
-        for (String itemName : itemNames) {
-            if (Bank.contains(itemName) || Inventory.contains(itemName) || Equipment.contains(itemName)) {
-                continue;
-            }
-            return false;
-        }
-        return true;
+        return Arrays.stream(itemNames).allMatch(itemName -> Bank.contains(itemName) || Inventory.contains(itemName) || Equipment.contains(itemName));
     }
 
 }

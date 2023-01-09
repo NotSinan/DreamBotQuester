@@ -5,8 +5,10 @@ import org.dreambot.api.methods.container.impl.bank.Bank;
 import org.dreambot.api.methods.container.impl.equipment.Equipment;
 import org.dreambot.api.script.ScriptManager;
 import org.dreambot.api.utilities.Logger;
+import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.utilities.Interaction;
+import org.dreambot.utilities.OwnedItems;
 import org.dreambot.utilities.Timing;
 
 import java.time.Instant;
@@ -52,15 +54,21 @@ public class EquipmentLoadout {
         return extraItems;
     }
 
-    public boolean fulfilledExact() {
-        //check extranneous items2
+    public boolean fulfilled() {
+        //check extranneous items
         List<LoadoutItem> extraEquipmentItems = getExtraItems();
         if (!extraEquipmentItems.isEmpty()) {
+            Logger.log("Have extra items in Equipment:");
+            extraEquipmentItems.forEach(l -> Logger.log("Name: "+l.getItemName()+", qty: "+l.getItemQty()));
             return false;
         }
 
         //check missing items
         for (LoadoutItem item : items) {
+            if (!OwnedItems.contains(item.getItemName())) {
+                Logger.log("Do not have item: " + item.getItemName() + " owned, skipping");
+                continue;
+            }
             int currentQuantity = Equipment.count(item.getItemName());
             int neededQuantity = item.getItemQty() - currentQuantity;
             if (neededQuantity > 0) {
@@ -89,8 +97,8 @@ public class EquipmentLoadout {
         //90s to fulfill equipment while in bank
         end = Instant.now().plusSeconds(90);
         while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
-            //diff check of LoadoutItems parameter and given Equipment before depositing all - fuck you camal
             //step 1: empty equipment
+            // diff check of LoadoutItems parameter and given Equipment before depositing all - fuck you camal
             List<LoadoutItem> extraEquipmentItems = getExtraItems();
             if (!extraEquipmentItems.isEmpty()) {
                 Timing.sleepForDelay();
@@ -107,24 +115,28 @@ public class EquipmentLoadout {
             }
             if(loadoutUnnoted.fulfill()) {
                 //step 3: wear equipment
-                boolean wearingAllEquipment = true;
                 while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
+                    boolean wearingAllEquipment = true;
                     for (LoadoutItem item : items) {
                         Item invyItem = Inventory.get(item.getItemName());
-                        if (invyItem == null || !invyItem.isValid()) {
+                        if (invyItem == null || !invyItem.isValid() || invyItem.getID() == -1 || invyItem.getName() == null || invyItem.getName().equalsIgnoreCase("null")) {
                             continue;
                         }
                         String[] actions = new String[]{"Wear","Wield","Equip"};
                         String action = Arrays.stream(invyItem.getActions())
                                 .filter(a -> Arrays.stream(actions).anyMatch(i -> i.equals(a)))
                                 .findFirst().orElse(null);
-                        if (action != null && Interaction.delayInventoryInteract(invyItem.getName(), action)) {
+                        if (action != null) {
                             wearingAllEquipment = false;
-                            Timing.sleepForDelay();
+                            Logger.log("Found equipment item, attempting to equip with action: "+ invyItem.getName() +", " + action);
+                            if (Interaction.delayInventoryInteract(invyItem.getName(), action)) {
+                                Sleep.sleepTick();
+                                Timing.sleepForDelay();
+                            }
                         }
                     }
                     if (wearingAllEquipment) {
-                        Logger.log("Have no extra equipment and no equipment missing, equipment fulfilled!");
+                        Logger.log("Fulfilled equipment - have no extra equipment and no equipment left in inventory!");
                         return true;
                     }
                 }

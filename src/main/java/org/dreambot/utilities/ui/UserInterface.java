@@ -1,12 +1,12 @@
 package org.dreambot.utilities.ui;
 
-import org.dreambot.utilities.QuestBranch;
+import org.dreambot.utilities.QuestBranches;
 
 import javax.swing.*;
 
 public class UserInterface {
 
-    private static QuestBranch selectedItem;
+    private static QuestBranches selectedItem;
     private static boolean startLoop = false;
 
     public UserInterface() {
@@ -21,7 +21,7 @@ public class UserInterface {
         comboBox.setBounds((jFrame.getWidth() - comboBox.getWidth()) / 2,
                 50, comboBox.getWidth(), comboBox.getHeight());
 
-        for (QuestBranch questBranch : QuestBranch.values()) {
+        for (QuestBranches questBranch : QuestBranches.values()) {
             comboBox.addItem(questBranch);
         }
 
@@ -32,7 +32,7 @@ public class UserInterface {
                 200, button.getWidth(), button.getHeight());
 
         button.addActionListener(e -> {
-            selectedItem = (QuestBranch) comboBox.getSelectedItem();
+            selectedItem = (QuestBranches) comboBox.getSelectedItem();
             jFrame.dispose();
             startLoop = true;
         });
@@ -46,7 +46,7 @@ public class UserInterface {
         return startLoop;
     }
 
-    public static QuestBranch getSelectedItem() {
+    public static QuestBranches getSelectedItem() {
         return selectedItem;
     }
 }

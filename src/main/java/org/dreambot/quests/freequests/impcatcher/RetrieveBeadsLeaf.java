@@ -15,6 +15,7 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.WalkingHelper;
 
 public class RetrieveBeadsLeaf extends Leaf {
 

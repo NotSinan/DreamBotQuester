@@ -2,17 +2,17 @@ package org.dreambot.quests.freequests.vampyreslayer;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.OwnedItems;
 import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.OwnedItems;
 
-public class RetrieveCoinsLeaf extends Leaf {
+public class RetrieveOwnedStakeLeaf extends Leaf {
     @Override
     public boolean isValid() {
-        return Inventory.count("Coins") < 50 && !OwnedItems.contains( "Hammer");
+        return OwnedItems.contains("Stake") && !Inventory.contains("Stake");
     }
 
     @Override
     public int onLoop() {
-        return QuestHelper.withdrawFromBank("Coins", 100);
+        return QuestHelper.withdrawFromBank("Stake", 1);
     }
 }

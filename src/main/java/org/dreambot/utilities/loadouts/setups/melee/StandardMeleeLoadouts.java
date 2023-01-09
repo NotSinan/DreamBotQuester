@@ -5,7 +5,7 @@ import org.dreambot.api.methods.skills.Skill;
 import org.dreambot.api.methods.skills.Skills;
 import org.dreambot.utilities.loadouts.EquipmentLoadout;
 import org.dreambot.utilities.loadouts.LoadoutItem;
-import org.dreambot.utilities.loadouts.OwnedItems;
+import org.dreambot.utilities.OwnedItems;
 
 import java.util.Arrays;
 import java.util.Comparator;

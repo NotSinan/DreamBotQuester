@@ -214,5 +214,4 @@ public class QuestHelper {
         Logger.log("Worldhop timeout! Did not hop from world: " + initWorld + " in 60s...");
         return false;
     }
-
 }

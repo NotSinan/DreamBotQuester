@@ -45,7 +45,7 @@ import org.dreambot.quests.paidquests.monksfriend.TalkToBrotherOmadLeaf;
 
 import java.util.function.Supplier;
 
-public enum QuestBranch {
+public enum QuestBranches {
     GERTRUDES_CAT(() -> {
         Branch questBranch = new GertrudesCat();
         questBranch.addLeafs(
@@ -236,11 +236,13 @@ public enum QuestBranch {
         questBranch.addLeafs(
                 new RemoveDraynorJailNodesLeaf(),
                 new RetrieveCoinsLeaf(),
+                new RetrieveOwnedStakeLeaf(),
                 new RetrieveGarlicLeaf(),
                 new RetrieveHammerLeaf(),
                 new TalkToBartenderLeaf(),
                 new TalkToDrHarlowLeaf(),
                 new TalkToMorganLeaf(),
+                new GearUpForVampyreFightLeaf(),
                 new FightCountDraynor()
         );
         return questBranch;
@@ -286,7 +288,7 @@ public enum QuestBranch {
 
     private final Supplier<Branch> questBranchSupplier;
 
-    QuestBranch(Supplier<Branch> questBranchSupplier) {
+    QuestBranches(Supplier<Branch> questBranchSupplier) {
         this.questBranchSupplier = questBranchSupplier;
     }
 
