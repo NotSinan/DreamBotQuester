@@ -6,8 +6,8 @@ import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveAdrigalLeaf extends Leaf {
 
@@ -27,7 +27,7 @@ public class RetrieveAdrigalLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 new Area(2870, 3126, 2879, 3114), //ardrigal area
                 "Palm tree",
                 "Search",

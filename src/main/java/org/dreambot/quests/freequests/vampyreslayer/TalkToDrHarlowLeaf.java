@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToDrHarlowLeaf extends Leaf {
 
@@ -18,9 +18,10 @@ public class TalkToDrHarlowLeaf extends Leaf {
 
     @Override
     public int onLoop() {
+
         final Area DR_HARLOW_AREA = new Area(3216, 3404, 3227, 3392);
         final String[] DIALOGUE_OPTIONS = {"Morgan needs your help!", "Okay mate."};
 
-        return QuestHelper.goAndTalkToNpc(DR_HARLOW_AREA, "Dr Harlow", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(DR_HARLOW_AREA, "Dr Harlow", DIALOGUE_OPTIONS);
     }
 }

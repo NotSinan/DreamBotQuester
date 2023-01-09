@@ -12,6 +12,7 @@ import org.dreambot.framework.timeout.TimeoutLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
 import org.dreambot.utilities.API;
+import org.dreambot.utilities.Fighting;
 import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.ui.UserInterface;
 
@@ -74,8 +75,9 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
                 getManifest().name() + " V" + getManifest().version(),
                 "Current Branch: " + API.currentBranch,
                 "Current Leaf: " + API.currentLeaf,
-                "Tick Timeout: " + Timing.tickTimeout,
-                "Sleep Delay: " + Timing.sleepLength + "ms",
+                "Active Timeout (Ticks): " + Timing.tickTimeout,
+                "Next Sleep Delay: " + Timing.sleepLength + "ms",
+                "Last HP Eat Threshold: " + Fighting.HPThreshold,
                 "Quest: " + UserInterface.getSelectedItem()
         };
     }

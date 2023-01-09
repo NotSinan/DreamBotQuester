@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToTockRimmingtonLeaf extends Leaf {
     @Override
@@ -14,7 +14,7 @@ public class TalkToTockRimmingtonLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2906, 3227, 2915, 3225, 0),
                 "Captain Tock",
                 new String[]{"Okay, I'm ready go to Corsair Cove."}

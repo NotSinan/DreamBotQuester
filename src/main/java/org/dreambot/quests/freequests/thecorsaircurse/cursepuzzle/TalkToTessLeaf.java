@@ -11,8 +11,9 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToTessLeaf extends Leaf {
     private static final Tile LADDER_TILE = new Tile(2012, 9005, 1);
@@ -28,7 +29,7 @@ public class TalkToTessLeaf extends Leaf {
                 Timing.loopReturn();
                 return false;
             }
-            QuestHelper.walkToTile(LADDER_TILE);
+            WalkingHelper.walkToTile(LADDER_TILE);
             Timing.getSleepDelay();
             return false;
         }
@@ -48,7 +49,7 @@ public class TalkToTessLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area CHIEF_TESS_AREA = new Area(2007, 9010, 2018, 8999, 1);
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 CHIEF_TESS_AREA,
                 "Chief Tess",
                 new String[]{"I've come to return what Arsen stole."}

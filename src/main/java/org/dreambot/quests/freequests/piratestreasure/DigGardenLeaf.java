@@ -12,8 +12,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.Entity;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class DigGardenLeaf extends Leaf {
     public static boolean escapingGardener() {
@@ -22,7 +22,7 @@ public class DigGardenLeaf extends Leaf {
         if (gardener != null && gardener.exists()) {
             Entity gardenerTarget = gardener.getInteractingCharacter();
             if (gardenerTarget != null && gardenerTarget.getName().equals(Players.getLocal().getName())) {
-                QuestHelper.walkToArea(OUTSIDE_GARDEN_RUN_AREA);
+                WalkingHelper.walkToArea(OUTSIDE_GARDEN_RUN_AREA);
                 return true;
             }
         }
@@ -44,7 +44,7 @@ public class DigGardenLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        if (!QuestHelper.walkToTile(FALADOR_GARDEN_DIG_TILE)) {
+        if (!WalkingHelper.walkToTile(FALADOR_GARDEN_DIG_TILE)) {
             return Timing.getSleepDelay();
         }
 

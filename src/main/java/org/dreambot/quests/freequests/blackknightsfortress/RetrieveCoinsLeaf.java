@@ -4,7 +4,7 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.BankHelper;
 
 public class RetrieveCoinsLeaf extends Leaf {
     @Override
@@ -14,6 +14,6 @@ public class RetrieveCoinsLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.withdrawFromBank("Coins", 1000);
+        return BankHelper.withdrawFromBank("Coins", 1000);
     }
 }

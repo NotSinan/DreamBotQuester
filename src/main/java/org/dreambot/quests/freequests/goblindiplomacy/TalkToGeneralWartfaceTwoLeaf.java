@@ -11,8 +11,8 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToGeneralWartfaceTwoLeaf extends Leaf {
     @Override
@@ -36,7 +36,7 @@ public class TalkToGeneralWartfaceTwoLeaf extends Leaf {
         );
 
         if (!GENERAL_WARTFACE_AREA.contains(Players.getLocal()) && !Client.isDynamicRegion()) {
-            QuestHelper.walkToArea(GENERAL_WARTFACE_AREA);
+            WalkingHelper.walkToArea(GENERAL_WARTFACE_AREA);
             return Timing.loopReturn();
         }
 

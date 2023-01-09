@@ -11,8 +11,8 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class EnchantMeatLeaf extends Leaf {
 
@@ -32,7 +32,7 @@ public class EnchantMeatLeaf extends Leaf {
         );
 
 
-        if (!QuestHelper.walkToArea(CAULDRON_AREA)) {
+        if (!WalkingHelper.walkToArea(CAULDRON_AREA)) {
             return Timing.getSleepDelay();
         }
 

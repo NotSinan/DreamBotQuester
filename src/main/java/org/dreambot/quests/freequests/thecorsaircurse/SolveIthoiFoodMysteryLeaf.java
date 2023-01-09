@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class SolveIthoiFoodMysteryLeaf extends Leaf {
     @Override
@@ -15,7 +15,7 @@ public class SolveIthoiFoodMysteryLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(2527, 2841, 2532, 2835, 1),
                 "Ithoi the Navigator",
                 new String[]{

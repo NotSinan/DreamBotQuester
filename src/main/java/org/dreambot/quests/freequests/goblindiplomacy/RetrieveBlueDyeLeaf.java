@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveBlueDyeLeaf extends Leaf {
     @Override
@@ -24,6 +24,6 @@ public class RetrieveBlueDyeLeaf extends Leaf {
                 "What do you need to make blue dye?",
                 "Okay, make me some blue dye please."
         };
-        return QuestHelper.goAndTalkToNpc(AGGIE_AREA, "Aggie", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(AGGIE_AREA, "Aggie", DIALOGUE_OPTIONS);
     }
 }

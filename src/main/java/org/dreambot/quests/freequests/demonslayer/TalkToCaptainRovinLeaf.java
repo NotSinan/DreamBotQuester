@@ -6,7 +6,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 /**
  * This class speaks to Captain Rovin for the first Siverlight key.
@@ -41,6 +41,6 @@ public class TalkToCaptainRovinLeaf extends Leaf {
                 "Sir Prysin said you would give me the key.",
                 "Why did he give you one of the keys then?"
         };
-        return QuestHelper.goAndTalkToNpc(CAPTAIN_ROVIN_AREA, "Captain Rovin", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(CAPTAIN_ROVIN_AREA, "Captain Rovin", DIALOGUE_OPTIONS);
     }
 }

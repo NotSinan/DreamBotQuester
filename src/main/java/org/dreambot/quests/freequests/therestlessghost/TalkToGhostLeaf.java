@@ -13,8 +13,8 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToGhostLeaf extends Leaf {
     @Override
@@ -31,7 +31,7 @@ public class TalkToGhostLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        if (!QuestHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
+        if (!WalkingHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
             return Timing.getSleepDelay();
         }
 

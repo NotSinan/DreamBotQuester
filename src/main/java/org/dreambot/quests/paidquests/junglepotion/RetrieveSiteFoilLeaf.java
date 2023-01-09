@@ -6,8 +6,8 @@ import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveSiteFoilLeaf extends Leaf {
 
@@ -26,7 +26,7 @@ public class RetrieveSiteFoilLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 new Area(2787, 3051, 2794, 3046),
                 "Scorched earth",
                 "Search",

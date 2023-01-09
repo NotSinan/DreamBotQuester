@@ -40,7 +40,6 @@ public class Interaction {
     }
 
     public static boolean delayWalk(Tile tile) {
-        Logger.log("Walking to tile: " + tile.toString());
         Timing.sleepForDelay();
         return Walking.walk(tile);
     }

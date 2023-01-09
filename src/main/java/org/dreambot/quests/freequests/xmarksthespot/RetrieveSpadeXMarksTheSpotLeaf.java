@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveSpadeXMarksTheSpotLeaf extends Leaf {
 
@@ -18,6 +18,6 @@ public class RetrieveSpadeXMarksTheSpotLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Tile FALADOR_SPADE_AREA = new Tile(2981, 3370, 0);
-        return QuestHelper.pickupGroundSpawn(FALADOR_SPADE_AREA, "Spade");
+        return GroundItemHelper.pickupGroundSpawn(FALADOR_SPADE_AREA, "Spade");
     }
 }

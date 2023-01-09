@@ -7,8 +7,8 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class ClueStepTwoLeaf extends Leaf {
 
@@ -21,7 +21,7 @@ public class ClueStepTwoLeaf extends Leaf {
     public int onLoop() {
         final Area CLUE_TWO_AREA = new Area(3203, 3213, 3203, 3213);
 
-        if (!QuestHelper.walkToArea(CLUE_TWO_AREA)) {
+        if (!WalkingHelper.walkToArea(CLUE_TWO_AREA)) {
             return Timing.getSleepDelay();
         }
 

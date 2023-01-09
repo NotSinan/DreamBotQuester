@@ -6,8 +6,8 @@ import org.dreambot.api.methods.quest.book.PaidQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveVolenciaMossLeaf extends Leaf {
 
@@ -26,7 +26,7 @@ public class RetrieveVolenciaMossLeaf extends Leaf {
             return Timing.loopReturn();
         }
 
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 new Area(2844, 3038, 2853, 3029),
                 "Rock",
                 "Search",

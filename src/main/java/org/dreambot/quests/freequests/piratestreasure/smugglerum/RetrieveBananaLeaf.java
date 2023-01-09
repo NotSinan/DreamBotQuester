@@ -4,7 +4,7 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveBananaLeaf extends Leaf {
     @Override
@@ -22,6 +22,6 @@ public class RetrieveBananaLeaf extends Leaf {
                 new Tile(2907, 3163, 0),
                 new Tile(2926, 3163, 0));
         final int count = Inventory.count("Banana");
-        return QuestHelper.goAndInteractWithGameObject(KARAMJA_BANANA_PLANTATION_AREA, "Banana Tree", "Pick", () -> Inventory.count("Banana") > count);
+        return GameObjectHelper.goAndInteractWithGameObject(KARAMJA_BANANA_PLANTATION_AREA, "Banana Tree", "Pick", () -> Inventory.count("Banana") > count);
     }
 }

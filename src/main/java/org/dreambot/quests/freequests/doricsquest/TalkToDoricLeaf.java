@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToDoricLeaf extends Leaf {
 
@@ -18,6 +18,6 @@ public class TalkToDoricLeaf extends Leaf {
     public int onLoop() {
         final Area DORICS_QUEST_AREA = new Area(2950, 3454, 2953, 3449);
         final String[] DIALOGUES_OPTIONS = {"I wanted to use your anvils.", "Yes, I will get you the materials.", "Yes."};
-        return QuestHelper.goAndTalkToNpc(DORICS_QUEST_AREA, "Doric", DIALOGUES_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(DORICS_QUEST_AREA, "Doric", DIALOGUES_OPTIONS);
     }
 }

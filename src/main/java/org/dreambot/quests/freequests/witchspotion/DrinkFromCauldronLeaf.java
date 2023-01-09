@@ -10,8 +10,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class DrinkFromCauldronLeaf extends Leaf {
 
@@ -24,7 +24,7 @@ public class DrinkFromCauldronLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area WITCH_AREA = new Area(2965, 3208, 2970, 3203, 0);
-        if (!QuestHelper.walkToArea(WITCH_AREA)) {
+        if (!WalkingHelper.walkToArea(WITCH_AREA)) {
             return Timing.getSleepDelay();
         }
 

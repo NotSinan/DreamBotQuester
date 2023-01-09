@@ -6,23 +6,106 @@ import org.dreambot.api.script.ScriptManager;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.Item;
+import org.dreambot.utilities.OwnedItems;
 import org.dreambot.utilities.Timing;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InventoryLoadout {
-    private LoadoutItem[] items;
+    private List<LoadoutItem> items;
 
     public InventoryLoadout(LoadoutItem... items) {
-        this.items = items;
+        this.items = new ArrayList<>(Arrays.asList(items));
     }
-    public List<LoadoutItem> getExtraItems() {
+
+    public void addItem(LoadoutItem loadoutItem) {
+        items.add(loadoutItem);
+    }
+
+    public boolean fulfilled() {
+        //check extra items
+        List<LoadoutItem> extraEquipmentItems = getExtraItems();
+        if (!extraEquipmentItems.isEmpty()) {
+            return false;
+        }
+
+        //check missing items
+        for (LoadoutItem item : items) {
+            if (!OwnedItems.contains(item.getItemName())) continue;
+            int currentQuantity = Inventory.count(item.getItemName());
+            int neededQuantity = item.getItemQty() - currentQuantity;
+            if (neededQuantity > 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean fulfill() {
+        //90s to open nearest bank
+        Instant end = Instant.now().plusSeconds(90);
+        while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
+            if (!Bank.isOpen()) {
+                Timing.sleepForDelay();
+                Bank.open();
+                Timing.sleepForTickDelay();
+                continue;
+            }
+            break;
+        }
+
+
+        //90s timer to fulfill equipment while in bank
+        end = Instant.now().plusSeconds(90);
+        while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
+            //diff check of LoadoutItems parameter and given Inventory before depositing all - fuck you camal
+            List<LoadoutItem> extraItems = getExtraItems();
+            if (!extraItems.isEmpty()) {
+                Timing.sleepForDelay();
+                if (Bank.depositAllItems()) {
+                    extraItems.stream().forEach(i -> Logger.log("found extra item: " + i.getItemName() + " in qty: " + i.getItemQty() + ", noted: " + i.isNoted()));
+                    Logger.log("Depositing inventory ^^^");
+                    Timing.sleepForTickDelay();
+                }
+                continue;
+            }
+            boolean neededSomething = false;
+            for (LoadoutItem item : items) {
+                int currentQuantity = Inventory.count(item.getItemName());
+                int neededQuantity = item.getItemQty() - currentQuantity;
+                if (neededQuantity > 0) {
+                    // Withdraw needed quantity from bank
+                    if (Bank.count(item.getItemName()) <= 0) {
+                        continue;
+                    }
+                    Timing.sleepForDelay();
+                    neededSomething = true;
+                    if (Bank.withdraw(item.getItemName(), neededQuantity)) {
+                        Sleep.sleepUntil(() -> Inventory.count(item.getItemName()) == item.getItemQty(), 4000, 100);
+                    }
+                }
+            }
+            if (!neededSomething) {
+                Logger.log("InventoryLoadout.fulfill() has nothing missing and nothing extra from loadout, fulfilled inventory!");
+                return true;
+            }
+        }
+        Logger.log("120s timeout for EquipmentLoadout.fulfill() occurred - failed to fulfill inventory");
+        return false;
+    }
+
+    private List<LoadoutItem> getExtraItems() {
         List<LoadoutItem> extraItems = new ArrayList<>();
         List<LoadoutItem> inventoryItems = new ArrayList<>();
 
         for (Item i : Inventory.all()) {
+            if (i == null || !i.isValid()) {
+                continue;
+            }
             inventoryItems.add(new LoadoutItem(i.getName(), i.getAmount(), i.isNoted()));
         }
 
@@ -42,38 +125,4 @@ public class InventoryLoadout {
 
         return extraItems;
     }
-
-    public void fulfill() {
-        if (!Bank.isOpen()) {
-            return;
-        }
-
-        Instant end = Instant.now().plusSeconds(120);
-        while (end.isAfter(Instant.now()) && ScriptManager.getScriptManager().isRunning() && !ScriptManager.getScriptManager().isPaused()) {
-            //diff check of LoadoutItems parameter and given Inventory before depositing all - fuck you camal
-            List<LoadoutItem> extraItems = getExtraItems();
-            if (!extraItems.isEmpty()) {
-                Timing.sleepForDelay();
-                if (Bank.depositAllItems()) {
-                    extraItems.stream().forEach(i -> Logger.log("found extra item: " + i.getItemName() + " in qty: " + i.getItemQty() + ", noted: " + i.isNoted()));
-                    Timing.sleepForTickDelay();
-                }
-                continue;
-            }
-
-            for (LoadoutItem item : items) {
-                int currentQuantity = Inventory.count(item.getItemName());
-                int neededQuantity = item.getItemQty() - currentQuantity;
-                if (neededQuantity > 0) {
-                    // Withdraw needed quantity from bank
-                    Timing.sleepForDelay();
-                    if (Bank.withdraw(item.getItemName(), neededQuantity)) {
-                        Sleep.sleepUntil(() -> Inventory.count(item.getItemName()) == item.getItemQty(), 4000, 100);
-                    }
-                }
-            }
-        }
-    }
-
-
 }

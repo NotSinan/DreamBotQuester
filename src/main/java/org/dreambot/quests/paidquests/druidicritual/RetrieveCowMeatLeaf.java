@@ -8,7 +8,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveCowMeatLeaf extends Leaf {
     @Override
@@ -26,7 +26,7 @@ public class RetrieveCowMeatLeaf extends Leaf {
             Sleep.sleepUntil(() -> Inventory.contains("Raw beef"), 3000);
         }
 
-        return QuestHelper.goAndKillNpc(
+        return NPCHelper.goAndKillNpc(
                 new Area(3253, 3265, 3259, 3255), //cow area
                 "Cow"
         );

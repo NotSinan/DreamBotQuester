@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToSirAmikVarzeLeaf extends Leaf {
 
@@ -21,6 +21,6 @@ public class TalkToSirAmikVarzeLeaf extends Leaf {
         final Area SIR_AMIK_VARZE_AREA = new Area(2955, 3342, 2964, 3334, 2);
         final String[] DIALOGUE_OPTIONS = {"I seek a quest!", "I laugh in the face of danger!", "Ok, I'll do my best.", "Yes."};
         final String SIR_AMIK_VARZE = "Sir Amik Varze";
-        return QuestHelper.goAndTalkToNpc(SIR_AMIK_VARZE_AREA, SIR_AMIK_VARZE, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(SIR_AMIK_VARZE_AREA, SIR_AMIK_VARZE, DIALOGUE_OPTIONS);
     }
 }

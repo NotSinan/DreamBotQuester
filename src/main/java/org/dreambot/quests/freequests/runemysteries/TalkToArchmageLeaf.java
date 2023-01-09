@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToArchmageLeaf extends Leaf {
 
@@ -22,6 +22,6 @@ public class TalkToArchmageLeaf extends Leaf {
         final Area WIZARD_TOWER_AREA = new Area(3099, 9574, 3107, 9569);
         final String ARCHMAGE_SEDRIDOR_NAME = "Archmage Sedridor";
         final String[] DIALOGUE_OPTIONS = {"I'm looking for the head wizard.", "Okay, here you are.", "Go ahead.", "Yes, certainly."};
-        return QuestHelper.goAndTalkToNpc(WIZARD_TOWER_AREA, ARCHMAGE_SEDRIDOR_NAME, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(WIZARD_TOWER_AREA, ARCHMAGE_SEDRIDOR_NAME, DIALOGUE_OPTIONS);
     }
 }

@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveGrainLeaf extends Leaf {
 
@@ -24,7 +24,7 @@ public class RetrieveGrainLeaf extends Leaf {
                 new Tile(3154, 3305, 0),
                 new Tile(3158, 3304, 0),
                 new Tile(3162, 3299, 0));
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 WHEAT_FIELD_AREA,
                 "Wheat",
                 "Pick",

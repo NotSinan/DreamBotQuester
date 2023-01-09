@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToWitchLeaf extends Leaf {
 
@@ -21,7 +21,7 @@ public class TalkToWitchLeaf extends Leaf {
         final Area WITCH_AREA = new Area(2965, 3208, 2970, 3203, 0);
         final String WITCH_NAME = "Hetty";
         final String[] DIALOGUE_OPTIONS = {"Yes, help me become one with my darker side.", "I am in search of a quest.", "Yes."};
-        return QuestHelper.goAndTalkToNpc(WITCH_AREA, WITCH_NAME, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(WITCH_AREA, WITCH_NAME, DIALOGUE_OPTIONS);
     }
 }
 
