@@ -10,6 +10,7 @@ import org.dreambot.framework.Tree;
 import org.dreambot.framework.bank.BankOnceLeaf;
 import org.dreambot.framework.fallback.FallbackLeaf;
 import org.dreambot.framework.timeout.TimeoutLeaf;
+import org.dreambot.framework.unbankables.UnbankableItemsLeaf;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
 import org.dreambot.utilities.API;
@@ -55,6 +56,7 @@ public class Main extends AbstractScript implements PaintInfo, ChatListener {
     private void instantiateTree() {
         tree.addBranches(
                 new TimeoutLeaf(),
+                new UnbankableItemsLeaf(),
                 new BankOnceLeaf(),
                 UserInterface.getSelectedItem().getQuestBranch(),
                 new FallbackLeaf()
