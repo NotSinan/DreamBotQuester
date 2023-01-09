@@ -2,6 +2,7 @@ package org.dreambot.utilities.loadouts;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
+import org.dreambot.api.methods.container.impl.bank.BankMode;
 import org.dreambot.api.script.ScriptManager;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
@@ -35,7 +36,17 @@ public class InventoryLoadout {
         //check missing items
         for (LoadoutItem item : items) {
             if (!OwnedItems.contains(item.getItemName())) continue;
-            int currentQuantity = Inventory.count(item.getItemName());
+            Item invyItem = Inventory.get(item.getItemName());
+
+            if (invyItem == null || !invyItem.isValid() || invyItem.getID() == -1 || invyItem.getName() == null || invyItem.getName().equalsIgnoreCase("null")) {
+                return false;
+            }
+
+            if (invyItem.isNoted() != item.isNoted()) {
+                return false;
+            }
+
+            int currentQuantity = item.getItemQty();
             int neededQuantity = item.getItemQty() - currentQuantity;
             if (neededQuantity > 0) {
                 return false;
@@ -84,6 +95,14 @@ public class InventoryLoadout {
                     }
                     Timing.sleepForDelay();
                     neededSomething = true;
+
+                    // Set noted mode
+                    BankMode withdrawMode = (item.isNoted() ? BankMode.NOTE : BankMode.ITEM);
+                    if (Bank.getWithdrawMode() != withdrawMode) {
+                        Bank.setWithdrawMode(withdrawMode);
+                        break;
+                    }
+
                     if (Bank.withdraw(item.getItemName(), neededQuantity)) {
                         Sleep.sleepUntil(() -> Inventory.count(item.getItemName()) == item.getItemQty(), 4000, 100);
                     }
