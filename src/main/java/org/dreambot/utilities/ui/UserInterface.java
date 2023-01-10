@@ -1,21 +1,22 @@
 package org.dreambot.utilities.ui;
 
+import org.dreambot.utilities.API;
 import org.dreambot.utilities.QuestBranches;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UserInterface {
 
-    private static QuestBranches selectedItem;
-    private static boolean startLoop = false;
-
+    public static boolean startLoop = false;
+    public static boolean stopScript = false;
+    private static JFrame jFrame;
     public UserInterface() {
-        JFrame jFrame = new JFrame("DreamBotQuester");
+        jFrame = new JFrame("DreamBotQuester");
         jFrame.setSize(400, 400);
         jFrame.setLocationRelativeTo(null);
         jFrame.setLayout(null);
-        jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         JComboBox comboBox = new JComboBox();
         comboBox.setSize(300, 100);
         comboBox.setBounds((jFrame.getWidth() - comboBox.getWidth()) / 2,
@@ -32,21 +33,26 @@ public class UserInterface {
                 200, button.getWidth(), button.getHeight());
 
         button.addActionListener(e -> {
-            selectedItem = (QuestBranches) comboBox.getSelectedItem();
+            API.selectedQuest = (QuestBranches) comboBox.getSelectedItem();
             jFrame.dispose();
             startLoop = true;
         });
 
         jFrame.add(comboBox);
         jFrame.add(button);
+        jFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                startLoop = true;
+                stopScript = true;
+                jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            }
+        });
         jFrame.setVisible(true);
     }
 
-    public static boolean isStartLoop() {
-        return startLoop;
-    }
-
-    public static QuestBranches getSelectedItem() {
-        return selectedItem;
+    public static void close() {
+        jFrame.setVisible(false);
+        jFrame.dispose();
     }
 }

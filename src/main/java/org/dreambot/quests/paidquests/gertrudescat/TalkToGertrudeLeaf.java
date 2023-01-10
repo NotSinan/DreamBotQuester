@@ -46,11 +46,7 @@ public class TalkToGertrudeLeaf extends Leaf {
                 return Timing.getSleepDelay();
             }
         }
-
-        return NPCHelper.goAndTalkToNpc(
-                new Area(3147, 3412, 3157, 3408), //gertrude area
-                "Gertrude",
-                new String[]{"Yes."}
-        );
+        final Area GERTRUDE_AREA = new Area(3144, 3415, 3158, 3404, 0);
+        return NPCHelper.goAndTalkToNpc(GERTRUDE_AREA, "Gertrude", new String[]{"Yes."});
     }
 }

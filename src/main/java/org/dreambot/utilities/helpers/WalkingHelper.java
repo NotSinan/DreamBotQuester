@@ -35,6 +35,14 @@ public class WalkingHelper {
         return walkToArea(circle);
     }
 
+    /**
+     * Recursive method to try to find a walkable tile within the given area in the given amount of tries.
+     * @param area the area to get a walkable tile from
+     * @param tries the amount of tries to get a walkable tile
+     * @return the Tile found to be walkable,
+     * or a random-generated tile within the region regardless of walkability if tries ran out,
+     * or null if no tiles returned from area
+     */
     private static Tile getWalkableTileInArea(Area area, int tries) {
 
         Tile t = Map.getWalkable(area.getRandomTile());
