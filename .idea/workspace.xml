@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="70777ee3-c8e7-46bc-8356-c59205046c64" name="Changes" comment="added UnbankableItemsLeaf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/InventoryLoadout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/InventoryLoadout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/EquipmentItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/EquipmentItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeArmour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeArmour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeLoadouts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeLoadouts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/loadouts/setups/melee/StandardMeleeWeapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/TalkToDoricLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/TalkToDoricLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/paidquests/gertrudescat/TalkToGertrudeLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/paidquests/gertrudescat/TalkToGertrudeLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/WalkingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/WalkingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/requirements/CheckRequirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/requirements/CheckRequirements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/ui/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/ui/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
