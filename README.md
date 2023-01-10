@@ -36,7 +36,7 @@ To run the script, you will need to have the [DreamBot](https://dreambot.org/) c
 
 1. Open the DreamBot client.
 2. Select the script in the Script Manager and click the "Start" button.
-3. Select the quest in the script's GUI and click the "Start" button.
+3. Select the quest to perform in the script's GUI and click the "Start" button.
 
 # Contributing
 
