@@ -4,7 +4,9 @@ import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Map;
 import org.dreambot.api.methods.map.Tile;
+import org.dreambot.api.methods.walking.impl.Walking;
 import org.dreambot.api.utilities.Logger;
+import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.Entity;
 import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
@@ -13,6 +15,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class WalkingHelper {
+
+    public static void toggleRunAt(int minEnergyToToggle) {
+        if (!Walking.isRunEnabled() && Walking.getRunEnergy() >= minEnergyToToggle) {
+            Timing.sleepForDelay();
+            if (Walking.toggleRun()) {
+                Sleep.sleepUntil(() -> Walking.isRunEnabled(), 3000);
+            }
+        }
+    }
 
     /**
      * Walks to a random tile in an area.

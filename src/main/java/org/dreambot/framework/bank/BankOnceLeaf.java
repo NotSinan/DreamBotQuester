@@ -24,7 +24,7 @@ public class BankOnceLeaf extends Leaf {
         }
 
         Timing.sleepForDelay();
-        if(Bank.open()) {
+        if (Bank.open()) {
             if(!Inventory.isEmpty() && Bank.depositAllItems()) {
                 Sleep.sleepUntil(Inventory::isEmpty, 3000);
             }
