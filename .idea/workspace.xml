@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70777ee3-c8e7-46bc-8356-c59205046c64" name="Changes" comment="added UnbankableItemsLeaf">
+    <list default="true" id="70777ee3-c8e7-46bc-8356-c59205046c64" name="Changes" comment="Added function to stop script when GUI X Close button is clicked, and to close GUI when script is stopped">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/ironman/IronmanRetrieval.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/TalkToDoricLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/doricsquest/TalkToDoricLeaf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/paidquests/gertrudescat/TalkToGertrudeLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/paidquests/gertrudescat/TalkToGertrudeLeaf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/framework/bank/BankOnceLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/framework/bank/BankOnceLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/impcatcher/RetrieveBeadsLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/impcatcher/RetrieveBeadsLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/thecorsaircurse/RetrieveTinderboxCorsairCurseLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/thecorsaircurse/RetrieveTinderboxCorsairCurseLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveGarlicLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveGarlicLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveHammerLeaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/quests/freequests/vampyreslayer/RetrieveHammerLeaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/QuestBranches.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/QuestBranches.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/NPCHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/NPCHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/WalkingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/helpers/WalkingHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/requirements/CheckRequirements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/requirements/CheckRequirements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/ui/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dreambot/utilities/ui/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,18 +53,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/IdeaProjects/DreamBotQuesteragain/src/main/java/org/dreambot/quests/alfredgrimhandsbarcrawl&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.4275862&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/tmp/whoopsed",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.4275862",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\USER\IdeaProjects\DreamBotQuesteragain\src\main\java\org\dreambot\quests\alfredgrimhandsbarcrawl" />
@@ -130,7 +132,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Cooks Assistant.&#10;Added method in QuestHelper pickupGroundSpawn(Tile, String name) mainly for walking from anywhere and picking up a GroundItem at a tile, handling closed doors &amp; blocked pickup tile.&#10;Implemented tick timeout function and delayed interactions in Cooks Assistant, if it looks good then we can change all interactions to delayed interactions.&#10;goAndTalkToNpc returns Timing.loopReturn as int so changed that in all quests to avoid redundancy.&#10;In Imp Catcher changed isValid of GiveBeadsLeaf from Inventory.contains(beads...) to Inventory.containsAll(beads...) because I assume we need all beads before talking to Mizgog and contains(...) only checks for at least one of provided list to return true.&#10;Added sleepUntil condition where you commented in Imp Catcher." />
     <MESSAGE value="Added a QuestHelper method &quot;walkToArea(Area)&quot; which returns true after being inside an area, otherwise walks to random tile and returns false.&#10;Added Witchs Potion" />
     <MESSAGE value="Code audit!! Read commit diff. Witch's potion / pirate's treasure / x marks spot not fully reviewed / finished yet" />
     <MESSAGE value="Split cook's assistant and witch's potion item retrieve leafs into their respective leafs. Fixed Witchs Potion lol" />
@@ -155,6 +156,7 @@
     <MESSAGE value="Finished Loadout / EquipmentLoadout / InventoryLoadout / LoadoutItem / EquipmentItem classes. Implemented into Vampyre Slayer for basic melee and food implementation" />
     <MESSAGE value="Emptied the QuestHelper class and moved all methods contained within it to their own Helper classes which can be expanded upon later" />
     <MESSAGE value="added UnbankableItemsLeaf" />
-    <option name="LAST_COMMIT_MESSAGE" value="added UnbankableItemsLeaf" />
+    <MESSAGE value="Added function to stop script when GUI X Close button is clicked, and to close GUI when script is stopped" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added function to stop script when GUI X Close button is clicked, and to close GUI when script is stopped" />
   </component>
 </project>
