@@ -2,6 +2,7 @@ package org.dreambot.utilities.helpers;
 
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
+import org.dreambot.api.methods.map.Tile;
 
 public class CommonItemsHelper {
 
@@ -37,5 +38,19 @@ public class CommonItemsHelper {
         final Area RED_BERRY_BUSH_AREA = new Area(3266, 3375, 3279, 3365);
         final int count = Inventory.count("Redberries");
         return GameObjectHelper.goAndInteractWithGameObject(RED_BERRY_BUSH_AREA, "Redberry bush", "Pick-from", () -> Inventory.count("Redberries") != count);
+    }
+
+    public static int getSpade() {
+        final Tile FALADOR_SPADE_AREA = new Tile(2981, 3370, 0);
+        return GroundItemHelper.pickupGroundSpawn(FALADOR_SPADE_AREA, "Spade");
+    }
+
+    public static int getBeer() {
+        if (Inventory.count("Coins") < 1) {
+            return BankHelper.withdrawFromBank("Coins", 1);
+        }
+        final Area BARTENDER_AREA = new Area(3216, 3404, 3227, 3392);
+        final String[] DIALOGUE_OPTIONS = {"A glass of your finest ale please."};
+        return NPCHelper.goAndTalkToNpc(BARTENDER_AREA, "Bartender", DIALOGUE_OPTIONS);
     }
 }
