@@ -9,8 +9,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveGhostHeadLeaf extends Leaf {
 
@@ -21,7 +21,7 @@ public class RetrieveGhostHeadLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        if (!QuestHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
+        if (!WalkingHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
             return Timing.getSleepDelay();
         }
         

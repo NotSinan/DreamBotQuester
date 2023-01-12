@@ -10,8 +10,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveOnion extends Leaf {
     @Override
@@ -22,7 +22,7 @@ public class RetrieveOnion extends Leaf {
     @Override
     public int onLoop() {
         final Area ONION_AREA = new Area(2955, 3254, 2945, 3248, 0);
-        if (!QuestHelper.walkToArea(ONION_AREA)) {
+        if (!WalkingHelper.walkToArea(ONION_AREA)) {
             return Timing.getSleepDelay();
         }
 

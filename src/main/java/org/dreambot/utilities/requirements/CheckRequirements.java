@@ -1,9 +1,9 @@
 package org.dreambot.utilities.requirements;
 
-import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.quest.book.Quest;
 import org.dreambot.api.script.ScriptManager;
 import org.dreambot.api.utilities.Logger;
+import org.dreambot.utilities.API;
 
 public class CheckRequirements {
     public static boolean checkRequirements(Quest quest) {
@@ -17,6 +17,14 @@ public class CheckRequirements {
             Logger.log("Finished " + quest + ", stopping script...!");
             ScriptManager.getScriptManager().stop();
             return false;
+        }
+
+        if (API.questVarBit != quest.getVarBitID()) {
+            API.questVarBit = quest.getVarBitID();
+        }
+
+        if (API.questVarPlayer != quest.getConfigID()) {
+            API.questVarPlayer = quest.getConfigID();
         }
 
         return true;

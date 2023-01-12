@@ -4,7 +4,7 @@ import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.ShopHelper;
 
 public class RetrieveRumLeaf extends Leaf {
     @Override
@@ -23,6 +23,6 @@ public class RetrieveRumLeaf extends Leaf {
                 new Tile(2916, 3148, 0),
                 new Tile(2916, 3143, 0),
                 new Tile(2917, 3142, 0));
-        return QuestHelper.purchaseFromShop(KARAMJA_PUB_AREA, "Karamjan rum", 1, "Zambo");
+        return ShopHelper.purchaseFromShop(KARAMJA_PUB_AREA, "Karamjan rum", 1, "Zambo");
     }
 }

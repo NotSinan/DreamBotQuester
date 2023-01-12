@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveCabbageLeaf extends Leaf {
 
@@ -21,7 +21,7 @@ public class RetrieveCabbageLeaf extends Leaf {
         final String GAME_OBJECT = "Cabbage";
         final String ACTION = "Pick";
         final String ITEM = "Cabbage";
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 CABBAGE_AREA,
                 GAME_OBJECT,
                 ACTION,

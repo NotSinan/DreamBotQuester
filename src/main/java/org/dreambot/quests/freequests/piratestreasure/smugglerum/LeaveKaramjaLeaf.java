@@ -3,7 +3,7 @@ package org.dreambot.quests.freequests.piratestreasure.smugglerum;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.map.Tile;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class LeaveKaramjaLeaf extends Leaf {
 
@@ -26,7 +26,7 @@ public class LeaveKaramjaLeaf extends Leaf {
                 new Tile(2949, 3148, 0));
         final String SEAMAN_NAME = "Customs officer";
         final String[] DIALOGUE_OPTIONS = {"Can I journey on this ship?", "Search away, I have nothing to hide.", "Ok."};
-        return QuestHelper.goAndTalkToNpc(SEAMAN_AREA, SEAMAN_NAME, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(SEAMAN_AREA, SEAMAN_NAME, DIALOGUE_OPTIONS);
     }
 }
 

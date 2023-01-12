@@ -5,7 +5,8 @@ import org.dreambot.api.methods.dialogues.Dialogues;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.DialogueHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToLuthasLeaf extends Leaf {
     @Override
@@ -18,7 +19,7 @@ public class TalkToLuthasLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (Dialogues.inDialogue()) {
-            String dialog = QuestHelper.getDialogue();
+            String dialog = DialogueHelper.getDialogue();
             if (dialog != null) {
                 if (dialog.contains("You wouldn't believe the demand for bananas from") ||
                         dialog.contains("Have you completed your task yet?")) {
@@ -35,6 +36,6 @@ public class TalkToLuthasLeaf extends Leaf {
 
         final Area LUTHAS_AREA = new Area(2941, 3152, 2935, 3156, 0);
         final String[] DIALOGUE_OPTIONS = {"Could you offer me employment on your plantation?", "What did I have to do again?"};
-        return QuestHelper.goAndTalkToNpc(LUTHAS_AREA, "Luthas", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(LUTHAS_AREA, "Luthas", DIALOGUE_OPTIONS);
     }
 }

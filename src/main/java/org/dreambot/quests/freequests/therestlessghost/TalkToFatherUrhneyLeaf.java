@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToFatherUrhneyLeaf extends Leaf {
 
@@ -16,7 +16,7 @@ public class TalkToFatherUrhneyLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 new Area(3144, 3177, 3151, 3173),
                 "Father Urhney",
                 new String[]{"Father Aereck sent me to talk to you.", "He's got a ghost haunting his graveyard."}

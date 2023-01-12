@@ -8,6 +8,7 @@ public class LoadoutItem {
     public LoadoutItem(String itemName, int itemQty) {
         this.itemName = itemName;
         this.itemQty = itemQty;
+        noted = false;
     }
     public LoadoutItem(String itemName, int itemQty, boolean noted) {
         this.itemName = itemName;

@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveSpadeCorsairCurseLeaf extends Leaf {
 
@@ -21,7 +21,7 @@ public class RetrieveSpadeCorsairCurseLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        return QuestHelper.pickupGroundSpawn(
+        return GroundItemHelper.pickupGroundSpawn(
                 new Tile(2552, 2846, 0), //corsair cove spade spawn
                 "Spade"
         );

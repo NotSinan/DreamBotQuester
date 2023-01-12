@@ -8,8 +8,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 import java.util.Arrays;
 
@@ -23,7 +23,7 @@ public class RetrieveIronLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area RIMMINGTON_IRON_ROCKS_AREA = new Area(2972, 3236, 2967, 3243, 0);
-        if (!QuestHelper.walkToArea(RIMMINGTON_IRON_ROCKS_AREA)) {
+        if (!WalkingHelper.walkToArea(RIMMINGTON_IRON_ROCKS_AREA)) {
             return Timing.getSleepDelay();
         }
         GameObject rock = GameObjects.closest(g -> RIMMINGTON_IRON_ROCKS_AREA.contains(g) && Arrays.stream(new int[]{11364, 11365}).anyMatch(i -> i == g.getID()));

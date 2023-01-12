@@ -9,22 +9,27 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.OwnedItems;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.BankHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveHammerLeaf extends Leaf {
 
     @Override
     public boolean isValid() {
+        // 🐰🐰🐰 Check if there is no hammer in the inventory
         return !Inventory.contains("Hammer");
     }
 
     @Override
     public int onLoop() {
-
+        if (OwnedItems.contains("Hammer")) {
+            return BankHelper.withdrawFromBank("Hammer", 1);
+        }
         final Area VARROCK_GENERAL_STORE = new Area(3214, 3418, 3220, 3411);
 
-        if (!QuestHelper.walkToArea(VARROCK_GENERAL_STORE)) {
+        if (!WalkingHelper.walkToArea(VARROCK_GENERAL_STORE)) {
             return Timing.getSleepDelay();
         }
 

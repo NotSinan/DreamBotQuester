@@ -7,8 +7,8 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class GoToFortressLeaf extends Leaf {
 
@@ -25,7 +25,7 @@ public class GoToFortressLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
-        QuestHelper.walkToArea(FORTRESS_ENTRANCE_AREA);
+        WalkingHelper.walkToArea(FORTRESS_ENTRANCE_AREA);
         return Timing.getSleepDelay();
     }
 }

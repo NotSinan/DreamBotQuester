@@ -6,8 +6,8 @@ import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.GameObjectHelper;
 
 /**
  * This class retrieves the Silverlight key from the Varrock sewers.
@@ -27,6 +27,6 @@ public class RetrieveSecondKeyLeaf extends Leaf {
             return Timing.loopReturn();
         }
         final Area VARROCK_SEWER = new Area(3224, 9899, 3232, 9896); // This is where the key spawns after pouring water in the drain.
-        return QuestHelper.goAndInteractWithGameObject(VARROCK_SEWER, "Rusty key", "Take", () -> Inventory.contains("Rusty key"));
+        return GameObjectHelper.goAndInteractWithGameObject(VARROCK_SEWER, "Rusty key", "Take", () -> Inventory.contains("Rusty key"));
     }
 }

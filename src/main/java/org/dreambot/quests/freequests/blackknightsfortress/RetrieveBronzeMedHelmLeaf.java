@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.ShopHelper;
 
 public class RetrieveBronzeMedHelmLeaf extends Leaf {
 
@@ -23,6 +23,6 @@ public class RetrieveBronzeMedHelmLeaf extends Leaf {
         final String ITEM_NAME = "Bronze med helm";
         final int QUANTITY = 1;
         final String NPC_NAME = "Peksa";
-        return QuestHelper.purchaseFromShop(PEKSA_AREA, ITEM_NAME, QUANTITY, NPC_NAME);
+        return ShopHelper.purchaseFromShop(PEKSA_AREA, ITEM_NAME, QUANTITY, NPC_NAME);
     }
 }

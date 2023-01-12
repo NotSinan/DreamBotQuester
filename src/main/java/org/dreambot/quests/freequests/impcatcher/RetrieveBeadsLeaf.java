@@ -13,8 +13,9 @@ import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.BankHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveBeadsLeaf extends Leaf {
 
@@ -28,11 +29,11 @@ public class RetrieveBeadsLeaf extends Leaf {
     public int onLoop() {
 
         if (Inventory.count("Coins") < 500) {
-            QuestHelper.withdrawFromBank("Coins", 1000);
+            BankHelper.withdrawFromBank("Coins", 1000);
         }
 
         Area IMP_SPAWN_AREA = new Area(2816, 3188, 2840, 3166);
-        if (!QuestHelper.walkToArea(IMP_SPAWN_AREA)) {
+        if (!WalkingHelper.walkToArea(IMP_SPAWN_AREA)) {
             return Timing.getSleepDelay();
         }
 

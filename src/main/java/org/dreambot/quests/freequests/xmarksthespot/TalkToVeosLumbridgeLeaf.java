@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToVeosLumbridgeLeaf extends Leaf {
 
@@ -22,6 +22,6 @@ public class TalkToVeosLumbridgeLeaf extends Leaf {
         final Area VEOS_AREA = new Area(3226, 3242, 3233, 3239);
         final String VEOS_NAME = "Veos";
         final String[] DIALOGUE_OPTIONS = {"I'm looking for a quest.", "Sounds good, what should I do?", "Okay, thanks Veos.", "Yes.", "Can I help?"};
-        return QuestHelper.goAndTalkToNpc(VEOS_AREA, VEOS_NAME, DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(VEOS_AREA, VEOS_NAME, DIALOGUE_OPTIONS);
     }
 }

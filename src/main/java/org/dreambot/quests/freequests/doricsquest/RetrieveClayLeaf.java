@@ -8,8 +8,8 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 import java.util.Arrays;
 
@@ -23,7 +23,7 @@ public class RetrieveClayLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area RIMMINGTON_CLAY_ROCKS_AREA = new Area(2985, 3241, 2988, 3238, 0);
-        if (!QuestHelper.walkToArea(RIMMINGTON_CLAY_ROCKS_AREA)) {
+        if (!WalkingHelper.walkToArea(RIMMINGTON_CLAY_ROCKS_AREA)) {
             return Timing.getSleepDelay();
         }
 

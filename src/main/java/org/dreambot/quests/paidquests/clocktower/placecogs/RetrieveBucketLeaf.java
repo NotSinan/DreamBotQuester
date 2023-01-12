@@ -9,9 +9,9 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.*;
+import org.dreambot.utilities.helpers.GroundItemHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveBucketLeaf extends Leaf {
 
@@ -25,7 +25,7 @@ public class RetrieveBucketLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (!Inventory.contains("Bucket")) {
-            return QuestHelper.pickupGroundSpawn(new Tile(2616, 3255, 0), "Bucket");
+            return GroundItemHelper.pickupGroundSpawn(new Tile(2616, 3255, 0), "Bucket");
         }
 
         final Area WELL_AREA = new Area(
@@ -35,7 +35,7 @@ public class RetrieveBucketLeaf extends Leaf {
                 new Tile(2617, 3261, 0),
                 new Tile(2617, 3251, 0),
                 new Tile(2608, 3251, 0));
-        if (!QuestHelper.walkToArea(WELL_AREA)) {
+        if (!WalkingHelper.walkToArea(WELL_AREA)) {
             return Timing.getSleepDelay();
         }
 

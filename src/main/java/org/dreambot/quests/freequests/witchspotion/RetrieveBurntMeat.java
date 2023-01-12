@@ -16,8 +16,8 @@ import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveBurntMeat extends Leaf {
 
@@ -36,7 +36,7 @@ public class RetrieveBurntMeat extends Leaf {
                 new Tile(3016, 3207, 0));
         final Area PORT_SARIM_RANGE_AREA = new Area(3015, 3240, 3019, 3236, 0);
         if (!Inventory.contains("Raw beef", "Cooked meat")) {
-            if (!QuestHelper.walkToArea(PORT_SARIM_FOOD_SHOP_AREA)) {
+            if (!WalkingHelper.walkToArea(PORT_SARIM_FOOD_SHOP_AREA)) {
                 return Timing.getSleepDelay();
             }
             if (!Shop.isOpen()) {
@@ -53,7 +53,7 @@ public class RetrieveBurntMeat extends Leaf {
             return Timing.loopReturn();
         }
 
-        if (!QuestHelper.walkToArea(PORT_SARIM_RANGE_AREA)) {
+        if (!WalkingHelper.walkToArea(PORT_SARIM_RANGE_AREA)) {
             return Timing.getSleepDelay();
         }
         if (ItemProcessing.isOpen()) {

@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.ShopHelper;
 
 public class RetrieveIronChainbodyLeaf extends Leaf {
 
@@ -19,7 +19,7 @@ public class RetrieveIronChainbodyLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area HORVIK_AREA = new Area(3227, 3441, 3232, 3433);
-        return QuestHelper.purchaseFromShop(
+        return ShopHelper.purchaseFromShop(
                 HORVIK_AREA,
                 "Iron chainbody",
                 1,

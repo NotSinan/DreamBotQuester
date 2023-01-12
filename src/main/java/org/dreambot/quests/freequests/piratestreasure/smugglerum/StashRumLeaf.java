@@ -11,8 +11,9 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.items.Item;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.DialogueHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class StashRumLeaf extends Leaf {
     @Override
@@ -24,7 +25,7 @@ public class StashRumLeaf extends Leaf {
     public int onLoop() {
 
         if (Dialogues.canContinue()) {
-            String dialog = QuestHelper.getDialogue();
+            String dialog = DialogueHelper.getDialogue();
             if (dialog != null && dialog.contains("You stash the rum in the crate")) {
                 SmuggleState.stashedRum = true;
             }
@@ -39,7 +40,7 @@ public class StashRumLeaf extends Leaf {
                 new Tile(2945, 3156, 0),
                 new Tile(2942, 3156, 0),
                 new Tile(2942, 3152, 0));
-        if (!QuestHelper.walkToArea(CRATE_AREA)) {
+        if (!WalkingHelper.walkToArea(CRATE_AREA)) {
             return Timing.loopReturn();
         }
         GameObject crate = GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));

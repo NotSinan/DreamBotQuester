@@ -6,7 +6,8 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GameObjectHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveBucketOfMilkLeaf extends Leaf {
 
@@ -21,11 +22,11 @@ public class RetrieveBucketOfMilkLeaf extends Leaf {
     public int onLoop() {
         if (!Inventory.contains("Bucket")) {
             final Tile BUCKET_LUMBRIDGE_SPAWN = new Tile(3216, 9625, 0);
-            return QuestHelper.pickupGroundSpawn(BUCKET_LUMBRIDGE_SPAWN, "Bucket");
+            return GroundItemHelper.pickupGroundSpawn(BUCKET_LUMBRIDGE_SPAWN, "Bucket");
         }
 
         final Area DAIRY_COW_WEST_LUMBRIDGE_AREA = new Area(3171, 3322, 3177, 3316, 0);
-        return QuestHelper.goAndInteractWithGameObject(
+        return GameObjectHelper.goAndInteractWithGameObject(
                 DAIRY_COW_WEST_LUMBRIDGE_AREA,
                 "Dairy cow",
                 "Milk",

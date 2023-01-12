@@ -12,8 +12,8 @@ import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.api.wrappers.widgets.WidgetChild;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class SpinWoolLeaf extends Leaf {
 
@@ -28,7 +28,7 @@ public class SpinWoolLeaf extends Leaf {
     @Override
     public int onLoop() {
         final Area SPINNING_WHEEL_AREA = new Area(3213, 3212, 3208, 3217, 1);
-        if (!QuestHelper.walkToArea(SPINNING_WHEEL_AREA)) {
+        if (!WalkingHelper.walkToArea(SPINNING_WHEEL_AREA)) {
             return Timing.getSleepDelay();
         }
 

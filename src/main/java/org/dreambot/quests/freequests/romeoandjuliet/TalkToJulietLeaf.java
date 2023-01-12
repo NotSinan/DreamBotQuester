@@ -6,7 +6,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
 
 public class TalkToJulietLeaf extends Leaf {
@@ -23,7 +23,7 @@ public class TalkToJulietLeaf extends Leaf {
         if (PlayerSettings.getBitValue(12139) == 0) {
             final Area JULIET_AREA = new Area(3155, 3426, 3161, 3425, 1);
             final String[] DIALOGUE_OPTIONS = {"Ok, thanks."};
-            return QuestHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
+            return NPCHelper.goAndTalkToNpc(JULIET_AREA, "Juliet", DIALOGUE_OPTIONS);
         }
         if (Dialogues.inDialogue()) {
             if (Dialogues.canContinue()) {

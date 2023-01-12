@@ -6,7 +6,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveWhiteApronLeaf extends Leaf {
@@ -31,6 +31,6 @@ public class RetrieveWhiteApronLeaf extends Leaf {
             return -1;
         }
         final Tile SARIM_WHITE_APRON_SPAWN = new Tile(3016, 3229, 0);
-        return QuestHelper.pickupGroundSpawn(SARIM_WHITE_APRON_SPAWN, "White apron");
+        return GroundItemHelper.pickupGroundSpawn(SARIM_WHITE_APRON_SPAWN, "White apron");
     }
 }

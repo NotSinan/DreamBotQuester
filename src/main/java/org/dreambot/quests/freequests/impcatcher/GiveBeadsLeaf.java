@@ -4,7 +4,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class GiveBeadsLeaf extends Leaf {
 
@@ -19,6 +19,6 @@ public class GiveBeadsLeaf extends Leaf {
     public int onLoop() {
         final Area MIZGOG_AREA = new Area(3099, 3166, 3107, 3159, 2);
         final String[] DIALOGUE_OPTIONS = {"Give me a quest please.", "Yes."};
-        return QuestHelper.goAndTalkToNpc(MIZGOG_AREA, "Wizard Mizgog", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(MIZGOG_AREA, "Wizard Mizgog", DIALOGUE_OPTIONS);
     }
 }

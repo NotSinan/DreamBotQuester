@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Tile;
 import org.dreambot.api.methods.quest.book.MiniQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToBarbarianGuardsLeaf extends Leaf {
 
@@ -30,7 +30,7 @@ public class TalkToBarbarianGuardsLeaf extends Leaf {
                 new Tile(2545, 3562, 0),
                 new Tile(2546, 3574, 0)
         );
-        return QuestHelper.goAndTalkToNpc(
+        return NPCHelper.goAndTalkToNpc(
                 BARBARIAN_GUARDS_AREA,
                 "Barbarian guard",
                 new String[]{

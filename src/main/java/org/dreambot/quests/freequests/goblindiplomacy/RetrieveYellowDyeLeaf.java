@@ -3,7 +3,7 @@ package org.dreambot.quests.freequests.goblindiplomacy;
 import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveYellowDyeLeaf extends Leaf {
     @Override
@@ -19,6 +19,6 @@ public class RetrieveYellowDyeLeaf extends Leaf {
                 "What do you need to make yellow dye?",
                 "Okay, make me some yellow dye please."
         };
-        return QuestHelper.goAndTalkToNpc(AGGIE_AREA, "Aggie", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(AGGIE_AREA, "Aggie", DIALOGUE_OPTIONS);
     }
 }

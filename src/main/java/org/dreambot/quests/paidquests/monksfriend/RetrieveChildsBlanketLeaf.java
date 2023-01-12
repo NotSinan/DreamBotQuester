@@ -8,7 +8,7 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.methods.walking.web.node.impl.EntranceWebNode;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
 import org.dreambot.utilities.Timing;
 
 public class RetrieveChildsBlanketLeaf extends Leaf {
@@ -55,9 +55,9 @@ public class RetrieveChildsBlanketLeaf extends Leaf {
         }
 
 //        if (!CHILDS_BLANKET_AREA.contains(Players.getLocal())) {
-//            QuestHelper.goAndInteractWithGameObject(LADDER_AREA, "Ladder", "Climb-down", ()-> Players.getLocal().getY() == 9000);
+//            GameObjectHelper.goAndInteractWithGameObject(LADDER_AREA, "Ladder", "Climb-down", ()-> Players.getLocal().getY() == 9000);
 //        }
 
-        return QuestHelper.pickupGroundSpawn(new Tile(2570, 9604, 0), "Child's blanket");
+        return GroundItemHelper.pickupGroundSpawn(new Tile(2570, 9604, 0), "Child's blanket");
     }
 }

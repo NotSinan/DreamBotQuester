@@ -10,9 +10,9 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.NPC;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
-import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.*;
+import org.dreambot.utilities.helpers.GroundItemHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class CollectWoolLeaf extends Leaf {
     private final Area SHEEP_AREA = new Area(3193, 3276, 3211, 3257);
@@ -27,9 +27,9 @@ public class CollectWoolLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (!Inventory.contains("Shears")) {
-            return QuestHelper.pickupGroundSpawn(SHEARS_SPAWN, "Shears");
+            return GroundItemHelper.pickupGroundSpawn(SHEARS_SPAWN, "Shears");
         }
-        if (!QuestHelper.walkToArea(SHEEP_AREA)) {
+        if (!WalkingHelper.walkToArea(SHEEP_AREA)) {
             return Timing.getSleepDelay();
         }
 

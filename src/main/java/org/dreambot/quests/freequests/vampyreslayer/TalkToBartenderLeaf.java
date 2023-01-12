@@ -5,7 +5,7 @@ import org.dreambot.api.methods.map.Area;
 import org.dreambot.api.methods.quest.book.FreeQuest;
 import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToBartenderLeaf extends Leaf {
 
@@ -20,6 +20,6 @@ public class TalkToBartenderLeaf extends Leaf {
     public int onLoop() {
         final Area BARTENDER_AREA = new Area(3216, 3404, 3227, 3392);
         final String[] DIALOGUE_OPTIONS = {"A glass of your finest ale please."};
-        return QuestHelper.goAndTalkToNpc(BARTENDER_AREA, "Bartender", DIALOGUE_OPTIONS);
+        return NPCHelper.goAndTalkToNpc(BARTENDER_AREA, "Bartender", DIALOGUE_OPTIONS);
     }
 }

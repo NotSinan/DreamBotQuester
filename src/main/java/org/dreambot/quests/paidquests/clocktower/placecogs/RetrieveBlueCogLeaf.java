@@ -11,8 +11,10 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.QuestHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.GameObjectHelper;
+import org.dreambot.utilities.helpers.GroundItemHelper;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveBlueCogLeaf extends Leaf {
 
@@ -24,7 +26,7 @@ public class RetrieveBlueCogLeaf extends Leaf {
     @Override
     public int onLoop() {
         if (new Area(2571, 9633, 2575, 9630, 0).contains(Players.getLocal())) { //blue cog room
-            return QuestHelper.pickupGroundSpawn(new Tile(2574, 9633, 0), "Blue cog");
+            return GroundItemHelper.pickupGroundSpawn(new Tile(2574, 9633, 0), "Blue cog");
         }
 
         final Area BLUE_COG_PRIOR_ROOM = new Area(2576, 9631, 2580, 9625, 0);
@@ -42,7 +44,7 @@ public class RetrieveBlueCogLeaf extends Leaf {
         if (!new Area(2623, 9599, 2558, 9664).contains(Players.getLocal())) { //entire clocktower dungeon
             final Area CLOCKTOWER_MIDDLE_ROOM = new Area(2564, 3245, 2573, 3239, 0);
 
-            return QuestHelper.goAndInteractWithGameObject(
+            return GameObjectHelper.goAndInteractWithGameObject(
                     CLOCKTOWER_MIDDLE_ROOM,
                     "Ladder",
                     "Climb-down",
@@ -66,7 +68,7 @@ public class RetrieveBlueCogLeaf extends Leaf {
 
         for (Tile tileOnBluePath : PATH_TO_BLUE_COG) {
             if (tileOnBluePath.canReach()) {
-                QuestHelper.walkToTile(tileOnBluePath);
+                WalkingHelper.walkToTile(tileOnBluePath);
                 return Timing.getSleepDelay();
             }
         }

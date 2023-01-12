@@ -9,8 +9,9 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.interactive.GameObject;
 import org.dreambot.framework.Leaf;
-import org.dreambot.utilities.QuestHelper;
+import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToGertrudeLeaf extends Leaf {
 
@@ -41,15 +42,11 @@ public class TalkToGertrudeLeaf extends Leaf {
                 Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
                 return Timing.loopReturn();
             } else {
-                QuestHelper.walkToTile(3308, 3492, 0);
+                WalkingHelper.walkToTile(3308, 3492, 0);
                 return Timing.getSleepDelay();
             }
         }
-
-        return QuestHelper.goAndTalkToNpc(
-                new Area(3147, 3412, 3157, 3408), //gertrude area
-                "Gertrude",
-                new String[]{"Yes."}
-        );
+        final Area GERTRUDE_AREA = new Area(3144, 3415, 3158, 3404, 0);
+        return NPCHelper.goAndTalkToNpc(GERTRUDE_AREA, "Gertrude", new String[]{"Yes."});
     }
 }
