@@ -25,7 +25,6 @@ public class ClueStepFourLeaf extends Leaf {
         if (!WalkingHelper.walkToArea(CLUE_FOUR_AREA)) {
 
             return Timing.getSleepDelay();
-
         }
 
         Timing.sleepForDelay();
