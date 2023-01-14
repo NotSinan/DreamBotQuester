@@ -25,7 +25,6 @@ public class ClueStepFourLeaf extends Leaf {
         if (!WalkingHelper.walkToArea(CLUE_FOUR_AREA)) {
             return Timing.getSleepDelay();
         }
-
         Timing.sleepForDelay();
         if (Inventory.interact("Spade", "Dig")) {
             if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
