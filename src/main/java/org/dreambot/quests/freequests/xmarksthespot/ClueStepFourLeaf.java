@@ -11,28 +11,26 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class ClueStepFourLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 5 && Inventory.contains("Treasure scroll");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 5
+        && Inventory.contains("Treasure scroll");
+  }
+
+  @Override
+  public int onLoop() {
+
+    final Area CLUE_FOUR_AREA = new Area(3075, 3261, 3079, 3259);
+
+    if (!WalkingHelper.walkToArea(CLUE_FOUR_AREA)) {
+      return Timing.getSleepDelay();
     }
-
-    @Override
-
-    public int onLoop() {
-
-        final Area CLUE_FOUR_AREA = new Area(3075, 3261, 3079, 3259);
-
-        if (!WalkingHelper.walkToArea(CLUE_FOUR_AREA)) {
-            return Timing.getSleepDelay();
-        }
-        Timing.sleepForDelay();
-        if (Inventory.interact("Spade", "Dig")) {
-            if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
-                Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-
-
-            }
-        }
-        return Timing.loopReturn();
+    Timing.sleepForDelay();
+    if (Inventory.interact("Spade", "Dig")) {
+      if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
+        Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
+      }
     }
+    return Timing.loopReturn();
+  }
 }

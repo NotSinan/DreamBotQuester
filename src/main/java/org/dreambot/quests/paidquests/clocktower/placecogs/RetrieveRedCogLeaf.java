@@ -9,24 +9,24 @@ import org.dreambot.utilities.helpers.GameObjectHelper;
 import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveRedCogLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return !CogState.placedRedCog && !Inventory.contains("Red cog");
+  @Override
+  public boolean isValid() {
+    return !CogState.placedRedCog && !Inventory.contains("Red cog");
+  }
+
+  @Override
+  public int onLoop() {
+    if (!new Area(2623, 9599, 2558, 9664)
+        .contains(Players.getLocal())) { // entire clocktower dungeon
+      final Area CLOCKTOWER_MIDDLE_ROOM = new Area(2564, 3245, 2573, 3239, 0);
+
+      return GameObjectHelper.goAndInteractWithGameObject(
+          CLOCKTOWER_MIDDLE_ROOM,
+          "Ladder",
+          "Climb-down",
+          () -> !CLOCKTOWER_MIDDLE_ROOM.contains(Players.getLocal()));
     }
 
-    @Override
-    public int onLoop() {
-        if (!new Area(2623, 9599, 2558, 9664).contains(Players.getLocal())) { //entire clocktower dungeon
-            final Area CLOCKTOWER_MIDDLE_ROOM = new Area(2564, 3245, 2573, 3239, 0);
-
-            return GameObjectHelper.goAndInteractWithGameObject(
-                    CLOCKTOWER_MIDDLE_ROOM,
-                    "Ladder",
-                    "Climb-down",
-                    () -> !CLOCKTOWER_MIDDLE_ROOM.contains(Players.getLocal())
-            );
-        }
-
-        return GroundItemHelper.pickupGroundSpawn(new Tile(2583, 9613, 0), "Red cog");
-    }
+    return GroundItemHelper.pickupGroundSpawn(new Tile(2583, 9613, 0), "Red cog");
+  }
 }

@@ -12,20 +12,19 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class GoToFortressLeaf extends Leaf {
 
+  @Override
+  public boolean isValid() {
+    final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
+    return PlayerSettings.getConfig(FreeQuest.BLACK_KNIGHTS_FORTRESS.getConfigID()) == 1
+            && !FORTRESS_ENTRANCE_AREA.contains(Players.getLocal())
+            && !Equipment.slotContains(EquipmentSlot.HAT, "Bronze med helm")
+        || !Equipment.slotContains(EquipmentSlot.CHEST, "Iron chainbody");
+  }
 
-    @Override
-    public boolean isValid() {
-        final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
-        return PlayerSettings.getConfig(FreeQuest.BLACK_KNIGHTS_FORTRESS.getConfigID()) == 1 &&
-                !FORTRESS_ENTRANCE_AREA.contains(Players.getLocal()) &&
-                !Equipment.slotContains(EquipmentSlot.HAT, "Bronze med helm") ||
-                !Equipment.slotContains(EquipmentSlot.CHEST, "Iron chainbody");
-    }
-
-    @Override
-    public int onLoop() {
-        final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
-        WalkingHelper.walkToArea(FORTRESS_ENTRANCE_AREA);
-        return Timing.getSleepDelay();
-    }
+  @Override
+  public int onLoop() {
+    final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
+    WalkingHelper.walkToArea(FORTRESS_ENTRANCE_AREA);
+    return Timing.getSleepDelay();
+  }
 }

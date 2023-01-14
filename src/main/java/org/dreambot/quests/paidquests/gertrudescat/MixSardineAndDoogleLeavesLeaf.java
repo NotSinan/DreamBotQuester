@@ -11,25 +11,30 @@ import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
 
 public class MixSardineAndDoogleLeavesLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 3 && Inventory.containsAll("Doogle leaves", "Raw sardine");
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 3
+        && Inventory.containsAll("Doogle leaves", "Raw sardine");
+  }
 
-    @Override
-    public int onLoop() {
-        if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
-                Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
-            }
-            return Timing.loopReturn();
-        }
-        Item doogle = Inventory.get("Doogle leaves");
-        Item sardine = Inventory.get("Raw sardine");
-        if (doogle != null && doogle.isValid() && sardine != null && sardine.isValid() && Interaction.delayUseItemOn(doogle, sardine)) {
-            Sleep.sleepUntil(() -> Inventory.contains("Seasoned sardine"), 3000);
-        }
-        return Timing.loopReturn();
+  @Override
+  public int onLoop() {
+    if (Dialogues.inDialogue()) {
+      if (Dialogues.canContinue()) {
+        Dialogues.continueDialogue();
+        Sleep.sleepUntil(() -> Dialogues.isProcessing(), 3000);
+      }
+      return Timing.loopReturn();
     }
+    Item doogle = Inventory.get("Doogle leaves");
+    Item sardine = Inventory.get("Raw sardine");
+    if (doogle != null
+        && doogle.isValid()
+        && sardine != null
+        && sardine.isValid()
+        && Interaction.delayUseItemOn(doogle, sardine)) {
+      Sleep.sleepUntil(() -> Inventory.contains("Seasoned sardine"), 3000);
+    }
+    return Timing.loopReturn();
+  }
 }

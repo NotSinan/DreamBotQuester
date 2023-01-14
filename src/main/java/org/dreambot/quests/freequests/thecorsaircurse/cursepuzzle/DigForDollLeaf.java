@@ -12,40 +12,44 @@ import org.dreambot.utilities.helpers.DialogueHelper;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class DigForDollLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return CurseState.talkedToIthoi() &&
-                        CurseState.returnedToothpick() &&
-                        CurseState.talkedToColin() &&
-                        Inventory.contains("Spade");
+  @Override
+  public boolean isValid() {
+    return CurseState.talkedToIthoi()
+        && CurseState.returnedToothpick()
+        && CurseState.talkedToColin()
+        && Inventory.contains("Spade");
+  }
+
+  @Override
+  public int onLoop() {
+    if (!WalkingHelper.walkToArea(new Area(2501, 2843, 2510, 2836, 0))) { // doll dig area
+      return Timing.getSleepDelay();
     }
-    @Override
-    public int onLoop() {
-        if (!WalkingHelper.walkToArea(new Area(2501, 2843, 2510, 2836, 0))) { //doll dig area
-            return Timing.getSleepDelay();
-        }
 
-        if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
-                return Timing.loopReturn();
-            }
-
-            if (Dialogues.areOptionsAvailable()) {
-                if (Dialogues.chooseFirstOptionContaining("Search for the possessed doll and face the consequences.")) {
-                    Sleep.sleepUntil(() -> {
-                        String dialog2 = DialogueHelper.getDialogue();
-                        return dialog2 != null && dialog2.contains("That sounds more like clockwork");
-                    }, 8000);
-                }
-            }
-            return Timing.loopReturn();
-        }
-
-        if (Interaction.delayInventoryInteract("Spade", "Dig")) {
-            Sleep.sleepUntil(Dialogues::inDialogue, () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-
+    if (Dialogues.inDialogue()) {
+      if (Dialogues.canContinue()) {
+        Dialogues.continueDialogue();
         return Timing.loopReturn();
+      }
+
+      if (Dialogues.areOptionsAvailable()) {
+        if (Dialogues.chooseFirstOptionContaining(
+            "Search for the possessed doll and face the consequences.")) {
+          Sleep.sleepUntil(
+              () -> {
+                String dialog2 = DialogueHelper.getDialogue();
+                return dialog2 != null && dialog2.contains("That sounds more like clockwork");
+              },
+              8000);
+        }
+      }
+      return Timing.loopReturn();
     }
+
+    if (Interaction.delayInventoryInteract("Spade", "Dig")) {
+      Sleep.sleepUntil(Dialogues::inDialogue, () -> Players.getLocal().isMoving(), 3000, 100);
+    }
+
+    return Timing.loopReturn();
+  }
 }

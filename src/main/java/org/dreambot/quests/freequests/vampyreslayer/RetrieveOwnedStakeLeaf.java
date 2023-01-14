@@ -6,13 +6,13 @@ import org.dreambot.utilities.OwnedItems;
 import org.dreambot.utilities.helpers.BankHelper;
 
 public class RetrieveOwnedStakeLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return OwnedItems.contains("Stake") && !Inventory.contains("Stake");
-    }
+  @Override
+  public boolean isValid() {
+    return OwnedItems.contains("Stake") && !Inventory.contains("Stake");
+  }
 
-    @Override
-    public int onLoop() {
-        return BankHelper.withdrawFromBank("Stake", 1);
-    }
+  @Override
+  public int onLoop() {
+    return BankHelper.withdrawFromBank("Stake", 1);
+  }
 }

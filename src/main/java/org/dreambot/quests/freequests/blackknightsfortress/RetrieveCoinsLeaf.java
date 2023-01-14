@@ -7,13 +7,14 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.BankHelper;
 
 public class RetrieveCoinsLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.BLACK_KNIGHTS_FORTRESS.getConfigID()) == 0 && Inventory.count("Coins") <= 300;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.BLACK_KNIGHTS_FORTRESS.getConfigID()) == 0
+        && Inventory.count("Coins") <= 300;
+  }
 
-    @Override
-    public int onLoop() {
-        return BankHelper.withdrawFromBank("Coins", 1000);
-    }
+  @Override
+  public int onLoop() {
+    return BankHelper.withdrawFromBank("Coins", 1000);
+  }
 }

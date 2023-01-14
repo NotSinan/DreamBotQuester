@@ -18,26 +18,31 @@ import org.dreambot.utilities.helpers.WalkingHelper;
  * This class fills an empty bucket with water in the kitchen of the Varrock palace.
  */
 public class FillBucketLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
-                Inventory.contains("Bucket") &&
-                PlayerSettings.getBitValue(2568) != 1 && // Player setting to determine if a player has poured water in the drain.
-                !Inventory.contains(2401); // Second key.
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2
+        && Inventory.contains("Bucket")
+        && PlayerSettings.getBitValue(2568) != 1
+        && // Player setting to determine if a player has poured water in the drain.
+        !Inventory.contains(2401); // Second key.
+  }
+
+  @Override
+  public int onLoop() {
+    final Area SINK_AREA = new Area(3218, 3497, 3224, 3491); // Kitchen of the Varrock palace.
+    if (!WalkingHelper.walkToArea(SINK_AREA)) {
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        final Area SINK_AREA = new Area(3218, 3497, 3224, 3491); // Kitchen of the Varrock palace.
-        if (!WalkingHelper.walkToArea(SINK_AREA)) {
-            return Timing.getSleepDelay();
-        }
-
-        GameObject sink = GameObjects.closest("Sink");
-        Item bucket = Inventory.get("Bucket");
-        if (sink != null && bucket != null && Interaction.delayUseItemOn(bucket, sink)) {
-            Sleep.sleepUntil(() -> Inventory.contains("Bucket of water"), () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-        return Timing.loopReturn();
+    GameObject sink = GameObjects.closest("Sink");
+    Item bucket = Inventory.get("Bucket");
+    if (sink != null && bucket != null && Interaction.delayUseItemOn(bucket, sink)) {
+      Sleep.sleepUntil(
+          () -> Inventory.contains("Bucket of water"),
+          () -> Players.getLocal().isMoving(),
+          3000,
+          100);
     }
+    return Timing.loopReturn();
+  }
 }

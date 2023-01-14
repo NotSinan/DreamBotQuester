@@ -7,15 +7,17 @@ import org.dreambot.utilities.Timing;
 
 public class EngageBoosterThrusters extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return Players.getLocal().isInCombat() && Walking.getRunEnergy() >= 2 && !Walking.isRunEnabled();
-    }
+  @Override
+  public boolean isValid() {
+    return Players.getLocal().isInCombat()
+        && Walking.getRunEnergy() >= 2
+        && !Walking.isRunEnabled();
+  }
 
-    @Override
-    public int onLoop() {
-        Timing.sleepForDelay();
-        Walking.toggleRun();
-        return Timing.loopReturn();
-    }
+  @Override
+  public int onLoop() {
+    Timing.sleepForDelay();
+    Walking.toggleRun();
+    return Timing.loopReturn();
+  }
 }

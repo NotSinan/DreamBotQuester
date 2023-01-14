@@ -8,8 +8,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 @QuestManifest(author = "420", questName = "Cook's assistant")
 public class CooksAssistant extends Branch {
 
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.COOKS_ASSISTANT);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.COOKS_ASSISTANT);
+  }
 }

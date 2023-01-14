@@ -17,22 +17,28 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class GiveKittenToFluffsLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 4 && Inventory.contains("Fluffs' kitten");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 4
+        && Inventory.contains("Fluffs' kitten");
+  }
+
+  @Override
+  public int onLoop() {
+    if (!WalkingHelper.walkToArea(new Area(3305, 3513, 3312, 3507, 1))) { // cat area
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        if (!WalkingHelper.walkToArea(new Area(3305, 3513, 3312, 3507, 1))) { //cat area
-            return Timing.getSleepDelay();
-        }
-
-        NPC cat = NPCs.closest("Gertrude's cat");
-        Item fluff = Inventory.get("Fluff's kitten");
-        if (cat != null && cat.exists() && fluff != null && fluff.isValid() && Interaction.delayUseItemOn(fluff, cat)) {
-            Sleep.sleepUntil(() -> Dialogues.inDialogue(), () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-        return Timing.loopReturn();
+    NPC cat = NPCs.closest("Gertrude's cat");
+    Item fluff = Inventory.get("Fluff's kitten");
+    if (cat != null
+        && cat.exists()
+        && fluff != null
+        && fluff.isValid()
+        && Interaction.delayUseItemOn(fluff, cat)) {
+      Sleep.sleepUntil(
+          () -> Dialogues.inDialogue(), () -> Players.getLocal().isMoving(), 3000, 100);
     }
+    return Timing.loopReturn();
+  }
 }

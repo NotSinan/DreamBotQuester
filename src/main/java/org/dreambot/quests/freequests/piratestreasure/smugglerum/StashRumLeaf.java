@@ -16,39 +16,46 @@ import org.dreambot.utilities.helpers.DialogueHelper;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class StashRumLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return !SmuggleState.stashedRum && Inventory.contains("Karamjan rum") && SmuggleState.isOnKaramja();
-    }
+  @Override
+  public boolean isValid() {
+    return !SmuggleState.stashedRum
+        && Inventory.contains("Karamjan rum")
+        && SmuggleState.isOnKaramja();
+  }
 
-    @Override
-    public int onLoop() {
+  @Override
+  public int onLoop() {
 
-        if (Dialogues.canContinue()) {
-            String dialog = DialogueHelper.getDialogue();
-            if (dialog != null && dialog.contains("You stash the rum in the crate")) {
-                SmuggleState.stashedRum = true;
-            }
-            if (Dialogues.continueDialogue())
-                return Timing.loopReturn();
-            return Timing.getSleepDelay();
-        }
-        final Area CRATE_AREA = new Area(
-                new Tile(2936, 3151, 0),
-                new Tile(2936, 3149, 0),
-                new Tile(2945, 3149, 0),
-                new Tile(2945, 3156, 0),
-                new Tile(2942, 3156, 0),
-                new Tile(2942, 3152, 0));
-        if (!WalkingHelper.walkToArea(CRATE_AREA)) {
-            return Timing.loopReturn();
-        }
-        GameObject crate = GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));
-        Item karamjanRum = Inventory.get("Karamjan rum");
-        if (crate != null && crate.exists() && karamjanRum != null && karamjanRum.isValid() &&
-                Interaction.delayUseItemOn(karamjanRum, crate)) {
-            Sleep.sleepUntil(() -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-        return Timing.loopReturn();
+    if (Dialogues.canContinue()) {
+      String dialog = DialogueHelper.getDialogue();
+      if (dialog != null && dialog.contains("You stash the rum in the crate")) {
+        SmuggleState.stashedRum = true;
+      }
+      if (Dialogues.continueDialogue()) return Timing.loopReturn();
+      return Timing.getSleepDelay();
     }
+    final Area CRATE_AREA =
+        new Area(
+            new Tile(2936, 3151, 0),
+            new Tile(2936, 3149, 0),
+            new Tile(2945, 3149, 0),
+            new Tile(2945, 3156, 0),
+            new Tile(2942, 3156, 0),
+            new Tile(2942, 3152, 0));
+    if (!WalkingHelper.walkToArea(CRATE_AREA)) {
+      return Timing.loopReturn();
+    }
+    GameObject crate =
+        GameObjects.closest(g -> CRATE_AREA.contains(g) && g.getName().equals("Crate"));
+    Item karamjanRum = Inventory.get("Karamjan rum");
+    if (crate != null
+        && crate.exists()
+        && karamjanRum != null
+        && karamjanRum.isValid()
+        && Interaction.delayUseItemOn(karamjanRum, crate)) {
+      Sleep.sleepUntil(
+          () -> Dialogues.canContinue(), () -> Players.getLocal().isMoving(), 3000, 100);
+    }
+    return Timing.loopReturn();
+  }
 }

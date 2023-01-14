@@ -11,19 +11,20 @@ import org.dreambot.utilities.helpers.GroundItemHelper;
 
 public class RetrieveTinderboxCorsairCurseLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return !Inventory.contains("Tinderbox") &&
-                (new Area(2543, 2864, 2547, 2860, 1).contains(Players.getLocal()) || // Gnocci upstairs area
-                        (PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 30 ||
-                                PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 35 ||
-                                PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 40 ||
-                                PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 45));
-    }
+  @Override
+  public boolean isValid() {
+    return !Inventory.contains("Tinderbox")
+        && (new Area(2543, 2864, 2547, 2860, 1).contains(Players.getLocal())
+            || // Gnocci upstairs area
+            (PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 30
+                || PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 35
+                || PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 40
+                || PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 45));
+  }
 
-    @Override
-    public int onLoop() {
-        return GroundItemHelper.pickupGroundSpawn(new Tile(2543, 2862, 1), "Tinderbox"); //gnocci upstairs tinderbox spawn
-    }
-
+  @Override
+  public int onLoop() {
+    return GroundItemHelper.pickupGroundSpawn(
+        new Tile(2543, 2862, 1), "Tinderbox"); // gnocci upstairs tinderbox spawn
+  }
 }

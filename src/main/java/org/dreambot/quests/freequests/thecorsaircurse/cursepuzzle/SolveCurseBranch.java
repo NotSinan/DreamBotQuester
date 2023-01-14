@@ -5,8 +5,8 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Branch;
 
 public class SolveCurseBranch extends Branch {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 15;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 15;
+  }
 }

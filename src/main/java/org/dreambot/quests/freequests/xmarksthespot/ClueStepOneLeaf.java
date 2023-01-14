@@ -12,26 +12,26 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class ClueStepOneLeaf extends Leaf {
 
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 2
+        && Inventory.contains("Treasure scroll");
+  }
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 2 && Inventory.contains("Treasure scroll");
+  @Override
+  public int onLoop() {
+    final Area CLUE_ONE_AREA = new Area(3230, 3209, 3230, 3209);
+
+    if (!WalkingHelper.walkToArea(CLUE_ONE_AREA)) {
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        final Area CLUE_ONE_AREA = new Area(3230, 3209, 3230, 3209);
-
-        if (!WalkingHelper.walkToArea(CLUE_ONE_AREA)) {
-            return Timing.getSleepDelay();
-        }
-
-        Timing.sleepForDelay();
-        if (Inventory.interact("Spade", "Dig")) {
-            if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
-                Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
-            }
-        }
-        return Timing.loopReturn();
+    Timing.sleepForDelay();
+    if (Inventory.interact("Spade", "Dig")) {
+      if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
+        Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
+      }
     }
+    return Timing.loopReturn();
+  }
 }

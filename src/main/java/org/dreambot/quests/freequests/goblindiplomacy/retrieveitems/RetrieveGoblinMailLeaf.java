@@ -13,22 +13,24 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveGoblinMailLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0 &&
-                Inventory.count(item -> item.getName().endsWith("mail")) < 3;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0
+        && Inventory.count(item -> item.getName().endsWith("mail")) < 3;
+  }
 
-    @Override
-    public int onLoop() {
-        final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227); // Lumbridge goblin area.
-        GroundItem goblinMail = GroundItems.closest(item -> item.getName().equals("Goblin mail") && GOBLIN_AREA.contains(item));
-        if (goblinMail != null) {
-            if (Interaction.delayEntityInteract(goblinMail, "Take")) {
-                Sleep.sleep(2000, 3000);
-            }
-            return Timing.loopReturn();
-        }
-        return NPCHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
+  @Override
+  public int onLoop() {
+    final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227); // Lumbridge goblin area.
+    GroundItem goblinMail =
+        GroundItems.closest(
+            item -> item.getName().equals("Goblin mail") && GOBLIN_AREA.contains(item));
+    if (goblinMail != null) {
+      if (Interaction.delayEntityInteract(goblinMail, "Take")) {
+        Sleep.sleep(2000, 3000);
+      }
+      return Timing.loopReturn();
     }
+    return NPCHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
+  }
 }

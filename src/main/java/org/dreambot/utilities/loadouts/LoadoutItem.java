@@ -1,41 +1,43 @@
 package org.dreambot.utilities.loadouts;
 
 public class LoadoutItem {
-    private String itemName;
-    private int itemQty;
-    private boolean noted;
+  private String itemName;
+  private int itemQty;
+  private boolean noted;
 
-    public LoadoutItem(String itemName, int itemQty) {
-        this.itemName = itemName;
-        this.itemQty = itemQty;
-        noted = false;
-    }
-    public LoadoutItem(String itemName, int itemQty, boolean noted) {
-        this.itemName = itemName;
-        this.itemQty = itemQty;
-        this.noted = noted;
-    }
+  public LoadoutItem(String itemName, int itemQty) {
+    this.itemName = itemName;
+    this.itemQty = itemQty;
+    noted = false;
+  }
 
-    public String getItemName() {
-        return itemName;
-    }
+  public LoadoutItem(String itemName, int itemQty, boolean noted) {
+    this.itemName = itemName;
+    this.itemQty = itemQty;
+    this.noted = noted;
+  }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
+  public String getItemName() {
+    return itemName;
+  }
 
-    public int getItemQty() {
-        return itemQty;
-    }
+  public void setItemName(String itemName) {
+    this.itemName = itemName;
+  }
 
-    public void setItemQty(int itemQty) {
-        this.itemQty = itemQty;
-    }
-    public boolean isNoted() {
-        return noted;
-    }
+  public int getItemQty() {
+    return itemQty;
+  }
 
-    public void setNoted(boolean noted) {
-        this.noted = noted;
-    }
+  public void setItemQty(int itemQty) {
+    this.itemQty = itemQty;
+  }
+
+  public boolean isNoted() {
+    return noted;
+  }
+
+  public void setNoted(boolean noted) {
+    this.noted = noted;
+  }
 }

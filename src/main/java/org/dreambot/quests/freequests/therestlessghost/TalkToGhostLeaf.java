@@ -17,53 +17,59 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToGhostLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 2;
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 2;
+  }
+
+  @Override
+  public int onLoop() {
+
+    if (Inventory.contains("Ghostspeak amulet")) {
+      Timing.sleepForDelay();
+      Inventory.interact("Ghostspeak amulet", "Wear");
+      return Timing.loopReturn();
     }
 
-    @Override
-    public int onLoop() {
+    if (!WalkingHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { // ghost area
+      return Timing.getSleepDelay();
+    }
 
-        if (Inventory.contains("Ghostspeak amulet")) {
-            Timing.sleepForDelay();
-            Inventory.interact("Ghostspeak amulet", "Wear");
-            return Timing.loopReturn();
+    if (!Dialogues.inDialogue()) {
+      NPC restlessGhost = NPCs.closest("Restless ghost");
+      if (restlessGhost != null) {
+        if (restlessGhost.interact("Talk-to")) {
+          Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
         }
-
-        if (!WalkingHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
-            return Timing.getSleepDelay();
-        }
-
-        if (!Dialogues.inDialogue()) {
-            NPC restlessGhost = NPCs.closest("Restless ghost");
-            if (restlessGhost != null) {
-                if (restlessGhost.interact("Talk-to")) {
-                    Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
-                }
-                return Timing.loopReturn();
-            }
-            GameObject coffin = GameObjects.closest("Coffin");
-            if (coffin != null && coffin.hasAction("Open") && Interaction.delayEntityInteract(coffin, "Open")) {
-                Sleep.sleepUntil(() -> NPCs.closest("Restless ghost") != null, () -> Players.getLocal().isMoving(), 3000, 100);
-            }
-            return Timing.loopReturn();
-        }
-
-        if (Dialogues.canContinue()) {
-            Timing.sleepForDelay();
-            Dialogues.continueDialogue();
-            Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-            return Timing.loopReturn();
-        }
-
-        if (Dialogues.areOptionsAvailable()) {
-            Timing.sleepForDelay();
-            Dialogues.chooseFirstOptionContaining("Yep, now tell me what the problem is.");
-            Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
-            return Timing.loopReturn();
-        }
-
         return Timing.loopReturn();
+      }
+      GameObject coffin = GameObjects.closest("Coffin");
+      if (coffin != null
+          && coffin.hasAction("Open")
+          && Interaction.delayEntityInteract(coffin, "Open")) {
+        Sleep.sleepUntil(
+            () -> NPCs.closest("Restless ghost") != null,
+            () -> Players.getLocal().isMoving(),
+            3000,
+            100);
+      }
+      return Timing.loopReturn();
     }
+
+    if (Dialogues.canContinue()) {
+      Timing.sleepForDelay();
+      Dialogues.continueDialogue();
+      Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+      return Timing.loopReturn();
+    }
+
+    if (Dialogues.areOptionsAvailable()) {
+      Timing.sleepForDelay();
+      Dialogues.chooseFirstOptionContaining("Yep, now tell me what the problem is.");
+      Sleep.sleepUntil(() -> !Dialogues.isProcessing(), 3000);
+      return Timing.loopReturn();
+    }
+
+    return Timing.loopReturn();
+  }
 }

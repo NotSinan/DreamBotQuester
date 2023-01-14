@@ -8,19 +8,19 @@ import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
 
 public class MixBlueGoblinMailLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return Inventory.containsAll("Blue dye", "Goblin mail");
-    }
+  @Override
+  public boolean isValid() {
+    return Inventory.containsAll("Blue dye", "Goblin mail");
+  }
 
-    @Override
-    public int onLoop() {
-        if (Inventory.containsAll("Blue dye", "Goblin mail")) {
-            Item blueDye = Inventory.get("Blue dye");
-            Item goblinMail = Inventory.get("Goblin mail");
-            Interaction.delayUseItemOn(blueDye, goblinMail);
-            Sleep.sleepUntil(() -> Inventory.contains("Blue goblin mail"), 3000);
-        }
-        return Timing.loopReturn();
+  @Override
+  public int onLoop() {
+    if (Inventory.containsAll("Blue dye", "Goblin mail")) {
+      Item blueDye = Inventory.get("Blue dye");
+      Item goblinMail = Inventory.get("Goblin mail");
+      Interaction.delayUseItemOn(blueDye, goblinMail);
+      Sleep.sleepUntil(() -> Inventory.contains("Blue goblin mail"), 3000);
     }
+    return Timing.loopReturn();
+  }
 }

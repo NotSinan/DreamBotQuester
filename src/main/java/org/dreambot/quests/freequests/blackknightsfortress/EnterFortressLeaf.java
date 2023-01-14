@@ -13,25 +13,25 @@ import org.dreambot.utilities.Timing;
 
 public class EnterFortressLeaf extends Leaf {
 
+  @Override
+  public boolean isValid() {
 
-    @Override
-    public boolean isValid() {
+    final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
+    return PlayerSettings.getConfig(FreeQuest.BLACK_KNIGHTS_FORTRESS.getConfigID()) == 1
+        && FORTRESS_ENTRANCE_AREA.contains(Players.getLocal())
+        && Equipment.containsAll("Iron chainbody", "Bronze med helm");
+  }
 
-        final Area FORTRESS_ENTRANCE_AREA = new Area(3014, 3513, 3017, 3512);
-        return PlayerSettings.getConfig(FreeQuest.BLACK_KNIGHTS_FORTRESS.getConfigID()) == 1 &&
-                FORTRESS_ENTRANCE_AREA.contains(Players.getLocal()) && Equipment.containsAll("Iron chainbody", "Bronze med helm");
+  @Override
+  public int onLoop() {
+    final Area INSIDE_FORTRESS_AREA = new Area(3015, 3516, 3017, 3515);
+
+    if (!INSIDE_FORTRESS_AREA.contains(Players.getLocal())) {
+      GameObject sturdyDoor = GameObjects.closest("Sturdy door");
+      if (sturdyDoor != null && sturdyDoor.interact("Open")) {
+        Sleep.sleepUntil(() -> INSIDE_FORTRESS_AREA.contains(Players.getLocal()), 3000);
+      }
     }
-
-    @Override
-    public int onLoop() {
-        final Area INSIDE_FORTRESS_AREA = new Area(3015, 3516, 3017, 3515);
-
-        if (!INSIDE_FORTRESS_AREA.contains(Players.getLocal())) {
-            GameObject sturdyDoor = GameObjects.closest("Sturdy door");
-            if (sturdyDoor != null && sturdyDoor.interact("Open")) {
-                Sleep.sleepUntil(() -> INSIDE_FORTRESS_AREA.contains(Players.getLocal()), 3000);
-            }
-        }
-        return Timing.loopReturn();
-    }
+    return Timing.loopReturn();
+  }
 }

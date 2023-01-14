@@ -7,18 +7,16 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToTockRimmingtonLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 10;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 10;
+  }
 
-    @Override
-    public int onLoop() {
-        return NPCHelper.goAndTalkToNpc(
-                new Area(2906, 3227, 2915, 3225, 0),
-                "Captain Tock",
-                new String[]{"Okay, I'm ready go to Corsair Cove."}
-        );
-    }
-
+  @Override
+  public int onLoop() {
+    return NPCHelper.goAndTalkToNpc(
+        new Area(2906, 3227, 2915, 3225, 0),
+        "Captain Tock",
+        new String[] {"Okay, I'm ready go to Corsair Cove."});
+  }
 }

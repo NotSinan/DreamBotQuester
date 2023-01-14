@@ -8,8 +8,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 @QuestManifest(author = "420", questName = "Witch's potion")
 public class WitchsPotion extends Branch {
 
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.WITCHS_POTION);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.WITCHS_POTION);
+  }
 }

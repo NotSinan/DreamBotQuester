@@ -6,10 +6,9 @@ import org.dreambot.utilities.QuestManifest;
 import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "Sinan", questName = "Black Knight's Fortress")
-
 public class BlackKnightsFortress extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.BLACK_KNIGHTS_FORTRESS);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.BLACK_KNIGHTS_FORTRESS);
+  }
 }

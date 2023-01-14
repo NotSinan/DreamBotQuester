@@ -6,19 +6,15 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToIthoiLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return !CurseState.talkedToIthoi();
-    }
+  @Override
+  public boolean isValid() {
+    return !CurseState.talkedToIthoi();
+  }
 
-    @Override
-    public int onLoop() {
-        final Area ITHOI_AREA = new Area(2527, 2841, 2532, 2835, 1);
-        return NPCHelper.goAndTalkToNpc(
-                ITHOI_AREA,
-                "Ithoi the Navigator",
-                new String[]{"I hear you've been cursed."}
-        );
-    }
-
+  @Override
+  public int onLoop() {
+    final Area ITHOI_AREA = new Area(2527, 2841, 2532, 2835, 1);
+    return NPCHelper.goAndTalkToNpc(
+        ITHOI_AREA, "Ithoi the Navigator", new String[] {"I hear you've been cursed."});
+  }
 }

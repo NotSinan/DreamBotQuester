@@ -7,8 +7,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "420", questName = "Pirate's treasure")
 public class PiratesTreasure extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.PIRATES_TREASURE);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.PIRATES_TREASURE);
+  }
 }

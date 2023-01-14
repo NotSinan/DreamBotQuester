@@ -15,37 +15,38 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveGarlicLeaf extends Leaf {
 
+  @Override
+  public boolean isValid() {
+    // 🐰🐰🐰 Check if there is no Garlic in the inventory
+    return !Inventory.contains("Garlic");
+  }
 
-    @Override
-    public boolean isValid() {
-        // 🐰🐰🐰 Check if there is no Garlic in the inventory
-        return !Inventory.contains("Garlic");
+  @Override
+  public int onLoop() {
+    if (OwnedItems.contains("Garlic")) {
+      return BankHelper.withdrawFromBank("Garlic", 1);
     }
 
-    @Override
-    public int onLoop() {
-        if (OwnedItems.contains("Garlic")) {
-            return BankHelper.withdrawFromBank("Garlic", 1);
-        }
+    final Area GARLIC_AREA = new Area(3096, 3270, 3102, 3266, 1);
 
-        final Area GARLIC_AREA = new Area(3096, 3270, 3102, 3266, 1);
+    if (!WalkingHelper.walkToArea(GARLIC_AREA)) {
+      return Timing.getSleepDelay();
+    }
 
-        if (!WalkingHelper.walkToArea(GARLIC_AREA)) {
-            return Timing.getSleepDelay();
-        }
-
-        GameObject cupboard = GameObjects.closest("Cupboard");
-        if (cupboard != null) {
-            if (cupboard.hasAction("Open")) {
-                if (Interaction.delayEntityInteract(cupboard, "Open")) {
-                    Sleep.sleepUntil(() -> !cupboard.exists(), () -> Players.getLocal().isMoving(), 3000, 100);
-                }
-                return Timing.loopReturn();
-            }
-            if (Interaction.delayEntityInteract(cupboard, "Search")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Garlic"), () -> Players.getLocal().isMoving(), 3000, 100);
-            }
+    GameObject cupboard = GameObjects.closest("Cupboard");
+    if (cupboard != null) {
+      if (cupboard.hasAction("Open")) {
+        if (Interaction.delayEntityInteract(cupboard, "Open")) {
+          Sleep.sleepUntil(
+              () -> !cupboard.exists(), () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
+      }
+      if (Interaction.delayEntityInteract(cupboard, "Search")) {
+        Sleep.sleepUntil(
+            () -> Inventory.contains("Garlic"), () -> Players.getLocal().isMoving(), 3000, 100);
+      }
     }
+    return Timing.loopReturn();
+  }
 }

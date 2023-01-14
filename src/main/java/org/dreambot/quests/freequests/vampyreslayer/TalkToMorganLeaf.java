@@ -8,17 +8,16 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToMorganLeaf extends Leaf {
 
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.VAMPIRE_SLAYER.getConfigID()) == 0;
+  }
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.VAMPIRE_SLAYER.getConfigID()) == 0;
-    }
+  @Override
+  public int onLoop() {
+    final Area MORGAN_AREA = new Area(3096, 3270, 3102, 3266);
+    final String[] DIALOGUE_OPTIONS = {"Yes."};
 
-    @Override
-    public int onLoop() {
-        final Area MORGAN_AREA = new Area(3096, 3270, 3102, 3266);
-        final String[] DIALOGUE_OPTIONS = {"Yes."};
-
-        return NPCHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
-    }
+    return NPCHelper.goAndTalkToNpc(MORGAN_AREA, "Morgan", DIALOGUE_OPTIONS);
+  }
 }

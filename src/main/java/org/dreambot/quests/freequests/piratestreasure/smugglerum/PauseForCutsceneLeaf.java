@@ -6,14 +6,17 @@ import org.dreambot.utilities.Timing;
 
 public class PauseForCutsceneLeaf extends Leaf {
 
-    /**
-     * Pause for cutscene during Pirate's Treasure (karamja boat), do nothing.
-     * @return
-     */
+  /**
+   * Pause for cutscene during Pirate's Treasure (karamja boat), do nothing.
+   * @return
+   */
+  @Override
+  public boolean isValid() {
+    return Client.isInCutscene() || Client.isDynamicRegion();
+  }
 
-    @Override
-    public boolean isValid() { return Client.isInCutscene() || Client.isDynamicRegion(); }
-
-    @Override
-    public int onLoop() { return Timing.loopReturn(); }
+  @Override
+  public int onLoop() {
+    return Timing.loopReturn();
+  }
 }

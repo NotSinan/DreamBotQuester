@@ -10,33 +10,33 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToGeneralWartfaceLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0 &&
-                Inventory.containsAll("Blue goblin mail", "Orange goblin mail", "Goblin mail");
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0
+        && Inventory.containsAll("Blue goblin mail", "Orange goblin mail", "Goblin mail");
+  }
 
-    @Override
-    public int onLoop() {
-        final Area GENERAL_WARTFACE_AREA = new Area(
-                new Tile[]{
-                        new Tile(2954, 3510, 0),
-                        new Tile(2961, 3510, 0),
-                        new Tile(2961, 3514, 0),
-                        new Tile(2957, 3514, 0),
-                        new Tile(2954, 3512, 0)
-                }
-        );
-        final String[] DIALOGUE_OPTIONS = {
-                "So how is life for the goblins?",
-                "Yes, Wartface looks fat",
-                "Do you want me to pick an armour colour for you?",
-                "What about a different colour?",
-                "I have some orange armour here",
-                "No he doesn't look fat",
-                "Yes."
-        };
+  @Override
+  public int onLoop() {
+    final Area GENERAL_WARTFACE_AREA =
+        new Area(
+            new Tile[] {
+              new Tile(2954, 3510, 0),
+              new Tile(2961, 3510, 0),
+              new Tile(2961, 3514, 0),
+              new Tile(2957, 3514, 0),
+              new Tile(2954, 3512, 0)
+            });
+    final String[] DIALOGUE_OPTIONS = {
+      "So how is life for the goblins?",
+      "Yes, Wartface looks fat",
+      "Do you want me to pick an armour colour for you?",
+      "What about a different colour?",
+      "I have some orange armour here",
+      "No he doesn't look fat",
+      "Yes."
+    };
 
-        return NPCHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
-    }
+    return NPCHelper.goAndTalkToNpc(GENERAL_WARTFACE_AREA, "General Wartface", DIALOGUE_OPTIONS);
+  }
 }

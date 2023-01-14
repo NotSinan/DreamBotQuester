@@ -9,19 +9,19 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToSanfewLeaf extends Leaf {
 
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 1
+        || PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 2
+            && Inventory.contains(
+                "Enchanted rat", "Enchanted beef", "Enchanted chicken", "Enchanted bear");
+  }
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 1 ||
-                PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 2 &&
-                        Inventory.contains("Enchanted rat", "Enchanted beef", "Enchanted chicken", "Enchanted bear");
-    }
-
-    @Override
-    public int onLoop() {
-        return NPCHelper.goAndTalkToNpc(
-                new Area(2894, 3431, 2901, 3425, 1), //sanfew area
-                "Sanfew",
-                new String[]{"I've been sent to help purify the Varrock stone circle."});
-    }
+  @Override
+  public int onLoop() {
+    return NPCHelper.goAndTalkToNpc(
+        new Area(2894, 3431, 2901, 3425, 1), // sanfew area
+        "Sanfew",
+        new String[] {"I've been sent to help purify the Varrock stone circle."});
+  }
 }

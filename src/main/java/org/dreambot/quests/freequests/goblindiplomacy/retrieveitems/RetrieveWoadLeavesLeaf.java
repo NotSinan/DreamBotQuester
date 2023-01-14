@@ -10,22 +10,22 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveWoadLeavesLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0 &&
-                Inventory.count("Woad leaf") < 2 &&
-                !Inventory.contains("Blue dye") &&
-                !Inventory.contains("Blue goblin mail");
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 0
+        && Inventory.count("Woad leaf") < 2
+        && !Inventory.contains("Blue dye")
+        && !Inventory.contains("Blue goblin mail");
+  }
 
-    @Override
-    public int onLoop() {
+  @Override
+  public int onLoop() {
 
-        if (Inventory.count("Coins") < 40) {
-            return BankHelper.withdrawFromBank("Coins", 40);
-        }
-        final Area WYSON_AREA = new Area(3024, 3383, 3029, 3375);
-        final String[] DIALOGUE_OPTIONS = {"Yes please, I need woad leaves.", "How about 20 coins?"};
-        return NPCHelper.goAndTalkToNpc(WYSON_AREA, "Wyson the gardener", DIALOGUE_OPTIONS);
+    if (Inventory.count("Coins") < 40) {
+      return BankHelper.withdrawFromBank("Coins", 40);
     }
+    final Area WYSON_AREA = new Area(3024, 3383, 3029, 3375);
+    final String[] DIALOGUE_OPTIONS = {"Yes please, I need woad leaves.", "How about 20 coins?"};
+    return NPCHelper.goAndTalkToNpc(WYSON_AREA, "Wyson the gardener", DIALOGUE_OPTIONS);
+  }
 }

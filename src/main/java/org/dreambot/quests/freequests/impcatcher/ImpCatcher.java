@@ -7,8 +7,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "Sinan", questName = "Imp catcher")
 public class ImpCatcher extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.IMP_CATCHER);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.IMP_CATCHER);
+  }
 }

@@ -11,26 +11,27 @@ import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class RetrieveAdrigalLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 3 && !Inventory.contains("Ardrigal");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.JUNGLE_POTION.getConfigID()) == 3
+        && !Inventory.contains("Ardrigal");
+  }
+
+  @Override
+  public int onLoop() {
+    final String ITEM = "Grimy ardrigal";
+
+    if (Inventory.contains(ITEM)) {
+      if (Inventory.interact(ITEM, "Clean")) {
+        Sleep.sleepUntil(() -> Inventory.contains("Ardrigal"), 3000);
+      }
+      return Timing.loopReturn();
     }
 
-    @Override
-    public int onLoop() {
-        final String ITEM = "Grimy ardrigal";
-
-        if (Inventory.contains(ITEM)) {
-            if (Inventory.interact(ITEM, "Clean")) {
-                Sleep.sleepUntil(() -> Inventory.contains("Ardrigal"), 3000);
-            }
-            return Timing.loopReturn();
-        }
-
-        return GameObjectHelper.goAndInteractWithGameObject(
-                new Area(2870, 3126, 2879, 3114), //ardrigal area
-                "Palm tree",
-                "Search",
-                () -> Inventory.contains(ITEM));
-    }
+    return GameObjectHelper.goAndInteractWithGameObject(
+        new Area(2870, 3126, 2879, 3114), // ardrigal area
+        "Palm tree",
+        "Search",
+        () -> Inventory.contains(ITEM));
+  }
 }

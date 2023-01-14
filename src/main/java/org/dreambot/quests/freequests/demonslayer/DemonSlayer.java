@@ -5,9 +5,8 @@ import org.dreambot.framework.Branch;
 import org.dreambot.utilities.requirements.CheckRequirements;
 
 public class DemonSlayer extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.DEMON_SLAYER);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.DEMON_SLAYER);
+  }
 }
-

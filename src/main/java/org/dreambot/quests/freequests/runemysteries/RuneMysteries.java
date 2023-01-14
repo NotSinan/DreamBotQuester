@@ -7,9 +7,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "Sinan", questName = "Rune mysteries")
 public class RuneMysteries extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.RUNE_MYSTERIES);
-    }
-
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.RUNE_MYSTERIES);
+  }
 }

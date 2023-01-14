@@ -11,13 +11,14 @@ import org.dreambot.utilities.helpers.BankHelper;
  */
 public class RetrieveDemonSlayerCoinsLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 0 && !Inventory.contains("Coins");
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 0
+        && !Inventory.contains("Coins");
+  }
 
-    @Override
-    public int onLoop() {
-        return BankHelper.withdrawFromBank("Coins", 100);
-    }
+  @Override
+  public int onLoop() {
+    return BankHelper.withdrawFromBank("Coins", 100);
+  }
 }

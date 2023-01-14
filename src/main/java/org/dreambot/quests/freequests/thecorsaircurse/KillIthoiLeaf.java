@@ -7,14 +7,13 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.NPCHelper;
 
 public class KillIthoiLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 52;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 52;
+  }
 
-    @Override
-    public int onLoop() {
-        return NPCHelper.goAndKillNpc(new Area(2527, 2841, 2532, 2835, 1), "Ithoi the Navigator");
-    }
-
+  @Override
+  public int onLoop() {
+    return NPCHelper.goAndKillNpc(new Area(2527, 2841, 2532, 2835, 1), "Ithoi the Navigator");
+  }
 }

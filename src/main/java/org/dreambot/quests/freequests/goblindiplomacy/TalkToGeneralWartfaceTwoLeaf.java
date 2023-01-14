@@ -15,57 +15,60 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class TalkToGeneralWartfaceTwoLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 3 ||
-                PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 4 ||
-                PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 5;
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 3
+        || PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 4
+        || PlayerSettings.getBitValue(FreeQuest.GOBLIN_DIPLOMACY.getVarBitID()) == 5;
+  }
+
+  @Override
+  public int onLoop() {
+
+    final Area GENERAL_WARTFACE_AREA =
+        new Area(
+            new Tile[] {
+              new Tile(2954, 3510, 0),
+              new Tile(2961, 3510, 0),
+              new Tile(2961, 3514, 0),
+              new Tile(2957, 3514, 0),
+              new Tile(2954, 3512, 0)
+            });
+
+    if (!GENERAL_WARTFACE_AREA.contains(Players.getLocal()) && !Client.isDynamicRegion()) {
+      WalkingHelper.walkToArea(GENERAL_WARTFACE_AREA);
+      return Timing.loopReturn();
     }
 
-    @Override
-    public int onLoop() {
+    if (!Dialogues.inDialogue()) {
+      NPC generalWartface = NPCs.closest("General Wartface");
+      generalWartface.interact("Talk-to");
+      Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
+      return Timing.loopReturn();
+    }
 
-        final Area GENERAL_WARTFACE_AREA = new Area(
-                new Tile[]{
-                        new Tile(2954, 3510, 0),
-                        new Tile(2961, 3510, 0),
-                        new Tile(2961, 3514, 0),
-                        new Tile(2957, 3514, 0),
-                        new Tile(2954, 3512, 0)
-                }
-        );
-
-        if (!GENERAL_WARTFACE_AREA.contains(Players.getLocal()) && !Client.isDynamicRegion()) {
-            WalkingHelper.walkToArea(GENERAL_WARTFACE_AREA);
-            return Timing.loopReturn();
-        }
-
-        if (!Dialogues.inDialogue()) {
-            NPC generalWartface = NPCs.closest("General Wartface");
-            generalWartface.interact("Talk-to");
-            Sleep.sleepUntil(() -> Dialogues.inDialogue(), 3000);
-            return Timing.loopReturn();
-        }
-
-        if (Dialogues.inDialogue()) {
-            if (Dialogues.canContinue()) {
-                Dialogues.continueDialogue();
-                return Timing.loopReturn();
-            }
-
-            if (Dialogues.areOptionsAvailable()) {
-                Dialogues.chooseFirstOption("I have some blue armour here.", "I have some brown armour here.", "No he doesn't look fat");
-                return Timing.loopReturn();
-            }
-        }
-
-        if (Client.isDynamicRegion()) {
-            if (Dialogues.inDialogue()) {
-                if (Dialogues.canContinue()) {
-                    Dialogues.continueDialogue();
-                }
-            }
-        }
+    if (Dialogues.inDialogue()) {
+      if (Dialogues.canContinue()) {
+        Dialogues.continueDialogue();
         return Timing.loopReturn();
+      }
+
+      if (Dialogues.areOptionsAvailable()) {
+        Dialogues.chooseFirstOption(
+            "I have some blue armour here.",
+            "I have some brown armour here.",
+            "No he doesn't look fat");
+        return Timing.loopReturn();
+      }
     }
+
+    if (Client.isDynamicRegion()) {
+      if (Dialogues.inDialogue()) {
+        if (Dialogues.canContinue()) {
+          Dialogues.continueDialogue();
+        }
+      }
+    }
+    return Timing.loopReturn();
+  }
 }

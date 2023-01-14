@@ -9,14 +9,18 @@ import org.dreambot.utilities.helpers.BankHelper;
 
 public class RetrievePiratesTreasureCoinsLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return (PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 0 && !Inventory.contains("Coins")) ||
-                (PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 1 && !SmuggleState.stashedRum && !Inventory.contains("Coins") && !Inventory.contains("Karamjan rum"));
-    }
+  @Override
+  public boolean isValid() {
+    return (PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 0
+            && !Inventory.contains("Coins"))
+        || (PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 1
+            && !SmuggleState.stashedRum
+            && !Inventory.contains("Coins")
+            && !Inventory.contains("Karamjan rum"));
+  }
 
-    @Override
-    public int onLoop() {
-        return BankHelper.withdrawFromBank("Coins", 1000);
-    }
+  @Override
+  public int onLoop() {
+    return BankHelper.withdrawFromBank("Coins", 1000);
+  }
 }

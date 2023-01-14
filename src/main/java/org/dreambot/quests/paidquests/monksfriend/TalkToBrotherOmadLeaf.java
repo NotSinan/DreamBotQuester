@@ -9,18 +9,18 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToBrotherOmadLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.MONKS_FRIEND.getConfigID()) == 0 ||
-                PlayerSettings.getConfig(PaidQuest.MONKS_FRIEND.getConfigID()) == 10 && Inventory.contains("Child's blanket");
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.MONKS_FRIEND.getConfigID()) == 0
+        || PlayerSettings.getConfig(PaidQuest.MONKS_FRIEND.getConfigID()) == 10
+            && Inventory.contains("Child's blanket");
+  }
 
-    @Override
-    public int onLoop() {
-        return NPCHelper.goAndTalkToNpc(
-                new Area(2602, 3211, 2610, 3207),
-                "Brother Omad",
-                new String[]{"Why can't you sleep, what's wrong?", "Can I help at all?", "Yes."}
-        );
-    }
+  @Override
+  public int onLoop() {
+    return NPCHelper.goAndTalkToNpc(
+        new Area(2602, 3211, 2610, 3207),
+        "Brother Omad",
+        new String[] {"Why can't you sleep, what's wrong?", "Can I help at all?", "Yes."});
+  }
 }

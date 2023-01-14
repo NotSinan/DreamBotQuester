@@ -12,25 +12,25 @@ import org.dreambot.utilities.Interaction;
 import org.dreambot.utilities.Timing;
 
 public class ShopHelper {
-    public static int purchaseFromShop(Area area, String itemName, int quantity, String npcName) {
-        if (!WalkingHelper.walkToArea(area)) {
-            return Timing.getSleepDelay();
-        }
-        if (Shop.isOpen()) {
-            Item item = Shop.get(itemName);
-            if(item != null && item.isValid() && item.getAmount() > 0) {
-                Timing.sleepForDelay();
-                if (Shop.purchase(itemName, quantity)) {
-                    Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
-                }
-            }
-            return Timing.loopReturn();
-        }
-
-        NPC shopAssistant = NPCs.closest(npcName);
-        if (shopAssistant != null && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
-            Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-        return Timing.loopReturn();
+  public static int purchaseFromShop(Area area, String itemName, int quantity, String npcName) {
+    if (!WalkingHelper.walkToArea(area)) {
+      return Timing.getSleepDelay();
     }
+    if (Shop.isOpen()) {
+      Item item = Shop.get(itemName);
+      if (item != null && item.isValid() && item.getAmount() > 0) {
+        Timing.sleepForDelay();
+        if (Shop.purchase(itemName, quantity)) {
+          Sleep.sleepUntil(() -> Inventory.contains(itemName), 3000);
+        }
+      }
+      return Timing.loopReturn();
+    }
+
+    NPC shopAssistant = NPCs.closest(npcName);
+    if (shopAssistant != null && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
+      Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
+    }
+    return Timing.loopReturn();
+  }
 }

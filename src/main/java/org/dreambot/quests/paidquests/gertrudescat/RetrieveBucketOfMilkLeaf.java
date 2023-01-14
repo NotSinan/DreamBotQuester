@@ -16,30 +16,35 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveBucketOfMilkLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 0 && !Inventory.contains("Bucket of milk");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 0
+        && !Inventory.contains("Bucket of milk");
+  }
+
+  @Override
+  public int onLoop() {
+
+    if (!Inventory.contains("Bucket")) {
+      return GroundItemHelper.pickupGroundSpawn(
+          new Tile(3216, 9625, 0), // lumbridge bucket spawn
+          "Bucket");
     }
 
-
-    @Override
-    public int onLoop() {
-
-        if (!Inventory.contains("Bucket")) {
-            return GroundItemHelper.pickupGroundSpawn(
-                    new Tile(3216, 9625, 0), //lumbridge bucket spawn
-                    "Bucket"
-            );
-        }
-
-        if (!WalkingHelper.walkToArea(new Area(3171, 3322, 3177, 3316, 0))) { //west lumbridge dairy cow area
-            return Timing.getSleepDelay();
-        }
-
-        GameObject dairyCow = GameObjects.closest(g -> g.getName().equals("Dairy cow") && g.hasAction("Milk"));
-        if (dairyCow != null && Interaction.delayEntityInteract(dairyCow, "Milk")) {
-            Sleep.sleepUntil(() -> Inventory.contains("Bucket of milk"), () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-        return Timing.loopReturn();
+    if (!WalkingHelper.walkToArea(
+        new Area(3171, 3322, 3177, 3316, 0))) { // west lumbridge dairy cow area
+      return Timing.getSleepDelay();
     }
+
+    GameObject dairyCow =
+        GameObjects.closest(g -> g.getName().equals("Dairy cow") && g.hasAction("Milk"));
+    if (dairyCow != null && Interaction.delayEntityInteract(dairyCow, "Milk")) {
+      Sleep.sleepUntil(
+          () -> Inventory.contains("Bucket of milk"),
+          () -> Players.getLocal().isMoving(),
+          3000,
+          100);
+    }
+    return Timing.loopReturn();
+  }
 }

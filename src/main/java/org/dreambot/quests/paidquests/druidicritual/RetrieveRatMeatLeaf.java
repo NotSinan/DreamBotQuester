@@ -11,23 +11,23 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveRatMeatLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 0 &&
-                Inventory.contains("Raw bear meat") && !Inventory.contains("Raw rat meat");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 0
+        && Inventory.contains("Raw bear meat")
+        && !Inventory.contains("Raw rat meat");
+  }
+
+  @Override
+  public int onLoop() {
+
+    GroundItem rawRatMeat = GroundItems.closest("Raw rat meat");
+    if (rawRatMeat != null && rawRatMeat.interact("Take")) {
+      Sleep.sleepUntil(() -> Inventory.contains("Raw rat meat"), 3000);
     }
 
-    @Override
-    public int onLoop() {
-
-        GroundItem rawRatMeat = GroundItems.closest("Raw rat meat");
-        if (rawRatMeat != null && rawRatMeat.interact("Take")) {
-            Sleep.sleepUntil(() -> Inventory.contains("Raw rat meat"), 3000);
-        }
-
-        return NPCHelper.goAndKillNpc(
-                new Area(3191, 3211, 3199, 3204), //rat area
-                "Giant rat"
-        );
-    }
+    return NPCHelper.goAndKillNpc(
+        new Area(3191, 3211, 3199, 3204), // rat area
+        "Giant rat");
+  }
 }

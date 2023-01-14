@@ -14,21 +14,22 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveGhostHeadLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 3 && !Inventory.contains("Skull");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 3
+        && !Inventory.contains("Skull");
+  }
+
+  @Override
+  public int onLoop() {
+    if (!WalkingHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        if (!WalkingHelper.walkToArea(new Area(3112, 9569, 3121, 9564))) { // altar area
-            return Timing.getSleepDelay();
-        }
-        
-        GameObject altar = GameObjects.closest("Altar");
-        if (altar != null && Interaction.delayEntityInteract(altar, "Search")) {
-            Sleep.sleepUntil(() -> Inventory.contains("Skull"), 3000);
-        }
-        return Timing.loopReturn();
+    GameObject altar = GameObjects.closest("Altar");
+    if (altar != null && Interaction.delayEntityInteract(altar, "Search")) {
+      Sleep.sleepUntil(() -> Inventory.contains("Skull"), 3000);
     }
+    return Timing.loopReturn();
+  }
 }

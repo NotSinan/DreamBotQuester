@@ -9,31 +9,33 @@ import org.dreambot.api.utilities.Sleep;
 import org.dreambot.api.wrappers.items.GroundItem;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Interaction;
-import org.dreambot.utilities.helpers.NPCHelper;
 import org.dreambot.utilities.Timing;
+import org.dreambot.utilities.helpers.NPCHelper;
 
 /**
  * This class kills 25 goblins and collects their bones.
  */
 public class KillGoblinsLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2 &&
-                Inventory.containsAll(2401, 2400) && // Silverlight key IDS.
-                Inventory.count("Bones") < 25 &&
-                !Inventory.containsAll(2399); //Silverlight key ID that is to be obtained.
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.DEMON_SLAYER.getVarBitID()) == 2
+        && Inventory.containsAll(2401, 2400)
+        && // Silverlight key IDS.
+        Inventory.count("Bones") < 25
+        && !Inventory.containsAll(2399); // Silverlight key ID that is to be obtained.
+  }
 
-    @Override
-    public int onLoop() {
-        final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227); // Lumbridge goblin area.
-        GroundItem bones = GroundItems.closest(item -> item.getName().equals("Bones") && GOBLIN_AREA.contains(item));
-        if (bones != null) {
-            if (Interaction.delayEntityInteract(bones, "Take")) {
-                Sleep.sleep(2000, 3000);
-            }
-            return Timing.loopReturn();
-        }
-        return NPCHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
+  @Override
+  public int onLoop() {
+    final Area GOBLIN_AREA = new Area(3243, 3241, 3261, 3227); // Lumbridge goblin area.
+    GroundItem bones =
+        GroundItems.closest(item -> item.getName().equals("Bones") && GOBLIN_AREA.contains(item));
+    if (bones != null) {
+      if (Interaction.delayEntityInteract(bones, "Take")) {
+        Sleep.sleep(2000, 3000);
+      }
+      return Timing.loopReturn();
     }
+    return NPCHelper.goAndKillNpc(GOBLIN_AREA, "Goblin");
+  }
 }

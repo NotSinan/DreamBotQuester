@@ -15,36 +15,39 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrievePiratesMessageLeaf extends Leaf {
-    private final Area CHEST_AREA = new Area(
-            new Tile(3218, 3396, 1),
-            new Tile(3222, 3396, 1),
-            new Tile(3222, 3394, 1),
-            new Tile(3218, 3392, 1));
+  private final Area CHEST_AREA =
+      new Area(
+          new Tile(3218, 3396, 1),
+          new Tile(3222, 3396, 1),
+          new Tile(3222, 3394, 1),
+          new Tile(3218, 3392, 1));
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 2 && Inventory.contains("Chest key");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.PIRATES_TREASURE.getConfigID()) == 2
+        && Inventory.contains("Chest key");
+  }
+
+  @Override
+  public int onLoop() {
+    if (Inventory.contains("Pirate message")) {
+      Timing.sleepForDelay();
+      Inventory.interact("Pirate message", "Read");
+      return Timing.loopReturn();
     }
 
-    @Override
-    public int onLoop() {
-        if(Inventory.contains("Pirate message")) {
-            Timing.sleepForDelay();
-            Inventory.interact("Pirate message", "Read");
-            return Timing.loopReturn();
-        }
-
-        if (!WalkingHelper.walkToArea(CHEST_AREA)) {
-            return Timing.getSleepDelay();
-        }
-
-        GameObject chest = GameObjects.closest(g -> CHEST_AREA.contains(g) && g.getName().equals("Chest"));
-        Item key = Inventory.get("Chest key");
-        if(chest != null && chest.exists() && key != null && key.isValid()) {
-            if(Interaction.delayUseItemOn(key, chest)) {
-                Sleep.sleepUntil(() -> Inventory.contains("Pirate message"), 8000, 100);
-            }
-        }
-        return Timing.loopReturn();
+    if (!WalkingHelper.walkToArea(CHEST_AREA)) {
+      return Timing.getSleepDelay();
     }
+
+    GameObject chest =
+        GameObjects.closest(g -> CHEST_AREA.contains(g) && g.getName().equals("Chest"));
+    Item key = Inventory.get("Chest key");
+    if (chest != null && chest.exists() && key != null && key.isValid()) {
+      if (Interaction.delayUseItemOn(key, chest)) {
+        Sleep.sleepUntil(() -> Inventory.contains("Pirate message"), 8000, 100);
+      }
+    }
+    return Timing.loopReturn();
+  }
 }

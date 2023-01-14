@@ -7,8 +7,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "420", questName = "The restless ghost")
 public class TheRestlessGhost extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.THE_RESTLESS_GHOST);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.THE_RESTLESS_GHOST);
+  }
 }

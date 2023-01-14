@@ -7,14 +7,14 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.BankHelper;
 
 public class RetrieveCoinsLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 0 &&
-                Inventory.count("Coins") < 500;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.GERTRUDES_CAT.getConfigID()) == 0
+        && Inventory.count("Coins") < 500;
+  }
 
-    @Override
-    public int onLoop() {
-        return BankHelper.withdrawFromBank("Coins", 10000);
-    }
+  @Override
+  public int onLoop() {
+    return BankHelper.withdrawFromBank("Coins", 10000);
+  }
 }

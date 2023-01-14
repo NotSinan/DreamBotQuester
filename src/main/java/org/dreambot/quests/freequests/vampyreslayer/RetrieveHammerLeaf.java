@@ -16,34 +16,36 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveHammerLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        // 🐰🐰🐰 Check if there is no hammer in the inventory
-        return !Inventory.contains("Hammer");
+  @Override
+  public boolean isValid() {
+    // 🐰🐰🐰 Check if there is no hammer in the inventory
+    return !Inventory.contains("Hammer");
+  }
+
+  @Override
+  public int onLoop() {
+    if (OwnedItems.contains("Hammer")) {
+      return BankHelper.withdrawFromBank("Hammer", 1);
+    }
+    final Area VARROCK_GENERAL_STORE = new Area(3214, 3418, 3220, 3411);
+
+    if (!WalkingHelper.walkToArea(VARROCK_GENERAL_STORE)) {
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        if (OwnedItems.contains("Hammer")) {
-            return BankHelper.withdrawFromBank("Hammer", 1);
-        }
-        final Area VARROCK_GENERAL_STORE = new Area(3214, 3418, 3220, 3411);
-
-        if (!WalkingHelper.walkToArea(VARROCK_GENERAL_STORE)) {
-            return Timing.getSleepDelay();
-        }
-
-        if (Shop.isOpen()) {
-            if (Shop.purchase("Hammer", 1)) {
-                Sleep.sleepUntil(() -> Inventory.contains("Hammer"), 3000);
-            }
-            return Timing.loopReturn();
-        }
-
-        NPC shopAssistant = NPCs.closest("Shop assistant");
-        if (shopAssistant != null && shopAssistant.exists() && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
-            Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
-        }
-        return Timing.loopReturn();
+    if (Shop.isOpen()) {
+      if (Shop.purchase("Hammer", 1)) {
+        Sleep.sleepUntil(() -> Inventory.contains("Hammer"), 3000);
+      }
+      return Timing.loopReturn();
     }
+
+    NPC shopAssistant = NPCs.closest("Shop assistant");
+    if (shopAssistant != null
+        && shopAssistant.exists()
+        && Interaction.delayEntityInteract(shopAssistant, "Trade")) {
+      Sleep.sleepUntil(() -> Shop.isOpen(), () -> Players.getLocal().isMoving(), 3000, 100);
+    }
+    return Timing.loopReturn();
+  }
 }

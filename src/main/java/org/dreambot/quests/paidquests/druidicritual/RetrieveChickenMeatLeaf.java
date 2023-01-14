@@ -11,23 +11,21 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.NPCHelper;
 
 public class RetrieveChickenMeatLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 0 &&
-                Inventory.contains("Raw rat meat", "Raw beef", "Raw bear meat") &&
-                !Inventory.contains("Raw chicken");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(PaidQuest.DRUIDIC_RITUAL.getConfigID()) == 0
+        && Inventory.contains("Raw rat meat", "Raw beef", "Raw bear meat")
+        && !Inventory.contains("Raw chicken");
+  }
+
+  @Override
+  public int onLoop() {
+
+    GroundItem rawRatMeat = GroundItems.closest("Raw chicken");
+    if (rawRatMeat != null && rawRatMeat.interact("Take")) {
+      Sleep.sleepUntil(() -> Inventory.contains("Raw chicken"), 3000);
     }
 
-    @Override
-    public int onLoop() {
-
-        GroundItem rawRatMeat = GroundItems.closest("Raw chicken");
-        if (rawRatMeat != null && rawRatMeat.interact("Take")) {
-            Sleep.sleepUntil(() -> Inventory.contains("Raw chicken"), 3000);
-        }
-
-        return NPCHelper.goAndKillNpc(
-                new Area(3227, 3300, 3232, 3296),
-                "Chicken");
-    }
+    return NPCHelper.goAndKillNpc(new Area(3227, 3300, 3232, 3296), "Chicken");
+  }
 }

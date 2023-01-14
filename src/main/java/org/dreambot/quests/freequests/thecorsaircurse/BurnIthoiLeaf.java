@@ -15,26 +15,29 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class BurnIthoiLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 45;
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 45;
+  }
+
+  @Override
+  public int onLoop() {
+    if (!WalkingHelper.walkToArea(
+        new Area(2527, 2840, 2534, 2833, 0))) { // driftwood area under ithoi's house
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        if (!WalkingHelper.walkToArea(new Area(2527, 2840, 2534, 2833, 0))) { // driftwood area under ithoi's house
-            return Timing.getSleepDelay();
-        }
-
-        GameObject driftwood = GameObjects.closest("Driftwood");
-        if (driftwood != null && driftwood.exists()) {
-            Item tinderbox = Inventory.get("Tinderbox");
-            if (tinderbox.useOn(driftwood)) {
-                Sleep.sleepUntil(() -> Client.isDynamicRegion() || Client.isInCutscene(), () -> Players.getLocal().isMoving(), 8000, 100);
-            }
-        }
-        return Timing.loopReturn();
+    GameObject driftwood = GameObjects.closest("Driftwood");
+    if (driftwood != null && driftwood.exists()) {
+      Item tinderbox = Inventory.get("Tinderbox");
+      if (tinderbox.useOn(driftwood)) {
+        Sleep.sleepUntil(
+            () -> Client.isDynamicRegion() || Client.isInCutscene(),
+            () -> Players.getLocal().isMoving(),
+            8000,
+            100);
+      }
     }
-
-
+    return Timing.loopReturn();
+  }
 }

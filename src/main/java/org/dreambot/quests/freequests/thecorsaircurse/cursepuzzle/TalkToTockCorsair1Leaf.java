@@ -7,22 +7,22 @@ import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToTockCorsair1Leaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return CurseState.talkedToIthoi() &&
-                        CurseState.talkedToGnocci() &&
-                        CurseState.talkedToArsen() &&
-                        CurseState.talkedToColin() &&
-                        Inventory.contains("Spade");
-    }
+  @Override
+  public boolean isValid() {
+    return CurseState.talkedToIthoi()
+        && CurseState.talkedToGnocci()
+        && CurseState.talkedToArsen()
+        && CurseState.talkedToColin()
+        && Inventory.contains("Spade");
+  }
 
-    @Override
-    public int onLoop() {
-        return NPCHelper.goAndTalkToNpc(
-                new Area(2573, 2837, 2583, 2835, 1),
-                "Captain Tock",
-                new String[]{"Arsen says he gave you a sacred ogre relic.", "About that sacred ogre relic..."}
-        );
-    }
-
+  @Override
+  public int onLoop() {
+    return NPCHelper.goAndTalkToNpc(
+        new Area(2573, 2837, 2583, 2835, 1),
+        "Captain Tock",
+        new String[] {
+          "Arsen says he gave you a sacred ogre relic.", "About that sacred ogre relic..."
+        });
+  }
 }

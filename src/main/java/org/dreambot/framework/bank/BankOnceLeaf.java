@@ -9,31 +9,31 @@ import org.dreambot.utilities.Timing;
 
 public class BankOnceLeaf extends Leaf {
 
-    private static boolean emptied = false;
+  private static boolean emptied = false;
 
-    @Override
-    public boolean isValid() {
-        return !emptied;
+  @Override
+  public boolean isValid() {
+    return !emptied;
+  }
+
+  @Override
+  public int onLoop() {
+    if (Inventory.isEmpty() && Equipment.isEmpty()) {
+      emptied = true;
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        if(Inventory.isEmpty() && Equipment.isEmpty()) {
-            emptied = true;
-            return Timing.getSleepDelay();
-        }
+    Timing.sleepForDelay();
+    if (Bank.open()) {
+      if (!Inventory.isEmpty() && Bank.depositAllItems()) {
+        Sleep.sleepUntil(Inventory::isEmpty, 3000);
+      }
 
-        Timing.sleepForDelay();
-        if(Bank.open()) {
-            if(!Inventory.isEmpty() && Bank.depositAllItems()) {
-                Sleep.sleepUntil(Inventory::isEmpty, 3000);
-            }
-
-            if(!Equipment.isEmpty() && Bank.depositAllEquipment()) {
-                Sleep.sleepUntil(Equipment::isEmpty, 3000);
-            }
-            return Timing.loopReturn();
-        }
-        return Timing.loopReturn();
+      if (!Equipment.isEmpty() && Bank.depositAllEquipment()) {
+        Sleep.sleepUntil(Equipment::isEmpty, 3000);
+      }
+      return Timing.loopReturn();
     }
+    return Timing.loopReturn();
+  }
 }

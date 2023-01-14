@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface QuestManifest {
-    String author();
+  String author();
 
-    String questName();
+  String questName();
 }

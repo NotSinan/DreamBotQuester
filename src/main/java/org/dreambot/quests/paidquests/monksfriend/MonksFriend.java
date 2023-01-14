@@ -5,8 +5,8 @@ import org.dreambot.framework.Branch;
 import org.dreambot.utilities.requirements.CheckRequirements;
 
 public class MonksFriend extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(PaidQuest.MONKS_FRIEND);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(PaidQuest.MONKS_FRIEND);
+  }
 }

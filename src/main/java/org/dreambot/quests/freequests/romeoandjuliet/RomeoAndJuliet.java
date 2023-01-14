@@ -7,8 +7,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "Sinan", questName = "Romeo and juliet")
 public class RomeoAndJuliet extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.ROMEO_AND_JULIET);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.ROMEO_AND_JULIET);
+  }
 }

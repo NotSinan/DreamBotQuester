@@ -8,8 +8,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 @QuestManifest(author = "Sinan", questName = "Sheep shearer")
 public class SheepShearer extends Branch {
 
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.SHEEP_SHEARER);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.SHEEP_SHEARER);
+  }
 }

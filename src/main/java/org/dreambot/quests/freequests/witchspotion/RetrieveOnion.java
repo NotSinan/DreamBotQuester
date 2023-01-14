@@ -14,24 +14,27 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class RetrieveOnion extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.WITCHS_POTION.getConfigID()) == 1 && !Inventory.contains("Onion");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.WITCHS_POTION.getConfigID()) == 1
+        && !Inventory.contains("Onion");
+  }
+
+  @Override
+  public int onLoop() {
+    final Area ONION_AREA = new Area(2955, 3254, 2945, 3248, 0);
+    if (!WalkingHelper.walkToArea(ONION_AREA)) {
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        final Area ONION_AREA = new Area(2955, 3254, 2945, 3248, 0);
-        if (!WalkingHelper.walkToArea(ONION_AREA)) {
-            return Timing.getSleepDelay();
-        }
-
-        GameObject onion = GameObjects.closest("Onion");
-        if (onion != null && onion.exists() && Interaction.delayEntityInteract(onion, "Pick")) {
-            Sleep.sleepUntil(() -> Inventory.contains("Onion"),
-                    () -> Players.getLocal().isMoving() || Players.getLocal().isAnimating(),
-                    3000, 100);
-        }
-        return Timing.loopReturn();
+    GameObject onion = GameObjects.closest("Onion");
+    if (onion != null && onion.exists() && Interaction.delayEntityInteract(onion, "Pick")) {
+      Sleep.sleepUntil(
+          () -> Inventory.contains("Onion"),
+          () -> Players.getLocal().isMoving() || Players.getLocal().isAnimating(),
+          3000,
+          100);
     }
+    return Timing.loopReturn();
+  }
 }

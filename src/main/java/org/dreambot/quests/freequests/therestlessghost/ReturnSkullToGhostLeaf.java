@@ -16,30 +16,31 @@ import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class ReturnSkullToGhostLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 4 && Inventory.contains("Ghost's skull");
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getConfig(FreeQuest.THE_RESTLESS_GHOST.getConfigID()) == 4
+        && Inventory.contains("Ghost's skull");
+  }
+
+  @Override
+  public int onLoop() {
+    if (!WalkingHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { // ghost area
+      return Timing.getSleepDelay();
     }
 
-    @Override
-    public int onLoop() {
-        if (!WalkingHelper.walkToArea(new Area(3247, 3195, 3252, 3190))) { //ghost area
-            return Timing.getSleepDelay();
-        }
-
-        GameObject coffin = GameObjects.closest("Coffin");
-        if (coffin != null && coffin.exists()) {
-            if (coffin.hasAction("Open")) {
-                if (Interaction.delayEntityInteract(coffin, "Open")) {
-                    Sleep.sleepUntil(() -> !coffin.exists(), () -> Players.getLocal().isMoving(), 3000, 100);
-                }
-                return Timing.loopReturn();
-            }
-            Item skull = Inventory.get("Ghost's skull");
-            if (skull != null && skull.isValid() && Interaction.delayUseItemOn(skull, coffin)) {
-                Sleep.sleepUntil(() -> !Inventory.contains("Ghost's skull"), 3000);
-            }
+    GameObject coffin = GameObjects.closest("Coffin");
+    if (coffin != null && coffin.exists()) {
+      if (coffin.hasAction("Open")) {
+        if (Interaction.delayEntityInteract(coffin, "Open")) {
+          Sleep.sleepUntil(() -> !coffin.exists(), () -> Players.getLocal().isMoving(), 3000, 100);
         }
         return Timing.loopReturn();
+      }
+      Item skull = Inventory.get("Ghost's skull");
+      if (skull != null && skull.isValid() && Interaction.delayUseItemOn(skull, coffin)) {
+        Sleep.sleepUntil(() -> !Inventory.contains("Ghost's skull"), 3000);
+      }
     }
+    return Timing.loopReturn();
+  }
 }

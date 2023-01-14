@@ -6,10 +6,10 @@ import org.dreambot.api.methods.settings.PlayerSettings;
 import org.dreambot.framework.Branch;
 
 public class RetrievePotOfFlourBranch extends Branch {
-    @Override
-    public boolean isValid() {
-        return (PlayerSettings.getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 0 ||
-                PlayerSettings.getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 1) &&
-                !Inventory.contains("Pot of flour");
-    }
+  @Override
+  public boolean isValid() {
+    return (PlayerSettings.getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 0
+            || PlayerSettings.getConfig(FreeQuest.COOKS_ASSISTANT.getConfigID()) == 1)
+        && !Inventory.contains("Pot of flour");
+  }
 }

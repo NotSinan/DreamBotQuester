@@ -9,23 +9,22 @@ import org.dreambot.utilities.helpers.GameObjectHelper;
 
 public class ObserveIthoiTelescopeLeaf extends Leaf {
 
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 15 &&
-                CurseState.talkedToIthoi() &&
-                CurseState.returnedToothpick() &&
-                CurseState.talkedToColin() &&
-                CurseState.foundDoll() &&
-                TalkToTessLeaf.leaveTessArea();
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 15
+        && CurseState.talkedToIthoi()
+        && CurseState.returnedToothpick()
+        && CurseState.talkedToColin()
+        && CurseState.foundDoll()
+        && TalkToTessLeaf.leaveTessArea();
+  }
 
-    @Override
-    public int onLoop() {
-        return GameObjectHelper.goAndInteractWithGameObject(
-                new Area(2527, 2841, 2532, 2835, 1), // ithoi upstairs telescope
-                "Telescope",
-                "Observe",
-                () -> Dialogues.inDialogue()
-        );
-    }
+  @Override
+  public int onLoop() {
+    return GameObjectHelper.goAndInteractWithGameObject(
+        new Area(2527, 2841, 2532, 2835, 1), // ithoi upstairs telescope
+        "Telescope",
+        "Observe",
+        () -> Dialogues.inDialogue());
+  }
 }

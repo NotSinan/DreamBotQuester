@@ -7,8 +7,8 @@ import org.dreambot.utilities.requirements.CheckRequirements;
 
 @QuestManifest(author = "Sinan", questName = "Goblin diplomacy")
 public class GoblinDiplomacy extends Branch {
-    @Override
-    public boolean isValid() {
-        return CheckRequirements.checkRequirements(FreeQuest.GOBLIN_DIPLOMACY);
-    }
+  @Override
+  public boolean isValid() {
+    return CheckRequirements.checkRequirements(FreeQuest.GOBLIN_DIPLOMACY);
+  }
 }

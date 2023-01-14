@@ -7,18 +7,19 @@ import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.helpers.NPCHelper;
 
 public class TalkToTockFarmLeaf extends Leaf {
-    @Override
-    public boolean isValid() {
-        return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 0 ||
-                PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 5;
-    }
+  @Override
+  public boolean isValid() {
+    return PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 0
+        || PlayerSettings.getBitValue(FreeQuest.CORSAIR_CURSE.getVarBitID()) == 5;
+  }
 
-    @Override
-    public int onLoop() {
-        return NPCHelper.goAndTalkToNpc(
-                new Area(3028, 3275, 3033, 3270, 0),
-                "Captain Tock",
-                new String[]{"What kind of help do you need?", "Sure, I'll try to help with your curse.", "Yes."}
-        );
-    }
+  @Override
+  public int onLoop() {
+    return NPCHelper.goAndTalkToNpc(
+        new Area(3028, 3275, 3033, 3270, 0),
+        "Captain Tock",
+        new String[] {
+          "What kind of help do you need?", "Sure, I'll try to help with your curse.", "Yes."
+        });
+  }
 }
