@@ -11,8 +11,6 @@ import org.dreambot.utilities.Timing;
 import org.dreambot.utilities.helpers.WalkingHelper;
 
 public class ClueStepFourLeaf extends Leaf {
-
-
     @Override
     public boolean isValid() {
         return PlayerSettings.getBitValue(FreeQuest.X_MARKS_THE_SPOT.getVarBitID()) == 5 && Inventory.contains("Treasure scroll");
