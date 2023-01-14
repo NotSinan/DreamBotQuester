@@ -17,11 +17,15 @@ public class ClueStepFourLeaf extends Leaf {
     }
 
     @Override
+
     public int onLoop() {
+
         final Area CLUE_FOUR_AREA = new Area(3075, 3261, 3079, 3259);
 
         if (!WalkingHelper.walkToArea(CLUE_FOUR_AREA)) {
+
             return Timing.getSleepDelay();
+
         }
 
         Timing.sleepForDelay();
@@ -29,7 +33,9 @@ public class ClueStepFourLeaf extends Leaf {
             if (Sleep.sleepUntil(() -> Players.getLocal().isAnimating(), 3000)) {
                 Sleep.sleepUntil(() -> !Players.getLocal().isAnimating(), 3000);
             }
+
         }
+
         return Timing.loopReturn();
     }
 }
