@@ -35,7 +35,6 @@ public class ClueStepFourLeaf extends Leaf {
             }
 
         }
-
         return Timing.loopReturn();
     }
 }
