@@ -51,34 +51,6 @@ import org.dreambot.quests.paidquests.monksfriend.TalkToBrotherOmadLeaf;
 import java.util.function.Supplier;
 
 public enum QuestBranches {
-    GERTRUDES_CAT(() -> {
-        Branch questBranch = new GertrudesCat();
-        questBranch.addLeafs(
-                new org.dreambot.quests.paidquests.gertrudescat.RetrieveCoinsLeaf(),
-                new org.dreambot.quests.paidquests.gertrudescat.RetrieveBucketOfMilkLeaf(),
-                new RetrieveRawSardineLeaf(),
-                new RetrieveDoogleLeavesLeaf(),
-                new TalkToGertrudeLeaf(),
-                new TalkToWiloughLeaf(),
-                new GiveMilkToCatLeaf(),
-                new GiveSeasonedSardineToCatLeaf(),
-                new MixSardineAndDoogleLeavesLeaf(),
-                new FindKittensLeaf(),
-                new GiveKittenToFluffsLeaf()
-        );
-        return questBranch;
-    }),
-
-    ROMEO_AND_JULIET(() -> {
-        Branch questBranch = new RomeoAndJuliet();
-        questBranch.addLeafs(
-                new TalkToRomeoLeaf(),
-                new TalkToJulietLeaf(),
-                new TalkToFatherLawrenceLeaf(),
-                new TalkToApothecary()
-        );
-        return questBranch;
-    }),
 
     ALFRED_GRIMHANDS_BARCRAWL(() -> {
         Branch questBranch = new AlfredGrimhandsBarcrawl();
@@ -139,6 +111,18 @@ public enum QuestBranches {
         return questBranch;
     }),
 
+    DORICS_QUEST(() -> {
+        Branch questBranch = new DoricsQuest();
+        questBranch.addLeafs(
+                new TalkToDoricLeaf(),
+                new RetrievePickaxeLeaf(),
+                new RetrieveIronLeaf(),
+                new RetrieveCopperLeaf(),
+                new RetrieveClayLeaf()
+        );
+        return questBranch;
+    }),
+
     DRUIDIC_RITUAL(() -> {
         Branch questBranch = new DruidicRitual();
         questBranch.addLeafs(
@@ -153,23 +137,39 @@ public enum QuestBranches {
         return questBranch;
     }),
 
-    DORICS_QUEST(() -> {
-        Branch questBranch = new DoricsQuest();
+    GERTRUDES_CAT(() -> {
+        Branch questBranch = new GertrudesCat();
         questBranch.addLeafs(
-                new TalkToDoricLeaf(),
-                new RetrievePickaxeLeaf(),
-                new RetrieveIronLeaf(),
-                new RetrieveCopperLeaf(),
-                new RetrieveClayLeaf()
+                new org.dreambot.quests.paidquests.gertrudescat.RetrieveCoinsLeaf(),
+                new org.dreambot.quests.paidquests.gertrudescat.RetrieveBucketOfMilkLeaf(),
+                new RetrieveRawSardineLeaf(),
+                new RetrieveDoogleLeavesLeaf(),
+                new TalkToGertrudeLeaf(),
+                new TalkToWiloughLeaf(),
+                new GiveMilkToCatLeaf(),
+                new GiveSeasonedSardineToCatLeaf(),
+                new MixSardineAndDoogleLeavesLeaf(),
+                new FindKittensLeaf(),
+                new GiveKittenToFluffsLeaf()
         );
         return questBranch;
     }),
 
-    MONKS_FRIEND(() -> {
-        Branch questBranch = new MonksFriend();
+    GOBLIN_DIPLOMACY(() -> {
+        Branch questBranch = new GoblinDiplomacy();
         questBranch.addLeafs(
-                new TalkToBrotherOmadLeaf(),
-                new RetrieveChildsBlanketLeaf()
+                new RetrieveGoblinMailLeaf(),
+                new RetrieveOnionLeaf(),
+                new RetrieveRedBerryLeaf(),
+                new RetrieveWoadLeavesLeaf(),
+                new RetrieveYellowDyeLeaf(),
+                new RetrieveBlueDyeLeaf(),
+                new RetrieveRedDyeLeaf(),
+                new MixDyeLeaf(),
+                new MixBlueGoblinMailLeaf(),
+                new MixOrangeGoblinMailLeaf(),
+                new TalkToGeneralWartfaceLeaf(),
+                new TalkToGeneralWartfaceTwoLeaf()
         );
         return questBranch;
     }),
@@ -179,6 +179,15 @@ public enum QuestBranches {
         questBranch.addLeafs(
                 new RetrieveBeadsLeaf(),
                 new GiveBeadsLeaf()
+        );
+        return questBranch;
+    }),
+
+    MONKS_FRIEND(() -> {
+        Branch questBranch = new MonksFriend();
+        questBranch.addLeafs(
+                new TalkToBrotherOmadLeaf(),
+                new RetrieveChildsBlanketLeaf()
         );
         return questBranch;
     }),
@@ -225,6 +234,17 @@ public enum QuestBranches {
         );
         return questBranch;
     }),
+
+    ROMEO_AND_JULIET(() -> {
+        Branch questBranch = new RomeoAndJuliet();
+        questBranch.addLeafs(
+                new TalkToRomeoLeaf(),
+                new TalkToJulietLeaf(),
+                new TalkToFatherLawrenceLeaf(),
+                new TalkToApothecary()
+        );
+        return questBranch;
+    }),
     RUNE_MYSTERIES(() -> {
         Branch questBranch = new RuneMysteries();
         questBranch.addLeafs(
@@ -236,6 +256,15 @@ public enum QuestBranches {
         return questBranch;
     }),
 
+    SHEEP_SHEARER(() -> {
+        Branch questBranch = new SheepShearer();
+        questBranch.addLeafs(
+                new CollectWoolLeaf(),
+                new SpinWoolLeaf(),
+                new TalkToFredLeaf()
+        );
+        return questBranch;
+    }),
     VAMPYRE_SLAYER(() -> {
         Branch questBranch = new VampyreSlayer();
         questBranch.addLeafs(
@@ -252,48 +281,6 @@ public enum QuestBranches {
         );
         return questBranch;
     }),
-    SHEEP_SHEARER(() -> {
-        Branch questBranch = new SheepShearer();
-        questBranch.addLeafs(
-                new CollectWoolLeaf(),
-                new SpinWoolLeaf(),
-                new TalkToFredLeaf()
-        );
-        return questBranch;
-    }),
-
-    X_MARKS_THE_SPOT(() -> {
-        Branch questBranch = new XMarksTheSpot();
-        questBranch.addLeafs(
-                new RetrieveSpadeXMarksTheSpotLeaf(),
-                new TalkToVeosLumbridgeLeaf(),
-                new TalkToVeosSarimLeaf(),
-                new ClueStepOneLeaf(),
-                new ClueStepTwoLeaf(),
-                new ClueStepThreeLeaf(),
-                new ClueStepFourLeaf()
-        );
-        return questBranch;
-    }),
-
-    GOBLIN_DIPLOMACY(() -> {
-        Branch questBranch = new GoblinDiplomacy();
-        questBranch.addLeafs(
-                new RetrieveGoblinMailLeaf(),
-                new RetrieveOnionLeaf(),
-                new RetrieveRedBerryLeaf(),
-                new RetrieveWoadLeavesLeaf(),
-                new RetrieveYellowDyeLeaf(),
-                new RetrieveBlueDyeLeaf(),
-                new RetrieveRedDyeLeaf(),
-                new MixDyeLeaf(),
-                new MixBlueGoblinMailLeaf(),
-                new MixOrangeGoblinMailLeaf(),
-                new TalkToGeneralWartfaceLeaf(),
-                new TalkToGeneralWartfaceTwoLeaf()
-        );
-        return questBranch;
-    }),
 
     WITCHS_POTION(() -> {
         Branch questBranch = new WitchsPotion();
@@ -306,6 +293,21 @@ public enum QuestBranches {
                 new RetrieveEyeOfNewt(),
                 new RetrieveBurntMeat(),
                 new DrinkFromCauldronLeaf()
+        );
+        return questBranch;
+    }),
+
+
+    X_MARKS_THE_SPOT(() -> {
+        Branch questBranch = new XMarksTheSpot();
+        questBranch.addLeafs(
+                new RetrieveSpadeXMarksTheSpotLeaf(),
+                new TalkToVeosLumbridgeLeaf(),
+                new TalkToVeosSarimLeaf(),
+                new ClueStepOneLeaf(),
+                new ClueStepTwoLeaf(),
+                new ClueStepThreeLeaf(),
+                new ClueStepFourLeaf()
         );
         return questBranch;
     });

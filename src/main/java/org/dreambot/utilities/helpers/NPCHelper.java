@@ -67,7 +67,6 @@ public class NPCHelper {
         return Timing.loopReturn();
     }
 
-
     public static int goAndTalkToNpc(Area area, String name, String[] dialogueOptions) {
         if (!WalkingHelper.walkToArea(area)) {
             return Timing.getSleepDelay();
