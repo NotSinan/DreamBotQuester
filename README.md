@@ -1,3 +1,4 @@
+[![GitHub stars](https://img.shields.io/github/stars/notsinan/DreamBotQuester?style=social)
 # DreamBotQuester
 
 DreamBotQuester is a Java library that allows you to automate quests in RuneScape using the DreamBot API. It offers a
