@@ -1,5 +1,6 @@
 package org.dreambot.utilities.helpers;
 
+import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.interactive.GameObjects;
 import org.dreambot.api.methods.interactive.Players;
 import org.dreambot.api.methods.map.Area;
@@ -47,6 +48,17 @@ public class GameObjectHelper {
       if (!WalkingHelper.walkToTile(interactableGameObject)) {
         return Timing.getSleepDelay();
       }
+    }
+    return Timing.loopReturn();
+  }
+
+  public static int goAndUseItemOnGameObject(Area area, String itemName, String gameObject) {
+    if (!WalkingHelper.walkToArea(area)) {
+      return Timing.getSleepDelay();
+    }
+    if (Inventory.contains(itemName)) {
+      Inventory.interact(itemName, "Use");
+      GameObjects.closest(g -> g.getName().equals(gameObject) && g.hasAction("Use")).interact();
     }
     return Timing.loopReturn();
   }
