@@ -2,7 +2,7 @@ package org.dreambot.utilities.helpers.commonitemshelper;
 
 import org.dreambot.api.methods.map.Area;
 import org.dreambot.utilities.helpers.NPCHelper;
-
+//Helper for beer item
 public class BlueDyeHelper implements CommonItemsHelper {
   @Override
   public int getItem() {
