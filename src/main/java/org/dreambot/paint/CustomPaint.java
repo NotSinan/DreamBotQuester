@@ -206,9 +206,8 @@ public class CustomPaint {
     }
     if (Arrays.equals(
         paintInformationArray,
-        paintInfo
-            .getPaintInfo())) { // Used to avoid recalling the creation methods if nothing has
-                                // changed.
+        paintInfo.getPaintInfo())) { // Used to avoid recalling the creation methods if nothing has
+      // changed.
       if (!singleBackground) {
         for (PaintableText text : paintableTexts) {
           text.paintComponent(graphics);
@@ -219,10 +218,10 @@ public class CustomPaint {
     } else {
       if (numberOfItems
           == 0) { // Only occurs when there's nothing to paint, or it hasn't loaded due to the paint
-                  // loading before the script.
+        // loading before the script.
         reinitializeVariables();
       } else { // If the numberOfItems != 0 then the only thing that's changed is the text to paint,
-               // so we'll just update that.
+        // so we'll just update that.
         this.paintInformationArray = paintInfo.getPaintInfo();
         reinitializeVariables();
       }

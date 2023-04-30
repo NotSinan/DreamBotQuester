@@ -13,7 +13,7 @@ public class RetrieveGrainLeaf extends Leaf {
   public boolean isValid() {
     final int GRAIN_TOWER_FLOUR_COUNT_VARBIT =
         4920; // Indicates the quantity of flour available to take from bin in west lumbridge grain
-              // tower
+    // tower
     return !Inventory.contains("Grain")
         && PlayerSettings.getBitValue(GRAIN_TOWER_FLOUR_COUNT_VARBIT) <= 0;
   }

@@ -22,7 +22,7 @@ public class OperateGrainMillLeaf extends Leaf {
   public int onLoop() {
     final int GRAIN_TOWER_FLOUR_COUNT_VARBIT =
         4920; // Indicates the quantity of flour available to take from bin in west lumbridge grain
-              // tower
+    // tower
     final Area GRAIN_TOWER_LVL1_AREA =
         new Area(
             new Tile(3168, 3303, 0),

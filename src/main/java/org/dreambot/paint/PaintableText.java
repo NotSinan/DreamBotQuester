@@ -102,14 +102,14 @@ public class PaintableText extends JComponent {
   public void paintComponent(Graphics graphics) {
     if (infoToPaint
         != null) { // Flag to switch between printing multiple backgrounds, or just one. In this
-                   // case, just one background.
+      // case, just one background.
       highestY =
           highestY
               - (graphics
                   .getFontMetrics()
                   .getHeight()); // Moves the highestY point to the top of where the text will be
-                                 // drawn. Text must be drawn at the bottom left corner, whereas
-                                 // rectangles are drawn at top left.
+      // drawn. Text must be drawn at the bottom left corner, whereas
+      // rectangles are drawn at top left.
       rightmostX =
           leftmostX
               + graphics
@@ -118,7 +118,7 @@ public class PaintableText extends JComponent {
                       getWidestString(
                           infoToPaint,
                           graphics)); // Determines the farthest right point by adding the width of
-                                      // the widest string to the leftmost point.
+      // the widest string to the leftmost point.
       graphics.setColor(backgroundColor);
       graphics.fillRect(
           leftmostX - horizontalPadding,
@@ -128,7 +128,7 @@ public class PaintableText extends JComponent {
       Graphics2D graphics2D = (Graphics2D) graphics;
       if (borderThickness
           > 0) { // Only draw border if the border width is greater than 0, otherwise you don't want
-                 // a border.
+        // a border.
         graphics2D.setColor(borderColor);
         graphics2D.setStroke(
             new BasicStroke(
@@ -162,7 +162,7 @@ public class PaintableText extends JComponent {
           yCoord
               - verticalPadding
               + borderThickness); // Moves the rectangle to the appropriate place for the
-                                  // background.
+      // background.
       textRectangle.setSize(
           (int) textRectangle.getWidth() + horizontalPadding + horizontalPadding,
           (int) textRectangle.getHeight()
@@ -178,8 +178,8 @@ public class PaintableText extends JComponent {
               + (int)
                   (textHeight
                       * 0.80)); // Multiplies the textHeight by 0.80 to try and center it vertically
-                                // a bit better. If you think it's off, feel free to toy around with
-                                // that value.
+      // a bit better. If you think it's off, feel free to toy around with
+      // that value.
       if (borderThickness > 0) {
         graphics2D.setStroke(new BasicStroke(borderThickness));
         graphics2D.setColor(borderColor);

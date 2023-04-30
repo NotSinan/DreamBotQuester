@@ -62,9 +62,8 @@ public class FightCountDraynor extends Leaf {
                         && (vamp.getInteractingCharacter() == null
                             || vamp.getInteractingCharacter()
                                 .equals(
-                                    Players
-                                        .getLocal()))); // don't get any vampyres attacking other
-                                                        // ppl
+                                    Players.getLocal()))); // don't get any vampyres attacking other
+        // ppl
         if (countDraynor != null && Interaction.delayEntityInteract(countDraynor, "Attack")) {
           Sleep.sleepUntil(
               () -> Players.getLocal().isInCombat(),
